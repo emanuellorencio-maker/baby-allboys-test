@@ -1,0 +1,15 @@
+MODO MANUAL - BABY ALL BOYS
+
+1) Copiar todo dentro de C:\Users\emanu\OneDrive\Desktop\fefi-app\
+2) Ejecutar: python scraper.py
+3) Tiene que mostrar fixture=15 en c, i, mat1 y mat4.
+4) El fixture queda fijo y NO depende más de FEFI.
+5) Si bajás resultados o tabla manualmente, pegá esos JSON en:
+   data/c/resultados.json o data/c/tabla.json
+   data/i/resultados.json o data/i/tabla.json
+   data/mat1/resultados.json o data/mat1/tabla.json
+   data/mat4/resultados.json o data/mat4/tabla.json
+6) Luego subir a GitHub:
+   git add .
+   git commit -m "modo manual con fixture fijo"
+   git push

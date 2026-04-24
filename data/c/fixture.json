@@ -1,1 +1,107 @@
-[]
+[
+  {
+    "fecha": "Fecha 1 - 18 de Abril",
+    "local": "ALL BOYS \"A\"",
+    "visitante": "PUEYRREDON",
+    "condicion": "Local",
+    "fecha_id": "F1"
+  },
+  {
+    "fecha": "Fecha 2 - 25 de Abril",
+    "local": "C. S. D. PARQUE",
+    "visitante": "ALL BOYS \"A\"",
+    "condicion": "Visitante",
+    "fecha_id": "F2"
+  },
+  {
+    "fecha": "Fecha 3 - 02 de Mayo",
+    "local": "ALL BOYS \"A\"",
+    "visitante": "BICHOS COLORADOS",
+    "condicion": "Local",
+    "fecha_id": "F3"
+  },
+  {
+    "fecha": "Fecha 4 - 09 de Mayo",
+    "local": "CLUB OESTE",
+    "visitante": "ALL BOYS \"A\"",
+    "condicion": "Visitante",
+    "fecha_id": "F4"
+  },
+  {
+    "fecha": "Fecha 5 - 16 de Mayo",
+    "local": "ALL BOYS \"A\"",
+    "visitante": "DON BOSCO",
+    "condicion": "Local",
+    "fecha_id": "F5"
+  },
+  {
+    "fecha": "Fecha 6 - 23 de Mayo",
+    "local": "CENTRO ESPAÑOL",
+    "visitante": "ALL BOYS \"A\"",
+    "condicion": "Visitante",
+    "fecha_id": "F6"
+  },
+  {
+    "fecha": "Fecha 7 - 30 de Mayo",
+    "local": "ALL BOYS \"A\"",
+    "visitante": "U.D.S. ALLENDE",
+    "condicion": "Local",
+    "fecha_id": "F7"
+  },
+  {
+    "fecha": "Fecha 8 - 06 de Junio",
+    "local": "RACING CLUB 1",
+    "visitante": "ALL BOYS \"A\"",
+    "condicion": "Visitante",
+    "fecha_id": "F8"
+  },
+  {
+    "fecha": "Fecha 9 - 13 de Junio",
+    "local": "ALL BOYS \"A\"",
+    "visitante": "ESTRELLA DE MALDONADO ''B''",
+    "condicion": "Local",
+    "fecha_id": "F9"
+  },
+  {
+    "fecha": "Fecha 10 - 20 de Junio",
+    "local": "LOS CAMBOYANOS",
+    "visitante": "ALL BOYS \"A\"",
+    "condicion": "Visitante",
+    "fecha_id": "F10"
+  },
+  {
+    "fecha": "Fecha 11 - 27 de Junio",
+    "local": "ALL BOYS \"A\"",
+    "visitante": "INDEPENDIENTE DE HURLINGHAM",
+    "condicion": "Local",
+    "fecha_id": "F11"
+  },
+  {
+    "fecha": "Fecha 12 - 04 de Julio",
+    "local": "ALL BOYS \"A\"",
+    "visitante": "MARIANO MORENO",
+    "condicion": "Local",
+    "fecha_id": "F12"
+  },
+  {
+    "fecha": "Fecha 13 - 11 de Julio",
+    "local": "SANTIAGO DE LINIERS",
+    "visitante": "ALL BOYS \"A\"",
+    "condicion": "Visitante",
+    "fecha_id": "F13"
+  },
+  {
+    "fecha": "Fecha 14 - 18 de Julio",
+    "local": "ALL BOYS \"A\"",
+    "visitante": "INDEPENDIENTE",
+    "condicion": "Local",
+    "fecha_id": "F14"
+  },
+  {
+    "fecha": "Fecha 15 - 01 de Agosto",
+    "local": "D. F. SARMIENTO",
+    "visitante": "ALL BOYS \"A\"",
+    "condicion": "Visitante",
+    "fecha_id": "F15"
+  }
+]
