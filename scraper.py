@@ -141,7 +141,10 @@ def asegurar_fixture_y_archivos_base():
             guardar_json(base / "direcciones.json", DIRECCIONES_FIJAS.get(zona, {}))
 
 
-def obtener_html_renderizado(url: str) -> str:
+def obtener_htmls_renderizados(url: str) -> List[str]:
+    """Abre FEFI como Chrome real, captura la tabla inicial y después
+    entra a RESULTADOS APERTURA para recorrer todas las páginas de la tabla.
+    """
     try:
         from playwright.sync_api import sync_playwright
     except Exception:
@@ -151,23 +154,82 @@ def obtener_html_renderizado(url: str) -> str:
         print("  python -m playwright install chromium")
         raise SystemExit(1)
 
+    def click_siguiente_visible(page) -> bool:
+        js = """
+        () => {
+          const visible = (el) => {
+            const st = window.getComputedStyle(el);
+            const r = el.getBoundingClientRect();
+            return st.display !== 'none' && st.visibility !== 'hidden' && r.width > 0 && r.height > 0;
+          };
+          const candidatos = Array.from(document.querySelectorAll('a, button, span'));
+          for (const el of candidatos) {
+            const txt = (el.textContent || '').trim().toLowerCase();
+            const cls = (el.className || '').toString().toLowerCase();
+            const aria = (el.getAttribute('aria-label') || '').toLowerCase();
+            const esNext = txt === 'next' || txt === 'siguiente' || txt === '>' || txt === '›' || txt === '»' || cls.includes('next') || aria.includes('next') || aria.includes('siguiente');
+            const disabled = cls.includes('disabled') || el.getAttribute('aria-disabled') === 'true' || el.disabled;
+            if (esNext && !disabled && visible(el)) { el.click(); return true; }
+          }
+          return false;
+        }
+        """
+        try:
+            return bool(page.evaluate(js))
+        except Exception:
+            return False
+
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=True)
-        page = browser.new_page(viewport={"width": 1600, "height": 1200})
+        page = browser.new_page(viewport={"width": 1700, "height": 1300})
         page.goto(url, wait_until="networkidle", timeout=90000)
         try:
-            page.wait_for_selector("table", timeout=20000)
+            page.wait_for_selector("table", timeout=25000)
         except Exception:
             pass
-        time.sleep(3)
-        html = page.content()
+        time.sleep(2)
+
+        htmls = [page.content()]
+
+        try:
+            page.get_by_text("RESULTADOS APERTURA", exact=False).first.click(timeout=7000)
+            page.wait_for_timeout(1500)
+        except Exception:
+            try:
+                page.locator("text=RESULTADOS").first.click(timeout=7000)
+                page.wait_for_timeout(1500)
+            except Exception:
+                pass
+
+        vistos = set()
+        for _ in range(40):
+            html = page.content()
+            key = hash(html)
+            if key not in vistos:
+                vistos.add(key)
+                htmls.append(html)
+            if not click_siguiente_visible(page):
+                break
+            page.wait_for_timeout(900)
+
         browser.close()
-        return html
+        return htmls
+
+
+def obtener_html_renderizado(url: str) -> str:
+    return obtener_htmls_renderizados(url)[0]
 
 
 def fila_textos(tr) -> List[str]:
     celdas = tr.find_all(["th", "td"])
     return [normalizar(c.get_text(" ")) for c in celdas if normalizar(c.get_text(" "))]
+
+
+def fila_textos_raw(tr) -> List[str]:
+    # En resultados FEFI deja vacía la primera columna de la fila visitante.
+    # Si filtramos vacíos se corren las columnas y aparece un número como rival.
+    celdas = tr.find_all(["th", "td"])
+    return [normalizar(c.get_text(" ")) for c in celdas]
 
 
 def es_numero(v: str) -> bool:
@@ -263,7 +325,7 @@ def parsear_resultados(soup: BeautifulSoup, zona: str, categorias: List[str]) ->
     equipo_propio = canon(ZONAS[zona]["equipo"])
 
     for table in soup.find_all("table"):
-        filas = [fila_textos(tr) for tr in table.find_all("tr")]
+        filas = [fila_textos_raw(tr) for tr in table.find_all("tr")]
         if not filas:
             continue
 
@@ -354,10 +416,35 @@ def actualizar_desde_fefi():
     asegurar_fixture_y_archivos_base()
     for zona, cfg in ZONAS.items():
         print(f"Actualizando {zona}: {cfg['url']}")
-        html = obtener_html_renderizado(cfg["url"])
-        soup = BeautifulSoup(html, "html.parser")
-        tabla = parsear_tablas(soup, cfg["categorias"])
-        resultados = parsear_resultados(soup, zona, cfg["categorias"])
+        htmls = obtener_htmls_renderizados(cfg["url"])
+        tabla = {"general": [], "categorias": {c: [] for c in cfg["categorias"]}}
+        resultados = {"general": {}, "categorias": {}}
+
+        for html in htmls:
+            soup = BeautifulSoup(html, "html.parser")
+
+            tabla_tmp = parsear_tablas(soup, cfg["categorias"])
+            for fila in tabla_tmp.get("general", []):
+                if fila not in tabla["general"]:
+                    tabla["general"].append(fila)
+            for cat, filas in (tabla_tmp.get("categorias") or {}).items():
+                tabla["categorias"].setdefault(cat, [])
+                for fila in filas:
+                    if fila not in tabla["categorias"][cat]:
+                        tabla["categorias"][cat].append(fila)
+
+            res_tmp = parsear_resultados(soup, zona, cfg["categorias"])
+            for fid, partidos in (res_tmp.get("general") or {}).items():
+                resultados["general"].setdefault(fid, [])
+                existentes = {
+                    (p.get("fecha_id"), canon(p.get("local", "")), canon(p.get("visitante", "")))
+                    for p in resultados["general"][fid]
+                }
+                for partido in partidos:
+                    clave_partido = (partido.get("fecha_id"), canon(partido.get("local", "")), canon(partido.get("visitante", "")))
+                    if clave_partido not in existentes:
+                        resultados["general"][fid].append(partido)
+                        existentes.add(clave_partido)
 
         base = Path("data") / zona
         # Importante: solo pisamos si encontró datos. Así no rompe lo anterior con vacíos.
