@@ -1602,10 +1602,161 @@ button:active {
 
   box-shadow: 0 4px 12px rgba(0,0,0,0.25);
 }
-  </style>
+  
+/* ACCESO POR CATEGORIA */
+body.bloqueado {
+  overflow: hidden;
+}
+
+.selector-categoria-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 20000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background:
+    linear-gradient(rgba(0,0,0,0.78), rgba(0,0,0,0.88)),
+    url("fondo.png") center center / cover no-repeat;
+  backdrop-filter: blur(10px);
+}
+
+.selector-categoria-overlay.oculto {
+  display: none;
+}
+
+.selector-categoria-card {
+  width: min(980px, 100%);
+  background: rgba(10,10,10,0.94);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 28px;
+  box-shadow: 0 22px 50px rgba(0,0,0,0.45);
+  padding: 28px 22px;
+  text-align: center;
+}
+
+.selector-categoria-titulo {
+  margin: 0 0 10px;
+  font-size: 30px;
+  font-weight: 900;
+  color: #ffffff;
+}
+
+.selector-categoria-texto {
+  margin: 0 auto 20px;
+  max-width: 760px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(255,255,255,0.80);
+  font-weight: 600;
+}
+
+.selector-categoria-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.categoria-ingreso-btn {
+  min-height: 72px;
+  border-radius: 18px;
+  padding: 16px 10px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.04));
+  border: 1px solid rgba(255,255,255,0.12);
+  color: #ffffff;
+  box-shadow:
+    0 10px 22px rgba(0,0,0,0.24),
+    inset 0 1px 0 rgba(255,255,255,0.06);
+  font-size: 26px;
+  font-weight: 900;
+  letter-spacing: 0.5px;
+}
+
+.categoria-ingreso-btn small {
+  display: block;
+  margin-top: 6px;
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.72);
+}
+
+.categoria-ingreso-btn:hover {
+  background: linear-gradient(180deg, rgba(255,255,255,0.24), rgba(255,255,255,0.08));
+  border-color: rgba(255,255,255,0.22);
+  box-shadow:
+    0 14px 28px rgba(0,0,0,0.32),
+    0 0 0 2px rgba(255,255,255,0.06);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 900px) {
+  .selector-categoria-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .selector-categoria-card {
+    padding: 22px 14px;
+    border-radius: 22px;
+  }
+
+  .selector-categoria-titulo {
+    font-size: 24px;
+  }
+
+  .selector-categoria-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .categoria-ingreso-btn {
+    min-height: 66px;
+    font-size: 22px;
+  }
+}
+
+</style>
 </head>
 
-<body>
+<body class="bloqueado">
+
+<div class="selector-categoria-overlay" id="selector-categoria-overlay">
+  <div class="selector-categoria-card">
+    <h2 class="selector-categoria-titulo">Elegí la categoría</h2>
+    <p class="selector-categoria-texto">
+      Toca tu categoría para entrar a la web.
+    </p>
+
+    <div class="selector-categoria-grid" id="selector-categoria-grid">
+      <button class="categoria-ingreso-btn" onclick="abrirSitio('2013')">2013<small>Categoría</small></button>
+      <button class="categoria-ingreso-btn" onclick="abrirSitio('2014')">2014<small>Categoría</small></button>
+      <button class="categoria-ingreso-btn" onclick="abrirSitio('2015')">2015<small>Categoría</small></button>
+      <button class="categoria-ingreso-btn" onclick="abrirSitio('2016')">2016<small>Categoría</small></button>
+      <button class="categoria-ingreso-btn" onclick="abrirSitio('2017')">2017<small>Categoría</small></button>
+      <button class="categoria-ingreso-btn" onclick="abrirSitio('2018')">2018<small>Categoría</small></button>
+      <button class="categoria-ingreso-btn" onclick="abrirSitio('2019')">2019<small>Categoría</small></button>
+      <button class="categoria-ingreso-btn" onclick="abrirSitio('2020')">2020<small>Categoría</small></button>
+      <button class="categoria-ingreso-btn" onclick="abrirSitio('2021')">2021<small>Categoría</small></button>
+      <button class="categoria-ingreso-btn" onclick="abrirSitio('2022')">2022<small>Categoría</small></button>
+    </div>
+  </div>
+</div>
+
   <div class="app">
         <div class="franja-superior">
       <img src="franja-logo.png" alt="Franja histórica All Boys" class="franja-logo">
@@ -1619,6 +1770,8 @@ button:active {
     <a href="https://instagram.com/baby_allboys" target="_blank" class="btn-instagram">
       <i class="fab fa-instagram"></i> Seguinos en Instagram
     </a>
+
+
 
 <section class="tablon-noticias">
   <div class="tablon-header">
@@ -1693,6 +1846,19 @@ button:active {
   </div>
 
   <script>
+
+    function abrirSitio(categoriaSeleccionada = "") {
+      const overlay = document.getElementById("selector-categoria-overlay");
+      if (overlay) overlay.classList.add("oculto");
+      document.body.classList.remove("bloqueado");
+      if (categoriaSeleccionada) {
+        try {
+          sessionStorage.setItem("baby_categoria_ingreso", categoriaSeleccionada);
+        } catch (e) {}
+      }
+      window.scrollTo({ top: 0, behavior: "instant" in window ? "instant" : "auto" });
+    }
+
     const ZONA_CONFIG = {
       c: { nombre: "All Boys A - C", equipo: 'ALL BOYS "A"', etiqueta: "All Boys A", dirLocal: "CHIVILCOY 1998 CABA" },
       i: { nombre: "All Boys B - I", equipo: 'ALL BOYS "B"', etiqueta: "All Boys B", dirLocal: "CHIVILCOY 1998, FLORESTA CAPITAL FEDERAL" },
@@ -1914,55 +2080,28 @@ function mostrarVista(vista) {
 
     async function fetchJsonWithFallback(urls) {
       let ultimoError = null;
-
       for (const url of urls) {
         try {
-          const separador = url.includes("?") ? "&" : "?";
-          const urlFinal = `${url}${separador}v=${Date.now()}`;
-
-          const respuesta = await fetch(urlFinal, {
-            cache: "no-store",
-            headers: {
-              "Cache-Control": "no-cache"
-            }
-          });
-
-          if (!respuesta.ok) {
-            throw new Error(`No se pudo cargar ${url}`);
-          }
-
+          const respuesta = await fetch(url);
+          if (!respuesta.ok) throw new Error(`No se pudo cargar ${url}`);
           return await respuesta.json();
         } catch (error) {
-          console.warn(`Falló ${url}`, error);
           ultimoError = error;
         }
       }
-
       throw ultimoError || new Error("No se pudo cargar ningún archivo");
     }
 
     function obtenerUrlsResultados(zona) {
-      return [
-        `data/${zona}/resultados.json`,
-        `resultados_${zona}_fixed.json`,
-        `resultados_${zona}.json`
-      ];
+      return [`data/${zona}/resultados.json`, `resultados_${zona}_fixed.json`, `resultados_${zona}.json`];
     }
 
     function obtenerUrlsTablas(zona) {
-      return [
-        `data/${zona}/tabla.json`,
-        `tabla_${zona}_fixed.json`,
-        `tabla_${zona}.json`
-      ];
+      return [`data/${zona}/tabla.json`, `tabla_${zona}_fixed.json`, `tabla_${zona}.json`];
     }
 
     function obtenerUrlsFixture(zona) {
-      return [
-        `data/${zona}/fixture.json`,
-        `fixture_${zona}_fixed.json`,
-        `fixture_${zona}.json`
-      ];
+      return [`data/${zona}/fixture.json`, `fixture_${zona}.json`];
     }
 
     function normalizarTexto(valor) {
@@ -2563,20 +2702,26 @@ function renderResultadosPorFechas(data, textoResaltar) {
         contenedorProximo.innerHTML = "";
       }
 
-      try {
-        const partidos = await fetchJsonWithFallback(obtenerUrlsFixture(zona));
-        renderFixture(partidos);
-      } catch (error) {
-        console.error(error);
-        contenedor.className = "bloque estado-error";
-        contenedor.innerHTML = "Error cargando fixture.";
-      }
+      fetch(`data/${zona}/fixture.json`)
+        .then((respuesta) => {
+          if (!respuesta.ok) {
+            throw new Error(`No se pudo cargar fixture de ${zona}`);
+          }
+          return respuesta.json();
+        })
+        .then((partidos) => {
+          renderFixture(partidos);
+        })
+        .catch((error) => {
+          console.error(error);
+          contenedor.className = "bloque estado-error";
+          contenedor.innerHTML = "Error cargando fixture.";
+        });
     }
 
     function renderSubBotonesTablas() {
       const contenedor = document.getElementById("sub-botones-tablas");
       contenedor.innerHTML = "";
-      contenedor.className = "sub-botones";
 
       const procesadas = obtenerTablasProcesadas();
       const categorias = ordenarCategorias(Object.keys(procesadas.categorias || {}));
@@ -2914,9 +3059,203 @@ function renderResultadosPorFechas(data, textoResaltar) {
         console.error(error);
         document.getElementById("contenido-resultados").innerHTML =
           "<div class='bloque estado-error'>Error cargando resultados.</div>";
-        document.getElementById("sub-botones-resultados").className = "sub-botones";
         document.getElementById("sub-botones-resultados").innerHTML = "";
       }
+    }
+
+
+    function obtenerUrlsFixture(zona) {
+      return [`data/${zona}/fixture.json`, `fixture_${zona}.json`, `fixture.json`];
+    }
+
+    function resultadosEnFormatoCategorias(data) {
+      return !!(data && data.categorias && typeof data.categorias === "object" && Object.keys(data.categorias).length);
+    }
+
+    function categoriasConContenidoResultados(data) {
+      if (!resultadosEnFormatoCategorias(data)) return [];
+      return Object.keys(data.categorias).filter((cat) => {
+        const bloque = data.categorias[cat];
+        return bloque && typeof bloque === "object" && Object.keys(bloque).length > 0;
+      });
+    }
+
+    function renderResultadoFormatoViejo(categoria, bloqueCategoria) {
+      const rivales = Object.keys(bloqueCategoria || {});
+      if (!rivales.length) {
+        return "<div class='bloque vacio'>No hay resultados cargados para esta categoría.</div>";
+      }
+
+      let html = `<div class="bloque"><div class="fecha">Categoría ${escapeHtml(categoria)}</div>`;
+      rivales.forEach((rival) => {
+        const partidos = Array.isArray(bloqueCategoria[rival]) ? bloqueCategoria[rival] : [];
+        partidos.forEach((item) => {
+          const local = item?.local ?? "-";
+          const visitante = item?.visitante ?? "-";
+          const golesLocal = item?.goles_local;
+          const golesVisitante = item?.goles_visitante;
+          const marcador = (golesLocal !== null && golesLocal !== undefined && golesVisitante !== null && golesVisitante !== undefined)
+            ? `${escapeHtml(local)} ${escapeHtml(golesLocal)} - ${escapeHtml(golesVisitante)} ${escapeHtml(visitante)}`
+            : `${escapeHtml(rival)} · ${escapeHtml(local)} / ${escapeHtml(visitante)}${golesLocal !== null && golesLocal !== undefined ? ` · dato ${escapeHtml(golesLocal)}` : ""}`;
+          html += `<div class="equipos">${marcador}</div>`;
+        });
+      });
+      html += `</div>`;
+      return html;
+    }
+
+    function renderSubBotonesResultados() {
+      const contenedor = document.getElementById("sub-botones-resultados");
+      contenedor.innerHTML = "";
+      contenedor.className = "resultados-accordion";
+
+      const procesados = obtenerResultadosProcesados();
+      const fechas = ordenarFechasResultados(Object.keys(procesados.general || {}));
+      const categoriasViejas = categoriasConContenidoResultados(resultadosData);
+
+      if (fechas.length) {
+        if (!subVistaResultadosActual || !fechas.includes(subVistaResultadosActual)) {
+          subVistaResultadosActual = fechas[0];
+        }
+
+        fechas.forEach((fecha) => {
+          const item = document.createElement("div");
+          item.className = "resultado-item";
+
+          const btn = document.createElement("button");
+          btn.type = "button";
+          btn.className = `resultado-toggle${fecha === subVistaResultadosActual ? " activo" : ""}`;
+          btn.textContent = fecha;
+          btn.onclick = () => {
+            subVistaResultadosActual = fecha;
+            renderSubBotonesResultados();
+          };
+
+          item.appendChild(btn);
+
+          if (fecha === subVistaResultadosActual) {
+            const panel = document.createElement("div");
+            panel.className = "resultado-panel-inline";
+            panel.innerHTML = renderTablaResultadosDeFecha(procesados.general?.[fecha] || [], fecha);
+            item.appendChild(panel);
+          }
+
+          contenedor.appendChild(item);
+        });
+
+        document.getElementById("contenido-resultados").innerHTML = "";
+        return;
+      }
+
+      if (categoriasViejas.length) {
+        if (!subVistaResultadosActual || !categoriasViejas.includes(subVistaResultadosActual)) {
+          subVistaResultadosActual = categoriasViejas[0];
+        }
+
+        categoriasViejas.forEach((categoria) => {
+          const item = document.createElement("div");
+          item.className = "resultado-item";
+
+          const btn = document.createElement("button");
+          btn.type = "button";
+          btn.className = `resultado-toggle${categoria === subVistaResultadosActual ? " activo" : ""}`;
+          btn.textContent = categoria;
+          btn.onclick = () => {
+            subVistaResultadosActual = categoria;
+            renderSubBotonesResultados();
+          };
+
+          item.appendChild(btn);
+
+          if (categoria === subVistaResultadosActual) {
+            const panel = document.createElement("div");
+            panel.className = "resultado-panel-inline";
+            panel.innerHTML = renderResultadoFormatoViejo(categoria, resultadosData.categorias?.[categoria] || {});
+            item.appendChild(panel);
+          }
+
+          contenedor.appendChild(item);
+        });
+
+        document.getElementById("contenido-resultados").innerHTML = "";
+        return;
+      }
+
+      document.getElementById("contenido-resultados").innerHTML = "<div class='bloque vacio'>No hay resultados disponibles.</div>";
+    }
+
+    function renderContenidoResultados() {
+      const contenedor = document.getElementById("contenido-resultados");
+      if (contenedor) contenedor.innerHTML = "";
+    }
+
+    async function cargarResultados(zona) {
+      document.getElementById("contenido-resultados").innerHTML =
+        "<div class='bloque estado-carga'>Cargando resultados...</div>";
+
+      try {
+        const data = await fetchJsonWithFallback(obtenerUrlsResultados(zona));
+        resultadosData = data;
+        subVistaResultadosActual = null;
+        renderSubBotonesResultados();
+        renderContenidoResultados();
+        if (fixtureData) renderFixture(fixtureData);
+      } catch (error) {
+        console.error(error);
+        document.getElementById("contenido-resultados").innerHTML =
+          "<div class='bloque estado-error'>Error cargando resultados.</div>";
+        document.getElementById("sub-botones-resultados").innerHTML = "";
+      }
+    }
+
+    async function cargarFixture(zona) {
+      const contenedor = document.getElementById("contenedor-fixture");
+      const contenedorProximo = document.getElementById("contenedor-proximo-partido");
+
+      contenedor.className = "bloque estado-carga";
+      contenedor.innerHTML = "Cargando fixture...";
+
+      if (contenedorProximo) contenedorProximo.innerHTML = "";
+
+      try {
+        const partidos = await fetchJsonWithFallback(obtenerUrlsFixture(zona));
+        renderFixture(partidos);
+      } catch (error) {
+        console.error(error);
+        contenedor.className = "bloque estado-error";
+        contenedor.innerHTML = "Error cargando fixture.";
+      }
+    }
+
+    function renderSubBotonesTablas() {
+      const contenedor = document.getElementById("sub-botones-tablas");
+      contenedor.innerHTML = "";
+
+      const procesadas = obtenerTablasProcesadas();
+      const categorias = ordenarCategorias(Object.keys(procesadas.categorias || {}).filter((cat) => Array.isArray(procesadas.categorias?.[cat]) && procesadas.categorias[cat].length));
+      const tieneGeneral = Array.isArray(procesadas.general) && procesadas.general.length > 0;
+      const botones = [...(tieneGeneral ? ["general"] : []), ...categorias];
+
+      if (!botones.length) {
+        document.getElementById("contenido-tablas").innerHTML = "<div class='bloque vacio'>Las tablas todavía no están cargadas en los JSON.</div>";
+        return;
+      }
+
+      if (!botones.includes(subVistaTablasActual)) {
+        subVistaTablasActual = botones[0];
+      }
+
+      botones.forEach((item) => {
+        const btn = document.createElement("button");
+        btn.textContent = nombreVisibleCategoria(item);
+        if (item === subVistaTablasActual) btn.classList.add("activo");
+        btn.onclick = () => {
+          subVistaTablasActual = item;
+          renderContenidoTablas();
+          renderSubBotonesTablas();
+        };
+        contenedor.appendChild(btn);
+      });
     }
 
 renderNoticias();
