@@ -386,6 +386,23 @@ def nombre_equipo_desde_row(row: List[str], pos_equipo: int, header_len: int) ->
         return c
     return ""
 
+
+def corregir_partido_resultado(partido: Dict, categorias: List[str]) -> Dict:
+    """Corrige el corrimiento típico de FEFI en visitantes.
+
+    Cuando la fila visitante viene corta, el único número final puede caer
+    en la última categoría. En realidad ese número es Pts. visitante.
+    """
+    if partido.get("pts_visitante") in (None, "", "-"):
+        orden = [c for c in categorias if c in (partido.get("resultados") or {})]
+        if orden:
+            ultima = orden[-1]
+            val = (partido.get("resultados") or {}).get(ultima, {}).get("visitante")
+            if val not in (None, "", "-") and es_numero(str(val)):
+                partido["pts_visitante"] = int(val)
+                partido["resultados"][ultima]["visitante"] = None
+    return partido
+
 def parsear_resultados(soup: BeautifulSoup, zona: str, categorias: List[str]) -> Dict:
     """Lee tablas de resultados si aparecen en el DOM renderizado.
     Devuelve el formato que consume el index.html: {general:{F1:[partido...]}}
@@ -480,6 +497,7 @@ def parsear_resultados(soup: BeautifulSoup, zona: str, categorias: List[str]) ->
                 "pts_visitante": int(pts_v) if pts_v is not None and es_numero(pts_v) else None,
                 "resultados": resultados,
             }
+            partido = corregir_partido_resultado(partido, categorias)
             fid = partido["fecha_id"] or fecha_id or "SIN_FECHA"
             general.setdefault(fid, []).append(partido)
             i += 2

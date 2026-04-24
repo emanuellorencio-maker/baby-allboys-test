@@ -2729,8 +2729,7 @@ function renderResultadosPorFechas(data, textoResaltar) {
           visitante !== undefined &&
           visitante !== "" &&
           visitante !== "-" &&
-          String(visitante).match(/^\d+$/) &&
-          (ultimo.local === null || ultimo.local === undefined || ultimo.local === "" || ultimo.local === "-")
+          String(visitante).match(/^\d+$/)
         ) {
           copia.pts_visitante = Number(visitante);
           copia.resultados[ultimaCategoria].visitante = null;
@@ -2768,7 +2767,7 @@ function renderResultadosPorFechas(data, textoResaltar) {
                 </div>
 
                 <div class="resultado-centro">
-                  <div class="resultado-etiqueta">Puntos por categoría</div>
+                  <div class="resultado-etiqueta">Total puntos FEFI</div>
                   <div class="resultado-scoreboard">
                     <span class="resultado-scoreboard-num">${escapeHtml(puntosLocal)}</span>
                     <span class="resultado-scoreboard-sep">-</span>
@@ -2785,6 +2784,7 @@ function renderResultadosPorFechas(data, textoResaltar) {
                 </div>
               </div>
 
+              <div class="resultado-etiqueta" style="margin: 6px 0 10px; text-align:left;">Detalle por categoría</div>
               <div class="resultado-grid">
         `;
 
