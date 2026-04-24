@@ -1,14 +1,14 @@
 {
   "general": {
-    "F2": [
+    "F1": [
       {
-        "fecha_id": "F2",
-        "fecha": "Fecha 2 - 25 de Abril",
-        "local": "ALL BOYS \"B\"",
-        "visitante": "0",
-        "pj_local": null,
-        "pts_local": null,
-        "pj_visitante": null,
+        "fecha_id": "F1",
+        "fecha": "Fecha 1 - 18 de Abril",
+        "local": "SOLDATI 32 F. C.",
+        "visitante": "ALL BOYS \"B\"",
+        "pj_local": 7,
+        "pts_local": 17,
+        "pj_visitante": 11,
         "pts_visitante": null,
         "resultados": {
           "2019": {
@@ -16,7 +16,49 @@
             "visitante": "0"
           },
           "2013": {
-            "local": "0",
+            "local": "12",
+            "visitante": "1"
+          },
+          "2018": {
+            "local": "5",
+            "visitante": "2"
+          },
+          "2014": {
+            "local": "5",
+            "visitante": "4"
+          },
+          "2017": {
+            "local": "3",
+            "visitante": "0"
+          },
+          "2016": {
+            "local": "7",
+            "visitante": "1"
+          },
+          "2015": {
+            "local": "2",
+            "visitante": "7"
+          }
+        }
+      }
+    ],
+    "F2": [
+      {
+        "fecha_id": "F2",
+        "fecha": "Fecha 2 - 25 de Abril",
+        "local": "ALL BOYS \"B\"",
+        "visitante": "CLUB CIENCIA Y LABOR",
+        "pj_local": 0,
+        "pts_local": 0,
+        "pj_visitante": 0,
+        "pts_visitante": null,
+        "resultados": {
+          "2019": {
+            "local": null,
+            "visitante": null
+          },
+          "2013": {
+            "local": null,
             "visitante": null
           },
           "2018": {
@@ -37,7 +79,49 @@
           },
           "2015": {
             "local": null,
+            "visitante": "0"
+          }
+        }
+      }
+    ],
+    "F3": [
+      {
+        "fecha_id": "F3",
+        "fecha": "Fecha 3 - 02 de Mayo",
+        "local": "VILLA REAL ROJO",
+        "visitante": "ALL BOYS \"B\"",
+        "pj_local": 0,
+        "pts_local": 0,
+        "pj_visitante": 0,
+        "pts_visitante": null,
+        "resultados": {
+          "2019": {
+            "local": null,
             "visitante": null
+          },
+          "2013": {
+            "local": null,
+            "visitante": null
+          },
+          "2018": {
+            "local": null,
+            "visitante": null
+          },
+          "2014": {
+            "local": null,
+            "visitante": null
+          },
+          "2017": {
+            "local": null,
+            "visitante": null
+          },
+          "2016": {
+            "local": null,
+            "visitante": null
+          },
+          "2015": {
+            "local": null,
+            "visitante": "0"
           }
         }
       }
@@ -47,18 +131,18 @@
         "fecha_id": "F4",
         "fecha": "Fecha 4 - 09 de Mayo",
         "local": "ALL BOYS \"B\"",
-        "visitante": "0",
-        "pj_local": null,
-        "pts_local": null,
-        "pj_visitante": null,
+        "visitante": "MARCHIGIANA",
+        "pj_local": 0,
+        "pts_local": 0,
+        "pj_visitante": 0,
         "pts_visitante": null,
         "resultados": {
           "2019": {
-            "local": "0",
-            "visitante": "0"
+            "local": null,
+            "visitante": null
           },
           "2013": {
-            "local": "0",
+            "local": null,
             "visitante": null
           },
           "2018": {
@@ -79,7 +163,49 @@
           },
           "2015": {
             "local": null,
+            "visitante": "0"
+          }
+        }
+      }
+    ],
+    "F5": [
+      {
+        "fecha_id": "F5",
+        "fecha": "Fecha 5 - 16 de Mayo",
+        "local": "LUJAN DE LOS PATRIOTAS",
+        "visitante": "ALL BOYS \"B\"",
+        "pj_local": 0,
+        "pts_local": 0,
+        "pj_visitante": 0,
+        "pts_visitante": null,
+        "resultados": {
+          "2019": {
+            "local": null,
             "visitante": null
+          },
+          "2013": {
+            "local": null,
+            "visitante": null
+          },
+          "2018": {
+            "local": null,
+            "visitante": null
+          },
+          "2014": {
+            "local": null,
+            "visitante": null
+          },
+          "2017": {
+            "local": null,
+            "visitante": null
+          },
+          "2016": {
+            "local": null,
+            "visitante": null
+          },
+          "2015": {
+            "local": null,
+            "visitante": "0"
           }
         }
       }
@@ -89,18 +215,18 @@
         "fecha_id": "F6",
         "fecha": "Fecha 6 - 23 de Mayo",
         "local": "ALL BOYS \"B\"",
-        "visitante": "0",
-        "pj_local": null,
-        "pts_local": null,
-        "pj_visitante": null,
+        "visitante": "LA MARCA",
+        "pj_local": 0,
+        "pts_local": 0,
+        "pj_visitante": 0,
         "pts_visitante": null,
         "resultados": {
           "2019": {
-            "local": "0",
-            "visitante": "0"
+            "local": null,
+            "visitante": null
           },
           "2013": {
-            "local": "0",
+            "local": null,
             "visitante": null
           },
           "2018": {
@@ -121,7 +247,49 @@
           },
           "2015": {
             "local": null,
+            "visitante": "0"
+          }
+        }
+      }
+    ],
+    "F7": [
+      {
+        "fecha_id": "F7",
+        "fecha": "Fecha 7 - 30 de Mayo",
+        "local": "LUGANO TENNIS CLUB",
+        "visitante": "ALL BOYS \"B\"",
+        "pj_local": 0,
+        "pts_local": 0,
+        "pj_visitante": 0,
+        "pts_visitante": null,
+        "resultados": {
+          "2019": {
+            "local": null,
             "visitante": null
+          },
+          "2013": {
+            "local": null,
+            "visitante": null
+          },
+          "2018": {
+            "local": null,
+            "visitante": null
+          },
+          "2014": {
+            "local": null,
+            "visitante": null
+          },
+          "2017": {
+            "local": null,
+            "visitante": null
+          },
+          "2016": {
+            "local": null,
+            "visitante": null
+          },
+          "2015": {
+            "local": null,
+            "visitante": "0"
           }
         }
       }
@@ -131,18 +299,18 @@
         "fecha_id": "F8",
         "fecha": "Fecha 8 - 06 de Junio",
         "local": "ALL BOYS \"B\"",
-        "visitante": "0",
-        "pj_local": null,
-        "pts_local": null,
-        "pj_visitante": null,
+        "visitante": "EL TREBOL F. C.",
+        "pj_local": 0,
+        "pts_local": 0,
+        "pj_visitante": 0,
         "pts_visitante": null,
         "resultados": {
           "2019": {
-            "local": "0",
-            "visitante": "0"
+            "local": null,
+            "visitante": null
           },
           "2013": {
-            "local": "0",
+            "local": null,
             "visitante": null
           },
           "2018": {
@@ -163,7 +331,49 @@
           },
           "2015": {
             "local": null,
+            "visitante": "0"
+          }
+        }
+      }
+    ],
+    "F9": [
+      {
+        "fecha_id": "F9",
+        "fecha": "Fecha 9 - 13 de Junio",
+        "local": "LOS ANDES",
+        "visitante": "ALL BOYS \"B\"",
+        "pj_local": 0,
+        "pts_local": 0,
+        "pj_visitante": 0,
+        "pts_visitante": null,
+        "resultados": {
+          "2019": {
+            "local": null,
             "visitante": null
+          },
+          "2013": {
+            "local": null,
+            "visitante": null
+          },
+          "2018": {
+            "local": null,
+            "visitante": null
+          },
+          "2014": {
+            "local": null,
+            "visitante": null
+          },
+          "2017": {
+            "local": null,
+            "visitante": null
+          },
+          "2016": {
+            "local": null,
+            "visitante": null
+          },
+          "2015": {
+            "local": null,
+            "visitante": "0"
           }
         }
       }
@@ -173,18 +383,18 @@
         "fecha_id": "F10",
         "fecha": "Fecha 10 - 20 de Junio",
         "local": "ALL BOYS \"B\"",
-        "visitante": "0",
-        "pj_local": null,
-        "pts_local": null,
-        "pj_visitante": null,
+        "visitante": "AÑASCO",
+        "pj_local": 0,
+        "pts_local": 0,
+        "pj_visitante": 0,
         "pts_visitante": null,
         "resultados": {
           "2019": {
-            "local": "0",
-            "visitante": "0"
+            "local": null,
+            "visitante": null
           },
           "2013": {
-            "local": "0",
+            "local": null,
             "visitante": null
           },
           "2018": {
@@ -205,7 +415,91 @@
           },
           "2015": {
             "local": null,
+            "visitante": "0"
+          }
+        }
+      }
+    ],
+    "F11": [
+      {
+        "fecha_id": "F11",
+        "fecha": "Fecha 11 - 27 de Junio",
+        "local": "LIGA FOMENTO VILLA MITRE",
+        "visitante": "ALL BOYS \"B\"",
+        "pj_local": 0,
+        "pts_local": 0,
+        "pj_visitante": 0,
+        "pts_visitante": null,
+        "resultados": {
+          "2019": {
+            "local": null,
             "visitante": null
+          },
+          "2013": {
+            "local": null,
+            "visitante": null
+          },
+          "2018": {
+            "local": null,
+            "visitante": null
+          },
+          "2014": {
+            "local": null,
+            "visitante": null
+          },
+          "2017": {
+            "local": null,
+            "visitante": null
+          },
+          "2016": {
+            "local": null,
+            "visitante": null
+          },
+          "2015": {
+            "local": null,
+            "visitante": "0"
+          }
+        }
+      }
+    ],
+    "F12": [
+      {
+        "fecha_id": "F12",
+        "fecha": "Fecha 12 - 04 de Julio",
+        "local": "K. A. C.",
+        "visitante": "ALL BOYS \"B\"",
+        "pj_local": 0,
+        "pts_local": 0,
+        "pj_visitante": 0,
+        "pts_visitante": null,
+        "resultados": {
+          "2019": {
+            "local": null,
+            "visitante": null
+          },
+          "2013": {
+            "local": null,
+            "visitante": null
+          },
+          "2018": {
+            "local": null,
+            "visitante": null
+          },
+          "2014": {
+            "local": null,
+            "visitante": null
+          },
+          "2017": {
+            "local": null,
+            "visitante": null
+          },
+          "2016": {
+            "local": null,
+            "visitante": null
+          },
+          "2015": {
+            "local": null,
+            "visitante": "0"
           }
         }
       }
@@ -215,18 +509,18 @@
         "fecha_id": "F13",
         "fecha": "Fecha 13 - 11 de Julio",
         "local": "ALL BOYS \"B\"",
-        "visitante": "0",
-        "pj_local": null,
-        "pts_local": null,
-        "pj_visitante": null,
+        "visitante": "HURACAN",
+        "pj_local": 0,
+        "pts_local": 0,
+        "pj_visitante": 0,
         "pts_visitante": null,
         "resultados": {
           "2019": {
-            "local": "0",
-            "visitante": "0"
+            "local": null,
+            "visitante": null
           },
           "2013": {
-            "local": "0",
+            "local": null,
             "visitante": null
           },
           "2018": {
@@ -247,7 +541,49 @@
           },
           "2015": {
             "local": null,
+            "visitante": "0"
+          }
+        }
+      }
+    ],
+    "F14": [
+      {
+        "fecha_id": "F14",
+        "fecha": "Fecha 14 - 18 de Julio",
+        "local": "LOMAS BLANCO",
+        "visitante": "ALL BOYS \"B\"",
+        "pj_local": 0,
+        "pts_local": 0,
+        "pj_visitante": 0,
+        "pts_visitante": null,
+        "resultados": {
+          "2019": {
+            "local": null,
             "visitante": null
+          },
+          "2013": {
+            "local": null,
+            "visitante": null
+          },
+          "2018": {
+            "local": null,
+            "visitante": null
+          },
+          "2014": {
+            "local": null,
+            "visitante": null
+          },
+          "2017": {
+            "local": null,
+            "visitante": null
+          },
+          "2016": {
+            "local": null,
+            "visitante": null
+          },
+          "2015": {
+            "local": null,
+            "visitante": "0"
           }
         }
       }
@@ -257,18 +593,18 @@
         "fecha_id": "F15",
         "fecha": "Fecha 15 - 01 de Agosto",
         "local": "ALL BOYS \"B\"",
-        "visitante": "0",
-        "pj_local": null,
-        "pts_local": null,
-        "pj_visitante": null,
+        "visitante": "FATIMA",
+        "pj_local": 0,
+        "pts_local": 0,
+        "pj_visitante": 0,
         "pts_visitante": null,
         "resultados": {
           "2019": {
-            "local": "0",
-            "visitante": "0"
+            "local": null,
+            "visitante": null
           },
           "2013": {
-            "local": "0",
+            "local": null,
             "visitante": null
           },
           "2018": {
@@ -289,7 +625,7 @@
           },
           "2015": {
             "local": null,
-            "visitante": null
+            "visitante": "0"
           }
         }
       }

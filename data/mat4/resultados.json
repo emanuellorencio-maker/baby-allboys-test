@@ -1,266 +1,38 @@
 {
   "general": {
-    "F2": [
+    "F1": [
       {
-        "fecha_id": "F2",
-        "fecha": "Fecha 2 - 25 de ABril",
-        "local": "ALL BOYS",
-        "visitante": "0",
-        "pj_local": null,
-        "pts_local": null,
-        "pj_visitante": null,
+        "fecha_id": "F1",
+        "fecha": "Fecha 1 - 18 de Abril",
+        "local": "LOS CARASUCIAS",
+        "visitante": "ALL BOYS",
+        "pj_local": 6,
+        "pts_local": 11,
+        "pj_visitante": 13,
         "pts_visitante": null,
         "resultados": {
           "2013": {
             "local": "0",
-            "visitante": "0"
+            "visitante": "2"
           },
           "2014": {
-            "local": "0",
-            "visitante": null
+            "local": "1",
+            "visitante": "3"
           },
           "2015": {
-            "local": null,
-            "visitante": null
+            "local": "2",
+            "visitante": "2"
           },
           "2016": {
-            "local": null,
-            "visitante": null
+            "local": "2",
+            "visitante": "1"
           },
           "2017": {
-            "local": null,
-            "visitante": null
-          },
-          "2018/19/20": {
-            "local": null,
-            "visitante": null
-          }
-        }
-      }
-    ],
-    "F4": [
-      {
-        "fecha_id": "F4",
-        "fecha": "Fecha 4 - 09 de Mayo",
-        "local": "ALL BOYS",
-        "visitante": "0",
-        "pj_local": null,
-        "pts_local": null,
-        "pj_visitante": null,
-        "pts_visitante": null,
-        "resultados": {
-          "2013": {
-            "local": "0",
+            "local": "2",
             "visitante": "0"
           },
-          "2014": {
-            "local": "0",
-            "visitante": null
-          },
-          "2015": {
-            "local": null,
-            "visitante": null
-          },
-          "2016": {
-            "local": null,
-            "visitante": null
-          },
-          "2017": {
-            "local": null,
-            "visitante": null
-          },
           "2018/19/20": {
-            "local": null,
-            "visitante": null
-          }
-        }
-      }
-    ],
-    "F6": [
-      {
-        "fecha_id": "F6",
-        "fecha": "Fecha 6 - 23 de Mayo",
-        "local": "ALL BOYS",
-        "visitante": "0",
-        "pj_local": null,
-        "pts_local": null,
-        "pj_visitante": null,
-        "pts_visitante": null,
-        "resultados": {
-          "2013": {
-            "local": "0",
-            "visitante": "0"
-          },
-          "2014": {
-            "local": "0",
-            "visitante": null
-          },
-          "2015": {
-            "local": null,
-            "visitante": null
-          },
-          "2016": {
-            "local": null,
-            "visitante": null
-          },
-          "2017": {
-            "local": null,
-            "visitante": null
-          },
-          "2018/19/20": {
-            "local": null,
-            "visitante": null
-          }
-        }
-      }
-    ],
-    "F9": [
-      {
-        "fecha_id": "F9",
-        "fecha": "Fecha 9 - 13 de Junio",
-        "local": "ALL BOYS",
-        "visitante": "0",
-        "pj_local": null,
-        "pts_local": null,
-        "pj_visitante": null,
-        "pts_visitante": null,
-        "resultados": {
-          "2013": {
-            "local": "0",
-            "visitante": "0"
-          },
-          "2014": {
-            "local": "0",
-            "visitante": null
-          },
-          "2015": {
-            "local": null,
-            "visitante": null
-          },
-          "2016": {
-            "local": null,
-            "visitante": null
-          },
-          "2017": {
-            "local": null,
-            "visitante": null
-          },
-          "2018/19/20": {
-            "local": null,
-            "visitante": null
-          }
-        }
-      }
-    ],
-    "F11": [
-      {
-        "fecha_id": "F11",
-        "fecha": "Fecha 11 - 27 de Junio",
-        "local": "ALL BOYS",
-        "visitante": "0",
-        "pj_local": null,
-        "pts_local": null,
-        "pj_visitante": null,
-        "pts_visitante": null,
-        "resultados": {
-          "2013": {
-            "local": "0",
-            "visitante": "0"
-          },
-          "2014": {
-            "local": "0",
-            "visitante": null
-          },
-          "2015": {
-            "local": null,
-            "visitante": null
-          },
-          "2016": {
-            "local": null,
-            "visitante": null
-          },
-          "2017": {
-            "local": null,
-            "visitante": null
-          },
-          "2018/19/20": {
-            "local": null,
-            "visitante": null
-          }
-        }
-      }
-    ],
-    "F13": [
-      {
-        "fecha_id": "F13",
-        "fecha": "Fecha 13 - 11 de Julio",
-        "local": "ALL BOYS",
-        "visitante": "0",
-        "pj_local": null,
-        "pts_local": null,
-        "pj_visitante": null,
-        "pts_visitante": null,
-        "resultados": {
-          "2013": {
-            "local": "0",
-            "visitante": "0"
-          },
-          "2014": {
-            "local": "0",
-            "visitante": null
-          },
-          "2015": {
-            "local": null,
-            "visitante": null
-          },
-          "2016": {
-            "local": null,
-            "visitante": null
-          },
-          "2017": {
-            "local": null,
-            "visitante": null
-          },
-          "2018/19/20": {
-            "local": null,
-            "visitante": null
-          }
-        }
-      }
-    ],
-    "F15": [
-      {
-        "fecha_id": "F15",
-        "fecha": "Fecha 15 - 01 de Agosto",
-        "local": "ALL BOYS",
-        "visitante": "0",
-        "pj_local": null,
-        "pts_local": null,
-        "pj_visitante": null,
-        "pts_visitante": null,
-        "resultados": {
-          "2013": {
-            "local": "0",
-            "visitante": "0"
-          },
-          "2014": {
-            "local": "0",
-            "visitante": null
-          },
-          "2015": {
-            "local": null,
-            "visitante": null
-          },
-          "2016": {
-            "local": null,
-            "visitante": null
-          },
-          "2017": {
-            "local": null,
-            "visitante": null
-          },
-          "2018/19/20": {
-            "local": null,
+            "local": "2",
             "visitante": null
           }
         }
