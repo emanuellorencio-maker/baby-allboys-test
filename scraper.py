@@ -1,530 +1,442 @@
+
 import json
 import os
+import random
 import re
-import sys
 import time
-from pathlib import Path
 from typing import Dict, List, Optional, Tuple
 
+try:
+    import cloudscraper  # type: ignore
+except Exception:
+    cloudscraper = None
+import requests
 from bs4 import BeautifulSoup
 
 ZONAS = {
     "c": {
-        "url": "https://fefi.com.ar/2026-torneo-anual-baby-futbol/c/#botonera",
+        "url": "https://fefi.com.ar/2026-torneo-anual-baby-futbol/c/",
         "equipo": 'ALL BOYS "A"',
-        "categorias": ["2019", "2013", "2018", "2014", "2017", "2016", "2015"],
+        "categorias_resultados": ["2019", "2013", "2018", "2014", "2017", "2016", "2015"],
+        "categorias_tablas": ["2019", "2013", "2018", "2014", "2017", "2016", "2015"],
     },
     "i": {
-        "url": "https://fefi.com.ar/2026-torneo-anual-baby-futbol/i/#botonera",
+        "url": "https://fefi.com.ar/2026-torneo-anual-baby-futbol/i/",
         "equipo": 'ALL BOYS "B"',
-        "categorias": ["2019", "2013", "2018", "2014", "2017", "2016", "2015"],
+        "categorias_resultados": ["2019", "2013", "2018", "2014", "2017", "2016", "2015"],
+        "categorias_tablas": ["2019", "2013", "2018", "2014", "2017", "2016", "2015"],
     },
     "mat1": {
-        "url": "https://fefi.com.ar/2026-torneo-anual-baby-futbol/mat-1/#botonera",
+        "url": "https://fefi.com.ar/2026-torneo-anual-baby-futbol/mat-1/",
         "equipo": "LOS ALBOS",
-        "categorias": ["2013", "2014/15", "2016/17", "2018/19", "2020/21/22"],
+        "categorias_resultados": ["2013", "2014/15", "2016/17", "2018/19", "2020/21/22"],
+        "categorias_tablas": ["2013", "2014/15", "2016/17", "2018/19", "2020/21/22"],
     },
     "mat4": {
-        "url": "https://fefi.com.ar/2026-torneo-anual-baby-futbol/mat-4/#botonera",
+        "url": "https://fefi.com.ar/2026-torneo-anual-baby-futbol/mat-4/",
         "equipo": "ALL BOYS",
-        "categorias": ["2013", "2014", "2015", "2016", "2017", "2018/19/20"],
+        "categorias_resultados": ["2013", "2014", "2015", "2016", "2017", "2018/19/20"],
+        "categorias_tablas": ["2013", "2014", "2015", "2016", "2017", "2018/19/20"],
     },
 }
 
-FIXTURES_FIJOS = {
-  "c": [
-    {"fecha":"Fecha 1 - 18 de Abril","fecha_id":"F1","local":"ALL BOYS \"A\"","visitante":"PUEYRREDON","condicion":"Local"},
-    {"fecha":"Fecha 2 - 25 de Abril","fecha_id":"F2","local":"C. S. D. PARQUE","visitante":"ALL BOYS \"A\"","condicion":"Visitante"},
-    {"fecha":"Fecha 3 - 02 de Mayo","fecha_id":"F3","local":"ALL BOYS \"A\"","visitante":"BICHOS COLORADOS","condicion":"Local"},
-    {"fecha":"Fecha 4 - 09 de Mayo","fecha_id":"F4","local":"CLUB OESTE","visitante":"ALL BOYS \"A\"","condicion":"Visitante"},
-    {"fecha":"Fecha 5 - 16 de Mayo","fecha_id":"F5","local":"ALL BOYS \"A\"","visitante":"DON BOSCO","condicion":"Local"},
-    {"fecha":"Fecha 6 - 23 de Mayo","fecha_id":"F6","local":"CENTRO ESPAÑOL","visitante":"ALL BOYS \"A\"","condicion":"Visitante"},
-    {"fecha":"Fecha 7 - 30 de Mayo","fecha_id":"F7","local":"ALL BOYS \"A\"","visitante":"U.D.S. ALLENDE","condicion":"Local"},
-    {"fecha":"Fecha 8 - 06 de Junio","fecha_id":"F8","local":"RACING CLUB 1","visitante":"ALL BOYS \"A\"","condicion":"Visitante"},
-    {"fecha":"Fecha 9 - 13 de Junio","fecha_id":"F9","local":"ALL BOYS \"A\"","visitante":"ESTRELLA DE MALDONADO ''B''","condicion":"Local"},
-    {"fecha":"Fecha 10 - 20 de Junio","fecha_id":"F10","local":"LOS CAMBOYANOS","visitante":"ALL BOYS \"A\"","condicion":"Visitante"},
-    {"fecha":"Fecha 11 - 27 de Junio","fecha_id":"F11","local":"ALL BOYS \"A\"","visitante":"INDEPENDIENTE DE HURLINGHAM","condicion":"Local"},
-    {"fecha":"Fecha 12 - 04 de Julio","fecha_id":"F12","local":"ALL BOYS \"A\"","visitante":"MARIANO MORENO","condicion":"Local"},
-    {"fecha":"Fecha 13 - 11 de Julio","fecha_id":"F13","local":"SANTIAGO DE LINIERS","visitante":"ALL BOYS \"A\"","condicion":"Visitante"},
-    {"fecha":"Fecha 14 - 18 de Julio","fecha_id":"F14","local":"ALL BOYS \"A\"","visitante":"INDEPENDIENTE","condicion":"Local"},
-    {"fecha":"Fecha 15 - 01 de Agosto","fecha_id":"F15","local":"D. F. SARMIENTO","visitante":"ALL BOYS \"A\"","condicion":"Visitante"}
-  ],
-  "i": [
-    {"fecha":"Fecha 1 - 18 de Abril","fecha_id":"F1","local":"SOLDATI 32 F. C.","visitante":"ALL BOYS \"B\"","condicion":"Visitante"},
-    {"fecha":"Fecha 2 - 25 de Abril","fecha_id":"F2","local":"ALL BOYS \"B\"","visitante":"CLUB CIENCIA Y LABOR","condicion":"Local"},
-    {"fecha":"Fecha 3 - 02 de Mayo","fecha_id":"F3","local":"VILLA REAL ROJO","visitante":"ALL BOYS \"B\"","condicion":"Visitante"},
-    {"fecha":"Fecha 4 - 09 de Mayo","fecha_id":"F4","local":"ALL BOYS \"B\"","visitante":"MARCHIGIANA","condicion":"Local"},
-    {"fecha":"Fecha 5 - 16 de Mayo","fecha_id":"F5","local":"LUJAN DE LOS PATRIOTAS","visitante":"ALL BOYS \"B\"","condicion":"Visitante"},
-    {"fecha":"Fecha 6 - 23 de Mayo","fecha_id":"F6","local":"ALL BOYS \"B\"","visitante":"LA MARCA","condicion":"Local"},
-    {"fecha":"Fecha 7 - 30 de Mayo","fecha_id":"F7","local":"LUGANO TENNIS CLUB","visitante":"ALL BOYS \"B\"","condicion":"Visitante"},
-    {"fecha":"Fecha 8 - 06 de Junio","fecha_id":"F8","local":"ALL BOYS \"B\"","visitante":"EL TREBOL F. C.","condicion":"Local"},
-    {"fecha":"Fecha 9 - 13 de Junio","fecha_id":"F9","local":"LOS ANDES","visitante":"ALL BOYS \"B\"","condicion":"Visitante"},
-    {"fecha":"Fecha 10 - 20 de Junio","fecha_id":"F10","local":"ALL BOYS \"B\"","visitante":"AÑASCO","condicion":"Local"},
-    {"fecha":"Fecha 11 - 27 de Junio","fecha_id":"F11","local":"LIGA FOMENTO VILLA MITRE","visitante":"ALL BOYS \"B\"","condicion":"Visitante"},
-    {"fecha":"Fecha 12 - 04 de Julio","fecha_id":"F12","local":"K. A. C.","visitante":"ALL BOYS \"B\"","condicion":"Visitante"},
-    {"fecha":"Fecha 13 - 11 de Julio","fecha_id":"F13","local":"ALL BOYS \"B\"","visitante":"HURACAN","condicion":"Local"},
-    {"fecha":"Fecha 14 - 18 de Julio","fecha_id":"F14","local":"LOMAS BLANCO","visitante":"ALL BOYS \"B\"","condicion":"Visitante"},
-    {"fecha":"Fecha 15 - 01 de Agosto","fecha_id":"F15","local":"ALL BOYS \"B\"","visitante":"FATIMA","condicion":"Local"}
-  ],
-  "mat1": [
-    {"fecha":"Fecha 1 - 18 de Abril","fecha_id":"F1","local":"LOS ALBOS","visitante":"LOS CUERVOS","condicion":"Local"},
-    {"fecha":"Fecha 2 - 25 de ABril","fecha_id":"F2","local":"NUEVA CHICAGO","visitante":"LOS ALBOS","condicion":"Visitante"},
-    {"fecha":"Fecha 3 - 02 de Mayo","fecha_id":"F3","local":"LOS ALBOS","visitante":"SANELI F.C.","condicion":"Local"},
-    {"fecha":"Fecha 4 - 09 de Mayo","fecha_id":"F4","local":"CLUB PACIFICO","visitante":"LOS ALBOS","condicion":"Visitante"},
-    {"fecha":"Fecha 5 - 16 de Mayo","fecha_id":"F5","local":"LOS ALBOS","visitante":"CLUB AT. LUGANO","condicion":"Local"},
-    {"fecha":"Fecha 6 - 23 de Mayo","fecha_id":"F6","local":"VILLA LURO NORTE","visitante":"LOS ALBOS","condicion":"Visitante"},
-    {"fecha":"Fecha 7 - 30 de Mayo","fecha_id":"F7","local":"LOS ALBOS","visitante":"FLORES CLUB","condicion":"Local"},
-    {"fecha":"Fecha 8 - 06 de Junio","fecha_id":"F8","local":"LOS ALBOS","visitante":"VILLA HERMINIA","condicion":"Local"},
-    {"fecha":"Fecha 9 - 13 de Junio","fecha_id":"F9","local":"PLATENSE BLANCO","visitante":"LOS ALBOS","condicion":"Visitante"},
-    {"fecha":"Fecha 10 - 20 de Junio","fecha_id":"F10","local":"LOS ALBOS","visitante":"A. A. A. J.","condicion":"Local"},
-    {"fecha":"Fecha 11 - 27 de Junio","fecha_id":"F11","local":"C. A. VIRGEN DEL CARMEN","visitante":"LOS ALBOS","condicion":"Visitante"},
-    {"fecha":"Fecha 12 - 04 de Julio","fecha_id":"F12","local":"LOS ALBOS","visitante":"EST. PORTEÑO ROJO","condicion":"Local"},
-    {"fecha":"Fecha 13 - 11 de Julio","fecha_id":"F13","local":"C. S. y D. PAMPERO","visitante":"LOS ALBOS","condicion":"Visitante"},
-    {"fecha":"Fecha 14 - 18 de Julio","fecha_id":"F14","local":"LOS ALBOS","visitante":"ESTRELLA DE BOEDO","condicion":"Local"},
-    {"fecha":"Fecha 15 - 01 de Agosto","fecha_id":"F15","local":"CLUB LA PATERNAL","visitante":"LOS ALBOS","condicion":"Visitante"}
-  ],
-  "mat4": [
-    {"fecha":"Fecha 1 - 18 de Abril","fecha_id":"F1","local":"LOS CARASUCIAS","visitante":"ALL BOYS","condicion":"Visitante"},
-    {"fecha":"Fecha 2 - 25 de ABril","fecha_id":"F2","local":"ALL BOYS","visitante":"ALMAFUERTE FUTBOL CLUB","condicion":"Local"},
-    {"fecha":"Fecha 3 - 02 de Mayo","fecha_id":"F3","local":"EROS","visitante":"ALL BOYS","condicion":"Visitante"},
-    {"fecha":"Fecha 4 - 09 de Mayo","fecha_id":"F4","local":"ALL BOYS","visitante":"ALVEAR","condicion":"Local"},
-    {"fecha":"Fecha 5 - 16 de Mayo","fecha_id":"F5","local":"C. A. ATLANTA","visitante":"ALL BOYS","condicion":"Visitante"},
-    {"fecha":"Fecha 6 - 23 de Mayo","fecha_id":"F6","local":"ALL BOYS","visitante":"C. A. VERSAILLES BLANCO","condicion":"Local"},
-    {"fecha":"Fecha 7 - 30 de Mayo","fecha_id":"F7","local":"V. L. N.","visitante":"ALL BOYS","condicion":"Visitante"},
-    {"fecha":"Fecha 8 - 06 de Junio","fecha_id":"F8","local":"CE. F. F. LA INDEPENDENCIA","visitante":"ALL BOYS","condicion":"Visitante"},
-    {"fecha":"Fecha 9 - 13 de Junio","fecha_id":"F9","local":"ALL BOYS","visitante":"COMPLEJO COSTAS CELESTE","condicion":"Local"},
-    {"fecha":"Fecha 10 - 20 de Junio","fecha_id":"F10","local":"PARQUE PATRICIOS","visitante":"ALL BOYS","condicion":"Visitante"},
-    {"fecha":"Fecha 11 - 27 de Junio","fecha_id":"F11","local":"ALL BOYS","visitante":"EL TIFON DE BOYACA","condicion":"Local"},
-    {"fecha":"Fecha 12 - 04 de Julio","fecha_id":"F12","local":"CICLON FORTIN","visitante":"ALL BOYS","condicion":"Visitante"},
-    {"fecha":"Fecha 13 - 11 de Julio","fecha_id":"F13","local":"ALL BOYS","visitante":"SP. PEREYRA","condicion":"Local"},
-    {"fecha":"Fecha 14 - 18 de Julio","fecha_id":"F14","local":"HURACAN TIKI TIKI","visitante":"ALL BOYS","condicion":"Visitante"},
-    {"fecha":"Fecha 15 - 01 de Agosto","fecha_id":"F15","local":"ALL BOYS","visitante":"C. A. ESTUDIANTES","condicion":"Local"}
-  ]
-}
+USER_AGENTS = [
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/124 Safari/537.36",
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 Version/17 Safari/605.1.15",
+    "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/122 Safari/537.36",
+]
 
-DIRECCIONES_FIJAS = {z: {} for z in ZONAS}
+TOKENS_RESULTADO = {"GP", "NP"}
 
 
-def normalizar(valor: str) -> str:
-    return " ".join(str(valor or "").replace("\xa0", " ").strip().split())
+def limpiar_linea(valor: str) -> str:
+    return " ".join(str(valor).replace("\xa0", " ").strip().split())
 
 
-def canon(valor: str) -> str:
-    texto = normalizar(valor).upper().replace('"', '').replace("'", "")
-    for a, b in [("Á","A"),("É","E"),("Í","I"),("Ó","O"),("Ú","U")]:
-        texto = texto.replace(a,b)
-    return re.sub(r"[^A-Z0-9Ñ]", "", texto)
+def normalizar_categoria(texto: str) -> str:
+    texto = limpiar_linea(texto)
+    reemplazos = {
+        "19": "2019",
+        "13": "2013",
+        "18": "2018",
+        "14": "2014",
+        "17": "2017",
+        "16": "2016",
+        "15": "2015",
+        "2014 / 15": "2014/15",
+        "2016 / 17": "2016/17",
+        "2018 / 19": "2018/19",
+        "2018/19/20": "2018/19/20",
+        "2020 / 21 / 22": "2020/21/22",
+    }
+    return reemplazos.get(texto, texto)
 
 
-def guardar_json(path: Path, data):
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
+def normalizar_equipo(texto: str) -> str:
+    return limpiar_linea(texto).rstrip("-–:")
 
 
-def leer_json(path: Path, default):
-    try:
-        return json.loads(path.read_text(encoding="utf-8"))
-    except Exception:
-        return default
+def crear_scraper():
+    if cloudscraper is not None:
+        scraper = cloudscraper.create_scraper()
+        scraper.headers.update({"User-Agent": random.choice(USER_AGENTS)})
+        return scraper
+    session = requests.Session()
+    session.headers.update({"User-Agent": random.choice(USER_AGENTS)})
+    return session
 
 
-def asegurar_fixture_y_archivos_base():
-    for zona, fixture in FIXTURES_FIJOS.items():
-        base = Path("data") / zona
-        base.mkdir(parents=True, exist_ok=True)
-        guardar_json(base / "fixture.json", fixture)
-        if not (base / "tabla.json").exists():
-            guardar_json(base / "tabla.json", {"general": [], "categorias": {c: [] for c in ZONAS[zona]["categorias"]}})
-        if not (base / "resultados.json").exists():
-            guardar_json(base / "resultados.json", {"general": {}, "categorias": {}})
-        if not (base / "direcciones.json").exists():
-            guardar_json(base / "direcciones.json", DIRECCIONES_FIJAS.get(zona, {}))
-
-
-def obtener_htmls_renderizados(url: str) -> List[str]:
-    """Abre FEFI como Chrome real, captura la tabla inicial y después
-    entra a RESULTADOS APERTURA para recorrer todas las páginas de la tabla.
-    """
-    try:
-        from playwright.sync_api import sync_playwright
-    except Exception:
-        print("ERROR: falta Playwright.")
-        print("Ejecutá una sola vez:")
-        print("  pip install playwright")
-        print("  python -m playwright install chromium")
-        raise SystemExit(1)
-
-    def click_siguiente_visible(page) -> bool:
-        js = """
-        () => {
-          const visible = (el) => {
-            const st = window.getComputedStyle(el);
-            const r = el.getBoundingClientRect();
-            return st.display !== 'none' && st.visibility !== 'hidden' && r.width > 0 && r.height > 0;
-          };
-          const candidatos = Array.from(document.querySelectorAll('a, button, span'));
-          for (const el of candidatos) {
-            const txt = (el.textContent || '').trim().toLowerCase();
-            const cls = (el.className || '').toString().toLowerCase();
-            const aria = (el.getAttribute('aria-label') || '').toLowerCase();
-            const esNext = txt === 'next' || txt === 'siguiente' || txt === '>' || txt === '›' || txt === '»' || cls.includes('next') || aria.includes('next') || aria.includes('siguiente');
-            const disabled = cls.includes('disabled') || el.getAttribute('aria-disabled') === 'true' || el.disabled;
-            if (esNext && !disabled && visible(el)) { el.click(); return true; }
-          }
-          return false;
-        }
-        """
+def obtener_html(url: str, reintentos: int = 4, pausa: int = 5) -> str:
+    ultimo_error = None
+    for intento in range(1, reintentos + 1):
         try:
-            return bool(page.evaluate(js))
-        except Exception:
-            return False
-
-    with sync_playwright() as p:
-        browser = p.chromium.launch(headless=True)
-        page = browser.new_page(viewport={"width": 1700, "height": 1300})
-        page.goto(url, wait_until="networkidle", timeout=90000)
-        try:
-            page.wait_for_selector("table", timeout=25000)
-        except Exception:
-            pass
-        time.sleep(2)
-
-        htmls = [page.content()]
-
-        try:
-            page.get_by_text("RESULTADOS APERTURA", exact=False).first.click(timeout=7000)
-            page.wait_for_timeout(1500)
-        except Exception:
-            try:
-                page.locator("text=RESULTADOS").first.click(timeout=7000)
-                page.wait_for_timeout(1500)
-            except Exception:
-                pass
-
-        vistos = set()
-        for _ in range(40):
-            html = page.content()
-            key = hash(html)
-            if key not in vistos:
-                vistos.add(key)
-                htmls.append(html)
-            if not click_siguiente_visible(page):
-                break
-            page.wait_for_timeout(900)
-
-        browser.close()
-        return htmls
+            print(f"Descargando {url} (intento {intento}/{reintentos})")
+            scraper = crear_scraper()
+            time.sleep(random.uniform(1.5, 3.5))
+            respuesta = scraper.get(url, timeout=60)
+            respuesta.raise_for_status()
+            return respuesta.text
+        except Exception as error:
+            ultimo_error = error
+            print(f"Error descargando {url}: {error}")
+            if intento < reintentos:
+                time.sleep(pausa)
+    raise ultimo_error
 
 
-def obtener_html_renderizado(url: str) -> str:
-    return obtener_htmls_renderizados(url)[0]
+def obtener_lineas_desde_html(html: str) -> List[str]:
+    soup = BeautifulSoup(html, "html.parser")
+    texto = soup.get_text("\n")
+    return [limpiar_linea(linea) for linea in texto.splitlines() if limpiar_linea(linea)]
 
 
-def fila_textos(tr) -> List[str]:
-    celdas = tr.find_all(["th", "td"])
-    return [normalizar(c.get_text(" ")) for c in celdas if normalizar(c.get_text(" "))]
-
-
-def fila_textos_raw(tr) -> List[str]:
-    # En resultados FEFI deja vacía la primera columna de la fila visitante.
-    # Si filtramos vacíos se corren las columnas y aparece un número como rival.
-    celdas = tr.find_all(["th", "td"])
-    return [normalizar(c.get_text(" ")) for c in celdas]
-
-
-def es_numero(v: str) -> bool:
-    return bool(re.fullmatch(r"\d+", normalizar(v)))
-
-
-def parsear_tablas(soup: BeautifulSoup, categorias: List[str]) -> Dict:
-    resultado = {"general": [], "categorias": {c: [] for c in categorias}}
-    seccion = None
-    posibles_secciones = {"GENERAL": "general", **{canon(c): c for c in categorias}}
-
-    for table in soup.find_all("table"):
-        filas = [fila_textos(tr) for tr in table.find_all("tr")]
-        for cells in filas:
-            if not cells:
-                continue
-            if len(cells) == 1:
-                key = canon(cells[0])
-                if key in posibles_secciones:
-                    seccion = posibles_secciones[key]
-                continue
-            header = [canon(c) for c in cells]
-            if "EQUIPOS" in header and "PJ" in header and ("PTS" in header or "PTS." in [c.upper() for c in cells]):
-                continue
-            if seccion and len(cells) >= 6 and all(es_numero(x) for x in cells[-5:]):
-                fila = {
-                    "equipo": cells[0],
-                    "pj": int(cells[-5]),
-                    "g": int(cells[-4]),
-                    "e": int(cells[-3]),
-                    "p": int(cells[-2]),
-                    "pts": int(cells[-1]),
-                }
-                if seccion == "general":
-                    if fila not in resultado["general"]:
-                        resultado["general"].append(fila)
-                else:
-                    if fila not in resultado["categorias"].setdefault(seccion, []):
-                        resultado["categorias"][seccion].append(fila)
-    return resultado
-
-
-def fecha_id_desde_texto(valor: str) -> str:
-    m = re.search(r"F(?:ECHA)?\s*(\d+)", str(valor), re.I)
-    return f"F{m.group(1)}" if m else ""
-
-
-def fixture_por_fecha(zona: str) -> Dict[str, Dict]:
-    return {p.get("fecha_id") or fecha_id_desde_texto(p.get("fecha", "")): p for p in FIXTURES_FIJOS[zona]}
-
-
-def buscar_fixture_por_equipos(zona: str, local: str, visitante: str, fecha_id: str = "") -> Optional[Dict]:
-    fx = FIXTURES_FIJOS[zona]
-    if fecha_id:
-        for p in fx:
-            if p.get("fecha_id") == fecha_id:
-                return p
-    cl, cv = canon(local), canon(visitante)
-    for p in fx:
-        if canon(p["local"]) == cl and canon(p["visitante"]) == cv:
-            return p
-    return None
-
-
-
-def aliases_categoria(cat: str) -> List[str]:
-    txt = normalizar(cat)
-    aliases = {txt, txt.replace(' ', '')}
-    partes = re.findall(r"\d+", txt)
-    if partes:
-        cortas = [x[-2:] for x in partes]
-        aliases.add('/'.join(cortas))
-        aliases.add(' / '.join(cortas))
-        if len(partes) == 1:
-            aliases.add(cortas[0])
-        aliases.add('/'.join(partes))
-        aliases.add(' / '.join(partes))
-    return [canon(a) for a in aliases if a]
-
-
-def buscar_posicion_categoria(header_canon: List[str], categoria: str) -> Optional[int]:
-    posibles = set(aliases_categoria(categoria))
-    for i, h in enumerate(header_canon):
-        if h in posibles:
+def indice_linea(lineas: List[str], texto_objetivo: str) -> int:
+    objetivo = limpiar_linea(texto_objetivo).upper()
+    for i, linea in enumerate(lineas):
+        if limpiar_linea(linea).upper() == objetivo:
             return i
-    return None
+    return -1
 
 
-def valor_visible(v: str):
-    v = normalizar(v)
-    return None if v in ("", "-") else v
+def cortar_bloque(lineas: List[str], inicio_titulo: str, fin_titulos: List[str]) -> List[str]:
+    inicio = indice_linea(lineas, inicio_titulo)
+    if inicio == -1:
+        return []
+    fin_titulos_normalizados = {limpiar_linea(x).upper() for x in fin_titulos}
+    bloque = []
+    for linea in lineas[inicio + 1:]:
+        if limpiar_linea(linea).upper() in fin_titulos_normalizados:
+            break
+        bloque.append(linea)
+    return bloque
 
 
-def alinear_fila_con_header(row: List[str], header: List[str]) -> List[str]:
-    cells = [normalizar(c) for c in row]
-    # FEFI a veces omite F.T. en la segunda fila y también omite Estado.
-    # Si rellenamos solo al final, se corre PJ/Pts y Pts termina en la última categoría.
-    cells = [c for c in cells if canon(c) not in {"VERIFICADO", "PREVIO", "ESTADO"}]
-    header_len = len(header)
-    if len(cells) == header_len:
-        return cells
-
-    falta_ft = bool(cells) and not fecha_id_desde_texto(cells[0])
-
-    if len(cells) == header_len - 1 and falta_ft:
-        return [""] + cells
-
-    if len(cells) == header_len - 2 and falta_ft:
-        return [""] + cells + [""]
-
-    if len(cells) > header_len:
-        return cells[:header_len]
-    return cells + [""] * (header_len - len(cells))
-
-def indice_header(header: List[str], opciones: set) -> Optional[int]:
-    for i, h in enumerate(header):
-        if h in opciones:
-            return i
-    return None
-
-
-def parsear_fila_resultado_por_header(row: List[str], header_canon: List[str], categorias: List[str]) -> Optional[Dict]:
-    cells = alinear_fila_con_header(row, header_canon)
-    if not any(cells):
+def partir_cruce(linea: str) -> Optional[Tuple[str, str]]:
+    texto = limpiar_linea(linea)
+    match = re.match(r"^(.*?)\s*vs\s*(.*?)$", texto, flags=re.IGNORECASE)
+    if not match:
         return None
-    idx_equipo = indice_header(header_canon, {"EQUIPOS", "EQUIPO"})
-    idx_pj = indice_header(header_canon, {"PJ", "PJ."})
-    idx_pts = indice_header(header_canon, {"PTS", "PTS."})
-    if idx_equipo is None:
+    local = normalizar_equipo(match.group(1))
+    visitante = normalizar_equipo(match.group(2))
+    if not local or not visitante:
         return None
-    fecha_id = ""
-    idx_ft = indice_header(header_canon, {"FT", "FT.", "F.T", "F.T."})
-    if idx_ft is not None and idx_ft < len(cells):
-        fecha_id = fecha_id_desde_texto(cells[idx_ft])
-    if not fecha_id and cells:
-        fecha_id = fecha_id_desde_texto(cells[0])
-    equipo = cells[idx_equipo] if idx_equipo < len(cells) else ""
-    if not equipo or canon(equipo) in {"EQUIPOS", "EQUIPO"}:
+    return local, visitante
+
+
+def sacar_fixture(lineas: List[str], nombre_equipo: str) -> List[Dict]:
+    bloque = cortar_bloque(
+        lineas,
+        "FIXTURE APERTURA",
+        [
+            "FIXTURE CLAUSURA",
+            "DIRECCIONES",
+            "RESULTADOS APERTURA",
+            "TABLAS APERTURA",
+            "RESULTADOS CLAUSURA",
+            "TABLAS CLAUSURA",
+            "TABLAS ANUALES",
+            "NO SE HA ENCONTRADO CONTENIDO",
+        ],
+    )
+    if not bloque:
+        bloque = lineas
+
+    equipo_buscado = nombre_equipo.upper()
+    fecha_actual = ""
+    partidos = []
+
+    i = 0
+    while i < len(bloque):
+        texto = limpiar_linea(bloque[i])
+
+        if texto.startswith("Fecha"):
+            fecha_actual = texto
+            i += 1
+            continue
+
+        cruce = partir_cruce(texto)
+        if cruce:
+            local, visitante = cruce
+            if equipo_buscado in local.upper() or equipo_buscado in visitante.upper():
+                condicion = "Local" if equipo_buscado in local.upper() else "Visitante"
+                match_fecha = re.search(r"Fecha\s+(\d+)", fecha_actual, re.I)
+                fecha_id = f"F{match_fecha.group(1)}" if match_fecha else ""
+                partidos.append(
+                    {
+                        "fecha": fecha_actual,
+                        "fecha_id": fecha_id,
+                        "local": local,
+                        "visitante": visitante,
+                        "condicion": condicion,
+                    }
+                )
+        i += 1
+
+    vistos = set()
+    unicos = []
+    for partido in partidos:
+        clave = (partido["fecha"], partido["local"], partido["visitante"], partido["condicion"])
+        if clave not in vistos:
+            vistos.add(clave)
+            unicos.append(partido)
+    return unicos
+
+
+def construir_diccionario_fechas(fixture: List[Dict]) -> Dict[str, Dict]:
+    por_fecha = {}
+    for item in fixture:
+        por_fecha[item["fecha_id"]] = item
+    return por_fecha
+
+
+def extraer_todos_los_equipos(lineas: List[str]) -> List[str]:
+    equipos = []
+    for linea in lineas:
+        cruce = partir_cruce(linea)
+        if cruce:
+            equipos.extend(cruce)
+    return sorted({normalizar_equipo(x) for x in equipos if x}, key=len, reverse=True)
+
+
+def encontrar_equipo_en_inicio(texto: str, equipos_ordenados: List[str]) -> Tuple[Optional[str], str]:
+    texto_limpio = limpiar_linea(texto)
+    texto_upper = texto_limpio.upper()
+    for equipo in equipos_ordenados:
+        equipo_norm = normalizar_equipo(equipo)
+        if texto_upper.startswith(equipo_norm.upper()):
+            resto = texto_limpio[len(equipo_norm):].strip()
+            return equipo_norm, resto
+    return None, texto_limpio
+
+
+def es_token_resultado(token: str) -> bool:
+    token = token.strip().upper()
+    return token in TOKENS_RESULTADO or token.isdigit()
+
+
+def valor_resultado(token: str):
+    token = token.strip()
+    if token == "":
         return None
-    resultados_cat = []
-    for cat in categorias:
-        idx_cat = buscar_posicion_categoria(header_canon, cat)
-        valor = None
-        if idx_cat is not None and idx_cat < len(cells):
-            valor = valor_visible(cells[idx_cat])
-        resultados_cat.append(valor)
-    pj_val = cells[idx_pj] if idx_pj is not None and idx_pj < len(cells) else ""
-    pts_val = cells[idx_pts] if idx_pts is not None and idx_pts < len(cells) else ""
+    return token
+
+
+def parsear_fila_resultados(linea: str, equipos_ordenados: List[str], cantidad_categorias: int) -> Optional[Dict]:
+    texto = limpiar_linea(linea)
+    fecha_id = None
+
+    match_fecha = re.match(r"^(F\d+)\s*(.*)$", texto, flags=re.I)
+    if match_fecha:
+        fecha_id = match_fecha.group(1).upper()
+        texto = limpiar_linea(match_fecha.group(2))
+
+    texto = re.sub(r"\s+Previo$", "", texto, flags=re.I)
+    equipo, resto = encontrar_equipo_en_inicio(texto, equipos_ordenados)
+    if not equipo:
+        return None
+
+    tokens = resto.split()
+    pj = None
+    pts = None
+    valores_categoria = [None] * cantidad_categorias
+
+    if len(tokens) >= cantidad_categorias + 2 and all(es_token_resultado(t) for t in tokens[:cantidad_categorias]) and all(t.isdigit() for t in tokens[cantidad_categorias:cantidad_categorias+2]):
+        valores_categoria = [valor_resultado(t) for t in tokens[:cantidad_categorias]]
+        pj = int(tokens[cantidad_categorias])
+        pts = int(tokens[cantidad_categorias + 1])
+    elif len(tokens) >= 2 and all(t.isdigit() for t in tokens[:2]):
+        pj = int(tokens[0])
+        pts = int(tokens[1])
+
     return {
         "fecha_id": fecha_id,
         "equipo": equipo,
-        "categorias": resultados_cat,
-        "pj": int(pj_val) if es_numero(pj_val) else None,
-        "pts": int(pts_val) if es_numero(pts_val) else None,
+        "pj": pj,
+        "pts": pts,
+        "categorias": valores_categoria,
     }
 
-def parsear_resultados(soup: BeautifulSoup, zona: str, categorias: List[str]) -> Dict:
+
+def sacar_resultados(lineas: List[str], fixture: List[Dict], nombre_equipo: str, categorias: List[str]) -> Dict:
+    equipos_ordenados = extraer_todos_los_equipos(lineas)
+    fechas_fixture = construir_diccionario_fechas(fixture)
+
+    inicio = next((i for i, l in enumerate(lineas) if limpiar_linea(l).upper().startswith("F.T.EQUIPOS")), -1)
+    fin = indice_linea(lineas, "EQUIPOS PJ G E P Pts.")
+    if inicio == -1 or fin == -1 or fin <= inicio:
+        return {"general": {}}
+
+    bloque = lineas[inicio + 1:fin]
     general: Dict[str, List[Dict]] = {}
-    equipo_propio = canon(ZONAS[zona]["equipo"])
+    i = 0
+    equipo_buscado = nombre_equipo.upper()
 
-    for table in soup.find_all("table"):
-        filas = [fila_textos_raw(tr) for tr in table.find_all("tr")]
-        if not filas:
+    while i < len(bloque) - 1:
+        fila_local = parsear_fila_resultados(bloque[i], equipos_ordenados, len(categorias))
+        fila_visitante = parsear_fila_resultados(bloque[i + 1], equipos_ordenados, len(categorias))
+
+        if not fila_local or not fila_visitante or not fila_local.get("fecha_id"):
+            i += 1
             continue
 
-        header_idx = -1
-        for idx, cells in enumerate(filas):
-            h = [canon(c) for c in cells]
-            tiene_equipo = "EQUIPOS" in h
-            tiene_pj = any(x in {"PJ", "PJ."} for x in h)
-            tiene_pts = any(x in {"PTS", "PTS."} for x in h)
-            tiene_categoria = any(buscar_posicion_categoria(h, cat) is not None for cat in categorias)
-            if tiene_equipo and tiene_categoria and tiene_pj and tiene_pts:
-                header_idx = idx
-                break
-        if header_idx == -1:
-            continue
+        fecha_id = fila_local["fecha_id"]
+        local = fila_local["equipo"]
+        visitante = fila_visitante["equipo"]
 
-        rows = filas[header_idx + 1:]
-        i = 0
-        while i < len(rows) - 1:
-            header_canon = [canon(c) for c in filas[header_idx]]
-            fila_local = parsear_fila_resultado_por_header(rows[i], header_canon, categorias)
-            fila_visitante = parsear_fila_resultado_por_header(rows[i + 1], header_canon, categorias)
-            if not fila_local or not fila_visitante:
-                i += 1
-                continue
-
-            fecha_id = fila_local.get("fecha_id") or fila_visitante.get("fecha_id")
-            local = fila_local.get("equipo", "")
-            visitante = fila_visitante.get("equipo", "")
-
-            if not local or not visitante:
-                i += 1
-                continue
-            if equipo_propio not in canon(local) and equipo_propio not in canon(visitante):
-                i += 2
-                continue
-
-            fx = buscar_fixture_por_equipos(zona, local, visitante, fecha_id)
-            if not fx and fecha_id in fixture_por_fecha(zona):
-                fx = fixture_por_fecha(zona)[fecha_id]
-
-            resultados = {}
-            tiene_alguno = False
-            for idx_cat, cat in enumerate(categorias):
-                val_local = fila_local["categorias"][idx_cat] if idx_cat < len(fila_local["categorias"]) else None
-                val_visitante = fila_visitante["categorias"][idx_cat] if idx_cat < len(fila_visitante["categorias"]) else None
-                if val_local is not None or val_visitante is not None:
-                    tiene_alguno = True
-                resultados[cat] = {"local": val_local, "visitante": val_visitante}
-
-            if not tiene_alguno and fila_local.get("pts") is None and fila_visitante.get("pts") is None:
-                i += 2
-                continue
-
-            partido = {
-                "fecha_id": fecha_id or (fx or {}).get("fecha_id", ""),
-                "fecha": (fx or {}).get("fecha", fecha_id),
-                "local": (fx or {}).get("local", local),
-                "visitante": (fx or {}).get("visitante", visitante),
-                "pj_local": fila_local.get("pj"),
-                "pts_local": fila_local.get("pts"),
-                "pj_visitante": fila_visitante.get("pj"),
-                "pts_visitante": fila_visitante.get("pts"),
-                "resultados": resultados,
-            }
-            fid = partido["fecha_id"] or fecha_id or "SIN_FECHA"
-            general.setdefault(fid, []).append(partido)
+        if equipo_buscado not in local.upper() and equipo_buscado not in visitante.upper():
             i += 2
+            continue
 
-    return {"general": general, "categorias": {}}
+        resultados_categoria = {}
+        for idx, categoria in enumerate(categorias):
+            resultados_categoria[categoria] = {
+                "local": fila_local["categorias"][idx] if idx < len(fila_local["categorias"]) else None,
+                "visitante": fila_visitante["categorias"][idx] if idx < len(fila_visitante["categorias"]) else None,
+            }
+
+        partido = {
+            "fecha_id": fecha_id,
+            "fecha": fechas_fixture.get(fecha_id, {}).get("fecha", fecha_id),
+            "local": local,
+            "visitante": visitante,
+            "pj_local": fila_local.get("pj"),
+            "pts_local": fila_local.get("pts"),
+            "pj_visitante": fila_visitante.get("pj"),
+            "pts_visitante": fila_visitante.get("pts"),
+            "resultados": resultados_categoria,
+        }
+        general.setdefault(fecha_id, []).append(partido)
+        i += 2
+
+    return {"general": general}
 
 
-def actualizar_desde_fefi():
-    asegurar_fixture_y_archivos_base()
-    for zona, cfg in ZONAS.items():
-        print(f"Actualizando {zona}: {cfg['url']}")
-        htmls = obtener_htmls_renderizados(cfg["url"])
-        tabla = {"general": [], "categorias": {c: [] for c in cfg["categorias"]}}
-        resultados = {"general": {}, "categorias": {}}
+def parsear_fila_tabla(linea: str, equipos_ordenados: List[str]) -> Optional[Dict]:
+    texto = limpiar_linea(linea)
+    equipo, resto = encontrar_equipo_en_inicio(texto, equipos_ordenados)
+    if not equipo:
+        return None
 
-        for html in htmls:
-            soup = BeautifulSoup(html, "html.parser")
+    tokens = resto.split()
+    if len(tokens) < 5:
+        return None
+    if not all(token.isdigit() for token in tokens[:5]):
+        return None
 
-            tabla_tmp = parsear_tablas(soup, cfg["categorias"])
-            for fila in tabla_tmp.get("general", []):
-                if fila not in tabla["general"]:
-                    tabla["general"].append(fila)
-            for cat, filas in (tabla_tmp.get("categorias") or {}).items():
-                tabla["categorias"].setdefault(cat, [])
-                for fila in filas:
-                    if fila not in tabla["categorias"][cat]:
-                        tabla["categorias"][cat].append(fila)
+    pj, g, e, p, pts = map(int, tokens[:5])
+    return {"equipo": equipo, "pj": pj, "g": g, "e": e, "p": p, "pts": pts}
 
-            res_tmp = parsear_resultados(soup, zona, cfg["categorias"])
-            for fid, partidos in (res_tmp.get("general") or {}).items():
-                resultados["general"].setdefault(fid, [])
-                existentes = {
-                    (p.get("fecha_id"), canon(p.get("local", "")), canon(p.get("visitante", "")))
-                    for p in resultados["general"][fid]
-                }
-                for partido in partidos:
-                    clave_partido = (partido.get("fecha_id"), canon(partido.get("local", "")), canon(partido.get("visitante", "")))
-                    if clave_partido not in existentes:
-                        resultados["general"][fid].append(partido)
-                        existentes.add(clave_partido)
 
-        base = Path("data") / zona
-        # Importante: solo pisamos si encontró datos. Así no rompe lo anterior con vacíos.
-        if tabla["general"] or any(tabla["categorias"].values()):
-            guardar_json(base / "tabla.json", tabla)
+def sacar_tablas(lineas: List[str], categorias_tablas: List[str]) -> Dict:
+    equipos_ordenados = extraer_todos_los_equipos(lineas)
+    inicio = indice_linea(lineas, "EQUIPOS PJ G E P Pts.")
+    if inicio == -1:
+        return {"general": [], "categorias": {}}
+
+    resultado = {"general": [], "categorias": {}}
+    seccion_actual = None
+
+    for linea in lineas[inicio + 1:]:
+        texto = limpiar_linea(linea)
+
+        if texto.upper() in {
+            "NO SE HA ENCONTRADO CONTENIDO",
+            "NOMBRE DEL EQUIPO DIRECCIÓN LOCALIDAD T.",
+            "NOMBRE DEL EQUIPO DIRECCION LOCALIDAD T.",
+        }:
+            break
+
+        texto_cat = normalizar_categoria(texto)
+        if texto.upper() == "GENERAL":
+            seccion_actual = "general"
+            continue
+
+        if texto_cat in categorias_tablas:
+            seccion_actual = texto_cat
+            resultado["categorias"].setdefault(seccion_actual, [])
+            continue
+
+        fila = parsear_fila_tabla(texto, equipos_ordenados)
+        if not fila or not seccion_actual:
+            continue
+
+        if seccion_actual == "general":
+            resultado["general"].append(fila)
         else:
-            print("  AVISO: no encontré tablas renderizadas. No piso tabla.json.")
+            resultado["categorias"][seccion_actual].append(fila)
 
-        if resultados["general"]:
-            guardar_json(base / "resultados.json", resultados)
-        else:
-            print("  AVISO: no encontré resultados renderizados. No piso resultados.json.")
+    return resultado
 
-        fixture = leer_json(base / "fixture.json", [])
-        tabla_guardada = leer_json(base / "tabla.json", {"general": []})
-        res_guardado = leer_json(base / "resultados.json", {"general": {}})
-        direcciones = leer_json(base / "direcciones.json", {})
-        print(f"Zona {zona}: fixture={len(fixture)} | tabla_general={len(tabla_guardada.get('general', []))} | resultados={len(res_guardado.get('general', {}))} | direcciones={len(direcciones)}")
+
+def guardar_json(clave: str, nombre_archivo: str, data):
+    os.makedirs(os.path.join("data", clave), exist_ok=True)
+
+    ruta_data = os.path.join("data", clave, f"{nombre_archivo}.json")
+    with open(ruta_data, "w", encoding="utf-8") as archivo:
+        json.dump(data, archivo, ensure_ascii=False, indent=2)
+
+    ruta_plana = f"{nombre_archivo}_{clave}.json"
+    with open(ruta_plana, "w", encoding="utf-8") as archivo:
+        json.dump(data, archivo, ensure_ascii=False, indent=2)
+
+    print(f"Creado: {ruta_data}")
+    print(f"Creado: {ruta_plana}")
+
+
+def procesar_zona(clave: str, info: Dict):
+    html = obtener_html(info["url"])
+    lineas = obtener_lineas_desde_html(html)
+
+    fixture = sacar_fixture(lineas, info["equipo"])
+    tablas = sacar_tablas(lineas, info["categorias_tablas"])
+    resultados = sacar_resultados(lineas, fixture, info["equipo"], info["categorias_resultados"])
+
+    guardar_json(clave, "fixture", fixture)
+    guardar_json(clave, "tabla", tablas)
+    guardar_json(clave, "resultados", resultados)
 
 
 def main():
-    if len(sys.argv) > 1 and sys.argv[1].lower() == "actualizar":
-        actualizar_desde_fefi()
-        print("\nLISTO. Se intentó actualizar desde FEFI sin pisar datos con vacíos.")
-    else:
-        asegurar_fixture_y_archivos_base()
-        print("LISTO. Modo fijo. No se conectó a FEFI.")
-        print("Para actualizar tablas/resultados manualmente: python scraper.py actualizar")
+    errores = []
+    zonas_ok = 0
+
+    for clave, info in ZONAS.items():
+        print(f"Procesando {clave}...")
+        try:
+            procesar_zona(clave, info)
+            zonas_ok += 1
+        except Exception as error:
+            mensaje = f"Falló zona {clave}: {error}"
+            print(mensaje)
+            errores.append(mensaje)
+
+    if zonas_ok == 0:
+        raise RuntimeError("No se pudo actualizar ninguna zona.")
+
+    if errores:
+        print("Hubo zonas con error:")
+        for error in errores:
+            print("-", error)
 
 
 if __name__ == "__main__":

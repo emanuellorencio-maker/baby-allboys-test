@@ -756,41 +756,29 @@ button:active {
 .resultado-partido {
   background: #181818;
   border: 1px solid #2a2a2a;
-  border-radius: 16px;
-  padding: 16px;
-  margin-bottom: 14px;
-}
-
-.resultado-resumen {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 14px;
-  padding: 14px;
   border-radius: 14px;
-  background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
-  border: 1px solid rgba(255,255,255,0.08);
+  padding: 14px;
+  margin-bottom: 12px;
 }
 
-.resultado-equipo {
-  text-align: center;
-}
-
-.resultado-equipo-nombre {
-  font-size: 16px;
+.resultado-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
   font-weight: 900;
   color: #ffffff;
-  line-height: 1.2;
-  margin-bottom: 8px;
-  text-align: center;
 }
 
-.resultado-equipo-meta {
+.resultado-meta {
   display: flex;
-  justify-content: center;
   gap: 8px;
   flex-wrap: wrap;
+  color: #bdbdbd;
+  font-size: 12px;
+  font-weight: 800;
+  margin-bottom: 10px;
 }
 
 .resultado-chip {
@@ -798,48 +786,6 @@ button:active {
   border-radius: 999px;
   background: rgba(255,255,255,0.06);
   border: 1px solid rgba(255,255,255,0.08);
-  color: #d9d9d9;
-  font-size: 12px;
-  font-weight: 800;
-}
-
-.resultado-centro {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  min-width: 108px;
-}
-
-.resultado-vs {
-  font-size: 11px;
-  font-weight: 900;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: #9f9f9f;
-}
-
-.resultado-scoreboard {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  padding: 10px 14px;
-  border-radius: 999px;
-  background: #ffffff;
-  color: #111111;
-  font-weight: 900;
-  box-shadow: 0 8px 18px rgba(0,0,0,0.22);
-}
-
-.resultado-scoreboard-num {
-  font-size: 24px;
-  line-height: 1;
-}
-
-.resultado-scoreboard-sep {
-  font-size: 14px;
-  opacity: 0.65;
 }
 
 .resultado-grid {
@@ -849,7 +795,7 @@ button:active {
 
 .resultado-row {
   display: grid;
-  grid-template-columns: 86px minmax(70px, 1fr) minmax(70px, 1fr);
+  grid-template-columns: 80px 1fr;
   gap: 10px;
   align-items: center;
   padding: 10px 12px;
@@ -863,396 +809,16 @@ button:active {
   color: #ffffff;
 }
 
-.resultado-score-local,
-.resultado-score-visitante {
+.resultado-score {
   color: #e8e8e8;
-  font-weight: 800;
-  text-align: center;
-  justify-self: center;
-  width: 100%;
+  font-weight: 700;
 }
 
-.resultado-score-local.sin-dato,
-.resultado-score-visitante.sin-dato {
+.resultado-score.sin-dato {
   color: #909090;
   font-style: italic;
 }
 
-@media (max-width: 700px) {
-  .resultado-resumen {
-    grid-template-columns: 1fr;
-    gap: 10px;
-  }
-
-  .resultado-centro {
-    order: -1;
-    min-width: 0;
-  }
-
-  .resultado-row {
-    grid-template-columns: 74px minmax(56px, 1fr) minmax(56px, 1fr);
-    gap: 8px;
-    padding: 9px 10px;
-  }
-
-  .resultado-equipo-nombre {
-    font-size: 15px;
-  }
-
-  .resultado-scoreboard-num {
-    font-size: 21px;
-  }
-}
-
-
-
-.resultados-accordion {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.resultado-item {
-  width: 100%;
-}
-
-.resultado-toggle {
-  width: 100%;
-  justify-content: center;
-  background: rgba(255,255,255,0.04);
-  color: #d8d8d8;
-  font-size: 13px;
-  padding: 12px 14px;
-  border-radius: 12px;
-  border: 1px solid rgba(255,255,255,0.07);
-  box-shadow: none;
-}
-
-.resultado-toggle:hover {
-  background: rgba(255,255,255,0.08);
-  color: #ffffff;
-}
-
-.resultado-toggle.activo {
-  background: #2a2a2a;
-  color: #ffffff;
-  border: 1px solid rgba(255,255,255,0.18);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
-}
-
-.resultado-panel-inline {
-  margin-top: 10px;
-}
-
-.resultado-panel-inline .bloque {
-  margin-bottom: 0;
-}
-
-.resultado-panel-inline .fecha {
-  margin-bottom: 16px;
-}
-
-.resultado-etiqueta {
-  font-size: 11px;
-  font-weight: 900;
-  letter-spacing: 1.2px;
-  text-transform: uppercase;
-  color: #9f9f9f;
-  text-align: center;
-}
-
-@media (max-width: 700px) {
-  .resultado-partido {
-    padding: 14px 12px;
-  }
-
-  .resultado-resumen {
-    padding: 16px 12px;
-    gap: 12px;
-  }
-
-  .resultado-centro {
-    order: -1;
-    gap: 10px;
-  }
-
-  .resultado-equipo {
-    display: grid;
-    gap: 8px;
-    justify-items: center;
-  }
-
-  .resultado-equipo-nombre {
-    font-size: 14px;
-    margin-bottom: 0;
-  }
-
-  .resultado-equipo-meta {
-    gap: 6px;
-  }
-
-  .resultado-chip {
-    padding: 7px 11px;
-    font-size: 12px;
-  }
-
-  .resultado-scoreboard {
-    padding: 11px 16px;
-    gap: 12px;
-  }
-
-  .resultado-scoreboard-num {
-    font-size: 22px;
-  }
-
-  .resultado-row {
-    grid-template-columns: 68px 1fr 1fr;
-    gap: 6px;
-    padding: 10px 8px;
-  }
-
-  .resultado-cat,
-  .resultado-score-local,
-  .resultado-score-visitante {
-    font-size: 15px;
-  }
-}
-
-
-
-.fixture-card.jugado {
-  cursor: pointer;
-}
-
-.fixture-card.jugado .fixture-sub {
-  color: #ffffff;
-}
-
-.fixture-card.jugado:hover {
-  border-color: rgba(255,255,255,0.28);
-}
-
-.fixture-posiciones {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 12px;
-}
-
-.fixture-posicion-chip,
-.proximo-posicion-chip,
-.ranking-chip {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 7px 10px;
-  border-radius: 999px;
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.10);
-  color: #f1f1f1;
-  font-size: 11px;
-  font-weight: 900;
-  letter-spacing: 0.4px;
-}
-
-.fixture-direccion {
-  margin-top: 12px;
-  padding: 12px 14px;
-  border-radius: 14px;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.08);
-}
-
-.fixture-direccion-label {
-  display: block;
-  font-size: 10px;
-  font-weight: 900;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: #9f9f9f;
-  margin-bottom: 6px;
-}
-
-.fixture-direccion-texto {
-  font-size: 13px;
-  line-height: 1.45;
-  color: #f4f4f4;
-  font-weight: 700;
-}
-
-.fixture-maps {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 10px;
-  padding: 10px 14px;
-  border-radius: 12px;
-  background: #ffffff;
-  color: #111111;
-  text-decoration: none;
-  font-size: 12px;
-  font-weight: 900;
-  letter-spacing: 0.3px;
-}
-
-.fixture-maps:hover {
-  background: #eaeaea;
-}
-
-.fixture-en-casa {
-  margin-top: 12px;
-  padding: 10px 12px;
-  border-radius: 14px;
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.10);
-  text-align: center;
-  color: #ffffff;
-  font-size: 11px;
-  font-weight: 900;
-  letter-spacing: 1.2px;
-  text-transform: uppercase;
-}
-
-.proximo-posiciones {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 14px;
-}
-
-.resultado-resumen {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
-  align-items: stretch;
-  gap: 16px;
-  padding: 18px 16px;
-  border-radius: 16px;
-  background: linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.02));
-  border: 1px solid rgba(255,255,255,0.08);
-  margin-bottom: 14px;
-}
-
-.resultado-equipo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  text-align: center;
-  min-width: 0;
-}
-
-.resultado-equipo-nombre {
-  font-size: 18px;
-  line-height: 1.2;
-  font-weight: 900;
-  color: #ffffff;
-  text-align: center;
-  width: 100%;
-}
-
-.resultado-equipo-meta {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  flex-wrap: wrap;
-  width: 100%;
-}
-
-.resultado-centro {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-width: 120px;
-  gap: 12px;
-}
-
-.resultado-scoreboard {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.resultado-scoreboard-num {
-  font-size: 34px;
-  line-height: 1;
-  font-weight: 900;
-  color: #ffffff;
-}
-
-.resultado-scoreboard-sep {
-  font-size: 18px;
-  font-weight: 900;
-  color: #8f8f8f;
-}
-
-.ranking-panel {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-
-.ranking-resumen {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.ranking-tabla-wrap {
-  width: 100%;
-  overflow-x: auto;
-  border-radius: var(--radio);
-  box-shadow: var(--sombra-1);
-  border: 1px solid var(--linea);
-  background: #141414;
-}
-
-.ranking-tabla {
-  width: 100%;
-  min-width: 980px;
-  border-collapse: collapse;
-  background: #141414;
-  color: #f5f5f5;
-}
-
-.ranking-tabla th,
-.ranking-tabla td {
-  padding: 11px 10px;
-  border-bottom: 1px solid #242424;
-  font-size: 13px;
-  text-align: center;
-}
-
-.ranking-tabla th:first-child,
-.ranking-tabla td:first-child,
-.ranking-tabla th:nth-child(2),
-.ranking-tabla td:nth-child(2) {
-  text-align: left;
-}
-
-.ranking-vacio {
-  text-align: center;
-  color: #b8b8b8;
-  font-weight: 700;
-  padding: 18px 12px;
-}
-
-@media (max-width: 700px) {
-  .fixture-posiciones,
-  .proximo-posiciones {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .resultado-scoreboard-num {
-    font-size: 28px;
-  }
-
-  .ranking-tabla {
-    min-width: 900px;
-  }
-}
 
     .oculto {
       display: none;
@@ -1604,26 +1170,346 @@ button:active {
 }
   
 
+/* ===== FINAL MOBILE-FIRST FIX BABY ALL BOYS ===== */
+.portada-pro {
+  max-width: 1000px;
+  margin: 0 auto 22px;
+  padding: 24px 18px;
+  border-radius: 28px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(135deg, rgba(0,0,0,0.90), rgba(26,26,26,0.92)),
+    radial-gradient(circle at 50% -20%, rgba(255,255,255,0.18), transparent 38%);
+  border: 1px solid rgba(255,255,255,0.14);
+  box-shadow: 0 18px 45px rgba(0,0,0,0.45);
+}
+.portada-pro::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(255,255,255,0.05), transparent 30%, transparent 70%, rgba(255,255,255,0.04));
+  pointer-events: none;
+}
+.portada-logo-box {
+  width: 112px;
+  height: 112px;
+  margin: 0 auto 12px;
+  border-radius: 28px;
+  display: grid;
+  place-items: center;
+  background: rgba(255,255,255,0.96);
+  border: 1px solid rgba(255,255,255,0.22);
+  box-shadow: 0 14px 34px rgba(0,0,0,0.35);
+  position: relative;
+  z-index: 1;
+}
+.portada-logo {
+  max-width: 86px;
+  max-height: 86px;
+  object-fit: contain;
+}
+.portada-kicker {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  padding: 7px 12px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.10);
+  color: rgba(255,255,255,0.82);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.portada-pro h1 {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  font-size: clamp(32px, 7vw, 58px);
+  line-height: 0.95;
+  letter-spacing: -1px;
+  font-weight: 1000;
+  color: #fff;
+}
+.portada-subtitulo {
+  position: relative;
+  z-index: 1;
+  max-width: 620px;
+  margin: 12px auto 18px;
+  color: rgba(255,255,255,0.78);
+  font-size: 15px;
+  line-height: 1.45;
+  font-weight: 700;
+}
+.portada-acciones {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.portada-acciones button {
+  min-width: 160px;
+  border-radius: 999px;
+  background: #fff;
+  color: #111;
+  border: 1px solid #fff;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.28);
+}
+.portada-acciones button + button {
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+  border-color: rgba(255,255,255,0.16);
+}
+.portada-mini {
+  position: relative;
+  z-index: 1;
+  margin-top: 14px;
+  color: rgba(255,255,255,0.55);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
+.resultado-card-pro {
+  background: rgba(18,18,18,0.96);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 22px;
+  padding: 18px;
+  margin-bottom: 14px;
+  box-shadow: 0 12px 26px rgba(0,0,0,0.32);
+}
+.resultado-fecha-pro {
+  font-size: 19px;
+  font-weight: 1000;
+  color: #fff;
+  margin-bottom: 14px;
+}
+.resultado-versus-pro {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 54px minmax(0, 1fr);
+  align-items: center;
+  gap: 10px;
+  padding: 15px;
+  border-radius: 18px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.055), rgba(255,255,255,0.025));
+  border: 1px solid rgba(255,255,255,0.09);
+}
+.resultado-equipo-pro {
+  min-width: 0;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 9px;
+}
+.resultado-nombre-pro {
+  width: 100%;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 1000;
+  line-height: 1.12;
+  overflow-wrap: anywhere;
+}
+.resultado-vs-pro {
+  justify-self: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: #fff;
+  color: #111;
+  font-size: 11px;
+  font-weight: 1000;
+  letter-spacing: 0.8px;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.22);
+}
+.resultado-chips-pro {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.resultado-chips-pro span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 32px;
+  padding: 7px 10px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.10);
+  color: #f5f5f5;
+  font-size: 12px;
+  font-weight: 900;
+  white-space: nowrap;
+}
+.resultado-detalle-titulo {
+  margin: 16px 0 10px;
+  color: rgba(255,255,255,0.62);
+  font-size: 12px;
+  font-weight: 1000;
+  text-transform: uppercase;
+  letter-spacing: 1.4px;
+}
+.resultado-lista-pro {
+  display: grid;
+  gap: 8px;
+}
+.resultado-fila-pro {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: rgba(0,0,0,0.30);
+  border: 1px solid rgba(255,255,255,0.06);
+}
+.resultado-cat-pro {
+  color: #fff;
+  font-size: 16px;
+  font-weight: 1000;
+}
+.resultado-marcador-pro {
+  display: grid;
+  grid-template-columns: 1fr 22px 1fr;
+  align-items: center;
+  text-align: center;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 1000;
+}
+.resultado-marcador-pro b {
+  color: rgba(255,255,255,0.36);
+}
+
+@media (max-width: 700px) {
+  body { padding: 0 10px 14px; }
+  .app { width: 100%; }
+  .portada-pro {
+    margin: 10px auto 16px;
+    padding: 20px 14px;
+    border-radius: 22px;
+  }
+  .portada-logo-box {
+    width: 88px;
+    height: 88px;
+    border-radius: 22px;
+  }
+  .portada-logo {
+    max-width: 68px;
+    max-height: 68px;
+  }
+  .portada-acciones {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .portada-acciones button { width: 100%; }
+
+  .panel {
+    border-radius: 20px;
+    padding: 14px;
+    margin-bottom: 18px;
+  }
+  .grupo-vistas button,
+  .grupo-zonas button {
+    min-width: 0;
+    width: 100%;
+    min-height: 52px;
+    border-radius: 15px;
+    font-size: 15px;
+  }
+  .titulo-seccion {
+    font-size: 27px;
+    margin-top: 20px;
+  }
+  .sub-botones {
+    gap: 10px;
+  }
+  .sub-botones button {
+    min-height: 52px;
+    border-radius: 15px;
+    font-size: 15px;
+  }
+  .resultado-card-pro {
+    padding: 14px;
+    border-radius: 20px;
+    margin-bottom: 12px;
+  }
+  .resultado-fecha-pro {
+    font-size: 20px;
+    margin-bottom: 12px;
+  }
+  .resultado-versus-pro {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 14px 12px;
+  }
+  .resultado-vs-pro {
+    width: auto;
+    height: auto;
+    min-width: 52px;
+    padding: 7px 14px;
+    border-radius: 999px;
+    order: 2;
+  }
+  .resultado-equipo-pro:first-child { order: 1; }
+  .resultado-equipo-pro:last-child { order: 3; }
+  .resultado-nombre-pro {
+    font-size: 21px;
+  }
+  .resultado-chips-pro span {
+    font-size: 13px;
+    min-height: 34px;
+    padding: 8px 12px;
+  }
+  .resultado-fila-pro {
+    grid-template-columns: 92px 1fr;
+    padding: 11px 12px;
+  }
+  .resultado-cat-pro {
+    font-size: 18px;
+  }
+  .resultado-marcador-pro {
+    font-size: 18px;
+  }
+  .btn-instagram {
+    right: 12px;
+    bottom: 12px;
+    padding: 10px 13px;
+    font-size: 13px;
+  }
+}
+
 </style>
 </head>
 
 <body>
-
   <div class="app">
-        <div class="franja-superior">
-      <img src="franja-logo.png" alt="Franja histórica All Boys" class="franja-logo">
-    </div>
-<div class="hero">
-  <h1>Baby Fútbol All Boys</h1>
-  <div class="aviso-header">⚽ Actualizado automáticamente</div>
-  <div class="subtitulo-header">Fixture, tablas y resultados por zona y categoría</div>
-</div>
+<section class="portada-pro">
+  <div class="portada-logo-box">
+    <img src="logo-baby-allboys.png" onerror="this.onerror=null;this.src='logo.png';" alt="Baby All Boys" class="portada-logo">
+  </div>
+  <div class="portada-kicker">Baby fútbol · All Boys</div>
+  <h1>BABY ALL BOYS</h1>
+  <p class="portada-subtitulo">Fixture, tablas, resultados y ranking de las tiras de All Boys en FEFI.</p>
+  <div class="portada-acciones">
+    <button type="button" onclick="mostrarVista('resultados'); document.getElementById('vista-resultados')?.scrollIntoView({behavior:'smooth', block:'start'});">Ver resultados</button>
+    <button type="button" onclick="mostrarVista('fixture'); document.getElementById('vista-fixture')?.scrollIntoView({behavior:'smooth', block:'start'});">Próximo partido</button>
+  </div>
+  <div class="portada-mini">Actualización manual · Datos guardados en la web</div>
+</section>
 
     <a href="https://instagram.com/baby_allboys" target="_blank" class="btn-instagram">
       <i class="fab fa-instagram"></i> Seguinos en Instagram
     </a>
-
-
 
 <section class="tablon-noticias">
   <div class="tablon-header">
@@ -1661,7 +1547,6 @@ button:active {
         <button onclick="mostrarVista('fixture')" id="btn-vista-fixture">Fixture</button>
         <button onclick="mostrarVista('tablas')" id="btn-vista-tablas">Tablas</button>
         <button onclick="mostrarVista('resultados')" id="btn-vista-resultados">Resultados</button>
-        <button onclick="mostrarVista('ranking')" id="btn-vista-ranking">Ranking Baby</button>
       </div>
 
       <div class="separador-vistas">Elegí qué querés ver</div>
@@ -1686,129 +1571,28 @@ button:active {
         <div class="sub-botones" id="sub-botones-resultados"></div>
         <div id="contenido-resultados"></div>
       </div>
-
-<div id="vista-ranking" class="vista-panel oculto">
-        <div class="titulo-seccion">Ranking Baby</div>
-        <div class="sub-botones" id="sub-botones-ranking"></div>
-        <div id="contenido-ranking"></div>
-      </div>
     </div>
 
     <div class="footer-mini">All Boys Baby Fútbol · Sitio en desarrollo</div>
   </div>
 
   <script>
-
-    function abrirSitio(categoriaSeleccionada = "") {
-      const overlay = document.getElementById("selector-categoria-overlay");
-      if (overlay) overlay.classList.add("oculto");
-      document.body.classList.remove("bloqueado");
-      if (categoriaSeleccionada) {
-        try {
-          sessionStorage.setItem("baby_categoria_ingreso", categoriaSeleccionada);
-        } catch (e) {}
-      }
-      window.scrollTo({ top: 0, behavior: "instant" in window ? "instant" : "auto" });
-    }
-
-    const ZONA_CONFIG = {
-      c: { nombre: "All Boys A - C", equipo: 'ALL BOYS "A"', etiqueta: "All Boys A", dirLocal: "CHIVILCOY 1998 CABA" },
-      i: { nombre: "All Boys B - I", equipo: 'ALL BOYS "B"', etiqueta: "All Boys B", dirLocal: "CHIVILCOY 1998, FLORESTA CAPITAL FEDERAL" },
-      mat1: { nombre: "Los Albos - Mat1", equipo: "LOS ALBOS", etiqueta: "Los Albos", dirLocal: "CHIVILCOY 1998 CABA" },
-      mat4: { nombre: "All Boys - Mat4", equipo: "ALL BOYS", etiqueta: "All Boys", dirLocal: "CHIVILCOY 1998 CABA" }
+    const nombresCategorias = {
+      c: "All Boys A - C",
+      i: "All Boys B - I",
+      mat1: "Los Albos - Mat1",
+      mat4: "All Boys - Mat4"
     };
-
-
-
-    const nombresCategorias = Object.fromEntries(Object.entries(ZONA_CONFIG).map(([k, v]) => [k, v.nombre]));
 
     let zonaActual = "c";
     let textoResaltarActual = "ALL BOYS";
     let nombreZonaActual = nombresCategorias[zonaActual];
     let vistaActual = "fixture";
 
-    const DIRECCIONES_FEFi = {
-      c: {
-        'PUEYRREDON': 'BAZURCO 2922 VILLA PUEYRREDON',
-        'ALL BOYS "A"': 'CHIVILCOY 1998 CABA',
-        'U.D.S. ALLENDE': 'MELINCUE 4656 VILLA DEVOTO',
-        'BICHOS COLORADOS': 'PUNTA ARENA 1271 CABA',
-        'CENTRO ESPAÑOL': 'ESTANISLAO DEL CAMPO 989 VILLA SARMIENTO HAEDO',
-        'CLUB OESTE': 'AV JOSÉ MARIA MORENO 446 CAPITAL FEDERAL',
-        'DON BOSCO': 'NICOLAS DE ARRIOLA 1833 RAMOS MEJÍA',
-        "ESTRELLA DE MALDONADO ''B''": 'HUMBOLDT 1731 CABA',
-        'INDEPENDIENTE': 'BOYACA 470 CABA',
-        'INDEPENDIENTE DE HURLINGHAM': 'MIRANDA 849 HURLINGHAM',
-        'MARIANO MORENO': 'CARDOSO 3080 CASTELAR NORTE',
-        'C. S. D. PARQUE': 'MARCOS SASTRE 3268 CABA',
-        'RACING CLUB 1': 'NOGOYA 3045 CABA',
-        'LOS CAMBOYANOS': 'JOSE MARMOL 1715 CABA BOEDO',
-        'SANTIAGO DE LINIERS': 'CAAGUAZU 6151 LINIERS CABA',
-        'D. F. SARMIENTO': 'AVENIDA RABANAL 2375 CABA'
-      },
-      i: {
-        'ALL BOYS "B"': 'CHIVILCOY 1998 FLORESTA CAPITAL FEDERAL',
-        'AÑASCO': 'MANUEL A RODRIGUEZ 2650 CAPITAL',
-        'CLUB CIENCIA Y LABOR': 'CUENCA 1750 CAPITAL FEDERAL',
-        'EL TREBOL F. C.': 'GANDARA 2840 CABA',
-        'FATIMA': 'AVENIDA GENERAL SAN MARTÍN 3180 LOMAS DEL MIRADOR',
-        'HURACAN': 'URQUIZA 2247 CABA',
-        'K. A. C.': 'JOAQUIN V GONZALEZ 3238 / ERNESTO SABATO 3162 CABA / SANTOS LUGARES',
-        'LA MARCA': 'VENEZUELA 4170 SAN JUSTO',
-        'LOMAS BLANCO': 'MANUEL ARTIGAS 667 LOMAS DEL MIRADOR',
-        'LOS ANDES': 'SANTA FE 151 LOMAS DE ZAMORA',
-        'LUGANO TENNIS CLUB': 'MURGUIONDO 3915 CP 1439 VILLA LUGANO CABA',
-        'LUJAN DE LOS PATRIOTAS': 'ERCILLA 7195 CABA',
-        'SOLDATI 32 F. C.': 'CONDOR 2975 CABA',
-        'MARCHIGIANA': 'NICASIO OROÑO 457 CABA',
-        'LIGA FOMENTO VILLA MITRE': 'GAVILAN 1540 CABA',
-        'VILLA REAL ROJO': 'TINOGASTA 5739 CABA'
-      },
-      mat1: {
-        'LOS ALBOS': 'CHIVILCOY 1998 CABA',
-        'A. A. A. J.': 'PUNTA ARENA 1271 CABA',
-        'CLUB AT. LUGANO': 'JOSÉ IGNACIO RUCCI 4170 CABA',
-        'ESTRELLA DE BOEDO': 'CONSTITUCION 4151 CABA',
-        'EST. PORTEÑO ROJO': 'CRAMER 807 RAMOS MEJIA',
-        'FLORES CLUB': 'QUIRNO 947 CABA',
-        'CLUB LA PATERNAL': 'FRAGATA SARMIENTO 1951 CABA',
-        'CLUB PACIFICO': 'SANTO TOME 3845 CABA',
-        'C. S. y D. PAMPERO': 'COSQUÍN 4048 BUENOS AIRES',
-        'PLATENSE BLANCO': 'ZUFRIATEGUI 2021 VTE LOPEZ',
-        'LOS CUERVOS': 'VARELA 2640 CABA BOEDO',
-        'VILLA LURO NORTE': 'ELPIDIO GONZALEZ 5445 VILLA LURO',
-        'VILLA HERMINIA': 'CROACIA 2843 CIUDADELA',
-        'C. A. VIRGEN DEL CARMEN': 'SANTANDER 5955 VILLA LUGANO CABA',
-        'SANELI F.C.': 'EVITA 279 ENTRE SAN MARTÍN VILLA MADERO',
-        'NUEVA CHICAGO': 'AV. LISANDRO DE LA TORRE 2288 MATADEROS'
-      },
-      mat4: {
-        'ALL BOYS': 'CHIVILCOY 1998 CABA',
-        'ALVEAR': 'JOSÉ E. RODO 4190 CABA',
-        'EL TIFON DE BOYACA': 'PUNTA ARENA 1271 CABA',
-        'C. A. ATLANTA': 'HUMBOLDT 370/540 CAPITAL FEDERAL',
-        'CICLON FORTIN': 'PERGAMINO 1551 VILLA LYNCH SAN MARTÍN',
-        'EROS': 'HONDURAS 5153 PALERMO',
-        'C. A. ESTUDIANTES': 'LISANDRO DE LA TORRE Y URQUIZA CASEROS',
-        'HURACAN TIKI TIKI': 'URQUIZA 2247 CABA',
-        'PARQUE PATRICIOS': 'ALBERTI 2135 CAPITAL FEDERAL',
-        'LOS CARASUCIAS': 'VARELA 2640 CABA BOEDO',
-        'SP. PEREYRA': 'ALVARADO 2785 CABA',
-        'C. A. VERSAILLES BLANCO': 'ARREGUI 6750 CABA',
-        'V. L. N.': 'ELPIDIO GONZALEZ 5445 VILLA LURO',
-        'COMPLEJO COSTAS CELESTE': 'BOEDO 49 CABA',
-        'ALMAFUERTE FUTBOL CLUB': 'EL ESPINILLO Y EL TACUAPI CIUDAD EVITA',
-        'CE. F. F. LA INDEPENDENCIA': 'MACHAIN 3480 CABA'
-      }
-    };
-
     let tablasData = null;
     let resultadosData = null;
-    let fixtureData = null;
-    let rankingData = null;
     let subVistaTablasActual = "general";
     let subVistaResultadosActual = null;
-    let subVistaRankingActual = "global";
 
     const noticias = [
   {
@@ -1852,8 +1636,7 @@ function mostrarVista(vista) {
   const vistas = [
     document.getElementById("vista-fixture"),
     document.getElementById("vista-tablas"),
-    document.getElementById("vista-resultados"),
-    document.getElementById("vista-ranking")
+    document.getElementById("vista-resultados")
   ];
 
   const nuevaVista = document.getElementById(`vista-${vista}`);
@@ -1910,12 +1693,6 @@ function mostrarVista(vista) {
       cargarFixture(zonaActual);
       cargarTablas(zonaActual);
       cargarResultados(zonaActual);
-      if (!rankingData) {
-        cargarRankingBaby();
-      } else {
-        renderSubBotonesRanking();
-        renderContenidoRanking();
-      }
 
       activarBotonesPrincipales();
       actualizarTitulo();
@@ -1929,167 +1706,6 @@ function mostrarVista(vista) {
         .replace(/"/g, "&quot;")
         .replace(/'/g, "&#039;");
     }
-
-    async function fetchJsonWithFallback(urls) {
-      let ultimoError = null;
-      for (const url of urls) {
-        try {
-          const respuesta = await fetch(url);
-          if (!respuesta.ok) throw new Error(`No se pudo cargar ${url}`);
-          return await respuesta.json();
-        } catch (error) {
-          ultimoError = error;
-        }
-      }
-      throw ultimoError || new Error("No se pudo cargar ningún archivo");
-    }
-
-    function obtenerUrlsResultados(zona) {
-      return [`data/${zona}/resultados.json`, `resultados_${zona}_fixed.json`, `resultados_${zona}.json`];
-    }
-
-    function obtenerUrlsTablas(zona) {
-      return [`data/${zona}/tabla.json`, `tabla_${zona}_fixed.json`, `tabla_${zona}.json`];
-    }
-
-    function obtenerUrlsFixture(zona) {
-      return [`data/${zona}/fixture.json`, `fixture_${zona}.json`];
-    }
-
-    function normalizarTexto(valor) {
-      return String(valor || "")
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "")
-        .replace(/['"]/g, "")
-        .replace(/\s+/g, " ")
-        .trim()
-        .toUpperCase();
-    }
-
-    function fechaIdDesdeTexto(textoFecha) {
-      const match = String(textoFecha || "").match(/Fecha\s+(\d+)/i);
-      return match ? `F${match[1]}` : "";
-    }
-
-    function obtenerEquipoPropioZona(zona) {
-      return ZONA_CONFIG[zona]?.equipo || "";
-    }
-
-    function obtenerEtiquetaZona(zona) {
-      return ZONA_CONFIG[zona]?.etiqueta || zona.toUpperCase();
-    }
-
-    function obtenerDireccionEquipo(zona, equipo) {
-      const mapa = DIRECCIONES_FEFi[zona] || {};
-      const buscado = normalizarTexto(equipo);
-      const entrada = Object.entries(mapa).find(([nombre]) => normalizarTexto(nombre) === buscado);
-      return entrada ? entrada[1] : "";
-    }
-
-    function construirMapsUrl(direccion) {
-      return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(direccion)}`;
-    }
-
-    function obtenerPosicionEquipoDesdeTabla(tablaGeneral, equipo) {
-      if (!Array.isArray(tablaGeneral)) return null;
-      const buscado = normalizarTexto(equipo);
-      const idx = tablaGeneral.findIndex((fila) => normalizarTexto(fila.equipo) === buscado);
-      return idx === -1 ? null : idx + 1;
-    }
-
-    function obtenerInfoRival(partido, zona) {
-      const propio = obtenerEquipoPropioZona(zona);
-      return normalizarTexto(partido.local) === normalizarTexto(propio) ? partido.visitante : partido.local;
-    }
-
-    function esLocalNuestro(partido, zona) {
-      return normalizarTexto(partido.local) === normalizarTexto(obtenerEquipoPropioZona(zona));
-    }
-
-    function irAResultadosFecha(fechaId) {
-      if (!fechaId) return;
-      subVistaResultadosActual = fechaId;
-      mostrarVista("resultados");
-      renderSubBotonesResultados();
-      renderContenidoResultados();
-      const contenedor = document.getElementById("vista-resultados");
-      contenedor?.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-
-    function valorNumericoSeguro(valor) {
-      if (typeof valor === "number") return Number.isFinite(valor) ? valor : null;
-      if (typeof valor === "string" && /^\d+$/.test(valor.trim())) return Number(valor.trim());
-      return null;
-    }
-
-    function crearStatsVacios() {
-      return {
-        pj: 0, pg: 0, pe: 0, pp: 0, gf: 0, gc: 0, vallaInvictaGanada: 0, goleadas5: 0, puntos: 0
-      };
-    }
-
-    function acumularPartidoEnStats(stats, gf, gc) {
-      stats.pj += 1;
-      stats.gf += gf;
-      stats.gc += gc;
-      if (gf > gc) {
-        stats.pg += 1;
-        stats.puntos += 3;
-        if (gc === 0) stats.vallaInvictaGanada += 1;
-        if ((gf - gc) > 5) stats.goleadas5 += 1;
-      } else if (gf === gc) {
-        stats.pe += 1;
-        stats.puntos += 1;
-      } else {
-        stats.pp += 1;
-      }
-    }
-
-    async function cargarRankingBaby() {
-      const zonas = ["c", "i", "mat1", "mat4"];
-      const ranking = { global: {}, categorias: {} };
-
-      for (const zona of zonas) {
-        try {
-          const data = await fetchJsonWithFallback(obtenerUrlsResultados(zona));
-          const general = data?.general || {};
-          const equipoZona = obtenerEquipoPropioZona(zona);
-          const etiquetaZona = obtenerEtiquetaZona(zona);
-
-          Object.values(general).forEach((partidosFecha) => {
-            (partidosFecha || []).forEach((partido) => {
-              const esLocal = normalizarTexto(partido.local) === normalizarTexto(equipoZona);
-              const esVisitante = normalizarTexto(partido.visitante) === normalizarTexto(equipoZona);
-              if (!esLocal && !esVisitante) return;
-
-              const statsGlobal = ranking.global[etiquetaZona] || (ranking.global[etiquetaZona] = crearStatsVacios());
-
-              Object.entries(partido.resultados || {}).forEach(([categoria, valores]) => {
-                const local = valorNumericoSeguro(valores?.local);
-                const visitante = valorNumericoSeguro(valores?.visitante);
-                if (local === null || visitante === null) return;
-
-                const gf = esLocal ? local : visitante;
-                const gc = esLocal ? visitante : local;
-
-                acumularPartidoEnStats(statsGlobal, gf, gc);
-
-                ranking.categorias[categoria] ||= {};
-                const statsCat = ranking.categorias[categoria][etiquetaZona] || (ranking.categorias[categoria][etiquetaZona] = crearStatsVacios());
-                acumularPartidoEnStats(statsCat, gf, gc);
-              });
-            });
-          });
-        } catch (error) {
-          console.error("Error cargando ranking baby", zona, error);
-        }
-      }
-
-      rankingData = ranking;
-      renderSubBotonesRanking();
-      renderContenidoRanking();
-    }
-
 function renderNoticias() {
   const contenedor = document.getElementById("noticias-grid");
   if (!contenedor) return;
@@ -2324,7 +1940,6 @@ function renderNoticias() {
       return futuro || enriquecidos[enriquecidos.length - 1] || null;
     }
 
-
     function renderProximoPartido(partido) {
       const contenedor = document.getElementById("contenedor-proximo-partido");
       if (!contenedor) return;
@@ -2333,14 +1948,6 @@ function renderNoticias() {
         contenedor.innerHTML = "";
         return;
       }
-
-      const tablaGeneral = obtenerTablasProcesadas().general || [];
-      const propio = obtenerEquipoPropioZona(zonaActual);
-      const rival = obtenerInfoRival(partido, zonaActual);
-      const posicionPropia = obtenerPosicionEquipoDesdeTabla(tablaGeneral, propio);
-      const posicionRival = obtenerPosicionEquipoDesdeTabla(tablaGeneral, rival);
-      const somosVisitante = !esLocalNuestro(partido, zonaActual);
-      const direccionVisitante = somosVisitante ? obtenerDireccionEquipo(zonaActual, partido.local) : "";
 
       contenedor.innerHTML = `
         <div class="proximo-partido">
@@ -2352,17 +1959,6 @@ function renderNoticias() {
             ${escapeHtml(partido.visitante)}
           </div>
           <div class="proximo-condicion">${escapeHtml(partido.condicion)}</div>
-          <div class="proximo-posiciones">
-            ${posicionPropia ? `<span class="proximo-posicion-chip">${escapeHtml(ZONA_CONFIG[zonaActual]?.etiqueta || propio)} · #${posicionPropia}</span>` : ""}
-            ${posicionRival ? `<span class="proximo-posicion-chip">${escapeHtml(rival)} · #${posicionRival}</span>` : ""}
-          </div>
-          ${direccionVisitante ? `
-            <div class="fixture-direccion">
-              <span class="fixture-direccion-label">Dirección visitante</span>
-              <div class="fixture-direccion-texto">${escapeHtml(direccionVisitante)}</div>
-              <a class="fixture-maps" href="${construirMapsUrl(direccionVisitante)}" target="_blank" rel="noopener">Abrir en Maps</a>
-            </div>
-          ` : ""}
         </div>
       `;
     }
@@ -2461,33 +2057,34 @@ function renderResultadosPorFechas(data, textoResaltar) {
   return html;
 }
 
-
     function renderFixture(partidos) {
       const contenedor = document.getElementById("contenedor-fixture");
       const contenedorProximo = document.getElementById("contenedor-proximo-partido");
 
       contenedor.className = "";
       contenedor.innerHTML = "";
-      fixtureData = partidos;
 
       if (!Array.isArray(partidos) || !partidos.length) {
-        if (contenedorProximo) contenedorProximo.innerHTML = "";
+        if (contenedorProximo) {
+          contenedorProximo.innerHTML = "";
+        }
         contenedor.innerHTML = "<div class='bloque vacio'>No se encontró fixture.</div>";
         return;
       }
 
-      const tablaGeneral = obtenerTablasProcesadas().general || [];
-      const resultadosGeneral = obtenerResultadosProcesados().general || {};
-
       const partidosOrdenados = [...partidos]
         .map((partido) => {
           const parsed = parsearFechaFixture(partido.fecha);
-          return { ...partido, _parsed: parsed, fecha_id: partido.fecha_id || fechaIdDesdeTexto(partido.fecha) };
+          return { ...partido, _parsed: parsed };
         })
         .sort((a, b) => {
           const ta = a._parsed?.timestamp ?? Number.MAX_SAFE_INTEGER;
           const tb = b._parsed?.timestamp ?? Number.MAX_SAFE_INTEGER;
-          if (ta === tb) return numeroDeFecha(a.fecha) - numeroDeFecha(b.fecha);
+
+          if (ta === tb) {
+            return numeroDeFecha(a.fecha) - numeroDeFecha(b.fecha);
+          }
+
           return ta - tb;
         });
 
@@ -2499,52 +2096,33 @@ function renderResultadosPorFechas(data, textoResaltar) {
 
       partidosOrdenados.forEach((partido) => {
         const card = document.createElement("div");
-        const esProximo = proximo && partido.fecha === proximo.fecha && partido.local === proximo.local && partido.visitante === proximo.visitante;
-        const fechaId = partido.fecha_id || fechaIdDesdeTexto(partido.fecha);
-        const tieneResultados = Array.isArray(resultadosGeneral[fechaId]) && resultadosGeneral[fechaId].length > 0;
-        const rival = obtenerInfoRival(partido, zonaActual);
-        const posicionRival = obtenerPosicionEquipoDesdeTabla(tablaGeneral, rival);
-        const jugamosLocal = esLocalNuestro(partido, zonaActual);
-        const direccionRival = jugamosLocal ? "" : obtenerDireccionEquipo(zonaActual, partido.local);
 
-        card.className = `fixture-card${esProximo ? " proximo" : ""}${tieneResultados ? " jugado" : ""}`;
+        const esProximo =
+          proximo &&
+          partido.fecha === proximo.fecha &&
+          partido.local === proximo.local &&
+          partido.visitante === proximo.visitante;
+
+        card.className = `fixture-card${esProximo ? " proximo" : ""}`;
 
         card.innerHTML = `
-          <div class="fixture-top">
+                 <div class="fixture-top">
             <div class="fixture-fecha">${escapeHtml(partido.fecha)}</div>
             <div class="fixture-chip">${escapeHtml(partido.condicion)}</div>
           </div>
+<div class="fixture-equipos">
+  <div class="fixture-equipo-local ${partido.local.toUpperCase().includes("ALL BOYS") ? "equipo-allboys" : ""}">
+    ${escapeHtml(partido.local)}
+  </div>
 
-          <div class="fixture-equipos">
-            <div class="fixture-equipo-local ${partido.local.toUpperCase().includes("ALL BOYS") ? "equipo-allboys" : ""}">
-              ${escapeHtml(partido.local)}
-            </div>
+  <span class="fixture-vs">vs</span>
 
-            <span class="fixture-vs">vs</span>
-
-            <div class="fixture-equipo-visitante ${partido.visitante.toUpperCase().includes("ALL BOYS") ? "equipo-allboys" : ""}">
-              ${escapeHtml(partido.visitante)}
-            </div>
-          </div>
-
-          ${posicionRival ? `<div class="fixture-posiciones"><span class="fixture-posicion-chip">${escapeHtml(rival)} · #${posicionRival}</span></div>` : ""}
-
-          ${jugamosLocal
-            ? `<div class="fixture-en-casa">JUGAMOS EN CASA</div>`
-            : (direccionRival
-                ? `<div class="fixture-direccion">
-                    <span class="fixture-direccion-label">Dirección</span>
-                    <div class="fixture-direccion-texto">${escapeHtml(direccionRival)}</div>
-                    <a class="fixture-maps" href="${construirMapsUrl(direccionRival)}" target="_blank" rel="noopener noreferrer">Ver en Maps</a>
-                  </div>`
-                : "")}
-
-          <div class="fixture-sub">${tieneResultados ? "Tocar para ver resultados" : (esProximo ? "Próximo partido" : "")}</div>
+  <div class="fixture-equipo-visitante ${partido.visitante.toUpperCase().includes("ALL BOYS") ? "equipo-allboys" : ""}">
+    ${escapeHtml(partido.visitante)}
+  </div>
+</div>
+          <div class="fixture-sub">${esProximo ? "Próximo partido" : ""}</div>
         `;
-
-        if (tieneResultados) {
-          card.addEventListener("click", () => irAResultadosFecha(fechaId));
-        }
 
         grid.appendChild(card);
       });
@@ -2552,7 +2130,7 @@ function renderResultadosPorFechas(data, textoResaltar) {
       contenedor.appendChild(grid);
     }
 
-    async function cargarFixture(zona) {
+    function cargarFixture(zona) {
       const contenedor = document.getElementById("contenedor-fixture");
       const contenedorProximo = document.getElementById("contenedor-proximo-partido");
 
@@ -2583,18 +2161,13 @@ function renderResultadosPorFechas(data, textoResaltar) {
     function renderSubBotonesTablas() {
       const contenedor = document.getElementById("sub-botones-tablas");
       contenedor.innerHTML = "";
-      contenedor.classList.add("resultados-accordion");
 
       const procesadas = obtenerTablasProcesadas();
       const categorias = ordenarCategorias(Object.keys(procesadas.categorias || {}));
       const botones = ["general", ...categorias];
 
       botones.forEach((item) => {
-        const itemWrap = document.createElement("div");
-        itemWrap.className = "resultado-item";
-
         const btn = document.createElement("button");
-        btn.className = "resultado-toggle";
         btn.textContent = nombreVisibleCategoria(item);
 
         if (item === subVistaTablasActual) {
@@ -2603,56 +2176,55 @@ function renderResultadosPorFechas(data, textoResaltar) {
 
         btn.onclick = () => {
           subVistaTablasActual = item;
-          renderSubBotonesTablas();
           renderContenidoTablas();
+          renderSubBotonesTablas();
         };
 
-        itemWrap.appendChild(btn);
-
-        if (item === subVistaTablasActual) {
-          const panel = document.createElement("div");
-          panel.className = "resultado-panel-inline";
-          const filas = item === "general"
-            ? procesadas.general
-            : (procesadas.categorias?.[item] || []);
-          panel.innerHTML = renderTabla(filas, textoResaltarActual);
-          itemWrap.appendChild(panel);
-        }
-
-        contenedor.appendChild(itemWrap);
+        contenedor.appendChild(btn);
       });
     }
 
     function renderContenidoTablas() {
       const contenedor = document.getElementById("contenido-tablas");
-      if (!contenedor) return;
 
       if (!tablasData) {
         contenedor.innerHTML = "<div class='bloque vacio'>No hay tablas disponibles.</div>";
         return;
       }
 
-      contenedor.innerHTML = "";
+      const procesadas = obtenerTablasProcesadas();
+
+      if (subVistaTablasActual === "general") {
+        contenedor.innerHTML = renderTabla(procesadas.general, textoResaltarActual);
+      } else {
+        const filas = procesadas.categorias?.[subVistaTablasActual] || [];
+        contenedor.innerHTML = renderTabla(filas, textoResaltarActual);
+      }
     }
 
-
-    async function cargarTablas(zona) {
+    function cargarTablas(zona) {
       document.getElementById("contenido-tablas").innerHTML =
         "<div class='bloque estado-carga'>Cargando tablas...</div>";
 
-      try {
-        const data = await fetchJsonWithFallback(obtenerUrlsTablas(zona));
-        tablasData = data;
-        subVistaTablasActual = "general";
-        renderSubBotonesTablas();
-        renderContenidoTablas();
-        if (fixtureData) renderFixture(fixtureData);
-      } catch (error) {
-        console.error(error);
-        document.getElementById("contenido-tablas").innerHTML =
-          "<div class='bloque estado-error'>Error cargando tablas.</div>";
-        document.getElementById("sub-botones-tablas").innerHTML = "";
-      }
+      fetch(`data/${zona}/tabla.json`)
+        .then((respuesta) => {
+          if (!respuesta.ok) {
+            throw new Error(`No se pudo cargar tabla de ${zona}`);
+          }
+          return respuesta.json();
+        })
+        .then((data) => {
+          tablasData = data;
+          subVistaTablasActual = "general";
+          renderSubBotonesTablas();
+          renderContenidoTablas();
+        })
+        .catch((error) => {
+          console.error(error);
+          document.getElementById("contenido-tablas").innerHTML =
+            "<div class='bloque estado-error'>Error cargando tablas.</div>";
+          document.getElementById("sub-botones-tablas").innerHTML = "";
+        });
     }
 
     function ordenarFechasResultados(fechas) {
@@ -2666,13 +2238,11 @@ function renderResultadosPorFechas(data, textoResaltar) {
     function renderSubBotonesResultados() {
       const contenedor = document.getElementById("sub-botones-resultados");
       contenedor.innerHTML = "";
-      contenedor.className = "resultados-accordion";
 
       const procesados = obtenerResultadosProcesados();
       const fechas = ordenarFechasResultados(Object.keys(procesados.general || {}));
 
       if (!fechas.length) {
-        document.getElementById("contenido-resultados").innerHTML = "<div class='bloque vacio'>No hay resultados disponibles.</div>";
         return;
       }
 
@@ -2681,62 +2251,21 @@ function renderResultadosPorFechas(data, textoResaltar) {
       }
 
       fechas.forEach((fecha) => {
-        const item = document.createElement("div");
-        item.className = "resultado-item";
-
         const btn = document.createElement("button");
-        btn.type = "button";
-        btn.className = `resultado-toggle${fecha === subVistaResultadosActual ? " activo" : ""}`;
         btn.textContent = fecha;
+
+        if (fecha === subVistaResultadosActual) {
+          btn.classList.add("activo");
+        }
+
         btn.onclick = () => {
           subVistaResultadosActual = fecha;
+          renderContenidoResultados();
           renderSubBotonesResultados();
         };
 
-        item.appendChild(btn);
-
-        if (fecha === subVistaResultadosActual) {
-          const panel = document.createElement("div");
-          panel.className = "resultado-panel-inline";
-          panel.innerHTML = renderTablaResultadosDeFecha(procesados.general?.[fecha] || [], fecha);
-          item.appendChild(panel);
-        }
-
-        contenedor.appendChild(item);
+        contenedor.appendChild(btn);
       });
-
-      document.getElementById("contenido-resultados").innerHTML = "";
-    }
-
-    function normalizarPartidoResultadoParaVista(partido) {
-      const copia = {
-        ...partido,
-        resultados: JSON.parse(JSON.stringify(partido.resultados || {}))
-      };
-
-      const categorias = ordenarCategorias(Object.keys(copia.resultados || {}));
-      const ultimaCategoria = categorias[categorias.length - 1];
-
-      if (
-        ultimaCategoria &&
-        (copia.pts_visitante === null || copia.pts_visitante === undefined || copia.pts_visitante === "" || copia.pts_visitante === "-")
-      ) {
-        const ultimo = copia.resultados[ultimaCategoria] || {};
-        const visitante = ultimo.visitante;
-
-        if (
-          visitante !== null &&
-          visitante !== undefined &&
-          visitante !== "" &&
-          visitante !== "-" &&
-          String(visitante).match(/^\d+$/)
-        ) {
-          copia.pts_visitante = Number(visitante);
-          copia.resultados[ultimaCategoria].visitante = null;
-        }
-      }
-
-      return copia;
     }
 
     function renderTablaResultadosDeFecha(partidos, fecha) {
@@ -2744,463 +2273,103 @@ function renderResultadosPorFechas(data, textoResaltar) {
         return "<div class='bloque vacio'>No hay resultados cargados para esta fecha.</div>";
       }
 
+      const mostrarValor = (valor) => {
+        if (valor === null || valor === undefined || valor === "") return "-";
+        return escapeHtml(valor);
+      };
+
       let html = "";
 
-      partidos.forEach((partidoOriginal) => {
-        const partido = normalizarPartidoResultadoParaVista(partidoOriginal);
+      partidos.forEach((partido) => {
         const categoriasOrdenadas = ordenarCategorias(Object.keys(partido.resultados || {}));
-        const puntosLocal = partido.pts_local ?? "-";
-        const puntosVisitante = partido.pts_visitante ?? "-";
 
         html += `
-          <div class="bloque">
-            <div class="fecha">${escapeHtml(partido.fecha || fecha)}</div>
+          <article class="resultado-card-pro">
+            <div class="resultado-fecha-pro">${escapeHtml(partido.fecha || fecha)}</div>
 
-            <div class="resultado-partido">
-              <div class="resultado-resumen">
-                <div class="resultado-equipo">
-                  <div class="resultado-equipo-nombre">${escapeHtml(partido.local)}</div>
-                  <div class="resultado-equipo-meta">
-                    <span class="resultado-chip">PJ ${escapeHtml(partido.pj_local ?? "-")}</span>
-                    <span class="resultado-chip">Pts ${escapeHtml(puntosLocal)}</span>
-                  </div>
-                </div>
-
-                <div class="resultado-centro">
-                  <div class="resultado-vs">VS</div>
-                </div>
-
-                <div class="resultado-equipo">
-                  <div class="resultado-equipo-nombre">${escapeHtml(partido.visitante)}</div>
-                  <div class="resultado-equipo-meta">
-                    <span class="resultado-chip">PJ ${escapeHtml(partido.pj_visitante ?? "-")}</span>
-                    <span class="resultado-chip">Pts ${escapeHtml(puntosVisitante)}</span>
-                  </div>
+            <div class="resultado-versus-pro">
+              <div class="resultado-equipo-pro">
+                <div class="resultado-nombre-pro">${escapeHtml(partido.local)}</div>
+                <div class="resultado-chips-pro">
+                  <span>PJ ${mostrarValor(partido.pj_local)}</span>
+                  <span>Pts ${mostrarValor(partido.pts_local)}</span>
                 </div>
               </div>
 
-              <div class="resultado-etiqueta" style="margin: 6px 0 10px; text-align:left;">Detalle por categoría</div>
-              <div class="resultado-grid">
+              <div class="resultado-vs-pro">VS</div>
+
+              <div class="resultado-equipo-pro">
+                <div class="resultado-nombre-pro">${escapeHtml(partido.visitante)}</div>
+                <div class="resultado-chips-pro">
+                  <span>PJ ${mostrarValor(partido.pj_visitante)}</span>
+                  <span>Pts ${mostrarValor(partido.pts_visitante)}</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="resultado-detalle-titulo">Detalle por categoría</div>
+            <div class="resultado-lista-pro">
         `;
 
         categoriasOrdenadas.forEach((categoria) => {
           const valores = partido.resultados?.[categoria] || {};
-          const local = valores.local;
-          const visitante = valores.visitante;
-          const localSinDato = local === null || local === undefined || local === "";
-          const visitanteSinDato = visitante === null || visitante === undefined || visitante === "";
-
           html += `
-                <div class="resultado-row">
-                  <div class="resultado-cat">${escapeHtml(categoria)}</div>
-                  <div class="resultado-score-local${localSinDato ? " sin-dato" : ""}">${localSinDato ? "-" : escapeHtml(local)}</div>
-                  <div class="resultado-score-visitante${visitanteSinDato ? " sin-dato" : ""}">${visitanteSinDato ? "-" : escapeHtml(visitante)}</div>
-                </div>
+            <div class="resultado-fila-pro">
+              <div class="resultado-cat-pro">${escapeHtml(categoria)}</div>
+              <div class="resultado-marcador-pro">
+                <span>${mostrarValor(valores.local)}</span>
+                <b>-</b>
+                <span>${mostrarValor(valores.visitante)}</span>
+              </div>
+            </div>
           `;
         });
 
         html += `
-              </div>
             </div>
-          </div>
+          </article>
         `;
       });
 
       return html;
-    }
-
-
-    function obtenerCategoriasRankingOrdenadas() {
-      const categorias = Object.keys(rankingData?.categorias || {});
-      return ordenarCategorias(categorias);
-    }
-
-    function renderSubBotonesRanking() {
-      const contenedor = document.getElementById("sub-botones-ranking");
-      if (!contenedor) return;
-      contenedor.innerHTML = "";
-      contenedor.classList.add("resultados-accordion");
-
-      const botones = ["global", ...obtenerCategoriasRankingOrdenadas()];
-      if (!botones.length) return;
-
-      if (!subVistaRankingActual || !botones.includes(subVistaRankingActual)) {
-        subVistaRankingActual = "global";
-      }
-
-      botones.forEach((item) => {
-        const itemWrap = document.createElement("div");
-        itemWrap.className = "resultado-item";
-
-        const btn = document.createElement("button");
-        btn.className = "resultado-toggle";
-        btn.textContent = item === "global" ? "Global" : nombreVisibleCategoria(item);
-        if (item === subVistaRankingActual) btn.classList.add("activo");
-
-        btn.onclick = () => {
-          subVistaRankingActual = item;
-          renderSubBotonesRanking();
-          renderContenidoRanking();
-        };
-
-        itemWrap.appendChild(btn);
-
-        if (item === subVistaRankingActual) {
-          const panel = document.createElement("div");
-          panel.className = "resultado-panel-inline";
-          panel.innerHTML = renderRankingPanel(item);
-          itemWrap.appendChild(panel);
-        }
-
-        contenedor.appendChild(itemWrap);
-      });
-    }
-
-    function promedio(valor1, valor2) {
-      if (!valor2) return "0.00";
-      return (valor1 / valor2).toFixed(2);
-    }
-
-    function ordenarFilasRanking(filas) {
-      return [...filas].sort((a, b) => {
-        if (b.puntos !== a.puntos) return b.puntos - a.puntos;
-        const dgA = a.gf - a.gc;
-        const dgB = b.gf - b.gc;
-        if (dgB !== dgA) return dgB - dgA;
-        if (b.gf !== a.gf) return b.gf - a.gf;
-        return a.equipo.localeCompare(b.equipo, "es", { sensitivity: "base" });
-      });
-    }
-
-    function renderRankingPanel(vistaRanking) {
-      if (!rankingData) {
-        return "<div class='bloque vacio'>Cargando ranking...</div>";
-      }
-
-      const fuente = vistaRanking === "global"
-        ? rankingData.global
-        : (rankingData.categorias?.[vistaRanking] || {});
-
-      const filas = ordenarFilasRanking(
-        Object.entries(fuente).map(([equipo, stats]) => ({ equipo, ...stats }))
-      );
-
-      if (!filas.length) {
-        return "<div class='bloque vacio'>No hay datos suficientes para este ranking.</div>";
-      }
-
-      const resumen = vistaRanking === "global"
-        ? "Todas las categorías y zonas juntas"
-        : `Comparación por categoría ${escapeHtml(vistaRanking)}`;
-
-      let html = `
-        <div class="bloque ranking-panel">
-          <div class="ranking-resumen">
-            <span class="ranking-chip">${resumen}</span>
-            <span class="ranking-chip">${filas.length} equipos</span>
-          </div>
-          <div class="ranking-tabla-wrap">
-            <table class="ranking-tabla">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Equipo</th>
-                  <th>Pts</th>
-                  <th>PJ</th>
-                  <th>G</th>
-                  <th>E</th>
-                  <th>P</th>
-                  <th>GF</th>
-                  <th>GC</th>
-                  <th>Prom. gol</th>
-                  <th>Valla invicta ganada</th>
-                  <th>Goleadas +5</th>
-                </tr>
-              </thead>
-              <tbody>
-      `;
-
-      filas.forEach((fila, idx) => {
-        const promedio = fila.pj ? (fila.gf / fila.pj).toFixed(2) : "0.00";
-        html += `
-          <tr>
-            <td>${idx + 1}</td>
-            <td>${escapeHtml(fila.equipo)}</td>
-            <td>${escapeHtml(fila.puntos)}</td>
-            <td>${escapeHtml(fila.pj)}</td>
-            <td>${escapeHtml(fila.pg)}</td>
-            <td>${escapeHtml(fila.pe)}</td>
-            <td>${escapeHtml(fila.pp)}</td>
-            <td>${escapeHtml(fila.gf)}</td>
-            <td>${escapeHtml(fila.gc)}</td>
-            <td>${escapeHtml(promedio)}</td>
-            <td>${escapeHtml(fila.vallaInvictaGanada)}</td>
-            <td>${escapeHtml(fila.goleadas5)}</td>
-          </tr>
-        `;
-      });
-
-      html += `
-              </tbody>
-            </table>
-          </div>
-        </div>
-      `;
-
-      return html;
-    }
-
-    function renderContenidoRanking() {
-      const contenedor = document.getElementById("contenido-ranking");
-      if (!contenedor) return;
-
-      if (!rankingData) {
-        contenedor.innerHTML = "<div class='bloque vacio'>Cargando ranking...</div>";
-        return;
-      }
-
-      contenedor.innerHTML = "";
     }
 
     function renderContenidoResultados() {
       const contenedor = document.getElementById("contenido-resultados");
-      contenedor.innerHTML = "";
-    }
 
-
-    async function cargarResultados(zona) {
-      document.getElementById("contenido-resultados").innerHTML =
-        "<div class='bloque estado-carga'>Cargando resultados...</div>";
-
-      try {
-        const data = await fetchJsonWithFallback(obtenerUrlsResultados(zona));
-        resultadosData = data;
-        subVistaResultadosActual = null;
-        renderSubBotonesResultados();
-        renderContenidoResultados();
-        if (fixtureData) renderFixture(fixtureData);
-      } catch (error) {
-        console.error(error);
-        document.getElementById("contenido-resultados").innerHTML =
-          "<div class='bloque estado-error'>Error cargando resultados.</div>";
-        document.getElementById("sub-botones-resultados").innerHTML = "";
+      if (!resultadosData) {
+        contenedor.innerHTML = "<div class='bloque vacio'>No hay resultados disponibles.</div>";
+        return;
       }
-    }
-
-
-    function obtenerUrlsFixture(zona) {
-      return [`data/${zona}/fixture.json`, `fixture_${zona}.json`, `fixture.json`];
-    }
-
-    function resultadosEnFormatoCategorias(data) {
-      return !!(data && data.categorias && typeof data.categorias === "object" && Object.keys(data.categorias).length);
-    }
-
-    function categoriasConContenidoResultados(data) {
-      if (!resultadosEnFormatoCategorias(data)) return [];
-      return Object.keys(data.categorias).filter((cat) => {
-        const bloque = data.categorias[cat];
-        return bloque && typeof bloque === "object" && Object.keys(bloque).length > 0;
-      });
-    }
-
-    function renderResultadoFormatoViejo(categoria, bloqueCategoria) {
-      const rivales = Object.keys(bloqueCategoria || {});
-      if (!rivales.length) {
-        return "<div class='bloque vacio'>No hay resultados cargados para esta categoría.</div>";
-      }
-
-      let html = `<div class="bloque"><div class="fecha">Categoría ${escapeHtml(categoria)}</div>`;
-      rivales.forEach((rival) => {
-        const partidos = Array.isArray(bloqueCategoria[rival]) ? bloqueCategoria[rival] : [];
-        partidos.forEach((item) => {
-          const local = item?.local ?? "-";
-          const visitante = item?.visitante ?? "-";
-          const golesLocal = item?.goles_local;
-          const golesVisitante = item?.goles_visitante;
-          const marcador = (golesLocal !== null && golesLocal !== undefined && golesVisitante !== null && golesVisitante !== undefined)
-            ? `${escapeHtml(local)} ${escapeHtml(golesLocal)} - ${escapeHtml(golesVisitante)} ${escapeHtml(visitante)}`
-            : `${escapeHtml(rival)} · ${escapeHtml(local)} / ${escapeHtml(visitante)}${golesLocal !== null && golesLocal !== undefined ? ` · dato ${escapeHtml(golesLocal)}` : ""}`;
-          html += `<div class="equipos">${marcador}</div>`;
-        });
-      });
-      html += `</div>`;
-      return html;
-    }
-
-    function renderSubBotonesResultados() {
-      const contenedor = document.getElementById("sub-botones-resultados");
-      contenedor.innerHTML = "";
-      contenedor.className = "resultados-accordion";
 
       const procesados = obtenerResultadosProcesados();
-      const fechas = ordenarFechasResultados(Object.keys(procesados.general || {}));
-      const categoriasViejas = categoriasConContenidoResultados(resultadosData);
-
-      if (fechas.length) {
-        if (!subVistaResultadosActual || !fechas.includes(subVistaResultadosActual)) {
-          subVistaResultadosActual = fechas[0];
-        }
-
-        fechas.forEach((fecha) => {
-          const item = document.createElement("div");
-          item.className = "resultado-item";
-
-          const btn = document.createElement("button");
-          btn.type = "button";
-          btn.className = `resultado-toggle${fecha === subVistaResultadosActual ? " activo" : ""}`;
-          btn.textContent = fecha;
-          btn.onclick = () => {
-            subVistaResultadosActual = fecha;
-            renderSubBotonesResultados();
-          };
-
-          item.appendChild(btn);
-
-          if (fecha === subVistaResultadosActual) {
-            const panel = document.createElement("div");
-            panel.className = "resultado-panel-inline";
-            panel.innerHTML = renderTablaResultadosDeFecha(procesados.general?.[fecha] || [], fecha);
-            item.appendChild(panel);
-          }
-
-          contenedor.appendChild(item);
-        });
-
-        document.getElementById("contenido-resultados").innerHTML = "";
-        return;
-      }
-
-      if (categoriasViejas.length) {
-        if (!subVistaResultadosActual || !categoriasViejas.includes(subVistaResultadosActual)) {
-          subVistaResultadosActual = categoriasViejas[0];
-        }
-
-        categoriasViejas.forEach((categoria) => {
-          const item = document.createElement("div");
-          item.className = "resultado-item";
-
-          const btn = document.createElement("button");
-          btn.type = "button";
-          btn.className = `resultado-toggle${categoria === subVistaResultadosActual ? " activo" : ""}`;
-          btn.textContent = categoria;
-          btn.onclick = () => {
-            subVistaResultadosActual = categoria;
-            renderSubBotonesResultados();
-          };
-
-          item.appendChild(btn);
-
-          if (categoria === subVistaResultadosActual) {
-            const panel = document.createElement("div");
-            panel.className = "resultado-panel-inline";
-            panel.innerHTML = renderResultadoFormatoViejo(categoria, resultadosData.categorias?.[categoria] || {});
-            item.appendChild(panel);
-          }
-
-          contenedor.appendChild(item);
-        });
-
-        document.getElementById("contenido-resultados").innerHTML = "";
-        return;
-      }
-
-      document.getElementById("contenido-resultados").innerHTML = "<div class='bloque vacio'>No hay resultados disponibles.</div>";
+      const partidosFecha = procesados.general?.[subVistaResultadosActual] || [];
+      contenedor.innerHTML = renderTablaResultadosDeFecha(partidosFecha, subVistaResultadosActual || "");
     }
 
-    function renderContenidoResultados() {
-      const contenedor = document.getElementById("contenido-resultados");
-      if (contenedor) contenedor.innerHTML = "";
-    }
-
-    async function cargarResultados(zona) {
+    function cargarResultados(zona) {
       document.getElementById("contenido-resultados").innerHTML =
         "<div class='bloque estado-carga'>Cargando resultados...</div>";
 
-      try {
-        const data = await fetchJsonWithFallback(obtenerUrlsResultados(zona));
-        resultadosData = data;
-        subVistaResultadosActual = null;
-        renderSubBotonesResultados();
-        renderContenidoResultados();
-        if (fixtureData) renderFixture(fixtureData);
-      } catch (error) {
-        console.error(error);
-        document.getElementById("contenido-resultados").innerHTML =
-          "<div class='bloque estado-error'>Error cargando resultados.</div>";
-        document.getElementById("sub-botones-resultados").innerHTML = "";
-      }
-    }
-
-    async function cargarFixture(zona) {
-      const contenedor = document.getElementById("contenedor-fixture");
-      const contenedorProximo = document.getElementById("contenedor-proximo-partido");
-
-      contenedor.className = "bloque estado-carga";
-      contenedor.innerHTML = "Cargando fixture...";
-
-      if (contenedorProximo) contenedorProximo.innerHTML = "";
-
-      try {
-        const partidos = await fetchJsonWithFallback(obtenerUrlsFixture(zona));
-        renderFixture(partidos);
-      } catch (error) {
-        console.error(error);
-        contenedor.className = "bloque estado-error";
-        contenedor.innerHTML = "Error cargando fixture.";
-      }
-    }
-
-    function renderSubBotonesTablas() {
-      const contenedor = document.getElementById("sub-botones-tablas");
-      contenedor.innerHTML = "";
-      contenedor.classList.add("resultados-accordion");
-
-      const procesadas = obtenerTablasProcesadas();
-      const categorias = ordenarCategorias(Object.keys(procesadas.categorias || {}).filter((cat) => Array.isArray(procesadas.categorias?.[cat]) && procesadas.categorias[cat].length));
-      const tieneGeneral = Array.isArray(procesadas.general) && procesadas.general.length > 0;
-      const botones = [...(tieneGeneral ? ["general"] : []), ...categorias];
-
-      if (!botones.length) {
-        document.getElementById("contenido-tablas").innerHTML = "<div class='bloque vacio'>Las tablas todavía no están cargadas en los JSON.</div>";
-        return;
-      }
-
-      if (!botones.includes(subVistaTablasActual)) {
-        subVistaTablasActual = botones[0];
-      }
-
-      botones.forEach((item) => {
-        const itemWrap = document.createElement("div");
-        itemWrap.className = "resultado-item";
-
-        const btn = document.createElement("button");
-        btn.className = "resultado-toggle";
-        btn.textContent = nombreVisibleCategoria(item);
-        if (item === subVistaTablasActual) btn.classList.add("activo");
-
-        btn.onclick = () => {
-          subVistaTablasActual = item;
-          renderSubBotonesTablas();
-          renderContenidoTablas();
-        };
-
-        itemWrap.appendChild(btn);
-
-        if (item === subVistaTablasActual) {
-          const panel = document.createElement("div");
-          panel.className = "resultado-panel-inline";
-          const filas = item === "general"
-            ? procesadas.general
-            : (procesadas.categorias?.[item] || []);
-          panel.innerHTML = renderTabla(filas, textoResaltarActual);
-          itemWrap.appendChild(panel);
-        }
-
-        contenedor.appendChild(itemWrap);
-      });
-
-      document.getElementById("contenido-tablas").innerHTML = "";
+      fetch(`data/${zona}/resultados.json`)
+        .then((respuesta) => {
+          if (!respuesta.ok) {
+            throw new Error(`No se pudo cargar resultados de ${zona}`);
+          }
+          return respuesta.json();
+        })
+        .then((data) => {
+          resultadosData = data;
+          subVistaResultadosActual = null;
+          renderSubBotonesResultados();
+          renderContenidoResultados();
+        })
+        .catch((error) => {
+          console.error(error);
+          document.getElementById("contenido-resultados").innerHTML =
+            "<div class='bloque estado-error'>Error cargando resultados.</div>";
+          document.getElementById("sub-botones-resultados").innerHTML = "";
+        });
     }
 
 renderNoticias();
