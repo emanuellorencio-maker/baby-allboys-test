@@ -323,65 +323,60 @@ def valor_visible(v: str):
     return None if v in ("", "-") else v
 
 
-def parsear_fila_resultado_semantica(row: List[str], categorias: List[str]) -> Optional[Dict]:
+def alinear_fila_con_header(row: List[str], header: List[str]) -> List[str]:
     cells = [normalizar(c) for c in row]
+    cells = [c for c in cells if canon(c) not in {"VERIFICADO", "PREVIO", "ESTADO"}]
+    header_len = len(header)
+    if len(cells) == header_len:
+        return cells
+    if len(cells) == header_len - 1 and (not cells or not fecha_id_desde_texto(cells[0])):
+        return [""] + cells
+    if len(cells) > header_len:
+        return cells[:header_len]
+    return cells + [""] * (header_len - len(cells))
+
+
+def indice_header(header: List[str], opciones: set) -> Optional[int]:
+    for i, h in enumerate(header):
+        if h in opciones:
+            return i
+    return None
+
+
+def parsear_fila_resultado_por_header(row: List[str], header_canon: List[str], categorias: List[str]) -> Optional[Dict]:
+    cells = alinear_fila_con_header(row, header_canon)
     if not any(cells):
         return None
-    cells = [c for c in cells if canon(c) not in {"VERIFICADO", "PREVIO", "ESTADO"}]
-    fecha_id = fecha_id_desde_texto(cells[0]) if cells else ""
-
-    equipo_idx = None
-    for idx, c in enumerate(cells):
-        cc = canon(c)
-        if not cc or fecha_id_desde_texto(c) or cc in {"FT", "F.T", "FT.", "F.T.", "EQUIPOS", "PJ", "PJ.", "PTS", "PTS."}:
-            continue
-        if cc in {"GP", "NP"} or es_numero(c):
-            continue
-        equipo_idx = idx
-        break
-    if equipo_idx is None:
+    idx_equipo = indice_header(header_canon, {"EQUIPOS", "EQUIPO"})
+    idx_pj = indice_header(header_canon, {"PJ", "PJ."})
+    idx_pts = indice_header(header_canon, {"PTS", "PTS."})
+    if idx_equipo is None:
         return None
-
-    equipo = cells[equipo_idx]
-    valores = cells[equipo_idx + 1:]
-    valores = [v for v in valores if canon(v) not in {"PJ", "PJ.", "PTS", "PTS.", "ESTADO"}]
-    while valores and valores[-1] == "":
-        valores.pop()
-
-    n = len(categorias)
-    cats = [None] * n
-    pj = None
-    pts = None
-
-    if len(valores) >= n + 2:
-        cats_raw = valores[:n]
-        pj = valores[n]
-        pts = valores[n + 1]
-    elif len(valores) == n + 1:
-        cats_raw = valores[:n]
-        pts = valores[n]
-    elif len(valores) >= 2:
-        cats_raw = valores[:-2]
-        pj = valores[-2]
-        pts = valores[-1]
-    elif len(valores) == 1:
-        cats_raw = []
-        pj = "0"
-        pts = valores[0]
-    else:
-        cats_raw = []
-
-    for idx in range(min(n, len(cats_raw))):
-        cats[idx] = valor_visible(cats_raw[idx])
-
+    fecha_id = ""
+    idx_ft = indice_header(header_canon, {"FT", "FT.", "F.T", "F.T."})
+    if idx_ft is not None and idx_ft < len(cells):
+        fecha_id = fecha_id_desde_texto(cells[idx_ft])
+    if not fecha_id and cells:
+        fecha_id = fecha_id_desde_texto(cells[0])
+    equipo = cells[idx_equipo] if idx_equipo < len(cells) else ""
+    if not equipo or canon(equipo) in {"EQUIPOS", "EQUIPO"}:
+        return None
+    resultados_cat = []
+    for cat in categorias:
+        idx_cat = buscar_posicion_categoria(header_canon, cat)
+        valor = None
+        if idx_cat is not None and idx_cat < len(cells):
+            valor = valor_visible(cells[idx_cat])
+        resultados_cat.append(valor)
+    pj_val = cells[idx_pj] if idx_pj is not None and idx_pj < len(cells) else ""
+    pts_val = cells[idx_pts] if idx_pts is not None and idx_pts < len(cells) else ""
     return {
         "fecha_id": fecha_id,
         "equipo": equipo,
-        "categorias": cats,
-        "pj": int(pj) if pj is not None and es_numero(pj) else None,
-        "pts": int(pts) if pts is not None and es_numero(pts) else None,
+        "categorias": resultados_cat,
+        "pj": int(pj_val) if es_numero(pj_val) else None,
+        "pts": int(pts_val) if es_numero(pts_val) else None,
     }
-
 
 def parsear_resultados(soup: BeautifulSoup, zona: str, categorias: List[str]) -> Dict:
     general: Dict[str, List[Dict]] = {}
@@ -408,8 +403,9 @@ def parsear_resultados(soup: BeautifulSoup, zona: str, categorias: List[str]) ->
         rows = filas[header_idx + 1:]
         i = 0
         while i < len(rows) - 1:
-            fila_local = parsear_fila_resultado_semantica(rows[i], categorias)
-            fila_visitante = parsear_fila_resultado_semantica(rows[i + 1], categorias)
+            header_canon = [canon(c) for c in filas[header_idx]]
+            fila_local = parsear_fila_resultado_por_header(rows[i], header_canon, categorias)
+            fila_visitante = parsear_fila_resultado_por_header(rows[i + 1], header_canon, categorias)
             if not fila_local or not fila_visitante:
                 i += 1
                 continue

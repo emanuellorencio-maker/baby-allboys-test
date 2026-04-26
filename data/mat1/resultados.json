@@ -6,9 +6,9 @@
         "fecha": "Fecha 1 - 18 de Abril",
         "local": "LOS ALBOS",
         "visitante": "LOS CUERVOS",
-        "pj_local": null,
-        "pts_local": null,
-        "pj_visitante": null,
+        "pj_local": 5,
+        "pts_local": 5,
+        "pj_visitante": 14,
         "pts_visitante": null,
         "resultados": {
           "2013": {
@@ -17,19 +17,19 @@
           },
           "2014/15": {
             "local": "0",
-            "visitante": "7"
+            "visitante": "2"
           },
           "2016/17": {
             "local": "0",
-            "visitante": "2"
+            "visitante": "GP"
           },
           "2018/19": {
             "local": "NP",
-            "visitante": "GP"
+            "visitante": "7"
           },
           "2020/21/22": {
             "local": "0",
-            "visitante": "7"
+            "visitante": null
           }
         }
       }
