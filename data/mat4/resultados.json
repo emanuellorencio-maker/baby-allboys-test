@@ -6,10 +6,10 @@
         "fecha": "Fecha 1 - 18 de Abril",
         "local": "LOS CARASUCIAS",
         "visitante": "ALL BOYS",
-        "pj_local": null,
-        "pts_local": 6,
-        "pj_visitante": null,
-        "pts_visitante": 6,
+        "pj_local": 6,
+        "pts_local": 11,
+        "pj_visitante": 6,
+        "pts_visitante": 13,
         "resultados": {
           "2013": {
             "local": "0",
@@ -44,9 +44,9 @@
         "fecha": "Fecha 2 - 25 de ABril",
         "local": "ALL BOYS",
         "visitante": "ALMAFUERTE FUTBOL CLUB",
-        "pj_local": null,
+        "pj_local": 0,
         "pts_local": 0,
-        "pj_visitante": null,
+        "pj_visitante": 0,
         "pts_visitante": 0,
         "resultados": {
           "2013": {
@@ -82,9 +82,9 @@
         "fecha": "Fecha 3 - 02 de Mayo",
         "local": "EROS",
         "visitante": "ALL BOYS",
-        "pj_local": null,
+        "pj_local": 0,
         "pts_local": 0,
-        "pj_visitante": null,
+        "pj_visitante": 0,
         "pts_visitante": 0,
         "resultados": {
           "2013": {
@@ -120,9 +120,9 @@
         "fecha": "Fecha 4 - 09 de Mayo",
         "local": "ALL BOYS",
         "visitante": "ALVEAR",
-        "pj_local": null,
+        "pj_local": 0,
         "pts_local": 0,
-        "pj_visitante": null,
+        "pj_visitante": 0,
         "pts_visitante": 0,
         "resultados": {
           "2013": {
@@ -158,9 +158,9 @@
         "fecha": "Fecha 5 - 16 de Mayo",
         "local": "C. A. ATLANTA",
         "visitante": "ALL BOYS",
-        "pj_local": null,
+        "pj_local": 0,
         "pts_local": 0,
-        "pj_visitante": null,
+        "pj_visitante": 0,
         "pts_visitante": 0,
         "resultados": {
           "2013": {
@@ -196,9 +196,9 @@
         "fecha": "Fecha 6 - 23 de Mayo",
         "local": "ALL BOYS",
         "visitante": "C. A. VERSAILLES BLANCO",
-        "pj_local": null,
+        "pj_local": 0,
         "pts_local": 0,
-        "pj_visitante": null,
+        "pj_visitante": 0,
         "pts_visitante": 0,
         "resultados": {
           "2013": {
@@ -234,9 +234,9 @@
         "fecha": "Fecha 7 - 30 de Mayo",
         "local": "V. L. N.",
         "visitante": "ALL BOYS",
-        "pj_local": null,
+        "pj_local": 0,
         "pts_local": 0,
-        "pj_visitante": null,
+        "pj_visitante": 0,
         "pts_visitante": 0,
         "resultados": {
           "2013": {
@@ -272,9 +272,9 @@
         "fecha": "Fecha 8 - 06 de Junio",
         "local": "CE. F. F. LA INDEPENDENCIA",
         "visitante": "ALL BOYS",
-        "pj_local": null,
+        "pj_local": 0,
         "pts_local": 0,
-        "pj_visitante": null,
+        "pj_visitante": 0,
         "pts_visitante": 0,
         "resultados": {
           "2013": {
@@ -310,9 +310,9 @@
         "fecha": "Fecha 9 - 13 de Junio",
         "local": "ALL BOYS",
         "visitante": "COMPLEJO COSTAS CELESTE",
-        "pj_local": null,
+        "pj_local": 0,
         "pts_local": 0,
-        "pj_visitante": null,
+        "pj_visitante": 0,
         "pts_visitante": 0,
         "resultados": {
           "2013": {
@@ -348,9 +348,9 @@
         "fecha": "Fecha 10 - 20 de Junio",
         "local": "PARQUE PATRICIOS",
         "visitante": "ALL BOYS",
-        "pj_local": null,
+        "pj_local": 0,
         "pts_local": 0,
-        "pj_visitante": null,
+        "pj_visitante": 0,
         "pts_visitante": 0,
         "resultados": {
           "2013": {
@@ -386,9 +386,9 @@
         "fecha": "Fecha 11 - 27 de Junio",
         "local": "ALL BOYS",
         "visitante": "EL TIFON DE BOYACA",
-        "pj_local": null,
+        "pj_local": 0,
         "pts_local": 0,
-        "pj_visitante": null,
+        "pj_visitante": 0,
         "pts_visitante": 0,
         "resultados": {
           "2013": {
@@ -424,9 +424,9 @@
         "fecha": "Fecha 12 - 04 de Julio",
         "local": "CICLON FORTIN",
         "visitante": "ALL BOYS",
-        "pj_local": null,
+        "pj_local": 0,
         "pts_local": 0,
-        "pj_visitante": null,
+        "pj_visitante": 0,
         "pts_visitante": 0,
         "resultados": {
           "2013": {
@@ -462,9 +462,9 @@
         "fecha": "Fecha 13 - 11 de Julio",
         "local": "ALL BOYS",
         "visitante": "SP. PEREYRA",
-        "pj_local": null,
+        "pj_local": 0,
         "pts_local": 0,
-        "pj_visitante": null,
+        "pj_visitante": 0,
         "pts_visitante": 0,
         "resultados": {
           "2013": {
@@ -500,9 +500,9 @@
         "fecha": "Fecha 14 - 18 de Julio",
         "local": "HURACAN TIKI TIKI",
         "visitante": "ALL BOYS",
-        "pj_local": null,
+        "pj_local": 0,
         "pts_local": 0,
-        "pj_visitante": null,
+        "pj_visitante": 0,
         "pts_visitante": 0,
         "resultados": {
           "2013": {
@@ -538,9 +538,9 @@
         "fecha": "Fecha 15 - 01 de Agosto",
         "local": "ALL BOYS",
         "visitante": "C. A. ESTUDIANTES",
-        "pj_local": null,
+        "pj_local": 0,
         "pts_local": 0,
-        "pj_visitante": null,
+        "pj_visitante": 0,
         "pts_visitante": 0,
         "resultados": {
           "2013": {

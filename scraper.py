@@ -325,16 +325,24 @@ def valor_visible(v: str):
 
 def alinear_fila_con_header(row: List[str], header: List[str]) -> List[str]:
     cells = [normalizar(c) for c in row]
+    # FEFI a veces omite F.T. en la segunda fila y también omite Estado.
+    # Si rellenamos solo al final, se corre PJ/Pts y Pts termina en la última categoría.
     cells = [c for c in cells if canon(c) not in {"VERIFICADO", "PREVIO", "ESTADO"}]
     header_len = len(header)
     if len(cells) == header_len:
         return cells
-    if len(cells) == header_len - 1 and (not cells or not fecha_id_desde_texto(cells[0])):
+
+    falta_ft = bool(cells) and not fecha_id_desde_texto(cells[0])
+
+    if len(cells) == header_len - 1 and falta_ft:
         return [""] + cells
+
+    if len(cells) == header_len - 2 and falta_ft:
+        return [""] + cells + [""]
+
     if len(cells) > header_len:
         return cells[:header_len]
     return cells + [""] * (header_len - len(cells))
-
 
 def indice_header(header: List[str], opciones: set) -> Optional[int]:
     for i, h in enumerate(header):
