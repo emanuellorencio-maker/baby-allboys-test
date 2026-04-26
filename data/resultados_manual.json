@@ -1,1 +1,89 @@
-{"c":{"F1":[{"fecha":"F1","local":"ALL BOYS \"A\"","visitante":"PUEYRREDON","pj_local":"1","pj_visitante":"1","pts_local":"12","pts_visitante":"16","resultados":{"2013":{"local":"6","visitante":"4"},"2014":{"local":"8","visitante":"5"},"2015":{"local":"3","visitante":"3"},"2016":{"local":"3","visitante":"10"},"2017":{"local":"1","visitante":"2"},"2018":{"local":"1","visitante":"3"},"2019":{"local":"0","visitante":"4"}}}]},"i":{},"mat1":{},"mat4":{}}
+{
+  "c": {
+    "F1": [
+      {
+        "fecha": "F1",
+        "local": "ALL BOYS \"A\"",
+        "visitante": "PUEYRREDON",
+        "pj_local": "1",
+        "pj_visitante": "1",
+        "pts_local": "12",
+        "pts_visitante": "16",
+        "resultados": {
+          "2013": {
+            "local": "6",
+            "visitante": "4"
+          },
+          "2014": {
+            "local": "8",
+            "visitante": "5"
+          },
+          "2015": {
+            "local": "3",
+            "visitante": "3"
+          },
+          "2016": {
+            "local": "3",
+            "visitante": "10"
+          },
+          "2017": {
+            "local": "1",
+            "visitante": "2"
+          },
+          "2018": {
+            "local": "1",
+            "visitante": "3"
+          },
+          "2019": {
+            "local": "0",
+            "visitante": "4"
+          }
+        }
+      }
+    ],
+    "F2": [
+      {
+        "fecha": "F2",
+        "local": "C. S. D. PARQUE",
+        "visitante": "ALL BOYS \"A\"",
+        "pj_local": "2",
+        "pj_visitante": "2",
+        "pts_local": "15",
+        "pts_visitante": "13",
+        "resultados": {
+          "2013": {
+            "local": "2",
+            "visitante": "1"
+          },
+          "2014": {
+            "local": "2",
+            "visitante": "3"
+          },
+          "2015": {
+            "local": "6",
+            "visitante": "4"
+          },
+          "2016": {
+            "local": "3",
+            "visitante": "1"
+          },
+          "2017": {
+            "local": "3",
+            "visitante": "2"
+          },
+          "2018": {
+            "local": "0",
+            "visitante": "4"
+          },
+          "2019": {
+            "local": "1",
+            "visitante": "2"
+          }
+        }
+      }
+    ]
+  },
+  "i": {},
+  "mat1": {},
+  "mat4": {}
+}

@@ -5,31 +5,13 @@
 <title>Admin Resultados PRO</title>
 <style>
 body{background:#111;color:#fff;font-family:Arial;padding:20px}
-
-select,input{
-  margin:5px;
-  padding:6px;
-  border-radius:6px;
-  border:none;
-  background:#ffffff;
-  color:#111111;
-}
-
-input:disabled{
-  background:#2b2b2b;
-  color:#ffffff;
-  opacity:1;
-}
-
-button{
-  padding:10px;
-  margin:10px 5px;
-  border:none;
-  border-radius:6px;
-  cursor:pointer;
-}
-
-.container{max-width:500px;margin:auto}
+select,input{margin:5px;padding:8px;border-radius:8px;border:none;background:#fff;color:#111}
+input:disabled{background:#2b2b2b;color:#fff;opacity:1}
+button{padding:11px 14px;margin:10px 5px;border:none;border-radius:8px;cursor:pointer;font-weight:800}
+.container{max-width:560px;margin:auto}
+.estado{font-size:13px;margin-top:10px;color:#bbb}
+.ok{color:#46d36b}.err{color:#ff6b6b}
+.cats-line{margin:8px 0}
 </style>
 </head>
 <body>
@@ -37,7 +19,7 @@ button{
 <div class="container">
 <h2>Admin Resultados PRO</h2>
 
-Zona:
+<label>Zona:</label>
 <select id="zona" onchange="cargarFixture()">
 <option value="c">C</option>
 <option value="i">I</option>
@@ -45,149 +27,231 @@ Zona:
 <option value="mat4">MAT4</option>
 </select>
 
-Fecha:
-<select id="fecha"></select>
+<label>Fecha:</label>
+<select id="fecha" onchange="setEquipos()"></select>
 
-<br>
+<br><br>
 
-Local:
+<label>Local:</label>
 <input id="local" disabled>
 
-Visitante:
+<label>Visitante:</label>
 <input id="visitante" disabled>
 
 <div id="cats"></div>
 
 <br>
-PJ Local <input id="pjl" size="2">
-PJ Visitante <input id="pjv" size="2">
+<label>PJ Local</label> <input id="pjl" size="2">
+<label>PJ Visitante</label> <input id="pjv" size="2">
 
 <br>
-PTS Local <input id="ptsl" size="2">
-PTS Visitante <input id="ptsv" size="2">
+<label>PTS Local</label> <input id="ptsl" size="2">
+<label>PTS Visitante</label> <input id="ptsv" size="2">
 
 <br>
-<button onclick="guardar()">GUARDAR</button>
+<button onclick="guardarDirecto()">GUARDAR DIRECTO</button>
 <button onclick="exportar()">EXPORTAR JSON</button>
+<button onclick="limpiarFormulario()">LIMPIAR</button>
 
+<div id="estado" class="estado"></div>
 </div>
 
 <script>
-
 let fixtureData = [];
 let datos = {c:{},i:{},mat1:{},mat4:{}};
 
 const categoriasZona = {
-c:["2013","2014","2015","2016","2017","2018","2019"],
-i:["2013","2014","2015","2016","2017","2018","2019"],
-mat1:["2013","2014/15","2016/17","2018/19","2020/21/22"],
-mat4:["2013","2014","2015","2016","2017","2018/19/20"]
+  c:["2013","2014","2015","2016","2017","2018","2019"],
+  i:["2013","2014","2015","2016","2017","2018","2019"],
+  mat1:["2013","2014/15","2016/17","2018/19","2020/21/22"],
+  mat4:["2013","2014","2015","2016","2017","2018/19/20"]
 };
 
-function cargarFixture(){
+function estado(msg, ok=false){
+  const el=document.getElementById("estado");
+  el.className = ok ? "estado ok" : "estado err";
+  el.textContent = msg;
+}
 
-let zona = document.getElementById("zona").value;
+async function cargarManualExistente(){
+  try{
+    const r = await fetch("data/resultados_manual.json?cache=" + Date.now());
+    if(r.ok){
+      const json = await r.json();
+      datos = Object.assign({c:{},i:{},mat1:{},mat4:{}}, json || {});
+    }
+  }catch(e){
+    datos = {c:{},i:{},mat1:{},mat4:{}};
+  }
+}
 
-fetch(`data/${zona}/fixture.json`)
-.then(r => r.json())
-.then(data => {
+async function cargarFixture(){
+  await cargarManualExistente();
+
+  const zona = document.getElementById("zona").value;
+
+  try{
+    const r = await fetch(`data/${zona}/fixture.json?cache=` + Date.now());
+    if(!r.ok) throw new Error("No se pudo leer data/" + zona + "/fixture.json");
+
+    const data = await r.json();
+    if(!Array.isArray(data)) throw new Error("fixture.json no es una lista");
 
     fixtureData = data;
 
-    let fechaSelect = document.getElementById("fecha");
+    const fechaSelect = document.getElementById("fecha");
     fechaSelect.innerHTML = "";
 
     data.forEach(f=>{
-        let option = document.createElement("option");
-        option.value = f.fecha_id;
-        option.textContent = f.fecha;
-        fechaSelect.appendChild(option);
+      const option = document.createElement("option");
+      option.value = String(f.fecha_id || "").trim();
+      option.textContent = `${String(f.fecha_id || "").trim()} - ${f.fecha}`;
+      fechaSelect.appendChild(option);
     });
 
-    // 🔥 CLAVE: listener DESPUÉS de cargar opciones
-    fechaSelect.onchange = setEquipos;
-
-    // 🔥 seleccionar primera fecha SIEMPRE
-    if(data.length > 0){
-        fechaSelect.selectedIndex = 0;
-    }
+    if(data.length > 0) fechaSelect.selectedIndex = 0;
 
     renderCategorias();
     setEquipos();
-
-});
+    cargarSiYaExiste();
+    estado("Fixture cargado OK (" + data.length + " fechas)", true);
+  }catch(e){
+    estado("Error cargando fixture: " + e.message);
+  }
 }
 
 function setEquipos(){
+  const fechaSelect = document.getElementById("fecha");
+  const fId = fechaSelect.value;
 
-let fechaSelect = document.getElementById("fecha");
-let fId = fechaSelect.options[fechaSelect.selectedIndex].value;
+  const f = fixtureData.find(x => String(x.fecha_id || "").trim() === String(fId || "").trim());
 
-let f = fixtureData.find(x => x.fecha_id === fId);
+  if(f){
+    document.getElementById("local").value = f.local || "";
+    document.getElementById("visitante").value = f.visitante || "";
+  }else{
+    document.getElementById("local").value = "";
+    document.getElementById("visitante").value = "";
+  }
 
-if(f){
-document.getElementById("local").value = f.local;
-document.getElementById("visitante").value = f.visitante;
-} else {
-document.getElementById("local").value = "";
-document.getElementById("visitante").value = "";
-}
-
+  renderCategorias();
+  cargarSiYaExiste();
 }
 
 function renderCategorias(){
-let zona=document.getElementById("zona").value;
-let cont=document.getElementById("cats");
-cont.innerHTML="<br>";
+  const zona=document.getElementById("zona").value;
+  const cont=document.getElementById("cats");
+  cont.innerHTML="<br>";
 
-categoriasZona[zona].forEach(c=>{
-cont.innerHTML+=`${c}: <input id="l_${c}" size="2"> - <input id="v_${c}" size="2"><br>`;
-});
+  categoriasZona[zona].forEach(c=>{
+    cont.innerHTML += `<div class="cats-line"><strong>${c}</strong>: <input id="l_${c}" size="2"> - <input id="v_${c}" size="2"></div>`;
+  });
 }
 
-function guardar(){
-let zona=document.getElementById("zona").value;
-let fId=document.getElementById("fecha").value;
-
-let res={};
-
-categoriasZona[zona].forEach(c=>{
-let l=document.getElementById("l_"+c)?.value;
-let v=document.getElementById("v_"+c)?.value;
-if(l||v){
-res[c]={local:l,visitante:v};
+function limpiarFormulario(){
+  categoriasZona[document.getElementById("zona").value].forEach(c=>{
+    const l=document.getElementById("l_"+c);
+    const v=document.getElementById("v_"+c);
+    if(l) l.value="";
+    if(v) v.value="";
+  });
+  document.getElementById("pjl").value="";
+  document.getElementById("pjv").value="";
+  document.getElementById("ptsl").value="";
+  document.getElementById("ptsv").value="";
 }
-});
 
-datos[zona][fId]=[{
-fecha:fId,
-local:document.getElementById("local").value,
-visitante:document.getElementById("visitante").value,
-pj_local:document.getElementById("pjl").value,
-pj_visitante:document.getElementById("pjv").value,
-pts_local:document.getElementById("ptsl").value,
-pts_visitante:document.getElementById("ptsv").value,
-resultados:res
-}];
+function cargarSiYaExiste(){
+  limpiarFormulario();
 
-localStorage.setItem("resultados_manual", JSON.stringify(datos));
+  const zona=document.getElementById("zona").value;
+  const fId=document.getElementById("fecha").value;
+  const existente = datos?.[zona]?.[fId]?.[0];
 
-alert("Guardado OK");
+  if(!existente) return;
+
+  document.getElementById("pjl").value = existente.pj_local || "";
+  document.getElementById("pjv").value = existente.pj_visitante || "";
+  document.getElementById("ptsl").value = existente.pts_local || "";
+  document.getElementById("ptsv").value = existente.pts_visitante || "";
+
+  const res = existente.resultados || {};
+  Object.keys(res).forEach(cat=>{
+    const l=document.getElementById("l_"+cat);
+    const v=document.getElementById("v_"+cat);
+    if(l) l.value = res[cat].local || "";
+    if(v) v.value = res[cat].visitante || "";
+  });
+}
+
+function armarDatos(){
+  const zona=document.getElementById("zona").value;
+  const fId=document.getElementById("fecha").value;
+
+  let res={};
+
+  categoriasZona[zona].forEach(c=>{
+    let l=document.getElementById("l_"+c)?.value.trim();
+    let v=document.getElementById("v_"+c)?.value.trim();
+    if(l || v){
+      res[c]={local:l, visitante:v};
+    }
+  });
+
+  if(!datos[zona]) datos[zona] = {};
+
+  datos[zona][fId]=[{
+    fecha:fId,
+    local:document.getElementById("local").value,
+    visitante:document.getElementById("visitante").value,
+    pj_local:document.getElementById("pjl").value.trim(),
+    pj_visitante:document.getElementById("pjv").value.trim(),
+    pts_local:document.getElementById("ptsl").value.trim(),
+    pts_visitante:document.getElementById("ptsv").value.trim(),
+    resultados:res
+  }];
+
+  return datos;
+}
+
+async function guardarDirecto(){
+  const payload = armarDatos();
+
+  try{
+    estado("Guardando...");
+    const r = await fetch("http://127.0.0.1:8001/guardar", {
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body: JSON.stringify(payload)
+    });
+
+    const texto = await r.text();
+    let json = {};
+    try{ json = JSON.parse(texto); }catch(e){}
+
+    if(!r.ok || json.ok === false){
+      throw new Error(json.error || texto || "Error desconocido");
+    }
+
+    localStorage.setItem("resultados_manual", JSON.stringify(payload));
+    estado("Guardado directo OK en data/resultados_manual.json", true);
+    alert("Guardado directo OK");
+  }catch(e){
+    estado("Error guardando: " + e.message);
+    alert("Error guardando: " + e.message + "\\n\\nVerificá que esté abierta la ventana 'Servidor Guardado'.");
+  }
 }
 
 function exportar(){
-let data=localStorage.getItem("resultados_manual") || "{}";
-let blob=new Blob([data],{type:"application/json"});
-let a=document.createElement("a");
-a.href=URL.createObjectURL(blob);
-a.download="resultados_manual.json";
-a.click();
+  const payload = armarDatos();
+  const blob=new Blob([JSON.stringify(payload,null,2)],{type:"application/json"});
+  const a=document.createElement("a");
+  a.href=URL.createObjectURL(blob);
+  a.download="resultados_manual.json";
+  a.click();
 }
 
-// 🔥 carga inicial
 cargarFixture();
-
 </script>
-
 </body>
 </html>
