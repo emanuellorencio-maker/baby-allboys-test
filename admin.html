@@ -15,7 +15,6 @@ button{padding:11px 14px;margin:10px 5px;border:none;border-radius:8px;cursor:po
 </style>
 </head>
 <body>
-
 <div class="container">
 <h2>Admin Resultados PRO</h2>
 
@@ -31,23 +30,17 @@ button{padding:11px 14px;margin:10px 5px;border:none;border-radius:8px;cursor:po
 <select id="fecha" onchange="setEquipos()"></select>
 
 <br><br>
-
-<label>Local:</label>
-<input id="local" disabled>
-
-<label>Visitante:</label>
-<input id="visitante" disabled>
+<label>Local:</label><input id="local" disabled>
+<label>Visitante:</label><input id="visitante" disabled>
 
 <div id="cats"></div>
 
 <br>
 <label>PJ Local</label> <input id="pjl" size="2">
 <label>PJ Visitante</label> <input id="pjv" size="2">
-
 <br>
 <label>PTS Local</label> <input id="ptsl" size="2">
 <label>PTS Visitante</label> <input id="ptsv" size="2">
-
 <br>
 <button onclick="guardarDirecto()">GUARDAR DIRECTO</button>
 <button onclick="exportar()">EXPORTAR JSON</button>
@@ -59,6 +52,7 @@ button{padding:11px 14px;margin:10px 5px;border:none;border-radius:8px;cursor:po
 <script>
 let fixtureData = [];
 let datos = {c:{},i:{},mat1:{},mat4:{}};
+const URL_GUARDADO = "http://127.0.0.1:8010/guardar";
 
 const categoriasZona = {
   c:["2013","2014","2015","2016","2017","2018","2019"],
@@ -87,7 +81,6 @@ async function cargarManualExistente(){
 
 async function cargarFixture(){
   await cargarManualExistente();
-
   const zona = document.getElementById("zona").value;
 
   try{
@@ -98,7 +91,6 @@ async function cargarFixture(){
     if(!Array.isArray(data)) throw new Error("fixture.json no es una lista");
 
     fixtureData = data;
-
     const fechaSelect = document.getElementById("fecha");
     fechaSelect.innerHTML = "";
 
@@ -110,7 +102,6 @@ async function cargarFixture(){
     });
 
     if(data.length > 0) fechaSelect.selectedIndex = 0;
-
     renderCategorias();
     setEquipos();
     cargarSiYaExiste();
@@ -121,19 +112,10 @@ async function cargarFixture(){
 }
 
 function setEquipos(){
-  const fechaSelect = document.getElementById("fecha");
-  const fId = fechaSelect.value;
-
-  const f = fixtureData.find(x => String(x.fecha_id || "").trim() === String(fId || "").trim());
-
-  if(f){
-    document.getElementById("local").value = f.local || "";
-    document.getElementById("visitante").value = f.visitante || "";
-  }else{
-    document.getElementById("local").value = "";
-    document.getElementById("visitante").value = "";
-  }
-
+  const fId=document.getElementById("fecha").value;
+  const f=fixtureData.find(x => String(x.fecha_id || "").trim() === String(fId || "").trim());
+  document.getElementById("local").value = f ? (f.local || "") : "";
+  document.getElementById("visitante").value = f ? (f.visitante || "") : "";
   renderCategorias();
   cargarSiYaExiste();
 }
@@ -142,7 +124,6 @@ function renderCategorias(){
   const zona=document.getElementById("zona").value;
   const cont=document.getElementById("cats");
   cont.innerHTML="<br>";
-
   categoriasZona[zona].forEach(c=>{
     cont.innerHTML += `<div class="cats-line"><strong>${c}</strong>: <input id="l_${c}" size="2"> - <input id="v_${c}" size="2"></div>`;
   });
@@ -163,18 +144,14 @@ function limpiarFormulario(){
 
 function cargarSiYaExiste(){
   limpiarFormulario();
-
   const zona=document.getElementById("zona").value;
   const fId=document.getElementById("fecha").value;
   const existente = datos?.[zona]?.[fId]?.[0];
-
   if(!existente) return;
-
   document.getElementById("pjl").value = existente.pj_local || "";
   document.getElementById("pjv").value = existente.pj_visitante || "";
   document.getElementById("ptsl").value = existente.pts_local || "";
   document.getElementById("ptsv").value = existente.pts_visitante || "";
-
   const res = existente.resultados || {};
   Object.keys(res).forEach(cat=>{
     const l=document.getElementById("l_"+cat);
@@ -187,19 +164,15 @@ function cargarSiYaExiste(){
 function armarDatos(){
   const zona=document.getElementById("zona").value;
   const fId=document.getElementById("fecha").value;
-
   let res={};
 
   categoriasZona[zona].forEach(c=>{
     let l=document.getElementById("l_"+c)?.value.trim();
     let v=document.getElementById("v_"+c)?.value.trim();
-    if(l || v){
-      res[c]={local:l, visitante:v};
-    }
+    if(l || v){ res[c]={local:l, visitante:v}; }
   });
 
-  if(!datos[zona]) datos[zona] = {};
-
+  if(!datos[zona]) datos[zona]={};
   datos[zona][fId]=[{
     fecha:fId,
     local:document.getElementById("local").value,
@@ -210,16 +183,14 @@ function armarDatos(){
     pts_visitante:document.getElementById("ptsv").value.trim(),
     resultados:res
   }];
-
   return datos;
 }
 
 async function guardarDirecto(){
   const payload = armarDatos();
-
   try{
     estado("Guardando...");
-    const r = await fetch("http://127.0.0.1:8001/guardar", {
+    const r = await fetch(URL_GUARDADO, {
       method:"POST",
       headers:{"Content-Type":"application/json"},
       body: JSON.stringify(payload)
@@ -232,13 +203,12 @@ async function guardarDirecto(){
     if(!r.ok || json.ok === false){
       throw new Error(json.error || texto || "Error desconocido");
     }
-
     localStorage.setItem("resultados_manual", JSON.stringify(payload));
     estado("Guardado directo OK en data/resultados_manual.json", true);
     alert("Guardado directo OK");
   }catch(e){
     estado("Error guardando: " + e.message);
-    alert("Error guardando: " + e.message + "\\n\\nVerificá que esté abierta la ventana 'Servidor Guardado'.");
+    alert("Error guardando: " + e.message + "\\n\\nVerificá que esté abierta la ventana 'Servidor Guardado 8010'.");
   }
 }
 
