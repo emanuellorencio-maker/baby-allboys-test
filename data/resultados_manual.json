@@ -84,7 +84,41 @@
     ]
   },
   "i": {},
-  "mat1": {},
+  "mat1": {
+    "F2": [
+      {
+        "fecha": "F2",
+        "local": "NUEVA CHICAGO",
+        "visitante": "LOS ALBOS",
+        "pj_local": "4",
+        "pj_visitante": "4",
+        "pts_local": "12",
+        "pts_visitante": "7",
+        "resultados": {
+          "2013": {
+            "local": "3",
+            "visitante": "4"
+          },
+          "2014/15": {
+            "local": "3",
+            "visitante": "1"
+          },
+          "2016/17": {
+            "local": "2",
+            "visitante": "0"
+          },
+          "2018/19": {
+            "local": "N.P",
+            "visitante": "G.P"
+          },
+          "2020/21/22": {
+            "local": "2",
+            "visitante": "2"
+          }
+        }
+      }
+    ]
+  },
   "mat4": {
     "F2": [
       {
