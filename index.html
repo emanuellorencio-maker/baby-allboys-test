@@ -263,7 +263,40 @@ function calcRanking(){const out={};const gen=resultadosData?.general||{};const 
 function rankRows(obj){return Object.entries(obj||{}).map(([equipo,s])=>({equipo,...s,dg:s.gf-s.gc, prom:s.pj?(s.gf/s.pj).toFixed(2):'0.00', efect:s.pj?Math.round((s.pts/(s.pj*3))*100):0})).sort((a,b)=>b.pts-a.pts||b.dg-a.dg||b.gf-a.gf)}
 function tablaRanking(rows){if(!rows.length)return '<div class="bloque vacio">No hay datos para este ranking.</div>';return `<div class="tabla-wrap"><table><thead><tr><th>#</th><th>Equipo</th><th>PJ</th><th>G</th><th>E</th><th>P</th><th>GF</th><th>GC</th><th>DG</th><th>Pts</th><th>Prom GF</th><th>Efect.</th></tr></thead><tbody>${rows.map((r,i)=>`<tr class="fila-all-boys"><td>${i+1}</td><td>${esc(r.equipo)}</td><td>${r.pj}</td><td>${r.g}</td><td>${r.e}</td><td>${r.p}</td><td>${r.gf}</td><td>${r.gc}</td><td>${r.dg}</td><td>${r.pts}</td><td>${r.prom}</td><td>${r.efect}%</td></tr>`).join('')}</tbody></table></div>`}
 function renderRanking(){const cont=document.getElementById('contenido-ranking');if(!resultadosData){cont.innerHTML='<div class="bloque vacio">Cargando ranking...</div>';return}const r=calcRanking();cont.innerHTML=`<div class="rank-toolbar"><button class="sub-btn ${rankingModo==='general'?'activo':''}" onclick="rankingModo='general';renderRanking()">General</button><button class="sub-btn ${rankingModo==='cat'?'activo':''}" onclick="rankingModo='cat';renderRanking()">Por categorías</button></div>${rankingModo==='cat'?`<div class="ranking-cats">${['13','14','15','16','17','18','19','20','21','22'].map(c=>`<button class="sub-btn ${rankingCat===c?'activo':''}" onclick="rankingCat='${c}';renderRanking()">${c}</button>`).join('')}</div>${tablaRanking(rankRows(r.categorias[rankingCat]||{}))}`:tablaRanking(rankRows(r.general))}`}
-async function renderNoticias(){const cont=document.getElementById('noticias-allboys');try{const r = await fetch('data/noticias.json',{cache:'no-store'});if(!r.ok)throw Error();const noticias=await r.json();if(!Array.isArray(noticias)||!noticias.length){cont.innerHTML='<div class="bloque vacio">Todavía no hay noticias de All Boys cargadas.</div>';return}cont.innerHTML=noticias.slice(0,4).map(n=>`<a class="noticia-card" href="${esc(n.url)}" target="_blank" rel="noopener"><span>${esc(n.fecha)} · ${esc(n.fuente||'All Boys')}</span><strong>${esc(n.titulo)}</strong><p>${esc(n.resumen||'Nota oficial del Club Atlético All Boys.')}</p></a>`).join('')}catch(e){cont.innerHTML='<div class="bloque vacio">No se pudieron cargar las noticias de All Boys. Probá actualizar la página en unos minutos.</div>'}}
+async function renderNoticias() {
+  const cont = document.getElementById('noticias-allboys');
+
+  if (!cont) return;
+
+  const noticias = [
+    {
+      tag: "Destacado",
+      titulo: "Consultá fixture, tablas y resultados",
+      descripcion: "Elegí tu zona y navegá la info completa del baby fútbol.",
+      link: "#contenedor-principal"
+    },
+    {
+      tag: "Info",
+      titulo: "Seguinos en Instagram",
+      descripcion: "Novedades y avisos del Baby All Boys.",
+      link: "https://instagram.com/baby_allboys"
+    },
+    {
+      tag: "Próximamente",
+      titulo: "Se viene el Prode",
+      descripcion: "Muy pronto vas a poder jugar y competir.",
+      link: "prode-mundial.html"
+    }
+  ];
+
+  cont.innerHTML = noticias.map(n => `
+    <a class="noticia-card" href="${n.link}" target="${n.link.startsWith('http') ? '_blank' : '_self'}">
+      <span>${n.tag}</span>
+      <strong>${n.titulo}</strong>
+      <p>${n.descripcion}</p>
+    </a>
+  `).join('');
+}
 (async()=>{activar();await cargarVistaActual();renderNoticias()})();
 </script>
 </body>
