@@ -178,7 +178,7 @@ async function renderNoticiasMundial(){
   if(!cont)return;
   try{
     const data=await fetch("data/noticias_mundial.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw Error();return r.json()});
-    const noticias=Array.isArray(data)?data.map(limpiarNoticiaMundial).filter(Boolean).slice(0,6):[];
+    const noticias=Array.isArray(data)?data.map(limpiarNoticiaMundial).filter(Boolean).slice(0,3):[];
     if(!noticias.length){cont.innerHTML='<div class="empty">Todavia no hay noticias confiables cargadas.</div>';return}
     cont.replaceChildren(...noticias.map(crearNoticiaMundialCard));
   }catch(e){
@@ -363,7 +363,7 @@ async function init(){
     state.partidos=Array.isArray(partidos)?partidos:[];
     state.ranking=calcularRanking();
     byId("estadoCarga").className="status-card ok";
-    renderResumen();renderFiltros();renderRanking();renderCardViral();renderNoticiasMundial();renderPanelAdmin();bindEvents();bindDynamicFilters();
+    renderResumen();renderFiltros();renderRanking();renderCardViral();renderNoticiasMundial();bindEvents();bindDynamicFilters();
   }catch(e){
     byId("estadoCarga").className="status-card error";
     byId("estadoCarga").textContent="No se pudieron cargar los datos del Prode.";

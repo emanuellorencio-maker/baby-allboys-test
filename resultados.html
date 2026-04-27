@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#070707" />
+  <title>Últimos resultados | Baby All Boys</title>
+  <link rel="icon" href="data:," />
+  <style>
+    :root{--bg:#070707;--panel:rgba(15,15,15,.94);--line:rgba(255,255,255,.12);--text:#f7f7f7;--muted:#b8b8b8;--shadow:0 18px 40px rgba(0,0,0,.42)}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;min-height:100vh;background:linear-gradient(rgba(0,0,0,.68),rgba(0,0,0,.8)),url("fondo.png") center/cover fixed no-repeat,#070707;color:var(--text);font-family:Arial,Helvetica,sans-serif;padding:14px}
+    button{font:inherit;cursor:pointer;border:0}
+    a{color:inherit}
+    .app{max-width:980px;margin:0 auto}
+    .hero{border:1px solid var(--line);border-radius:26px;padding:22px 16px;background:linear-gradient(145deg,rgba(0,0,0,.94),rgba(27,27,27,.92));box-shadow:var(--shadow);text-align:center}
+    .logo{width:82px;height:82px;object-fit:contain;background:#fff;border-radius:50%;padding:7px;box-shadow:0 14px 28px rgba(0,0,0,.42)}
+    .eyebrow{margin:12px 0 7px;color:#cfcfcf;font-size:11px;font-weight:1000;letter-spacing:1.4px;text-transform:uppercase}
+    h1{margin:0;font-size:clamp(30px,9vw,52px);line-height:.98}
+    .hero p{margin:10px auto 0;max-width:620px;color:#ddd;font-weight:800;line-height:1.42}
+    .zone-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}
+    .zone-btn{min-height:82px;border-radius:20px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);color:#fff;font-weight:1000;padding:12px;box-shadow:inset 0 1px 0 rgba(255,255,255,.06)}
+    .zone-btn span{display:block;color:#bdbdbd;font-size:11px;text-transform:uppercase;letter-spacing:.8px;margin-top:5px}
+    .zone-btn.activa{background:#fff;color:#090909;border-color:#fff}.zone-btn.activa span{color:#333}
+    .panel,.result-card{background:var(--panel);border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow)}
+    .panel{padding:15px;margin-bottom:14px}
+    .status{padding:18px;text-align:center;color:#d0d0d0;font-weight:900}
+    .section-head{display:flex;justify-content:space-between;gap:10px;align-items:flex-start;margin-bottom:12px}
+    .section-head h2{margin:0;font-size:24px}.section-head p{margin:5px 0 0;color:var(--muted);font-weight:800}
+    .actions{display:flex;gap:8px;flex-wrap:wrap}
+    .pill-link,.small-btn{display:inline-flex;align-items:center;justify-content:center;border-radius:999px;min-height:42px;padding:10px 13px;text-decoration:none;background:#fff;color:#080808;font-weight:1000}
+    .small-btn{background:rgba(255,255,255,.08);color:#fff;border:1px solid var(--line)}
+    .result-card{padding:14px;margin-bottom:12px}
+    .teams{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:8px;align-items:center;border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:12px;text-align:center}
+    .team{font-size:17px;font-weight:1000;line-height:1.15;overflow-wrap:anywhere}.vs{color:#aaa;font-size:11px;font-weight:1000;letter-spacing:1px}
+    .meta{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-top:8px}.chip{border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);padding:6px 8px;color:#ddd;font-size:11px;font-weight:1000}
+    .score-grid{display:grid;gap:7px}.score-row{display:grid;grid-template-columns:1fr auto auto;gap:8px;align-items:center;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:9px}
+    .cat{font-weight:1000}.score{min-width:34px;text-align:center;border-radius:10px;background:rgba(255,255,255,.08);padding:7px 8px;font-weight:1000}
+    .empty{padding:18px;text-align:center;color:#d0d0d0;font-weight:900}
+    .footer{text-align:center;color:#8f8f8f;font-size:12px;padding:18px 0}
+    @media(max-width:520px){body{padding:11px;background-attachment:scroll}.hero{padding:20px 13px}.zone-grid{gap:8px}.zone-btn{min-height:76px;border-radius:18px}.section-head{display:block}.actions{margin-top:12px}.teams{grid-template-columns:minmax(0,1fr) 28px minmax(0,1fr)}.team{font-size:14px}.score-row{grid-template-columns:1fr 42px 42px}}
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header class="hero">
+      <img src="logo.png" class="logo" alt="Baby All Boys" />
+      <div class="eyebrow">Últimos resultados</div>
+      <h1>Elegí tu zona</h1>
+      <p>Entrá directo a la última fecha jugada con resultados cargados.</p>
+    </header>
+
+    <nav class="zone-grid" aria-label="Zonas">
+      <button class="zone-btn" data-zona="c">Zona C<span>All Boys A</span></button>
+      <button class="zone-btn" data-zona="i">Zona I<span>All Boys B</span></button>
+      <button class="zone-btn" data-zona="mat1">Zona MAT1<span>Los Albos</span></button>
+      <button class="zone-btn" data-zona="mat4">Zona MAT4<span>All Boys</span></button>
+    </nav>
+
+    <main id="resultado" class="panel">
+      <div class="status">Seleccioná una zona para ver los últimos resultados.</div>
+    </main>
+
+    <div class="footer">Baby All Boys · Sitio no oficial</div>
+  </div>
+
+  <script>
+    const ZONAS={c:{label:'Zona C',sub:'All Boys A'},i:{label:'Zona I',sub:'All Boys B'},mat1:{label:'Zona MAT1',sub:'Los Albos'},mat4:{label:'Zona MAT4',sub:'All Boys'}};
+    const esc=v=>String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
+    const fechaNum=f=>{const m=String(f||'').match(/(?:F|Fecha\s*)?(\d+)/i);return m?Number(m[1]):0};
+    const hayValor=v=>v!==null&&v!==undefined&&String(v).trim()!=='';
+    const tieneResultado=partidos=>Array.isArray(partidos)&&partidos.some(p=>Object.values(p.resultados||{}).some(r=>r&&hayValor(r.local)&&hayValor(r.visitante)));
+    const ordenarCats=cats=>[...cats].sort((a,b)=>String(a).localeCompare(String(b),'es',{numeric:true}));
+
+    async function getJSON(url){
+      const res=await fetch(url,{cache:'no-store'});
+      if(!res.ok)throw new Error(url);
+      return res.json();
+    }
+
+    function setZonaActiva(zona){
+      document.querySelectorAll('[data-zona]').forEach(btn=>btn.classList.toggle('activa',btn.dataset.zona===zona));
+    }
+
+    function renderPartido(p){
+      const cats=ordenarCats(Object.keys(p.resultados||{}));
+      return `<article class="result-card">
+        <div class="teams">
+          <div><div class="team">${esc(p.local)}</div><div class="meta"><span class="chip">PJ ${esc(p.pj_local??'-')}</span><span class="chip">Pts ${esc(p.pts_local??'-')}</span></div></div>
+          <div class="vs">VS</div>
+          <div><div class="team">${esc(p.visitante)}</div><div class="meta"><span class="chip">PJ ${esc(p.pj_visitante??'-')}</span><span class="chip">Pts ${esc(p.pts_visitante??'-')}</span></div></div>
+        </div>
+        <div class="score-grid">
+          ${cats.map(cat=>{const r=p.resultados?.[cat]||{};return `<div class="score-row"><span class="cat">${esc(cat)}</span><span class="score">${esc(r.local??'-')}</span><span class="score">${esc(r.visitante??'-')}</span></div>`}).join('')}
+        </div>
+      </article>`;
+    }
+
+    async function cargarZona(zona){
+      if(!ZONAS[zona])return;
+      setZonaActiva(zona);
+      const cont=document.getElementById('resultado');
+      cont.innerHTML='<div class="status">Cargando resultados...</div>';
+      try{
+        const data=await getJSON(`data/${zona}/resultados.json`);
+        const general=data?.general||{};
+        const fechas=Object.keys(general).filter(fid=>tieneResultado(general[fid])).sort((a,b)=>fechaNum(a)-fechaNum(b));
+        const ultima=fechas[fechas.length-1];
+        if(!ultima){
+          cont.innerHTML=`<div class="empty">Todavía no hay resultados cargados para ${esc(ZONAS[zona].label)}.</div><div class="actions"><a class="pill-link" href="index.html?zona=${encodeURIComponent(zona)}&vista=fixture">Ver fixture</a></div>`;
+          return;
+        }
+        const partidos=general[ultima]||[];
+        const fechaTexto=partidos[0]?.fecha||ultima;
+        const shareText=`Últimos resultados ${ZONAS[zona].label} - ${fechaTexto}: ${location.origin}${location.pathname}?zona=${zona}`;
+        cont.innerHTML=`<div class="section-head"><div><h2>${esc(ZONAS[zona].label)} · ${esc(ZONAS[zona].sub)}</h2><p>${esc(fechaTexto)}</p></div><div class="actions"><a class="pill-link" href="index.html?zona=${encodeURIComponent(zona)}&vista=resultados&ultima=1">Ver completo</a><button class="small-btn" id="copiarMensaje">Copiar mensaje</button></div></div>${partidos.map(renderPartido).join('')}`;
+        document.getElementById('copiarMensaje')?.addEventListener('click',async()=>{await navigator.clipboard?.writeText(shareText);alert('Mensaje copiado');});
+      }catch(e){
+        cont.innerHTML='<div class="empty">No se pudieron cargar los resultados. Probá de nuevo en unos minutos.</div>';
+      }
+    }
+
+    document.querySelectorAll('[data-zona]').forEach(btn=>btn.addEventListener('click',()=>cargarZona(btn.dataset.zona)));
+    const params=new URLSearchParams(location.search);
+    const zonaInicial=params.get('zona');
+    if(zonaInicial)cargarZona(zonaInicial);
+  </script>
+</body>
+</html>

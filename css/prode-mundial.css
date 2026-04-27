@@ -14,6 +14,7 @@
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;background:radial-gradient(circle at top,#1d1d1d 0,#060606 46%,#030303 100%);color:var(--text);font-family:Arial,Helvetica,sans-serif}
+.oculto{display:none!important}
 button,input,select{font:inherit}
 button{cursor:pointer;border:0}
 .hero{min-height:78vh;padding:18px 14px 34px;background:linear-gradient(rgba(0,0,0,.48),rgba(0,0,0,.92)),url("../fondo.png") center/cover no-repeat;display:flex;flex-direction:column;justify-content:space-between}
@@ -33,7 +34,7 @@ h1{font-size:clamp(42px,10vw,86px);line-height:.9;margin:0 0 14px;font-weight:10
 .status-card.ok{display:none}
 .status-card.error{display:block;color:#ff9b9b}
 .summary-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:14px 0}
-.summary-card,.controls,.ranking-section,.screenshot-card,.news-section,.admin-section{border:1px solid var(--line);background:rgba(15,15,15,.92);box-shadow:var(--shadow);border-radius:22px}
+.summary-card,.controls,.ranking-section,.screenshot-card,.news-section,.admin-section,.play-section{border:1px solid var(--line);background:rgba(15,15,15,.92);box-shadow:var(--shadow);border-radius:22px}
 .summary-card{padding:15px}
 .summary-card span{display:block;color:var(--muted);font-size:11px;font-weight:1000;text-transform:uppercase;letter-spacing:.8px}
 .summary-card strong{display:block;margin-top:6px;font-size:24px}
@@ -55,14 +56,19 @@ h1{font-size:clamp(42px,10vw,86px);line-height:.9;margin:0 0 14px;font-weight:10
 .section-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;padding:16px 16px 0}
 h2{margin:0;font-size:26px}
 .ranking-list{display:grid;gap:10px;padding:14px}
-.news-section,.admin-section{margin:14px 0;overflow:hidden}
+.news-section,.admin-section,.play-section{margin:14px 0;overflow:hidden}
 .news-grid,.admin-grid{display:grid;gap:10px;padding:14px}
-.news-card,.admin-card{display:block;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.045);border-radius:18px;padding:13px;color:#fff;text-decoration:none}
+.news-card,.admin-card{display:block;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.045);border-radius:16px;padding:11px;color:#fff;text-decoration:none}
 .news-card:hover,.admin-card:hover{background:rgba(255,255,255,.08)}
 .news-card span,.admin-card span{display:block;color:var(--muted);font-size:11px;font-weight:1000;text-transform:uppercase}
-.news-card strong,.admin-card strong{display:block;margin:7px 0 6px;font-size:17px}
-.news-card p,.admin-card p{margin:0;color:#d8d8d8;font-size:13px;line-height:1.4;font-weight:800}
+.news-card strong,.admin-card strong{display:block;margin:6px 0 5px;font-size:15px;line-height:1.18}
+.news-card p,.admin-card p{margin:0;color:#d8d8d8;font-size:12px;line-height:1.35;font-weight:800}
 .admin-card code{display:block;margin-top:9px;border-radius:12px;background:rgba(0,0,0,.45);padding:9px;color:#fff;white-space:normal;font-size:12px}
+.play-grid{display:grid;gap:10px;padding:14px}
+.play-grid article{border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.045);border-radius:16px;padding:13px}
+.play-grid span{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:999px;background:#fff;color:#080808;font-weight:1000}
+.play-grid strong{display:block;margin:9px 0 5px;font-size:17px}
+.play-grid p{margin:0;color:#d8d8d8;font-size:13px;line-height:1.4;font-weight:800}
 .rank-card{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.045);border-radius:18px;padding:12px;text-align:left;color:#fff;width:100%;transition:.18s ease}
 .rank-card:hover{transform:translateY(-1px);background:rgba(255,255,255,.08)}
 .rank-card.top1{border-color:rgba(215,181,90,.7);background:linear-gradient(135deg,rgba(215,181,90,.17),rgba(255,255,255,.04))}
@@ -94,7 +100,8 @@ h2{margin:0;font-size:26px}
   .hero{min-height:560px;padding:24px}
   .app-shell{padding:22px 18px 56px}
   .summary-grid{grid-template-columns:repeat(6,1fr)}
-  .news-grid,.admin-grid{grid-template-columns:repeat(4,1fr)}
+  .news-grid,.admin-grid{grid-template-columns:repeat(3,1fr)}
+  .play-grid{grid-template-columns:repeat(3,1fr)}
   .tabs{grid-template-columns:repeat(5,1fr)}
   .filters{grid-template-columns:repeat(6,1fr);align-items:end}
   .filter-label{min-width:0}

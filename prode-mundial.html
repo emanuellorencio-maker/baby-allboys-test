@@ -12,7 +12,7 @@
   <header class="hero">
     <nav class="topbar">
       <a href="index.html" class="back-link">Baby All Boys</a>
-      <span class="test-pill">TEST</span>
+      <a href="#como-jugar" class="test-pill">Cómo jugar</a>
     </nav>
     <section class="hero-content">
       <p class="eyebrow">Mundial real 2026</p>
@@ -20,6 +20,7 @@
       <p>Competí contra otros padres, seguí el ranking y defendé los colores de tu categoría.</p>
       <div class="hero-actions">
         <a href="#ranking" class="primary-action">Ver ranking</a>
+        <a href="#como-jugar" class="ghost-action">Participar</a>
         <button type="button" class="ghost-action" id="btnCompartirLider">Compartir líder</button>
       </div>
     </section>
@@ -41,6 +42,20 @@
 
     <section class="screenshot-card" id="cardViral" aria-label="Card para compartir"></section>
 
+    <section class="play-section" id="como-jugar">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Participar</p>
+          <h2>Cómo se juega</h2>
+        </div>
+      </div>
+      <div class="play-grid">
+        <article><span>1</span><strong>Pasá tus datos</strong><p>Nombre del adulto, nombre del hijo, categoría y tira.</p></article>
+        <article><span>2</span><strong>Cargá pronósticos</strong><p>Elegí resultados para los partidos del Mundial que estén abiertos.</p></article>
+        <article><span>3</span><strong>Sumá puntos</strong><p>Resultado exacto suma 3 puntos; acierto simple suma 1 punto.</p></article>
+      </div>
+    </section>
+
     <section class="news-section">
       <!-- noticias-mundial-visible-v2 -->
       <div class="section-head">
@@ -58,11 +73,11 @@
       </div>
     </section>
 
-    <section class="admin-section">
+    <section class="admin-section oculto" aria-hidden="true">
       <div class="section-head">
         <div>
           <p class="eyebrow">Administración simple</p>
-          <h2>Carga y automatizaciones</h2>
+          <h2>Panel interno</h2>
         </div>
       </div>
       <div id="panelAdminProde" class="admin-grid"></div>

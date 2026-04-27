@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#070707" />
+  <title>Admin Prode Mundial | Baby All Boys</title>
+  <link rel="icon" href="data:," />
+  <style>
+    :root{--bg:#070707;--panel:#111;--line:rgba(255,255,255,.13);--text:#f7f7f7;--muted:#aaa;--good:#84d89a;--bad:#ff8a8a;--shadow:0 18px 42px rgba(0,0,0,.38)}
+    *{box-sizing:border-box}
+    body{margin:0;background:#070707;color:var(--text);font-family:Arial,Helvetica,sans-serif;padding:14px}
+    button,input,select,textarea{font:inherit}
+    button{cursor:pointer;border:0}
+    .app{max-width:1180px;margin:0 auto}
+    .hero,.panel{border:1px solid var(--line);background:rgba(17,17,17,.96);border-radius:22px;box-shadow:var(--shadow)}
+    .hero{padding:20px;margin-bottom:14px}
+    .eyebrow{margin:0 0 8px;color:#cfcfcf;font-size:11px;font-weight:1000;letter-spacing:1.4px;text-transform:uppercase}
+    h1,h2{margin:0} h1{font-size:clamp(30px,7vw,54px)} h2{font-size:22px}
+    .hero p,.hint{color:#d0d0d0;font-weight:800;line-height:1.45}
+    .grid{display:grid;gap:12px}
+    .two{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .three{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .panel{padding:14px;margin-bottom:14px}
+    label span{display:block;margin:0 0 6px;color:var(--muted);font-size:11px;font-weight:1000;text-transform:uppercase}
+    input,select,textarea{width:100%;min-height:44px;border-radius:14px;border:1px solid rgba(255,255,255,.16);background:#fff;color:#111;padding:10px 12px;font-weight:800}
+    textarea{min-height:160px;font-family:Consolas,monospace;font-size:12px}
+    .actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+    .btn{border-radius:999px;min-height:42px;padding:10px 14px;background:#fff;color:#080808;font-weight:1000}
+    .btn.sec{background:rgba(255,255,255,.08);color:#fff;border:1px solid var(--line)}
+    .btn.warn{background:#1f1f1f;color:#fff;border:1px solid rgba(255,255,255,.22)}
+    .status{padding:12px;border-radius:15px;background:rgba(255,255,255,.06);color:#ddd;font-weight:900;margin-top:12px}
+    .status.ok{color:var(--good)}.status.err{color:var(--bad)}
+    .list{display:grid;gap:8px;max-height:340px;overflow:auto;padding-right:3px}
+    .item{border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.045);border-radius:15px;padding:10px}
+    .item strong{display:block}.item span{display:block;color:#cfcfcf;font-size:12px;font-weight:800;margin-top:4px}
+    .output-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+    .tab{border-radius:999px;padding:8px 11px;background:rgba(255,255,255,.08);color:#fff;font-weight:1000;border:1px solid var(--line)}
+    .tab.activa{background:#fff;color:#080808}
+    code{display:inline-block;background:#050505;border:1px solid var(--line);border-radius:10px;padding:3px 7px;color:#fff}
+    @media(max-width:800px){body{padding:10px}.two,.three{grid-template-columns:1fr}.hero,.panel{border-radius:18px}}
+  </style>
+</head>
+<body>
+  <main class="app">
+    <section class="hero">
+      <p class="eyebrow">Herramienta interna</p>
+      <h1>Admin Prode Mundial</h1>
+      <p>Genera JSON para copiar o descargar. No escribe en Vercel ni en el servidor: pegá el resultado en el archivo correspondiente y commitealo.</p>
+      <p class="hint">Archivos actuales: <code>data/prode/participantes.json</code> y <code>data/prode/partidos.json</code>. También podés exportar <code>pronosticos.json</code>, <code>resultados_mundial.json</code> y <code>ranking.json</code>.</p>
+    </section>
+
+    <section class="panel">
+      <h2>Datos cargados</h2>
+      <div class="actions">
+        <button class="btn" id="btnCargar">Cargar JSON actuales</button>
+        <button class="btn sec" id="btnRecalcular">Recalcular puntajes</button>
+      </div>
+      <div id="estado" class="status">Listo para cargar datos.</div>
+    </section>
+
+    <section class="grid two">
+      <form class="panel" id="formParticipante">
+        <h2>Agregar participante</h2>
+        <div class="grid two">
+          <label><span>Nombre adulto</span><input id="pNombre" required /></label>
+          <label><span>Apellido adulto</span><input id="pApellido" required /></label>
+          <label><span>Nombre hijo</span><input id="pHijo" required /></label>
+          <label><span>Categoría</span><select id="pCategoria"></select></label>
+          <label><span>Zona / equipo</span><select id="pTira"></select></label>
+          <label><span>ID opcional</span><input id="pId" placeholder="Se genera solo si queda vacío" /></label>
+        </div>
+        <div class="actions"><button class="btn" type="submit">Agregar participante</button></div>
+      </form>
+
+      <form class="panel" id="formPronostico">
+        <h2>Agregar pronóstico</h2>
+        <div class="grid two">
+          <label><span>Participante</span><select id="prParticipante"></select></label>
+          <label><span>Partido</span><select id="prPartido"></select></label>
+          <label><span>Goles local</span><input id="prLocal" type="number" min="0" required /></label>
+          <label><span>Goles visitante</span><input id="prVisitante" type="number" min="0" required /></label>
+        </div>
+        <div class="actions"><button class="btn" type="submit">Agregar pronóstico</button></div>
+      </form>
+    </section>
+
+    <section class="grid two">
+      <form class="panel" id="formResultado">
+        <h2>Cargar resultado real</h2>
+        <div class="grid two">
+          <label><span>Partido</span><select id="rPartido"></select></label>
+          <label><span>Estado</span><select id="rEstado"><option value="finalizado">Finalizado</option><option value="abierto">Abierto</option><option value="pendiente">Pendiente</option></select></label>
+          <label><span>Goles local</span><input id="rLocal" type="number" min="0" /></label>
+          <label><span>Goles visitante</span><input id="rVisitante" type="number" min="0" /></label>
+        </div>
+        <div class="actions"><button class="btn" type="submit">Guardar resultado real</button></div>
+      </form>
+
+      <section class="panel">
+        <h2>Resumen</h2>
+        <div id="resumen" class="grid three"></div>
+      </section>
+    </section>
+
+    <section class="grid two">
+      <section class="panel">
+        <h2>Participantes</h2>
+        <div id="listaParticipantes" class="list"></div>
+      </section>
+      <section class="panel">
+        <h2>Ranking calculado</h2>
+        <div id="listaRanking" class="list"></div>
+      </section>
+    </section>
+
+    <section class="panel">
+      <h2>Exportar JSON</h2>
+      <div class="output-tabs" id="tabsSalida"></div>
+      <textarea id="salidaJson" readonly></textarea>
+      <div class="actions">
+        <button class="btn" id="btnCopiar" type="button">Copiar JSON</button>
+        <button class="btn sec" id="btnDescargar" type="button">Descargar JSON</button>
+      </div>
+      <p class="hint" id="destinoJson">Pegá este contenido en el archivo indicado.</p>
+    </section>
+  </main>
+
+  <script>
+    const CATEGORIAS=['2013','2014','2015','2016','2017','2018','2019','2020','2021','2022'];
+    const TIRAS=['All Boys A','All Boys B','Los Albos','All Boys'];
+    const state={participantes:[],partidos:[],ranking:[],salida:'participantes'};
+    const $=id=>document.getElementById(id);
+    const esc=v=>String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
+    const num=v=>{const n=Number(v);return Number.isFinite(n)?n:null};
+
+    function setEstado(msg,tipo=''){const el=$('estado');el.className=`status ${tipo}`;el.textContent=msg;}
+    async function getJSON(url){const res=await fetch(url,{cache:'no-store'});if(!res.ok)throw new Error(url);return res.json();}
+    function partidoLabel(p){return `${p.id} · ${p.equipo_local} vs ${p.equipo_visitante} · ${p.fecha}`;}
+    function nextId(){return `P${String(state.participantes.length+1).padStart(3,'0')}`;}
+    function signo(l,v){if(l>v)return 'L';if(l<v)return 'V';return 'E';}
+    function calcPronostico(pr,partido){const rl=partido?.resultado_real?.goles_local;const rv=partido?.resultado_real?.goles_visitante;if(partido?.estado!=='finalizado'||!Number.isFinite(rl)||!Number.isFinite(rv))return {puntos:0,estado:'pendiente'};if(pr.goles_local===rl&&pr.goles_visitante===rv)return {puntos:3,estado:'exacto'};if(signo(pr.goles_local,pr.goles_visitante)===signo(rl,rv))return {puntos:1,estado:'simple'};return {puntos:0,estado:'error'};}
+
+    function recalcular(){
+      const partidos=new Map(state.partidos.map(p=>[p.id,p]));
+      state.ranking=state.participantes.map(p=>{
+        const detalle=(p.pronosticos||[]).map(pr=>({pronostico:pr,partido:partidos.get(pr.partido_id),...calcPronostico(pr,partidos.get(pr.partido_id))}));
+        return {...p,puntos:detalle.reduce((a,d)=>a+d.puntos,0),exactos:detalle.filter(d=>d.estado==='exacto').length,simples:detalle.filter(d=>d.estado==='simple').length,errores:detalle.filter(d=>d.estado==='error').length,pendientes:detalle.filter(d=>d.estado==='pendiente').length};
+      }).sort((a,b)=>b.puntos-a.puntos||b.exactos-a.exactos||b.simples-a.simples||String(a.apellido).localeCompare(String(b.apellido),'es'));
+      state.ranking.forEach((p,i)=>p.puesto=i+1);
+      render();
+    }
+
+    function opcionesBase(){
+      $('pCategoria').innerHTML=CATEGORIAS.map(c=>`<option value="${esc(c)}">${esc(c)}</option>`).join('');
+      $('pTira').innerHTML=TIRAS.map(t=>`<option value="${esc(t)}">${esc(t)}</option>`).join('');
+    }
+
+    function renderSelects(){
+      $('prParticipante').innerHTML=state.participantes.map(p=>`<option value="${esc(p.id)}">${esc(p.apellido)}, ${esc(p.nombre)} · ${esc(p.nombre_hijo)}</option>`).join('');
+      const partidos=state.partidos.map(p=>`<option value="${esc(p.id)}">${esc(partidoLabel(p))}</option>`).join('');
+      $('prPartido').innerHTML=partidos;$('rPartido').innerHTML=partidos;
+    }
+
+    function salidaActual(){
+      if(state.salida==='participantes')return state.participantes;
+      if(state.salida==='partidos')return state.partidos;
+      if(state.salida==='pronosticos')return state.participantes.map(p=>({participante_id:p.id,pronosticos:p.pronosticos||[]}));
+      if(state.salida==='resultados')return state.partidos.map(p=>({id:p.id,resultado_real:p.resultado_real,estado:p.estado}));
+      return state.ranking;
+    }
+
+    function archivoSalida(){
+      return {participantes:'data/prode/participantes.json',partidos:'data/prode/partidos.json',pronosticos:'data/prode/pronosticos.json',resultados:'data/prode/resultados_mundial.json',ranking:'data/prode/ranking.json'}[state.salida];
+    }
+
+    function renderSalida(){
+      $('tabsSalida').innerHTML=['participantes','partidos','pronosticos','resultados','ranking'].map(k=>`<button class="tab ${state.salida===k?'activa':''}" data-salida="${k}" type="button">${esc(k)}</button>`).join('');
+      $('salidaJson').value=JSON.stringify(salidaActual(),null,2);
+      $('destinoJson').innerHTML=`Pegá este contenido en <code>${esc(archivoSalida())}</code>.`;
+    }
+
+    function render(){
+      renderSelects();
+      $('resumen').innerHTML=[
+        ['Participantes',state.participantes.length],
+        ['Partidos',state.partidos.length],
+        ['Finalizados',state.partidos.filter(p=>p.estado==='finalizado').length]
+      ].map(([k,v])=>`<div class="item"><strong>${esc(v)}</strong><span>${esc(k)}</span></div>`).join('');
+      $('listaParticipantes').innerHTML=state.participantes.length?state.participantes.map(p=>`<div class="item"><strong>${esc(p.apellido)}, ${esc(p.nombre)}</strong><span>Hijo: ${esc(p.nombre_hijo)} · ${esc(p.categoria)} · ${esc(p.tira)}</span><span>Pronósticos: ${(p.pronosticos||[]).length}</span></div>`).join(''):'<div class="item"><span>No hay participantes cargados.</span></div>';
+      $('listaRanking').innerHTML=state.ranking.length?state.ranking.map(p=>`<div class="item"><strong>#${p.puesto} · ${esc(p.apellido)}, ${esc(p.nombre)} · ${p.puntos} pts</strong><span>Exactos ${p.exactos} · Simples ${p.simples} · Errores ${p.errores} · Pendientes ${p.pendientes}</span></div>`).join(''):'<div class="item"><span>Recalculá para ver ranking.</span></div>';
+      renderSalida();
+    }
+
+    async function cargarActuales(){
+      try{
+        const [participantes,partidos]=await Promise.all([getJSON('data/prode/participantes.json'),getJSON('data/prode/partidos.json')]);
+        state.participantes=Array.isArray(participantes)?participantes:[];
+        state.partidos=Array.isArray(partidos)?partidos:[];
+        recalcular();
+        setEstado('JSON actuales cargados correctamente.','ok');
+      }catch(e){setEstado('No se pudieron cargar los JSON actuales. Podés trabajar igual y exportar desde cero.','err');render();}
+    }
+
+    $('formParticipante').addEventListener('submit',e=>{
+      e.preventDefault();
+      const item={id:$('pId').value.trim()||nextId(),nombre:$('pNombre').value.trim(),apellido:$('pApellido').value.trim(),nombre_hijo:$('pHijo').value.trim(),categoria:$('pCategoria').value,tira:$('pTira').value,pronosticos:[]};
+      if(!item.nombre||!item.apellido||!item.nombre_hijo){setEstado('Completá nombre, apellido e hijo.','err');return;}
+      if(state.participantes.some(p=>p.id===item.id)){setEstado('Ya existe un participante con ese ID.','err');return;}
+      state.participantes.push(item);e.target.reset();recalcular();setEstado('Participante agregado.','ok');
+    });
+
+    $('formPronostico').addEventListener('submit',e=>{
+      e.preventDefault();
+      const p=state.participantes.find(x=>x.id===$('prParticipante').value);
+      if(!p){setEstado('Elegí un participante.','err');return;}
+      const pr={partido_id:$('prPartido').value,goles_local:num($('prLocal').value),goles_visitante:num($('prVisitante').value)};
+      if(pr.goles_local===null||pr.goles_visitante===null){setEstado('Cargá goles válidos.','err');return;}
+      p.pronosticos=p.pronosticos||[];
+      const idx=p.pronosticos.findIndex(x=>x.partido_id===pr.partido_id);
+      if(idx>=0)p.pronosticos[idx]=pr;else p.pronosticos.push(pr);
+      e.target.reset();recalcular();setEstado('Pronóstico guardado.','ok');
+    });
+
+    $('formResultado').addEventListener('submit',e=>{
+      e.preventDefault();
+      const p=state.partidos.find(x=>x.id===$('rPartido').value);
+      if(!p){setEstado('Elegí un partido.','err');return;}
+      p.estado=$('rEstado').value;
+      p.resultado_real={goles_local:num($('rLocal').value),goles_visitante:num($('rVisitante').value)};
+      recalcular();setEstado('Resultado real guardado.','ok');
+    });
+
+    $('tabsSalida').addEventListener('click',e=>{const btn=e.target.closest('[data-salida]');if(!btn)return;state.salida=btn.dataset.salida;renderSalida();});
+    $('btnCargar').addEventListener('click',cargarActuales);
+    $('btnRecalcular').addEventListener('click',()=>{recalcular();setEstado('Puntajes recalculados.','ok');});
+    $('btnCopiar').addEventListener('click',async()=>{await navigator.clipboard?.writeText($('salidaJson').value);setEstado('JSON copiado al portapapeles.','ok');});
+    $('btnDescargar').addEventListener('click',()=>{const blob=new Blob([$('salidaJson').value+'\n'],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=archivoSalida().split('/').pop();a.click();URL.revokeObjectURL(a.href);});
+
+    opcionesBase();
+    render();
+    cargarActuales();
+  </script>
+</body>
+</html>
