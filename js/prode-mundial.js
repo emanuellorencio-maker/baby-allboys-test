@@ -329,20 +329,11 @@ async function compartirPuesto(id){
   alert("Mensaje copiado");
 }
 
-async function copiarMensaje(){
-  const p=filtrarRanking()[0]||state.ranking[0];
-  if(!p)return;
-  const text=`Voy #${p.puesto} en el Prode Mundial Baby All Boys con ${p.puntos} puntos. ¿Quien me alcanza? ⚽🏆`;
-  await navigator.clipboard?.writeText(text);
-  alert("Mensaje copiado");
-}
-
 function bindEvents(){
   byId("buscador").addEventListener("input",e=>{state.busqueda=e.target.value;renderRanking();renderCardViral()});
   byId("tabsRanking").addEventListener("click",e=>{const btn=e.target.closest("[data-tab]");if(!btn)return;state.vista=btn.dataset.tab;renderFiltros();bindDynamicFilters();renderRanking();renderCardViral()});
   byId("rankingLista").addEventListener("click",e=>{const card=e.target.closest("[data-id]");if(card)renderDetalleParticipante(card.dataset.id)});
   byId("modalParticipante").addEventListener("click",e=>{if(e.target.closest("[data-close-modal]"))byId("modalParticipante").classList.add("oculto");const share=e.target.closest("[data-share]");if(share)compartirPuesto(share.dataset.share)});
-  byId("btnCopiarMensaje").addEventListener("click",copiarMensaje);
   byId("btnCompartirLider").addEventListener("click",()=>compartirPuesto(state.ranking[0]?.id));
 }
 

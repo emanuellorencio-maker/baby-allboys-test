@@ -18,7 +18,6 @@
     .logo{width:82px;height:82px;object-fit:contain;background:#fff;border-radius:50%;padding:7px;box-shadow:0 14px 28px rgba(0,0,0,.42)}
     .eyebrow{margin:12px 0 7px;color:#cfcfcf;font-size:11px;font-weight:1000;letter-spacing:1.4px;text-transform:uppercase}
     h1{margin:0;font-size:clamp(30px,9vw,52px);line-height:.98}
-    .hero p{margin:10px auto 0;max-width:620px;color:#ddd;font-weight:800;line-height:1.42}
     .zone-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}
     .zone-btn{min-height:82px;border-radius:20px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);color:#fff;font-weight:1000;padding:12px;box-shadow:inset 0 1px 0 rgba(255,255,255,.06)}
     .zone-btn span{display:block;color:#bdbdbd;font-size:11px;text-transform:uppercase;letter-spacing:.8px;margin-top:5px}
@@ -29,17 +28,19 @@
     .section-head{display:flex;justify-content:space-between;gap:10px;align-items:flex-start;margin-bottom:12px}
     .section-head h2{margin:0;font-size:24px}.section-head p{margin:5px 0 0;color:var(--muted);font-weight:800}
     .actions{display:flex;gap:8px;flex-wrap:wrap}
-    .pill-link,.small-btn{display:inline-flex;align-items:center;justify-content:center;border-radius:999px;min-height:42px;padding:10px 13px;text-decoration:none;background:#fff;color:#080808;font-weight:1000}
-    .small-btn{background:rgba(255,255,255,.08);color:#fff;border:1px solid var(--line)}
+    .pill-link{display:inline-flex;align-items:center;justify-content:center;border-radius:999px;min-height:42px;padding:10px 13px;text-decoration:none;background:#fff;color:#080808;font-weight:1000}
     .result-card{padding:14px;margin-bottom:12px}
     .teams{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:8px;align-items:center;border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:12px;text-align:center}
     .team{font-size:17px;font-weight:1000;line-height:1.15;overflow-wrap:anywhere}.vs{color:#aaa;font-size:11px;font-weight:1000;letter-spacing:1px}
     .meta{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-top:8px}.chip{border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);padding:6px 8px;color:#ddd;font-size:11px;font-weight:1000}
-    .score-grid{display:grid;gap:7px}.score-row{display:grid;grid-template-columns:1fr auto auto;gap:8px;align-items:center;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:9px}
-    .cat{font-weight:1000}.score{min-width:34px;text-align:center;border-radius:10px;background:rgba(255,255,255,.08);padding:7px 8px;font-weight:1000}
+    .score-grid{display:grid;gap:8px}
+    .score-row{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:9px;align-items:center;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.08);border-radius:15px;padding:10px}
+    .cat{grid-column:1/-1;text-align:center;color:#bdbdbd;font-size:11px;font-weight:1000;text-transform:uppercase;letter-spacing:.8px}
+    .score-team{font-weight:1000;line-height:1.15;text-align:center;overflow-wrap:anywhere}
+    .score-mid{display:inline-flex;align-items:center;justify-content:center;min-width:62px;border-radius:12px;background:rgba(255,255,255,.1);padding:8px 10px;font-size:17px;font-weight:1000;text-align:center}
     .empty{padding:18px;text-align:center;color:#d0d0d0;font-weight:900}
     .footer{text-align:center;color:#8f8f8f;font-size:12px;padding:18px 0}
-    @media(max-width:520px){body{padding:11px;background-attachment:scroll}.hero{padding:20px 13px}.zone-grid{gap:8px}.zone-btn{min-height:76px;border-radius:18px}.section-head{display:block}.actions{margin-top:12px}.teams{grid-template-columns:minmax(0,1fr) 28px minmax(0,1fr)}.team{font-size:14px}.score-row{grid-template-columns:1fr 42px 42px}}
+    @media(max-width:520px){body{padding:11px;background-attachment:scroll}.hero{padding:20px 13px}.zone-grid{gap:8px}.zone-btn{min-height:76px;border-radius:18px}.section-head{display:block}.actions{margin-top:12px}.teams{grid-template-columns:minmax(0,1fr) 28px minmax(0,1fr)}.team{font-size:14px}.score-row{grid-template-columns:1fr}.score-mid{justify-self:center}.score-team{font-size:15px}}
   </style>
 </head>
 <body>
@@ -48,7 +49,6 @@
       <img src="logo.png" class="logo" alt="Baby All Boys" />
       <div class="eyebrow">Últimos resultados</div>
       <h1>Elegí tu zona</h1>
-      <p>Entrá directo a la última fecha jugada con resultados cargados.</p>
     </header>
 
     <nav class="zone-grid" aria-label="Zonas">
@@ -72,11 +72,75 @@
     const hayValor=v=>v!==null&&v!==undefined&&String(v).trim()!=='';
     const tieneResultado=partidos=>Array.isArray(partidos)&&partidos.some(p=>Object.values(p.resultados||{}).some(r=>r&&hayValor(r.local)&&hayValor(r.visitante)));
     const ordenarCats=cats=>[...cats].sort((a,b)=>String(a).localeCompare(String(b),'es',{numeric:true}));
+    const MESES={enero:0,febrero:1,marzo:2,abril:3,mayo:4,junio:5,julio:6,agosto:7,septiembre:8,setiembre:8,octubre:9,noviembre:10,diciembre:11};
 
     async function getJSON(url){
       const res=await fetch(url,{cache:'no-store'});
       if(!res.ok)throw new Error(url);
       return res.json();
+    }
+
+    async function getJSONOpcional(url){
+      try{return await getJSON(url)}catch(e){return null}
+    }
+
+    function clonar(data){
+      return JSON.parse(JSON.stringify(data||{}));
+    }
+
+    function combinarManual(base,manual,zona,fixture){
+      const combinado=clonar(base);
+      combinado.general=combinado.general||{};
+      const zonaManual=manual?.[zona]||{};
+      Object.entries(zonaManual).forEach(([fid,valor])=>{
+        const partidos=Array.isArray(valor)?valor:[valor];
+        combinado.general[fid]=partidos.filter(Boolean).map(p=>({
+          ...p,
+          fecha_id:p.fecha_id||fid,
+          fecha:(fixture.find(f=>(f.fecha_id||fechaId(f.fecha))===fid)?.fecha)||p.fecha||fid,
+          _manual:true
+        }));
+      });
+      return combinado;
+    }
+
+    function fechaId(texto){
+      const n=fechaNum(texto);
+      return n?`F${n}`:'';
+    }
+
+    function parseFechaReal(texto){
+      const m=String(texto||'').match(/Fecha\s+\d+\s*-\s*(\d{1,2})\s+de\s+([A-Za-zÁÉÍÓÚáéíóú]+)/i);
+      if(!m)return null;
+      const mes=MESES[m[2].normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase()];
+      if(mes===undefined)return null;
+      return new Date(new Date().getFullYear(),mes,Number(m[1]),12).getTime();
+    }
+
+    function mapaFechasFixture(fixture){
+      const out={};
+      (Array.isArray(fixture)?fixture:[]).forEach(f=>{
+        const fid=f.fecha_id||fechaId(f.fecha);
+        if(fid)out[fid]={texto:f.fecha||fid,tiempo:parseFechaReal(f.fecha)};
+      });
+      return out;
+    }
+
+    function ultimaFechaDisponible(general,fixture){
+      const mapa=mapaFechasFixture(fixture);
+      const hoy=new Date();
+      const inicioHoy=new Date(hoy.getFullYear(),hoy.getMonth(),hoy.getDate(),23,59,59).getTime();
+      const candidatas=Object.keys(general||{})
+        .filter(fid=>tieneResultado(general[fid]))
+        .map(fid=>({fid,tiempo:mapa[fid]?.tiempo??null,orden:fechaNum(fid)}))
+        .filter(x=>x.tiempo===null||x.tiempo<=inicioHoy)
+        .sort((a,b)=>{
+          if(a.tiempo!==null&&b.tiempo!==null)return a.tiempo-b.tiempo;
+          if(a.tiempo!==null)return 1;
+          if(b.tiempo!==null)return -1;
+          return a.orden-b.orden;
+        });
+      return candidatas[candidatas.length-1]?.fid||null;
     }
 
     function setZonaActiva(zona){
@@ -92,7 +156,7 @@
           <div><div class="team">${esc(p.visitante)}</div><div class="meta"><span class="chip">PJ ${esc(p.pj_visitante??'-')}</span><span class="chip">Pts ${esc(p.pts_visitante??'-')}</span></div></div>
         </div>
         <div class="score-grid">
-          ${cats.map(cat=>{const r=p.resultados?.[cat]||{};return `<div class="score-row"><span class="cat">${esc(cat)}</span><span class="score">${esc(r.local??'-')}</span><span class="score">${esc(r.visitante??'-')}</span></div>`}).join('')}
+          ${cats.map(cat=>{const r=p.resultados?.[cat]||{};return `<div class="score-row"><span class="cat">Categoría ${esc(cat)}</span><span class="score-team">${esc(p.local)}</span><span class="score-mid">${esc(r.local??'-')} - ${esc(r.visitante??'-')}</span><span class="score-team">${esc(p.visitante)}</span></div>`}).join('')}
         </div>
       </article>`;
     }
@@ -103,19 +167,21 @@
       const cont=document.getElementById('resultado');
       cont.innerHTML='<div class="status">Cargando resultados...</div>';
       try{
-        const data=await getJSON(`data/${zona}/resultados.json`);
+        const [base,fixture,manual]=await Promise.all([
+          getJSON(`data/${zona}/resultados.json`),
+          getJSON(`data/${zona}/fixture.json`),
+          getJSONOpcional('data/resultados_manual.json')
+        ]);
+        const data=combinarManual(base,manual,zona,Array.isArray(fixture)?fixture:[]);
         const general=data?.general||{};
-        const fechas=Object.keys(general).filter(fid=>tieneResultado(general[fid])).sort((a,b)=>fechaNum(a)-fechaNum(b));
-        const ultima=fechas[fechas.length-1];
+        const ultima=ultimaFechaDisponible(general,fixture);
         if(!ultima){
-          cont.innerHTML=`<div class="empty">Todavía no hay resultados cargados para ${esc(ZONAS[zona].label)}.</div><div class="actions"><a class="pill-link" href="index.html?zona=${encodeURIComponent(zona)}&vista=fixture">Ver fixture</a></div>`;
+          cont.innerHTML=`<div class="empty">Todavía no hay resultados reales cargados para ${esc(ZONAS[zona].label)}. Revisá el fixture de la zona.</div><div class="actions"><a class="pill-link" href="index.html?zona=${encodeURIComponent(zona)}&vista=fixture">Ver fixture</a></div>`;
           return;
         }
         const partidos=general[ultima]||[];
         const fechaTexto=partidos[0]?.fecha||ultima;
-        const shareText=`Últimos resultados ${ZONAS[zona].label} - ${fechaTexto}: ${location.origin}${location.pathname}?zona=${zona}`;
-        cont.innerHTML=`<div class="section-head"><div><h2>${esc(ZONAS[zona].label)} · ${esc(ZONAS[zona].sub)}</h2><p>${esc(fechaTexto)}</p></div><div class="actions"><a class="pill-link" href="index.html?zona=${encodeURIComponent(zona)}&vista=resultados&ultima=1">Ver completo</a><button class="small-btn" id="copiarMensaje">Copiar mensaje</button></div></div>${partidos.map(renderPartido).join('')}`;
-        document.getElementById('copiarMensaje')?.addEventListener('click',async()=>{await navigator.clipboard?.writeText(shareText);alert('Mensaje copiado');});
+        cont.innerHTML=`<div class="section-head"><div><h2>${esc(ZONAS[zona].label)} · ${esc(ZONAS[zona].sub)}</h2><p>${esc(fechaTexto)}</p></div><div class="actions"><a class="pill-link" href="index.html?zona=${encodeURIComponent(zona)}&vista=resultados&ultima=1">Ver completo</a></div></div>${partidos.map(renderPartido).join('')}`;
       }catch(e){
         cont.innerHTML='<div class="empty">No se pudieron cargar los resultados. Probá de nuevo en unos minutos.</div>';
       }

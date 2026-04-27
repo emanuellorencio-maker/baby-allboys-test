@@ -18,6 +18,8 @@
     .eyebrow{margin:0 0 8px;color:#cfcfcf;font-size:11px;font-weight:1000;letter-spacing:1.4px;text-transform:uppercase}
     h1,h2{margin:0} h1{font-size:clamp(30px,7vw,54px)} h2{font-size:22px}
     .hero p,.hint{color:#d0d0d0;font-weight:800;line-height:1.45}
+    .steps{margin:12px 0 0;padding-left:22px;color:#ddd;font-weight:800;line-height:1.55}
+    .steps li{margin:5px 0}
     .grid{display:grid;gap:12px}
     .two{grid-template-columns:repeat(2,minmax(0,1fr))}
     .three{grid-template-columns:repeat(3,minmax(0,1fr))}
@@ -48,6 +50,20 @@
       <h1>Admin Prode Mundial</h1>
       <p>Genera JSON para copiar o descargar. No escribe en Vercel ni en el servidor: pegá el resultado en el archivo correspondiente y commitealo.</p>
       <p class="hint">Archivos actuales: <code>data/prode/participantes.json</code> y <code>data/prode/partidos.json</code>. También podés exportar <code>pronosticos.json</code>, <code>resultados_mundial.json</code> y <code>ranking.json</code>.</p>
+    </section>
+
+    <section class="panel">
+      <h2>Cómo usar este panel</h2>
+      <ol class="steps">
+        <li>Abrí <code>admin-prode.html</code> y cargá los JSON actuales.</li>
+        <li>Agregá participante: adulto, hijo, categoría y zona/equipo.</li>
+        <li>Cargá los pronósticos de cada participante para los partidos del Mundial.</li>
+        <li>Cuando se jueguen partidos, cargá el resultado real.</li>
+        <li>Recalculá puntajes para actualizar el ranking.</li>
+        <li>Copiá o descargá el JSON generado.</li>
+        <li>Reemplazá el archivo correspondiente dentro de <code>data/prode/</code>.</li>
+        <li>Hacé commit y push para publicar los cambios.</li>
+      </ol>
     </section>
 
     <section class="panel">
