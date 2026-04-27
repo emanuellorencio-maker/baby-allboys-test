@@ -26,8 +26,11 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests beautifulsoup4
 
-      - name: Ejecutar scraper
+      - name: Ejecutar scraper FEFI
         run: python scraper.py
+
+      - name: Ejecutar scraper noticias All Boys
+        run: python scraper_noticias.py
 
       - name: Validar JSON generados
         run: |
@@ -39,6 +42,7 @@ jobs:
               "fixture_i.json", "tabla_i.json", "resultados_i.json",
               "fixture_mat1.json", "tabla_mat1.json", "resultados_mat1.json",
               "fixture_mat4.json", "tabla_mat4.json", "resultados_mat4.json",
+              "data/noticias.json",
           ]
 
           errores = []
@@ -61,6 +65,19 @@ jobs:
 
               if data in ({}, [], "", None):
                   errores.append(f"Sin contenido útil: {archivo}")
+
+          noticias = json.load(open("data/noticias.json", "r", encoding="utf-8"))
+          if not isinstance(noticias, list) or len(noticias) < 3:
+              errores.append("data/noticias.json debe ser array con mínimo 3 noticias")
+          else:
+              for i, n in enumerate(noticias[:8], start=1):
+                  for k in ("tag", "fecha", "titulo", "descripcion", "link"):
+                      if k not in n or not str(n.get(k, "")).strip():
+                          errores.append(f"Noticia {i}: falta campo {k}")
+                  link = str(n.get("link", "")).strip()
+                  if not (link.startswith("http://") or link.startswith("https://")):
+                      errores.append(f"Noticia {i}: link inválido ({link})")
+
 
           if errores:
               print("VALIDACIÓN FALLIDA:")
@@ -103,72 +120,4 @@ jobs:
             git commit -m "Actualización automática FEFI"
             git pull --rebase origin main
             git push origin main
-          fi              "fixture_c.json", "tabla_c.json", "resultados_c.json",
-              "fixture_i.json", "tabla_i.json", "resultados_i.json",
-              "fixture_mat1.json", "tabla_mat1.json", "resultados_mat1.json",
-              "fixture_mat4.json", "tabla_mat4.json", "resultados_mat4.json",
-          ]
-
-          errores = []
-
-          for archivo in archivos:
-              if not os.path.exists(archivo):
-                  errores.append(f"Falta: {archivo}")
-                  continue
-
-              if os.path.getsize(archivo) == 0:
-                  errores.append(f"Vacío: {archivo}")
-                  continue
-
-              try:
-                  with open(archivo, "r", encoding="utf-8") as f:
-                      data = json.load(f)
-              except Exception as e:
-                  errores.append(f"JSON inválido en {archivo}: {e}")
-                  continue
-
-              if data in ({}, [], "", None):
-                  errores.append(f"Sin contenido útil: {archivo}")
-
-          if errores:
-              print("VALIDACIÓN FALLIDA:")
-              for e in errores:
-                  print("-", e)
-              sys.exit(1)
-
-          print("Todos los JSON tienen contenido válido.")
-          PY
-      - name: Copiar JSON al sitio
-        run: |
-          mkdir -p data/c data/i data/mat1 data/mat4
-
-          [ -f fixture_c.json ] && cp fixture_c.json data/c/fixture.json || true
-          [ -f tabla_c.json ] && cp tabla_c.json data/c/tabla.json || true
-          [ -f resultados_c.json ] && cp resultados_c.json data/c/resultados.json || true
-
-          [ -f fixture_i.json ] && cp fixture_i.json data/i/fixture.json || true
-          [ -f tabla_i.json ] && cp tabla_i.json data/i/tabla.json || true
-          [ -f resultados_i.json ] && cp resultados_i.json data/i/resultados.json || true
-
-          [ -f fixture_mat1.json ] && cp fixture_mat1.json data/mat1/fixture.json || true
-          [ -f tabla_mat1.json ] && cp tabla_mat1.json data/mat1/tabla.json || true
-          [ -f resultados_mat1.json ] && cp resultados_mat1.json data/mat1/resultados.json || true
-
-          [ -f fixture_mat4.json ] && cp fixture_mat4.json data/mat4/fixture.json || true
-          [ -f tabla_mat4.json ] && cp tabla_mat4.json data/mat4/tabla.json || true
-          [ -f resultados_mat4.json ] && cp resultados_mat4.json data/mat4/resultados.json || true
-
-      - name: Commit y push si hubo cambios
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add .
-
-          if git diff --cached --quiet; then
-            echo "No hay cambios"
-          else
-            git commit -m "Actualización automática FEFI"
-            git pull --rebase origin main
-            git push origin main
           fi
-          

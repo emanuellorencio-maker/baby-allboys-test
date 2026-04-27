@@ -1,20 +1,30 @@
 [
   {
-    "tag": "Destacado",
-    "titulo": "Consultá fixture, tablas y resultados",
-    "descripcion": "Elegí tu zona y navegá la información completa del baby fútbol de All Boys.",
-    "link": "#contenedor-principal"
+    "tag": "Actualidad",
+    "fecha": "2026-04-26",
+    "titulo": "Procedimiento de acreditación: All Boys vs San Miguel",
+    "descripcion": "Nota oficial publicada por el Club Atletico All Boys: Procedimiento de acreditación: All Boys vs San Miguel.",
+    "link": "https://caallboys.com.ar/2026/04/26/procedimiento-de-acreditacion-all-boys-vs-sanmiguel/"
   },
   {
-    "tag": "Info",
-    "titulo": "Seguinos en Instagram",
-    "descripcion": "Novedades, avisos y contenido del Baby All Boys.",
-    "link": "https://instagram.com/baby_allboys"
+    "tag": "Actualidad",
+    "fecha": "2026-04-25",
+    "titulo": "Caída por la mínima ante San Telmo",
+    "descripcion": "Nota oficial publicada por el Club Atletico All Boys: Caída por la mínima ante San Telmo.",
+    "link": "https://caallboys.com.ar/2026/04/25/caida-por-la-minima-ante-san-telmo/"
   },
   {
-    "tag": "Próximamente",
-    "titulo": "Se viene el Prode",
-    "descripcion": "Estamos preparando nuevas secciones para jugar y seguir los pronósticos.",
-    "link": "prode-mundial.html"
+    "tag": "Actualidad",
+    "fecha": "2026-04-25",
+    "titulo": "Empate en Villa Lynch",
+    "descripcion": "Nota oficial publicada por el Club Atletico All Boys: Empate en Villa Lynch.",
+    "link": "https://caallboys.com.ar/2026/04/25/empate-en-villa-lynch/"
+  },
+  {
+    "tag": "Club",
+    "fecha": "2026-04-22",
+    "titulo": "Arranque del torneo de Tercera ante Chacarita Juniors",
+    "descripcion": "Nota oficial publicada por el Club Atletico All Boys: Arranque del torneo de Tercera ante Chacarita Juniors.",
+    "link": "https://caallboys.com.ar/2026/04/22/arranque-del-torneo-de-tercera-ante-chacarita-juniors/"
   }
 ]
