@@ -1,23 +1,30 @@
 [
   {
     "tag": "Actualidad",
-    "fecha": "2026-04-25",
-    "titulo": "Visitá la actualidad oficial de All Boys",
-    "descripcion": "Entrá al sitio oficial del club para ver las últimas noticias actualizadas.",
-    "link": "https://caallboys.com.ar/actualidad/"
+    "fecha": "2026-04-26",
+    "titulo": "Procedimiento de acreditación: All Boys vs San Miguel",
+    "descripcion": "Nota oficial publicada por el Club Atletico All Boys: Procedimiento de acreditación: All Boys vs San Miguel.",
+    "link": "https://caallboys.com.ar/2026/04/26/procedimiento-de-acreditacion-all-boys-vs-sanmiguel/"
   },
   {
-    "tag": "Institucional",
+    "tag": "Actualidad",
     "fecha": "2026-04-25",
-    "titulo": "Portal oficial del Club Atlético All Boys",
-    "descripcion": "Comunicados, agenda y novedades institucionales del club.",
-    "link": "https://caallboys.com.ar/"
+    "titulo": "Caída por la mínima ante San Telmo",
+    "descripcion": "Nota oficial publicada por el Club Atletico All Boys: Caída por la mínima ante San Telmo.",
+    "link": "https://caallboys.com.ar/2026/04/25/caida-por-la-minima-ante-san-telmo/"
   },
   {
-    "tag": "Redes",
+    "tag": "Actualidad",
     "fecha": "2026-04-25",
-    "titulo": "Instagram oficial de All Boys",
-    "descripcion": "Seguimiento diario con contenidos y anuncios del club.",
-    "link": "https://www.instagram.com/caallboys/"
+    "titulo": "Empate en Villa Lynch",
+    "descripcion": "Nota oficial publicada por el Club Atletico All Boys: Empate en Villa Lynch.",
+    "link": "https://caallboys.com.ar/2026/04/25/empate-en-villa-lynch/"
+  },
+  {
+    "tag": "Club",
+    "fecha": "2026-04-22",
+    "titulo": "Arranque del torneo de Tercera ante Chacarita Juniors",
+    "descripcion": "Nota oficial publicada por el Club Atletico All Boys: Arranque del torneo de Tercera ante Chacarita Juniors.",
+    "link": "https://caallboys.com.ar/2026/04/22/arranque-del-torneo-de-tercera-ante-chacarita-juniors/"
   }
 ]
