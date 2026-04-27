@@ -1,0 +1,1562 @@
+[
+  {
+    "id": "M001",
+    "fecha": "2026-06-11",
+    "instancia": "Grupos",
+    "grupo": "Grupo A",
+    "sede": "Mexico City",
+    "equipo_local": "Mexico",
+    "equipo_visitante": "South Africa",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Fixture fase de grupos 2026 confirmado por FIFA/Reuters; resultados pendientes"
+  },
+  {
+    "id": "M002",
+    "fecha": "2026-06-12",
+    "instancia": "Grupos",
+    "grupo": "Grupo A",
+    "sede": "Guadalajara",
+    "equipo_local": "South Korea",
+    "equipo_visitante": "European Playoff D",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Fixture fase de grupos 2026 confirmado por FIFA/Reuters; resultados pendientes"
+  },
+  {
+    "id": "M003",
+    "fecha": "2026-06-12",
+    "instancia": "Grupos",
+    "grupo": "Grupo B",
+    "sede": "Toronto",
+    "equipo_local": "Canada",
+    "equipo_visitante": "European Playoff A",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Fixture fase de grupos 2026 confirmado por FIFA/Reuters; resultados pendientes"
+  },
+  {
+    "id": "M004",
+    "fecha": "2026-06-13",
+    "instancia": "Grupos",
+    "grupo": "Grupo B",
+    "sede": "San Francisco Bay Area",
+    "equipo_local": "Qatar",
+    "equipo_visitante": "Switzerland",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Fixture fase de grupos 2026 confirmado por FIFA/Reuters; resultados pendientes"
+  },
+  {
+    "id": "M005",
+    "fecha": "2026-06-13",
+    "instancia": "Grupos",
+    "grupo": "Grupo C",
+    "sede": "New York New Jersey",
+    "equipo_local": "Brazil",
+    "equipo_visitante": "Morocco",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Fixture fase de grupos 2026 confirmado por FIFA/Reuters; resultados pendientes"
+  },
+  {
+    "id": "M006",
+    "fecha": "2026-06-14",
+    "instancia": "Grupos",
+    "grupo": "Grupo C",
+    "sede": "Boston",
+    "equipo_local": "Haiti",
+    "equipo_visitante": "Scotland",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Fixture fase de grupos 2026 confirmado por FIFA/Reuters; resultados pendientes"
+  },
+  {
+    "id": "M007",
+    "fecha": "2026-06-13",
+    "instancia": "Grupos",
+    "grupo": "Grupo D",
+    "sede": "Los Angeles",
+    "equipo_local": "United States",
+    "equipo_visitante": "Paraguay",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Fixture fase de grupos 2026 confirmado por FIFA/Reuters; resultados pendientes"
+  },
+  {
+    "id": "M008",
+    "fecha": "2026-06-13",
+    "instancia": "Grupos",
+    "grupo": "Grupo D",
+    "sede": "Vancouver",
+    "equipo_local": "Australia",
+    "equipo_visitante": "European Playoff C",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Fixture fase de grupos 2026 confirmado por FIFA/Reuters; resultados pendientes"
+  },
+  {
+    "id": "M009",
+    "fecha": "2026-06-14",
+    "instancia": "Grupos",
+    "grupo": "Grupo E",
+    "sede": "Houston",
+    "equipo_local": "Germany",
+    "equipo_visitante": "Curacao",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Fixture fase de grupos 2026 confirmado por FIFA/Reuters; resultados pendientes"
+  },
+  {
+    "id": "M010",
+    "fecha": "2026-06-14",
+    "instancia": "Grupos",
+    "grupo": "Grupo E",
+    "sede": "Philadelphia",
+    "equipo_local": "Ivory Coast",
+    "equipo_visitante": "Ecuador",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Fixture fase de grupos 2026 confirmado por FIFA/Reuters; resultados pendientes"
+  },
+  {
+    "id": "M011",
+    "fecha": "2026-06-14",
+    "instancia": "Grupos",
+    "grupo": "Grupo F",
+    "sede": "Dallas",
+    "equipo_local": "Netherlands",
+    "equipo_visitante": "Japan",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Fixture fase de grupos 2026 confirmado por FIFA/Reuters; resultados pendientes"
+  },
+  {
+    "id": "M012",
+    "fecha": "2026-06-15",
+    "instancia": "Grupos",
+    "grupo": "Grupo F",
+    "sede": "Monterrey",
+    "equipo_local": "European Playoff B",
+    "equipo_visitante": "Tunisia",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Fixture fase de grupos 2026 confirmado por FIFA/Reuters; resultados pendientes"
+  },
+  {
+    "id": "M013",
+    "fecha": "2026-06-15",
+    "instancia": "Grupos",
+    "grupo": "Grupo G",
+    "sede": "Seattle",
+    "equipo_local": "Belgium",
+    "equipo_visitante": "Egypt",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Fixture fase de grupos 2026 confirmado por FIFA/Reuters; resultados pendientes"
+  },
+  {
+    "id": "M014",
+    "fecha": "2026-06-16",
+    "instancia": "Grupos",
+    "grupo": "Grupo G",
+    "sede": "Los Angeles",
+    "equipo_local": "Iran",
+    "equipo_visitante": "New Zealand",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Fixture fase de grupos 2026 confirmado por FIFA/Reuters; resultados pendientes"
+  },
+  {
+    "id": "M015",
+    "fecha": "2026-06-15",
+    "instancia": "Grupos",
+    "grupo": "Grupo H",
+    "sede": "Atlanta",
+    "equipo_local": "Spain",
+    "equipo_visitante": "Cape Verde",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Fixture fase de grupos 2026 confirmado por FIFA/Reuters; resultados pendientes"
+  },
+  {
+    "id": "M016",
+    "fecha": "2026-06-15",
+    "instancia": "Grupos",
+    "grupo": "Grupo H",
+    "sede": "Miami",
+    "equipo_local": "Saudi Arabia",
+    "equipo_visitante": "Uruguay",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Fixture fase de grupos 2026 confirmado por FIFA/Reuters; resultados pendientes"
+  },
+  {
+    "id": "M017",
+    "fecha": "2026-06-16",
+    "instancia": "Grupos",
+    "grupo": "Grupo I",
+    "sede": "New York New Jersey",
+    "equipo_local": "France",
+    "equipo_visitante": "Senegal",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Fixture fase de grupos 2026 confirmado por FIFA/Reuters; resultados pendientes"
+  },
+  {
+    "id": "M018",
+    "fecha": "2026-06-16",
+    "instancia": "Grupos",
+    "grupo": "Grupo I",
+    "sede": "Boston",
+    "equipo_local": "FIFA Playoff 2",
+    "equipo_visitante": "Norway",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Fixture fase de grupos 2026 confirmado por FIFA/Reuters; resultados pendientes"
+  },
+  {
+    "id": "M019",
+    "fecha": "2026-06-17",
+    "instancia": "Grupos",
+    "grupo": "Grupo J",
+    "sede": "Kansas City",
+    "equipo_local": "Argentina",
+    "equipo_visitante": "Algeria",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Fixture fase de grupos 2026 confirmado por FIFA/Reuters; resultados pendientes"
+  },
+  {
+    "id": "M020",
+    "fecha": "2026-06-17",
+    "instancia": "Grupos",
+    "grupo": "Grupo J",
+    "sede": "San Francisco Bay Area",
+    "equipo_local": "Austria",
+    "equipo_visitante": "Jordan",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Fixture fase de grupos 2026 confirmado por FIFA/Reuters; resultados pendientes"
+  },
+  {
+    "id": "M021",
+    "fecha": "2026-06-17",
+    "instancia": "Grupos",
+    "grupo": "Grupo K",
+    "sede": "Houston",
+    "equipo_local": "Portugal",
+    "equipo_visitante": "FIFA Playoff 1",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Fixture fase de grupos 2026 confirmado por FIFA/Reuters; resultados pendientes"
+  },
+  {
+    "id": "M022",
+    "fecha": "2026-06-18",
+    "instancia": "Grupos",
+    "grupo": "Grupo K",
+    "sede": "Mexico City",
+    "equipo_local": "Uzbekistan",
+    "equipo_visitante": "Colombia",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Fixture fase de grupos 2026 confirmado por FIFA/Reuters; resultados pendientes"
+  },
+  {
+    "id": "M023",
+    "fecha": "2026-06-17",
+    "instancia": "Grupos",
+    "grupo": "Grupo L",
+    "sede": "Dallas",
+    "equipo_local": "England",
+    "equipo_visitante": "Croatia",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Fixture fase de grupos 2026 confirmado por FIFA/Reuters; resultados pendientes"
+  },
+  {
+    "id": "M024",
+    "fecha": "2026-06-17",
+    "instancia": "Grupos",
+    "grupo": "Grupo L",
+    "sede": "Toronto",
+    "equipo_local": "Ghana",
+    "equipo_visitante": "Panama",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Fixture fase de grupos 2026 confirmado por FIFA/Reuters; resultados pendientes"
+  },
+  {
+    "id": "M025",
+    "fecha": "2026-06-18",
+    "instancia": "Grupos",
+    "grupo": "Grupo A",
+    "sede": "Atlanta",
+    "equipo_local": "European Playoff D",
+    "equipo_visitante": "South Africa",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Fixture fase de grupos 2026 confirmado por FIFA/Reuters; resultados pendientes"
+  },
+  {
+    "id": "M026",
+    "fecha": "2026-06-19",
+    "instancia": "Grupos",
+    "grupo": "Grupo A",
+    "sede": "Guadalajara",
+    "equipo_local": "Mexico",
+    "equipo_visitante": "South Korea",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Fixture fase de grupos 2026 confirmado por FIFA/Reuters; resultados pendientes"
+  },
+  {
+    "id": "M027",
+    "fecha": "2026-06-18",
+    "instancia": "Grupos",
+    "grupo": "Grupo B",
+    "sede": "Los Angeles",
+    "equipo_local": "Switzerland",
+    "equipo_visitante": "European Playoff A",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Fixture fase de grupos 2026 confirmado por FIFA/Reuters; resultados pendientes"
+  },
+  {
+    "id": "M028",
+    "fecha": "2026-06-18",
+    "instancia": "Grupos",
+    "grupo": "Grupo B",
+    "sede": "Vancouver",
+    "equipo_local": "Canada",
+    "equipo_visitante": "Qatar",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Fixture fase de grupos 2026 confirmado por FIFA/Reuters; resultados pendientes"
+  },
+  {
+    "id": "M029",
+    "fecha": "2026-06-19",
+    "instancia": "Grupos",
+    "grupo": "Grupo C",
+    "sede": "Boston",
+    "equipo_local": "Scotland",
+    "equipo_visitante": "Morocco",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Fixture fase de grupos 2026 confirmado por FIFA/Reuters; resultados pendientes"
+  },
+  {
+    "id": "M030",
+    "fecha": "2026-06-20",
+    "instancia": "Grupos",
+    "grupo": "Grupo C",
+    "sede": "Philadelphia",
+    "equipo_local": "Brazil",
+    "equipo_visitante": "Haiti",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Fixture fase de grupos 2026 confirmado por FIFA/Reuters; resultados pendientes"
+  },
+  {
+    "id": "M031",
+    "fecha": "2026-06-19",
+    "instancia": "Grupos",
+    "grupo": "Grupo D",
+    "sede": "San Francisco Bay Area",
+    "equipo_local": "European Playoff C",
+    "equipo_visitante": "Paraguay",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Fixture fase de grupos 2026 confirmado por FIFA/Reuters; resultados pendientes"
+  },
+  {
+    "id": "M032",
+    "fecha": "2026-06-19",
+    "instancia": "Grupos",
+    "grupo": "Grupo D",
+    "sede": "Seattle",
+    "equipo_local": "United States",
+    "equipo_visitante": "Australia",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Fixture fase de grupos 2026 confirmado por FIFA/Reuters; resultados pendientes"
+  },
+  {
+    "id": "M033",
+    "fecha": "2026-06-20",
+    "instancia": "Grupos",
+    "grupo": "Grupo E",
+    "sede": "Toronto",
+    "equipo_local": "Germany",
+    "equipo_visitante": "Ivory Coast",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Fixture fase de grupos 2026 confirmado por FIFA/Reuters; resultados pendientes"
+  },
+  {
+    "id": "M034",
+    "fecha": "2026-06-21",
+    "instancia": "Grupos",
+    "grupo": "Grupo E",
+    "sede": "Kansas City",
+    "equipo_local": "Ecuador",
+    "equipo_visitante": "Curacao",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Fixture fase de grupos 2026 confirmado por FIFA/Reuters; resultados pendientes"
+  },
+  {
+    "id": "M035",
+    "fecha": "2026-06-20",
+    "instancia": "Grupos",
+    "grupo": "Grupo F",
+    "sede": "Houston",
+    "equipo_local": "Netherlands",
+    "equipo_visitante": "European Playoff B",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Fixture fase de grupos 2026 confirmado por FIFA/Reuters; resultados pendientes"
+  },
+  {
+    "id": "M036",
+    "fecha": "2026-06-21",
+    "instancia": "Grupos",
+    "grupo": "Grupo F",
+    "sede": "Monterrey",
+    "equipo_local": "Tunisia",
+    "equipo_visitante": "Japan",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Fixture fase de grupos 2026 confirmado por FIFA/Reuters; resultados pendientes"
+  },
+  {
+    "id": "M037",
+    "fecha": "2026-06-21",
+    "instancia": "Grupos",
+    "grupo": "Grupo G",
+    "sede": "Los Angeles",
+    "equipo_local": "Belgium",
+    "equipo_visitante": "Iran",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Fixture fase de grupos 2026 confirmado por FIFA/Reuters; resultados pendientes"
+  },
+  {
+    "id": "M038",
+    "fecha": "2026-06-22",
+    "instancia": "Grupos",
+    "grupo": "Grupo G",
+    "sede": "Vancouver",
+    "equipo_local": "New Zealand",
+    "equipo_visitante": "Egypt",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Fixture fase de grupos 2026 confirmado por FIFA/Reuters; resultados pendientes"
+  },
+  {
+    "id": "M039",
+    "fecha": "2026-06-21",
+    "instancia": "Grupos",
+    "grupo": "Grupo H",
+    "sede": "Atlanta",
+    "equipo_local": "Spain",
+    "equipo_visitante": "Saudi Arabia",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Fixture fase de grupos 2026 confirmado por FIFA/Reuters; resultados pendientes"
+  },
+  {
+    "id": "M040",
+    "fecha": "2026-06-21",
+    "instancia": "Grupos",
+    "grupo": "Grupo H",
+    "sede": "Miami",
+    "equipo_local": "Uruguay",
+    "equipo_visitante": "Cape Verde",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Fixture fase de grupos 2026 confirmado por FIFA/Reuters; resultados pendientes"
+  },
+  {
+    "id": "M041",
+    "fecha": "2026-06-22",
+    "instancia": "Grupos",
+    "grupo": "Grupo I",
+    "sede": "Philadelphia",
+    "equipo_local": "France",
+    "equipo_visitante": "FIFA Playoff 2",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Fixture fase de grupos 2026 confirmado por FIFA/Reuters; resultados pendientes"
+  },
+  {
+    "id": "M042",
+    "fecha": "2026-06-23",
+    "instancia": "Grupos",
+    "grupo": "Grupo I",
+    "sede": "New York New Jersey",
+    "equipo_local": "Norway",
+    "equipo_visitante": "Senegal",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Fixture fase de grupos 2026 confirmado por FIFA/Reuters; resultados pendientes"
+  },
+  {
+    "id": "M043",
+    "fecha": "2026-06-22",
+    "instancia": "Grupos",
+    "grupo": "Grupo J",
+    "sede": "Dallas",
+    "equipo_local": "Argentina",
+    "equipo_visitante": "Austria",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Fixture fase de grupos 2026 confirmado por FIFA/Reuters; resultados pendientes"
+  },
+  {
+    "id": "M044",
+    "fecha": "2026-06-23",
+    "instancia": "Grupos",
+    "grupo": "Grupo J",
+    "sede": "San Francisco Bay Area",
+    "equipo_local": "Jordan",
+    "equipo_visitante": "Algeria",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Fixture fase de grupos 2026 confirmado por FIFA/Reuters; resultados pendientes"
+  },
+  {
+    "id": "M045",
+    "fecha": "2026-06-23",
+    "instancia": "Grupos",
+    "grupo": "Grupo K",
+    "sede": "Houston",
+    "equipo_local": "Portugal",
+    "equipo_visitante": "Uzbekistan",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Fixture fase de grupos 2026 confirmado por FIFA/Reuters; resultados pendientes"
+  },
+  {
+    "id": "M046",
+    "fecha": "2026-06-24",
+    "instancia": "Grupos",
+    "grupo": "Grupo K",
+    "sede": "Guadalajara",
+    "equipo_local": "Colombia",
+    "equipo_visitante": "FIFA Playoff 1",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Fixture fase de grupos 2026 confirmado por FIFA/Reuters; resultados pendientes"
+  },
+  {
+    "id": "M047",
+    "fecha": "2026-06-23",
+    "instancia": "Grupos",
+    "grupo": "Grupo L",
+    "sede": "Boston",
+    "equipo_local": "England",
+    "equipo_visitante": "Ghana",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Fixture fase de grupos 2026 confirmado por FIFA/Reuters; resultados pendientes"
+  },
+  {
+    "id": "M048",
+    "fecha": "2026-06-23",
+    "instancia": "Grupos",
+    "grupo": "Grupo L",
+    "sede": "Toronto",
+    "equipo_local": "Panama",
+    "equipo_visitante": "Croatia",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Fixture fase de grupos 2026 confirmado por FIFA/Reuters; resultados pendientes"
+  },
+  {
+    "id": "M049",
+    "fecha": "2026-06-25",
+    "instancia": "Grupos",
+    "grupo": "Grupo A",
+    "sede": "Mexico City",
+    "equipo_local": "European Playoff D",
+    "equipo_visitante": "Mexico",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Fixture fase de grupos 2026 confirmado por FIFA/Reuters; resultados pendientes"
+  },
+  {
+    "id": "M050",
+    "fecha": "2026-06-25",
+    "instancia": "Grupos",
+    "grupo": "Grupo A",
+    "sede": "Monterrey",
+    "equipo_local": "South Africa",
+    "equipo_visitante": "South Korea",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Fixture fase de grupos 2026 confirmado por FIFA/Reuters; resultados pendientes"
+  },
+  {
+    "id": "M051",
+    "fecha": "2026-06-24",
+    "instancia": "Grupos",
+    "grupo": "Grupo B",
+    "sede": "Vancouver",
+    "equipo_local": "Switzerland",
+    "equipo_visitante": "Canada",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Fixture fase de grupos 2026 confirmado por FIFA/Reuters; resultados pendientes"
+  },
+  {
+    "id": "M052",
+    "fecha": "2026-06-24",
+    "instancia": "Grupos",
+    "grupo": "Grupo B",
+    "sede": "Seattle",
+    "equipo_local": "European Playoff A",
+    "equipo_visitante": "Qatar",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Fixture fase de grupos 2026 confirmado por FIFA/Reuters; resultados pendientes"
+  },
+  {
+    "id": "M053",
+    "fecha": "2026-06-24",
+    "instancia": "Grupos",
+    "grupo": "Grupo C",
+    "sede": "Miami",
+    "equipo_local": "Scotland",
+    "equipo_visitante": "Brazil",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Fixture fase de grupos 2026 confirmado por FIFA/Reuters; resultados pendientes"
+  },
+  {
+    "id": "M054",
+    "fecha": "2026-06-24",
+    "instancia": "Grupos",
+    "grupo": "Grupo C",
+    "sede": "Atlanta",
+    "equipo_local": "Morocco",
+    "equipo_visitante": "Haiti",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Fixture fase de grupos 2026 confirmado por FIFA/Reuters; resultados pendientes"
+  },
+  {
+    "id": "M055",
+    "fecha": "2026-06-26",
+    "instancia": "Grupos",
+    "grupo": "Grupo D",
+    "sede": "Los Angeles",
+    "equipo_local": "European Playoff C",
+    "equipo_visitante": "United States",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Fixture fase de grupos 2026 confirmado por FIFA/Reuters; resultados pendientes"
+  },
+  {
+    "id": "M056",
+    "fecha": "2026-06-26",
+    "instancia": "Grupos",
+    "grupo": "Grupo D",
+    "sede": "San Francisco Bay Area",
+    "equipo_local": "Paraguay",
+    "equipo_visitante": "Australia",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Fixture fase de grupos 2026 confirmado por FIFA/Reuters; resultados pendientes"
+  },
+  {
+    "id": "M057",
+    "fecha": "2026-06-25",
+    "instancia": "Grupos",
+    "grupo": "Grupo E",
+    "sede": "New York New Jersey",
+    "equipo_local": "Ecuador",
+    "equipo_visitante": "Germany",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Fixture fase de grupos 2026 confirmado por FIFA/Reuters; resultados pendientes"
+  },
+  {
+    "id": "M058",
+    "fecha": "2026-06-25",
+    "instancia": "Grupos",
+    "grupo": "Grupo E",
+    "sede": "New York New Jersey",
+    "equipo_local": "Curacao",
+    "equipo_visitante": "Ivory Coast",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Fixture fase de grupos 2026 confirmado por FIFA/Reuters; resultados pendientes"
+  },
+  {
+    "id": "M059",
+    "fecha": "2026-06-25",
+    "instancia": "Grupos",
+    "grupo": "Grupo F",
+    "sede": "Dallas",
+    "equipo_local": "Japan",
+    "equipo_visitante": "European Playoff B",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Fixture fase de grupos 2026 confirmado por FIFA/Reuters; resultados pendientes"
+  },
+  {
+    "id": "M060",
+    "fecha": "2026-06-25",
+    "instancia": "Grupos",
+    "grupo": "Grupo F",
+    "sede": "Kansas City",
+    "equipo_local": "Tunisia",
+    "equipo_visitante": "Netherlands",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Fixture fase de grupos 2026 confirmado por FIFA/Reuters; resultados pendientes"
+  },
+  {
+    "id": "M061",
+    "fecha": "2026-06-27",
+    "instancia": "Grupos",
+    "grupo": "Grupo G",
+    "sede": "Seattle",
+    "equipo_local": "Egypt",
+    "equipo_visitante": "Iran",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Fixture fase de grupos 2026 confirmado por FIFA/Reuters; resultados pendientes"
+  },
+  {
+    "id": "M062",
+    "fecha": "2026-06-27",
+    "instancia": "Grupos",
+    "grupo": "Grupo G",
+    "sede": "Vancouver",
+    "equipo_local": "New Zealand",
+    "equipo_visitante": "Belgium",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Fixture fase de grupos 2026 confirmado por FIFA/Reuters; resultados pendientes"
+  },
+  {
+    "id": "M063",
+    "fecha": "2026-06-27",
+    "instancia": "Grupos",
+    "grupo": "Grupo H",
+    "sede": "Houston",
+    "equipo_local": "Cape Verde",
+    "equipo_visitante": "Saudi Arabia",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Fixture fase de grupos 2026 confirmado por FIFA/Reuters; resultados pendientes"
+  },
+  {
+    "id": "M064",
+    "fecha": "2026-06-27",
+    "instancia": "Grupos",
+    "grupo": "Grupo H",
+    "sede": "Guadalajara",
+    "equipo_local": "Uruguay",
+    "equipo_visitante": "Spain",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Fixture fase de grupos 2026 confirmado por FIFA/Reuters; resultados pendientes"
+  },
+  {
+    "id": "M065",
+    "fecha": "2026-06-26",
+    "instancia": "Grupos",
+    "grupo": "Grupo I",
+    "sede": "Boston",
+    "equipo_local": "Norway",
+    "equipo_visitante": "France",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Fixture fase de grupos 2026 confirmado por FIFA/Reuters; resultados pendientes"
+  },
+  {
+    "id": "M066",
+    "fecha": "2026-06-26",
+    "instancia": "Grupos",
+    "grupo": "Grupo I",
+    "sede": "Toronto",
+    "equipo_local": "Senegal",
+    "equipo_visitante": "FIFA Playoff 2",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Fixture fase de grupos 2026 confirmado por FIFA/Reuters; resultados pendientes"
+  },
+  {
+    "id": "M067",
+    "fecha": "2026-06-28",
+    "instancia": "Grupos",
+    "grupo": "Grupo J",
+    "sede": "Kansas City",
+    "equipo_local": "Algeria",
+    "equipo_visitante": "Austria",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Fixture fase de grupos 2026 confirmado por FIFA/Reuters; resultados pendientes"
+  },
+  {
+    "id": "M068",
+    "fecha": "2026-06-28",
+    "instancia": "Grupos",
+    "grupo": "Grupo J",
+    "sede": "Dallas",
+    "equipo_local": "Jordan",
+    "equipo_visitante": "Argentina",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Fixture fase de grupos 2026 confirmado por FIFA/Reuters; resultados pendientes"
+  },
+  {
+    "id": "M069",
+    "fecha": "2026-06-27",
+    "instancia": "Grupos",
+    "grupo": "Grupo K",
+    "sede": "Miami",
+    "equipo_local": "Colombia",
+    "equipo_visitante": "Portugal",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Fixture fase de grupos 2026 confirmado por FIFA/Reuters; resultados pendientes"
+  },
+  {
+    "id": "M070",
+    "fecha": "2026-06-27",
+    "instancia": "Grupos",
+    "grupo": "Grupo K",
+    "sede": "Atlanta",
+    "equipo_local": "FIFA Playoff 1",
+    "equipo_visitante": "Uzbekistan",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Fixture fase de grupos 2026 confirmado por FIFA/Reuters; resultados pendientes"
+  },
+  {
+    "id": "M071",
+    "fecha": "2026-06-27",
+    "instancia": "Grupos",
+    "grupo": "Grupo L",
+    "sede": "New York New Jersey",
+    "equipo_local": "Panama",
+    "equipo_visitante": "England",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Fixture fase de grupos 2026 confirmado por FIFA/Reuters; resultados pendientes"
+  },
+  {
+    "id": "M072",
+    "fecha": "2026-06-27",
+    "instancia": "Grupos",
+    "grupo": "Grupo L",
+    "sede": "Philadelphia",
+    "equipo_local": "Croatia",
+    "equipo_visitante": "Ghana",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Fixture fase de grupos 2026 confirmado por FIFA/Reuters; resultados pendientes"
+  },
+  {
+    "id": "M073",
+    "fecha": "2026-06-28",
+    "instancia": "32avos",
+    "grupo": "",
+    "sede": "",
+    "equipo_local": "Pendiente",
+    "equipo_visitante": "Pendiente",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Placeholder eliminatorias Mundial 2026; completar clasificados/sede cuando corresponda"
+  },
+  {
+    "id": "M074",
+    "fecha": "2026-06-28",
+    "instancia": "32avos",
+    "grupo": "",
+    "sede": "",
+    "equipo_local": "Pendiente",
+    "equipo_visitante": "Pendiente",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Placeholder eliminatorias Mundial 2026; completar clasificados/sede cuando corresponda"
+  },
+  {
+    "id": "M075",
+    "fecha": "2026-06-29",
+    "instancia": "32avos",
+    "grupo": "",
+    "sede": "",
+    "equipo_local": "Pendiente",
+    "equipo_visitante": "Pendiente",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Placeholder eliminatorias Mundial 2026; completar clasificados/sede cuando corresponda"
+  },
+  {
+    "id": "M076",
+    "fecha": "2026-06-29",
+    "instancia": "32avos",
+    "grupo": "",
+    "sede": "",
+    "equipo_local": "Pendiente",
+    "equipo_visitante": "Pendiente",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Placeholder eliminatorias Mundial 2026; completar clasificados/sede cuando corresponda"
+  },
+  {
+    "id": "M077",
+    "fecha": "2026-06-30",
+    "instancia": "32avos",
+    "grupo": "",
+    "sede": "",
+    "equipo_local": "Pendiente",
+    "equipo_visitante": "Pendiente",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Placeholder eliminatorias Mundial 2026; completar clasificados/sede cuando corresponda"
+  },
+  {
+    "id": "M078",
+    "fecha": "2026-06-30",
+    "instancia": "32avos",
+    "grupo": "",
+    "sede": "",
+    "equipo_local": "Pendiente",
+    "equipo_visitante": "Pendiente",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Placeholder eliminatorias Mundial 2026; completar clasificados/sede cuando corresponda"
+  },
+  {
+    "id": "M079",
+    "fecha": "2026-07-01",
+    "instancia": "32avos",
+    "grupo": "",
+    "sede": "",
+    "equipo_local": "Pendiente",
+    "equipo_visitante": "Pendiente",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Placeholder eliminatorias Mundial 2026; completar clasificados/sede cuando corresponda"
+  },
+  {
+    "id": "M080",
+    "fecha": "2026-07-01",
+    "instancia": "32avos",
+    "grupo": "",
+    "sede": "",
+    "equipo_local": "Pendiente",
+    "equipo_visitante": "Pendiente",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Placeholder eliminatorias Mundial 2026; completar clasificados/sede cuando corresponda"
+  },
+  {
+    "id": "M081",
+    "fecha": "2026-07-02",
+    "instancia": "32avos",
+    "grupo": "",
+    "sede": "",
+    "equipo_local": "Pendiente",
+    "equipo_visitante": "Pendiente",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Placeholder eliminatorias Mundial 2026; completar clasificados/sede cuando corresponda"
+  },
+  {
+    "id": "M082",
+    "fecha": "2026-07-02",
+    "instancia": "32avos",
+    "grupo": "",
+    "sede": "",
+    "equipo_local": "Pendiente",
+    "equipo_visitante": "Pendiente",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Placeholder eliminatorias Mundial 2026; completar clasificados/sede cuando corresponda"
+  },
+  {
+    "id": "M083",
+    "fecha": "2026-07-03",
+    "instancia": "32avos",
+    "grupo": "",
+    "sede": "",
+    "equipo_local": "Pendiente",
+    "equipo_visitante": "Pendiente",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Placeholder eliminatorias Mundial 2026; completar clasificados/sede cuando corresponda"
+  },
+  {
+    "id": "M084",
+    "fecha": "2026-07-03",
+    "instancia": "32avos",
+    "grupo": "",
+    "sede": "",
+    "equipo_local": "Pendiente",
+    "equipo_visitante": "Pendiente",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Placeholder eliminatorias Mundial 2026; completar clasificados/sede cuando corresponda"
+  },
+  {
+    "id": "M085",
+    "fecha": "2026-07-03",
+    "instancia": "32avos",
+    "grupo": "",
+    "sede": "",
+    "equipo_local": "Pendiente",
+    "equipo_visitante": "Pendiente",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Placeholder eliminatorias Mundial 2026; completar clasificados/sede cuando corresponda"
+  },
+  {
+    "id": "M086",
+    "fecha": "2026-07-03",
+    "instancia": "32avos",
+    "grupo": "",
+    "sede": "",
+    "equipo_local": "Pendiente",
+    "equipo_visitante": "Pendiente",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Placeholder eliminatorias Mundial 2026; completar clasificados/sede cuando corresponda"
+  },
+  {
+    "id": "M087",
+    "fecha": "2026-07-03",
+    "instancia": "32avos",
+    "grupo": "",
+    "sede": "",
+    "equipo_local": "Pendiente",
+    "equipo_visitante": "Pendiente",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Placeholder eliminatorias Mundial 2026; completar clasificados/sede cuando corresponda"
+  },
+  {
+    "id": "M088",
+    "fecha": "2026-07-03",
+    "instancia": "32avos",
+    "grupo": "",
+    "sede": "",
+    "equipo_local": "Pendiente",
+    "equipo_visitante": "Pendiente",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Placeholder eliminatorias Mundial 2026; completar clasificados/sede cuando corresponda"
+  },
+  {
+    "id": "M089",
+    "fecha": "2026-07-04",
+    "instancia": "Octavos",
+    "grupo": "",
+    "sede": "",
+    "equipo_local": "Pendiente",
+    "equipo_visitante": "Pendiente",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Placeholder eliminatorias Mundial 2026; completar clasificados/sede cuando corresponda"
+  },
+  {
+    "id": "M090",
+    "fecha": "2026-07-04",
+    "instancia": "Octavos",
+    "grupo": "",
+    "sede": "",
+    "equipo_local": "Pendiente",
+    "equipo_visitante": "Pendiente",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Placeholder eliminatorias Mundial 2026; completar clasificados/sede cuando corresponda"
+  },
+  {
+    "id": "M091",
+    "fecha": "2026-07-05",
+    "instancia": "Octavos",
+    "grupo": "",
+    "sede": "",
+    "equipo_local": "Pendiente",
+    "equipo_visitante": "Pendiente",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Placeholder eliminatorias Mundial 2026; completar clasificados/sede cuando corresponda"
+  },
+  {
+    "id": "M092",
+    "fecha": "2026-07-05",
+    "instancia": "Octavos",
+    "grupo": "",
+    "sede": "",
+    "equipo_local": "Pendiente",
+    "equipo_visitante": "Pendiente",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Placeholder eliminatorias Mundial 2026; completar clasificados/sede cuando corresponda"
+  },
+  {
+    "id": "M093",
+    "fecha": "2026-07-06",
+    "instancia": "Octavos",
+    "grupo": "",
+    "sede": "",
+    "equipo_local": "Pendiente",
+    "equipo_visitante": "Pendiente",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Placeholder eliminatorias Mundial 2026; completar clasificados/sede cuando corresponda"
+  },
+  {
+    "id": "M094",
+    "fecha": "2026-07-06",
+    "instancia": "Octavos",
+    "grupo": "",
+    "sede": "",
+    "equipo_local": "Pendiente",
+    "equipo_visitante": "Pendiente",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Placeholder eliminatorias Mundial 2026; completar clasificados/sede cuando corresponda"
+  },
+  {
+    "id": "M095",
+    "fecha": "2026-07-07",
+    "instancia": "Octavos",
+    "grupo": "",
+    "sede": "",
+    "equipo_local": "Pendiente",
+    "equipo_visitante": "Pendiente",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Placeholder eliminatorias Mundial 2026; completar clasificados/sede cuando corresponda"
+  },
+  {
+    "id": "M096",
+    "fecha": "2026-07-07",
+    "instancia": "Octavos",
+    "grupo": "",
+    "sede": "",
+    "equipo_local": "Pendiente",
+    "equipo_visitante": "Pendiente",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Placeholder eliminatorias Mundial 2026; completar clasificados/sede cuando corresponda"
+  },
+  {
+    "id": "M097",
+    "fecha": "2026-07-09",
+    "instancia": "Cuartos",
+    "grupo": "",
+    "sede": "",
+    "equipo_local": "Pendiente",
+    "equipo_visitante": "Pendiente",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Placeholder eliminatorias Mundial 2026; completar clasificados/sede cuando corresponda"
+  },
+  {
+    "id": "M098",
+    "fecha": "2026-07-10",
+    "instancia": "Cuartos",
+    "grupo": "",
+    "sede": "",
+    "equipo_local": "Pendiente",
+    "equipo_visitante": "Pendiente",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Placeholder eliminatorias Mundial 2026; completar clasificados/sede cuando corresponda"
+  },
+  {
+    "id": "M099",
+    "fecha": "2026-07-11",
+    "instancia": "Cuartos",
+    "grupo": "",
+    "sede": "",
+    "equipo_local": "Pendiente",
+    "equipo_visitante": "Pendiente",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Placeholder eliminatorias Mundial 2026; completar clasificados/sede cuando corresponda"
+  },
+  {
+    "id": "M100",
+    "fecha": "2026-07-11",
+    "instancia": "Cuartos",
+    "grupo": "",
+    "sede": "",
+    "equipo_local": "Pendiente",
+    "equipo_visitante": "Pendiente",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Placeholder eliminatorias Mundial 2026; completar clasificados/sede cuando corresponda"
+  },
+  {
+    "id": "M101",
+    "fecha": "2026-07-14",
+    "instancia": "Semifinal",
+    "grupo": "",
+    "sede": "",
+    "equipo_local": "Pendiente",
+    "equipo_visitante": "Pendiente",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Placeholder eliminatorias Mundial 2026; completar clasificados/sede cuando corresponda"
+  },
+  {
+    "id": "M102",
+    "fecha": "2026-07-15",
+    "instancia": "Semifinal",
+    "grupo": "",
+    "sede": "",
+    "equipo_local": "Pendiente",
+    "equipo_visitante": "Pendiente",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Placeholder eliminatorias Mundial 2026; completar clasificados/sede cuando corresponda"
+  },
+  {
+    "id": "M103",
+    "fecha": "2026-07-18",
+    "instancia": "Tercer puesto",
+    "grupo": "",
+    "sede": "",
+    "equipo_local": "Pendiente",
+    "equipo_visitante": "Pendiente",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Placeholder eliminatorias Mundial 2026; completar clasificados/sede cuando corresponda"
+  },
+  {
+    "id": "M104",
+    "fecha": "2026-07-19",
+    "instancia": "Final",
+    "grupo": "",
+    "sede": "",
+    "equipo_local": "Pendiente",
+    "equipo_visitante": "Pendiente",
+    "resultado_real": {
+      "goles_local": null,
+      "goles_visitante": null
+    },
+    "estado": "abierto",
+    "fuente": "Placeholder eliminatorias Mundial 2026; completar clasificados/sede cuando corresponda"
+  }
+]

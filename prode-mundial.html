@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#060606" />
+  <title>Prode Mundial Baby All Boys</title>
+  <link rel="icon" href="data:," />
+  <link rel="stylesheet" href="css/prode-mundial.css" />
+</head>
+<body>
+  <header class="hero">
+    <nav class="topbar">
+      <a href="index.html" class="back-link">Baby All Boys</a>
+      <span class="test-pill">TEST</span>
+    </nav>
+    <section class="hero-content">
+      <p class="eyebrow">Mundial real 2026</p>
+      <h1>Prode Mundial Baby All Boys</h1>
+      <p>Competí contra otros padres, seguí el ranking y defendé los colores de tu categoría.</p>
+      <div class="hero-actions">
+        <a href="#ranking" class="primary-action">Ver ranking</a>
+        <button type="button" class="ghost-action" id="btnCompartirLider">Compartir líder</button>
+      </div>
+    </section>
+  </header>
+
+  <main class="app-shell">
+    <section id="estadoCarga" class="status-card">Cargando prode...</section>
+
+    <section class="summary-grid" id="resumenProde" aria-label="Resumen del prode"></section>
+
+    <section class="controls" aria-label="Filtros del ranking">
+      <div class="tabs" id="tabsRanking"></div>
+      <label class="search-box">
+        <span>Buscar participante</span>
+        <input id="buscador" type="search" placeholder="Nombre, apellido o hijo" autocomplete="off" />
+      </label>
+      <div class="filters" id="filtrosProde"></div>
+    </section>
+
+    <section class="screenshot-card" id="cardViral" aria-label="Card para compartir"></section>
+
+    <section class="ranking-section" id="ranking">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Ranking en vivo</p>
+          <h2 id="tituloRanking">General</h2>
+        </div>
+        <button type="button" id="btnCopiarMensaje" class="copy-btn">Copiar mensaje</button>
+      </div>
+      <div id="rankingLista" class="ranking-list"></div>
+    </section>
+  </main>
+
+  <div id="modalParticipante" class="modal oculto" role="dialog" aria-modal="true" aria-labelledby="modalTitulo">
+    <div class="modal-backdrop" data-close-modal></div>
+    <article class="modal-panel">
+      <button type="button" class="modal-close" data-close-modal aria-label="Cerrar detalle">×</button>
+      <div id="detalleParticipante"></div>
+    </article>
+  </div>
+
+  <script src="js/prode-mundial.js"></script>
+</body>
+</html>
