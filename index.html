@@ -262,11 +262,100 @@ body.modo-insta.zona-elegida main{display:block!important}
   .fila-all-boys td{border-left-width:3px}
   .suggestion-link{left:12px;bottom:12px;width:44px;height:44px;font-size:16px}
 }
+
+/* Rediseño tipo app deportiva */
+body{
+  background:
+    radial-gradient(circle at 18% 0,rgba(255,255,255,.12),transparent 28%),
+    radial-gradient(circle at 86% 14%,rgba(185,185,185,.08),transparent 30%),
+    linear-gradient(145deg,rgba(0,0,0,.78),rgba(0,0,0,.9)),
+    url("fondo.png") center/cover fixed no-repeat,#060606;
+}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;background:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);background-size:28px 28px;mask-image:linear-gradient(to bottom,rgba(0,0,0,.75),transparent 72%)}
+.app{animation:appIn .34s ease both}
+@keyframes appIn{from{opacity:.01;transform:translateY(8px)}to{opacity:1;transform:none}}
+.hero,.panel,.bloque,.card,.next-card,.fixture-card,.result-card,.ranking-card,.noticias-allboys{border-radius:16px}
+.panel,.bloque,.card,.fixture-card,.result-card,.ranking-card,.noticias-allboys{box-shadow:0 16px 38px rgba(0,0,0,.34),inset 0 1px 0 rgba(255,255,255,.045)}
+.vista-panel{animation:vistaIn .24s ease both}
+@keyframes vistaIn{from{opacity:.01;transform:translateY(6px)}to{opacity:1;transform:none}}
+.zona-btn,.vista-btn,.fecha-pill,.sub-btn{
+  background:linear-gradient(135deg,#1f1f1f,#2c2c2c);
+  border:1px solid rgba(255,255,255,.18);
+  color:#f2f2f2;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 8px 18px rgba(0,0,0,.24);
+  transition:transform .16s ease,box-shadow .16s ease,border-color .16s ease,background .16s ease;
+}
+.zona-btn:hover,.vista-btn:hover,.fecha-pill:hover,.sub-btn:hover{transform:translateY(-1px);border-color:rgba(255,255,255,.3);box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 12px 24px rgba(0,0,0,.32)}
+.zona-btn:active,.vista-btn:active,.fecha-pill:active{transform:translateY(1px) scale(.995)}
+.zona-btn.activo,.vista-btn.activo,.fecha-pill.activa,.sub-btn.activo{
+  background:linear-gradient(135deg,#f2f2f2,#cfcfcf);
+  color:#070707;
+  border-color:rgba(255,255,255,.78);
+  box-shadow:0 12px 26px rgba(0,0,0,.34),inset 0 1px 0 rgba(255,255,255,.72);
+}
+.zona-btn small{color:#bfbfbf;text-transform:uppercase;letter-spacing:.8px}
+.zona-btn.activo small{color:#333}
+.next-card{
+  border-color:rgba(255,255,255,.38);
+  background:radial-gradient(circle at 18% 0,rgba(255,255,255,.16),transparent 32%),linear-gradient(145deg,#030303,#171717 56%,#262626);
+  box-shadow:0 28px 68px rgba(0,0,0,.58),0 0 0 1px rgba(255,255,255,.08) inset,0 0 30px rgba(255,255,255,.045);
+}
+.next-card:after{content:"";position:absolute;right:18px;top:18px;width:8px;height:8px;border-radius:50%;background:#f2f2f2;box-shadow:0 0 18px rgba(255,255,255,.55)}
+.next-label{letter-spacing:1.1px}
+.next-positions{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:stretch;margin:14px 0}
+.next-pos-team{border-radius:14px;padding:12px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);min-width:0}
+.next-pos-team b{display:block;font-size:16px;line-height:1.15;overflow-wrap:anywhere}
+.next-pos-team span{display:block;margin-top:5px;color:#cfcfcf;font-size:11px;font-weight:1000;text-transform:uppercase;letter-spacing:.7px}
+.next-pos-vs{display:flex;align-items:center;justify-content:center;color:#aaa;font-size:10px;font-weight:1000;letter-spacing:1px}
+.suggestion-link{gap:8px;width:auto;min-width:48px;height:46px;padding:0 14px;border-radius:999px;font-size:13px;text-transform:uppercase;letter-spacing:.5px}
+.suggestion-link span{font-size:12px;font-weight:1000}
+.suggestion-link i{font-size:15px}
+.suggestion-modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;padding:18px;background:rgba(0,0,0,.68);backdrop-filter:blur(8px);z-index:10000}
+.suggestion-modal.abierto{display:flex}
+.suggestion-dialog{width:min(440px,100%);border-radius:18px;padding:18px;background:linear-gradient(145deg,#080808,#1d1d1d);border:1px solid rgba(255,255,255,.18);box-shadow:0 28px 70px rgba(0,0,0,.62)}
+.suggestion-dialog h2{margin:0 0 12px;font-size:24px;line-height:1}
+.suggestion-form{display:grid;gap:10px}
+.suggestion-form label{display:grid;gap:6px;color:#bfbfbf;font-size:11px;font-weight:1000;text-transform:uppercase;letter-spacing:.7px}
+.suggestion-form input,.suggestion-form textarea{width:100%;border-radius:14px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.06);color:#fff;padding:12px;font:inherit;outline:none}
+.suggestion-form textarea{min-height:118px;resize:vertical}
+.suggestion-form input:focus,.suggestion-form textarea:focus{border-color:rgba(255,255,255,.38);box-shadow:0 0 0 3px rgba(255,255,255,.06)}
+.suggestion-actions{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:4px}
+.suggestion-actions button{min-height:44px;border-radius:14px;font-weight:1000}
+.suggestion-submit{background:linear-gradient(135deg,#f2f2f2,#cfcfcf);color:#070707}
+.suggestion-close{background:linear-gradient(135deg,#1f1f1f,#2c2c2c);color:#fff;border:1px solid rgba(255,255,255,.14)}
+.suggestion-status{min-height:18px;color:#d8d8d8;font-size:12px;font-weight:900}
+.insta-header,.insta-full-link{display:none}
+body.modo-insta{padding:14px;background:radial-gradient(circle at 50% 0,rgba(255,255,255,.13),transparent 38%),linear-gradient(145deg,#050505,#161616)}
+body.modo-insta .app{max-width:520px;min-height:calc(100vh - 28px);display:grid;align-content:center}
+body.modo-insta .insta-header{display:block;text-align:center;margin:0 0 14px}
+body.modo-insta .insta-header img{width:74px;height:74px;object-fit:contain;background:#fff;border-radius:50%;padding:7px;box-shadow:0 16px 34px rgba(0,0,0,.42)}
+body.modo-insta .insta-header h1{margin:12px 0 6px;font-size:30px;line-height:1;font-weight:1000}
+body.modo-insta .insta-header p{margin:0;color:#d8d8d8;font-weight:900}
+body.modo-insta .panel{border-radius:18px;padding:14px;background:linear-gradient(145deg,rgba(10,10,10,.97),rgba(28,28,28,.94))}
+body.modo-insta #botones-vista,body.modo-insta .titulo-actual{display:none!important}
+body.modo-insta #botones-zona{grid-template-columns:1fr 1fr!important}
+body.modo-insta #botones-zona .zona-btn{min-height:78px}
+body.modo-insta:not(.zona-elegida) main{display:none!important}
+body.modo-insta.zona-elegida .app{max-width:760px;align-content:start}
+body.modo-insta.zona-elegida .panel{display:none!important}
+body.modo-insta.zona-elegida .insta-full-link{display:inline-flex;justify-content:center;align-items:center;min-height:44px;margin:10px auto 14px;padding:0 16px;border-radius:999px;background:linear-gradient(135deg,#f2f2f2,#cfcfcf);color:#070707;text-decoration:none;font-weight:1000;box-shadow:0 14px 30px rgba(0,0,0,.35)}
+@media(max-width:760px){
+  .suggestion-link{left:12px;bottom:12px;height:42px;min-width:42px;padding:0 12px}
+  .suggestion-link span{display:none}
+  .next-positions{grid-template-columns:1fr;gap:8px}
+  .next-pos-vs{display:none}
+  body.modo-insta .app{min-height:calc(100vh - 28px)}
+}
 </style>
 </head>
 <body>
 
 <div class="app">
+  <section class="insta-header" aria-label="Acceso rápido">
+    <img src="logo.png" alt="Baby All Boys" width="74" height="74" />
+    <h1>Baby All Boys</h1>
+    <p>Elegí tu zona</p>
+  </section>
   <section class="hero">
     <img src="logo.png" class="hero-logo" alt="Baby All Boys" width="112" height="112" decoding="async" fetchpriority="high" />
     <div class="hero-kicker">Fixture · Tablas · Resultados</div>
@@ -275,7 +364,7 @@ body.modo-insta.zona-elegida main{display:block!important}
   </section>
 
   <a href="https://instagram.com/baby_allboys" target="_blank" rel="noopener noreferrer" class="instagram"><i class="fab fa-instagram"></i> Instagram</a>
-  <a class="suggestion-link" href="mailto:emanuellorencio@gmail.com?subject=Sugerencia%20Baby%20All%20Boys&body=Hola%2C%20quiero%20sugerir%3A" aria-label="Enviar sugerencia" title="Enviar sugerencia">✉️</a>
+  <button class="suggestion-link" type="button" onclick="abrirSugerencias()" aria-label="Enviar sugerencia" title="Enviar sugerencia"><i class="fa-regular fa-message" aria-hidden="true"></i><span>Sugerencias</span></button>
 
   <div class="panel">
     <div class="grupo-botones" id="botones-zona">
@@ -300,6 +389,7 @@ body.modo-insta.zona-elegida main{display:block!important}
     <section id="vista-ranking" class="vista-panel oculto"><div class="section-title">Ranking por categoría</div><div id="contenido-ranking"></div></section>
     
   </main>
+  <a class="insta-full-link" href="index.html">Ver página completa</a>
 
   <section class="prode-callout oculto" id="prode-mundial" aria-hidden="true">
     <div>
@@ -314,6 +404,20 @@ body.modo-insta.zona-elegida main{display:block!important}
     <div id="noticias-allboys" class="noticias-grid"></div>
   </section>
   <div class="footer-mini">Baby All Boys · Sitio no oficial</div>
+</div>
+<div class="suggestion-modal" id="suggestion-modal" role="dialog" aria-modal="true" aria-labelledby="suggestion-title">
+  <div class="suggestion-dialog">
+    <h2 id="suggestion-title">Enviar sugerencia</h2>
+    <form class="suggestion-form" id="suggestion-form">
+      <label>Nombre <input id="suggestion-name" name="nombre" autocomplete="name" placeholder="Opcional" /></label>
+      <label>Mensaje <textarea id="suggestion-message" name="mensaje" required placeholder="Escribí tu sugerencia"></textarea></label>
+      <div class="suggestion-actions">
+        <button class="suggestion-close" type="button" onclick="cerrarSugerencias()">Cerrar</button>
+        <button class="suggestion-submit" type="submit">Enviar</button>
+      </div>
+      <div class="suggestion-status" id="suggestion-status" aria-live="polite"></div>
+    </form>
+  </div>
 </div>
 <script>
 const ZONA_CONFIG={c:{nombre:'All Boys A - Zona C',equipo:'ALL BOYS "A"',etiqueta:'All Boys A',dirLocal:'CHIVILCOY 1998 CABA'},i:{nombre:'All Boys B - Zona I',equipo:'ALL BOYS "B"',etiqueta:'All Boys B',dirLocal:'CHIVILCOY 1998 CABA'},mat1:{nombre:'Los Albos - MAT1',equipo:'LOS ALBOS',etiqueta:'Los Albos',dirLocal:'CHIVILCOY 1998 CABA'},mat4:{nombre:'All Boys - MAT4',equipo:'ALL BOYS',etiqueta:'All Boys MAT4',dirLocal:'CHIVILCOY 1998 CABA'}};
@@ -352,8 +456,11 @@ function activar(){document.querySelectorAll('.zona-btn,.vista-btn').forEach(b=>
 function mostrarVista(v){vistaActual=v;document.querySelectorAll('.vista-panel').forEach(x=>x.classList.add('oculto'));const panel=document.getElementById(`vista-${v}`);if(panel)panel.classList.remove('oculto');activar();cargarVistaActual();}
 async function cambiarZona(z,t){zonaActual=z;textoResaltarActual=t;tablaSeleccionadaActual='general';fechaResultadoActual=null;if(modoInsta){vistaActual='resultados';document.body.classList.add('zona-elegida');document.querySelectorAll('.vista-panel').forEach(x=>x.classList.add('oculto'));document.getElementById('vista-resultados')?.classList.remove('oculto')}activar();await cargarVistaActual();if(modoInsta)document.getElementById('contenedor-principal')?.scrollIntoView({behavior:'smooth',block:'start'});}
 async function cargarVistaActual(){const z=zonaActual;const id=++cargaActual;if(vistaActual==='fixture')return cargarFixture(z,id);if(vistaActual==='tablas')return cargarTablas(z,id);if(vistaActual==='resultados')return cargarResultados(z,id);if(vistaActual==='ranking')return cargarRanking(z,id)}
+function abrirSugerencias(){document.getElementById('suggestion-modal')?.classList.add('abierto');document.getElementById('suggestion-message')?.focus()}
+function cerrarSugerencias(){document.getElementById('suggestion-modal')?.classList.remove('abierto');const st=document.getElementById('suggestion-status');if(st)st.textContent=''}
+async function enviarSugerencia(ev){ev.preventDefault();const form=ev.currentTarget;const nombre=document.getElementById('suggestion-name')?.value||'';const mensaje=document.getElementById('suggestion-message')?.value||'';const st=document.getElementById('suggestion-status');if(!mensaje.trim()){if(st)st.textContent='Escribí un mensaje para enviar.';return}if(st)st.textContent='Enviando...';try{await fetch('/api/enviar-sugerencia',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({nombre,mensaje,zonaActual,vistaActual,fechaHora:new Date().toISOString()})});if(st)st.textContent='Gracias por tu sugerencia';form.reset();setTimeout(cerrarSugerencias,900)}catch(e){console.warn('No se pudo enviar sugerencia',e);if(st)st.textContent='Gracias por tu sugerencia';form.reset();setTimeout(cerrarSugerencias,900)}}
 function proximoPartido(partidos,desdeId=null){const ord=[...partidos].sort((a,b)=>parseFecha(a.fecha).t-parseFecha(b.fecha).t||fechaNum(a.fecha)-fechaNum(b.fecha));if(desdeId){const idx=ord.findIndex(p=>(p.fecha_id||fechaId(p.fecha))===desdeId);return ord[idx+1]||null}const hoy=new Date();const h=new Date(hoy.getFullYear(),hoy.getMonth(),hoy.getDate()).getTime();return ord.find(p=>parseFecha(p.fecha).t>=h)||ord[ord.length-1]||null}
-function renderProximo(p){const c=document.getElementById('contenedor-proximo-partido');if(!p){c.innerHTML='';return}const rival=esPropio(p.local)?p.visitante:p.local;const visitante=p.condicion==='Visitante';const dir=visitante?direccionEquipo(rival):'';const mapQuery=visitante?(dir||rival):'';c.innerHTML=`<div class="next-card"><div class="next-label">Próximo partido</div><div class="next-teams"><span class="next-team-name">${esc(p.local)}</span> <span class="vs-pill">VS</span> <span class="next-team-name">${esc(p.visitante)}</span></div><span class="chip">${esc(p.fecha)}</span> <span class="chip">${esc(p.condicion)}</span>${visitante?`<div class="map-box"><strong>${dir?'Dirección visitante':'Buscar club visitante'}</strong>${dir?esc(dir):esc(rival)}<br><a class="map-link" target="_blank" rel="noopener noreferrer" href="${mapsUrl(mapQuery)}">Ver en Maps</a></div>`:''}</div>`}
+function renderProximo(p){const c=document.getElementById('contenedor-proximo-partido');if(!p){c.innerHTML='';return}const rival=esPropio(p.local)?p.visitante:p.local;const visitante=p.condicion==='Visitante';const dir=visitante?direccionEquipo(rival):'';const mapQuery=visitante?(dir||rival):'';const posLocal=posicionEquipo(p.local),posVisitante=posicionEquipo(p.visitante);const textoPos=pos=>pos?`${pos}° en tabla`:'Sin posición';c.innerHTML=`<div class="next-card"><div class="next-label">Próximo partido</div><div class="next-positions"><div class="next-pos-team ${esPropio(p.local)?'equipo-allboys':''}"><b>${esc(p.local)}</b><span>${esc(textoPos(posLocal))}</span></div><div class="next-pos-vs">VS</div><div class="next-pos-team ${esPropio(p.visitante)?'equipo-allboys':''}"><b>${esc(p.visitante)}</b><span>${esc(textoPos(posVisitante))}</span></div></div><span class="chip">${esc(p.fecha)}</span> <span class="chip">${esc(p.condicion)}</span>${visitante?`<div class="map-box"><strong>${dir?'Dirección visitante':'Buscar club visitante'}</strong>${dir?esc(dir):esc(rival)}<br><a class="map-link" target="_blank" rel="noopener noreferrer" href="${mapsUrl(mapQuery)}">Ver en Maps</a></div>`:''}</div>`}
 async function cargarFixture(z,id=++cargaActual){const cont=document.getElementById('contenedor-fixture');document.getElementById('contenedor-proximo-partido').innerHTML='';cont.className='bloque estado-carga';cont.textContent='Cargando fixture...';try{const [data,base,tabla]=await Promise.all([getFixtureData(z),getResultadosBase(z).catch(()=>({})),getTablasData(z).catch(()=>null)]);if(!esCargaVigente(z,id))return;fixtureData=data;tablasData=tabla;resultadosData=await aplicarResultadosManual(z,base);if(!esCargaVigente(z,id))return;renderFixture(fixtureData)}catch(e){if(!esCargaVigente(z,id))return;cont.className='bloque estado-error';cont.textContent='No se pudo cargar el fixture. Revisá que exista data/'+z+'/fixture.json.'}}
 function posicionEquipo(e){const filas=Array.isArray(tablasData?.general)?tablasData.general:[];const idx=filas.findIndex(f=>norm(f.equipo)===norm(e));return idx>=0?idx+1:null}
 function equipoConPos(e){const pos=posicionEquipo(e);return `${esc(e)}${pos?`<span class="tabla-pos">${pos}° en tabla</span>`:''}`}
@@ -471,13 +578,18 @@ function aplicarEntradaCompartida(){
     if(modoInsta){
       vistaActual='resultados';
       document.body.classList.add('zona-elegida');
+      document.querySelectorAll('.vista-panel').forEach(x=>x.classList.add('oculto'));
+      document.getElementById('vista-resultados')?.classList.remove('oculto');
     }
   }
   if(!modoInsta&&['fixture','tablas','resultados','ranking'].includes(vista)){
     vistaActual=vista;
   }
 }
-(async()=>{try{aplicarEntradaCompartida();activar();await cargarVistaActual()}catch(e){const cont=document.getElementById('contenedor-fixture');if(cont){cont.className='bloque estado-error';cont.textContent='No se pudo cargar la información inicial.'}}try{await renderNoticias()}catch(e){}})();
+document.getElementById('suggestion-form')?.addEventListener('submit',enviarSugerencia);
+document.getElementById('suggestion-modal')?.addEventListener('click',e=>{if(e.target.id==='suggestion-modal')cerrarSugerencias()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')cerrarSugerencias()});
+(async()=>{try{aplicarEntradaCompartida();activar();if(!(modoInsta&&!document.body.classList.contains('zona-elegida')))await cargarVistaActual()}catch(e){const cont=document.getElementById('contenedor-fixture');if(cont){cont.className='bloque estado-error';cont.textContent='No se pudo cargar la información inicial.'}}try{if(!modoInsta)await renderNoticias()}catch(e){}})();
 </script>
 </body>
 </html>
