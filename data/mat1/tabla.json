@@ -1,6 +1,22 @@
 {
   "general": [
     {
+      "equipo": "FLORES CLUB",
+      "pj": 10,
+      "g": 7,
+      "e": 1,
+      "p": 1,
+      "pts": 24
+    },
+    {
+      "equipo": "NUEVA CHICAGO",
+      "pj": 10,
+      "g": 3,
+      "e": 1,
+      "p": 6,
+      "pts": 17
+    },
+    {
       "equipo": "CLUB AT. LUGANO",
       "pj": 5,
       "g": 5,
@@ -39,6 +55,14 @@
       "e": 0,
       "p": 1,
       "pts": 13
+    },
+    {
+      "equipo": "LOS ALBOS",
+      "pj": 10,
+      "g": 1,
+      "e": 2,
+      "p": 5,
+      "pts": 12
     },
     {
       "equipo": "ESTRELLA DE BOEDO",
@@ -81,12 +105,12 @@
       "pts": 9
     },
     {
-      "equipo": "FLORES CLUB",
-      "pj": 5,
-      "g": 2,
-      "e": 1,
-      "p": 1,
-      "pts": 9
+      "equipo": "EST. PORTEÑO ROJO",
+      "pj": 10,
+      "g": 0,
+      "e": 0,
+      "p": 8,
+      "pts": 8
     },
     {
       "equipo": "C. S. y D. PAMPERO",
@@ -97,40 +121,24 @@
       "pts": 7
     },
     {
-      "equipo": "LOS ALBOS",
-      "pj": 5,
-      "g": 0,
-      "e": 1,
-      "p": 3,
-      "pts": 5
-    },
-    {
-      "equipo": "NUEVA CHICAGO",
-      "pj": 5,
-      "g": 0,
-      "e": 0,
-      "p": 5,
-      "pts": 5
-    },
-    {
       "equipo": "SANELI F.C.",
       "pj": 5,
       "g": 0,
       "e": 0,
       "p": 5,
       "pts": 5
-    },
-    {
-      "equipo": "EST. PORTEÑO ROJO",
-      "pj": 5,
-      "g": 0,
-      "e": 0,
-      "p": 4,
-      "pts": 4
     }
   ],
   "categorias": {
     "2013": [
+      {
+        "equipo": "LOS ALBOS",
+        "pj": 2,
+        "g": 1,
+        "e": 1,
+        "p": 0,
+        "pts": 5
+      },
       {
         "equipo": "CLUB PACIFICO",
         "pj": 1,
@@ -188,12 +196,12 @@
         "pts": 3
       },
       {
-        "equipo": "LOS ALBOS",
-        "pj": 1,
-        "g": 0,
-        "e": 1,
+        "equipo": "FLORES CLUB",
+        "pj": 2,
+        "g": 1,
+        "e": 0,
         "p": 0,
-        "pts": 2
+        "pts": 3
       },
       {
         "equipo": "LOS CUERVOS",
@@ -201,6 +209,14 @@
         "g": 0,
         "e": 1,
         "p": 0,
+        "pts": 2
+      },
+      {
+        "equipo": "NUEVA CHICAGO",
+        "pj": 2,
+        "g": 0,
+        "e": 0,
+        "p": 2,
         "pts": 2
       },
       {
@@ -228,14 +244,6 @@
         "pts": 1
       },
       {
-        "equipo": "NUEVA CHICAGO",
-        "pj": 1,
-        "g": 0,
-        "e": 0,
-        "p": 1,
-        "pts": 1
-      },
-      {
         "equipo": "SANELI F.C.",
         "pj": 1,
         "g": 0,
@@ -245,15 +253,7 @@
       },
       {
         "equipo": "EST. PORTEÑO ROJO",
-        "pj": 1,
-        "g": 0,
-        "e": 0,
-        "p": 0,
-        "pts": 0
-      },
-      {
-        "equipo": "FLORES CLUB",
-        "pj": 1,
+        "pj": 2,
         "g": 0,
         "e": 0,
         "p": 0,
@@ -262,6 +262,22 @@
     ],
     "2014/15": [
       {
+        "equipo": "NUEVA CHICAGO",
+        "pj": 2,
+        "g": 1,
+        "e": 0,
+        "p": 1,
+        "pts": 4
+      },
+      {
+        "equipo": "FLORES CLUB",
+        "pj": 2,
+        "g": 1,
+        "e": 0,
+        "p": 1,
+        "pts": 4
+      },
+      {
         "equipo": "CLUB PACIFICO",
         "pj": 1,
         "g": 1,
@@ -327,22 +343,22 @@
       },
       {
         "equipo": "LOS ALBOS",
-        "pj": 1,
+        "pj": 2,
         "g": 0,
         "e": 0,
-        "p": 1,
-        "pts": 1
-      },
-      {
-        "equipo": "PLATENSE BLANCO",
-        "pj": 1,
-        "g": 0,
-        "e": 0,
-        "p": 1,
-        "pts": 1
+        "p": 2,
+        "pts": 2
       },
       {
         "equipo": "EST. PORTEÑO ROJO",
+        "pj": 2,
+        "g": 0,
+        "e": 0,
+        "p": 2,
+        "pts": 2
+      },
+      {
+        "equipo": "PLATENSE BLANCO",
         "pj": 1,
         "g": 0,
         "e": 0,
@@ -366,23 +382,7 @@
         "pts": 1
       },
       {
-        "equipo": "NUEVA CHICAGO",
-        "pj": 1,
-        "g": 0,
-        "e": 0,
-        "p": 1,
-        "pts": 1
-      },
-      {
         "equipo": "SANELI F.C.",
-        "pj": 1,
-        "g": 0,
-        "e": 0,
-        "p": 1,
-        "pts": 1
-      },
-      {
-        "equipo": "FLORES CLUB",
         "pj": 1,
         "g": 0,
         "e": 0,
@@ -392,6 +392,22 @@
     ],
     "2016/17": [
       {
+        "equipo": "FLORES CLUB",
+        "pj": 2,
+        "g": 2,
+        "e": 0,
+        "p": 0,
+        "pts": 6
+      },
+      {
+        "equipo": "NUEVA CHICAGO",
+        "pj": 2,
+        "g": 1,
+        "e": 0,
+        "p": 1,
+        "pts": 4
+      },
+      {
         "equipo": "CLUB AT. LUGANO",
         "pj": 1,
         "g": 1,
@@ -448,23 +464,23 @@
         "pts": 3
       },
       {
-        "equipo": "FLORES CLUB",
-        "pj": 1,
-        "g": 1,
+        "equipo": "LOS ALBOS",
+        "pj": 2,
+        "g": 0,
         "e": 0,
-        "p": 0,
-        "pts": 3
+        "p": 2,
+        "pts": 2
+      },
+      {
+        "equipo": "EST. PORTEÑO ROJO",
+        "pj": 2,
+        "g": 0,
+        "e": 0,
+        "p": 2,
+        "pts": 2
       },
       {
         "equipo": "CLUB PACIFICO",
-        "pj": 1,
-        "g": 0,
-        "e": 0,
-        "p": 1,
-        "pts": 1
-      },
-      {
-        "equipo": "LOS ALBOS",
         "pj": 1,
         "g": 0,
         "e": 0,
@@ -488,23 +504,7 @@
         "pts": 1
       },
       {
-        "equipo": "EST. PORTEÑO ROJO",
-        "pj": 1,
-        "g": 0,
-        "e": 0,
-        "p": 1,
-        "pts": 1
-      },
-      {
         "equipo": "CLUB LA PATERNAL",
-        "pj": 1,
-        "g": 0,
-        "e": 0,
-        "p": 1,
-        "pts": 1
-      },
-      {
-        "equipo": "NUEVA CHICAGO",
         "pj": 1,
         "g": 0,
         "e": 0,
@@ -522,6 +522,22 @@
     ],
     "2018/19": [
       {
+        "equipo": "FLORES CLUB",
+        "pj": 2,
+        "g": 2,
+        "e": 0,
+        "p": 0,
+        "pts": 6
+      },
+      {
+        "equipo": "NUEVA CHICAGO",
+        "pj": 2,
+        "g": 1,
+        "e": 0,
+        "p": 1,
+        "pts": 4
+      },
+      {
         "equipo": "CLUB AT. LUGANO",
         "pj": 1,
         "g": 1,
@@ -578,12 +594,12 @@
         "pts": 3
       },
       {
-        "equipo": "FLORES CLUB",
-        "pj": 1,
-        "g": 1,
+        "equipo": "EST. PORTEÑO ROJO",
+        "pj": 2,
+        "g": 0,
         "e": 0,
-        "p": 0,
-        "pts": 3
+        "p": 2,
+        "pts": 2
       },
       {
         "equipo": "CLUB PACIFICO",
@@ -602,14 +618,6 @@
         "pts": 1
       },
       {
-        "equipo": "EST. PORTEÑO ROJO",
-        "pj": 1,
-        "g": 0,
-        "e": 0,
-        "p": 1,
-        "pts": 1
-      },
-      {
         "equipo": "C. S. y D. PAMPERO",
         "pj": 1,
         "g": 0,
@@ -619,14 +627,6 @@
       },
       {
         "equipo": "ESTRELLA DE BOEDO",
-        "pj": 1,
-        "g": 0,
-        "e": 0,
-        "p": 1,
-        "pts": 1
-      },
-      {
-        "equipo": "NUEVA CHICAGO",
         "pj": 1,
         "g": 0,
         "e": 0,
@@ -643,7 +643,7 @@
       },
       {
         "equipo": "LOS ALBOS",
-        "pj": 1,
+        "pj": 2,
         "g": 0,
         "e": 0,
         "p": 0,
@@ -651,6 +651,14 @@
       }
     ],
     "2020/21/22": [
+      {
+        "equipo": "FLORES CLUB",
+        "pj": 2,
+        "g": 1,
+        "e": 1,
+        "p": 0,
+        "pts": 5
+      },
       {
         "equipo": "CLUB AT. LUGANO",
         "pj": 1,
@@ -665,6 +673,14 @@
         "g": 1,
         "e": 0,
         "p": 0,
+        "pts": 3
+      },
+      {
+        "equipo": "LOS ALBOS",
+        "pj": 2,
+        "g": 0,
+        "e": 1,
+        "p": 1,
         "pts": 3
       },
       {
@@ -708,6 +724,14 @@
         "pts": 3
       },
       {
+        "equipo": "NUEVA CHICAGO",
+        "pj": 2,
+        "g": 0,
+        "e": 1,
+        "p": 1,
+        "pts": 3
+      },
+      {
         "equipo": "CLUB PACIFICO",
         "pj": 1,
         "g": 0,
@@ -716,20 +740,12 @@
         "pts": 2
       },
       {
-        "equipo": "FLORES CLUB",
-        "pj": 1,
-        "g": 0,
-        "e": 1,
-        "p": 0,
-        "pts": 2
-      },
-      {
-        "equipo": "LOS ALBOS",
-        "pj": 1,
+        "equipo": "EST. PORTEÑO ROJO",
+        "pj": 2,
         "g": 0,
         "e": 0,
-        "p": 1,
-        "pts": 1
+        "p": 2,
+        "pts": 2
       },
       {
         "equipo": "VILLA HERMINIA",
@@ -748,23 +764,7 @@
         "pts": 1
       },
       {
-        "equipo": "EST. PORTEÑO ROJO",
-        "pj": 1,
-        "g": 0,
-        "e": 0,
-        "p": 1,
-        "pts": 1
-      },
-      {
         "equipo": "C. S. y D. PAMPERO",
-        "pj": 1,
-        "g": 0,
-        "e": 0,
-        "p": 1,
-        "pts": 1
-      },
-      {
-        "equipo": "NUEVA CHICAGO",
         "pj": 1,
         "g": 0,
         "e": 0,

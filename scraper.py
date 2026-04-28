@@ -1,8 +1,9 @@
-import json
+﻿import json
 import os
 import re
 import sys
 import time
+import urllib.request
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
 
@@ -236,24 +237,78 @@ def es_numero(v: str) -> bool:
     return bool(re.fullmatch(r"\d+", normalizar(v)))
 
 
-def parsear_tablas(soup: BeautifulSoup, categorias: List[str]) -> Dict:
-    resultado = {"general": [], "categorias": {c: [] for c in categorias}}
-    seccion = None
-    posibles_secciones = {"GENERAL": "general", **{canon(c): c for c in categorias}}
+def es_encabezado_tabla_posiciones(cells: List[str]) -> bool:
+    header = [canon(c) for c in cells]
+    return (
+        any(h in {"EQUIPOS", "EQUIPO"} for h in header)
+        and any(h in {"PJ", "PJ"} for h in header)
+        and "G" in header
+        and "E" in header
+        and "P" in header
+        and any(h in {"PTS", "PUNTOS"} for h in header)
+    )
 
-    for table in soup.find_all("table"):
+
+def detectar_seccion_tabla(cells: List[str], categorias: List[str]) -> Optional[str]:
+    posibles_secciones = {"GENERAL": "general", **{canon(c): c for c in categorias}}
+    if len(cells) == 1:
+        return posibles_secciones.get(canon(cells[0]))
+    if cells:
+        return posibles_secciones.get(canon(cells[0]))
+    return None
+
+
+def diagnostico_vacio_tablas(diag: Dict) -> str:
+    if not diag["encabezados"]:
+        return "no encontró encabezado"
+    if not diag["secciones"]:
+        return "no encontró sección tablas"
+    if diag["filas_detectadas"] == 0:
+        return "parser no detectó filas"
+    return "tabla vacía"
+
+
+def parsear_tablas_con_diagnostico(soup: BeautifulSoup, categorias: List[str]) -> Tuple[Dict, Dict]:
+    resultado = {"general": [], "categorias": {c: [] for c in categorias}}
+    diag = {
+        "tablas": 0,
+        "lineas": 0,
+        "encabezados": [],
+        "secciones": [],
+        "filas_detectadas": 0,
+        "filas_por_categoria": {c: 0 for c in categorias},
+        "filas_general": 0,
+    }
+
+    for table_idx, table in enumerate(soup.find_all("table")):
+        diag["tablas"] += 1
         filas = [fila_textos(tr) for tr in table.find_all("tr")]
-        for cells in filas:
+        diag["lineas"] += len(filas)
+        seccion = None
+        seccion_inicio = None
+        tabla_posiciones = False
+
+        for fila_idx, cells in enumerate(filas):
             if not cells:
                 continue
-            if len(cells) == 1:
-                key = canon(cells[0])
-                if key in posibles_secciones:
-                    seccion = posibles_secciones[key]
+
+            if es_encabezado_tabla_posiciones(cells):
+                tabla_posiciones = True
+                diag["encabezados"].append({"tabla": table_idx, "linea": fila_idx, "texto": " | ".join(cells)})
                 continue
-            header = [canon(c) for c in cells]
-            if "EQUIPOS" in header and "PJ" in header and ("PTS" in header or "PTS." in [c.upper() for c in cells]):
+
+            if not tabla_posiciones:
                 continue
+
+            nueva_seccion = detectar_seccion_tabla(cells, categorias)
+            if nueva_seccion:
+                if seccion is not None and diag["secciones"]:
+                    diag["secciones"][-1]["fin"] = fila_idx - 1
+                seccion = nueva_seccion
+                seccion_inicio = fila_idx
+                diag["secciones"].append({"nombre": seccion, "tabla": table_idx, "inicio": seccion_inicio, "fin": None})
+                continue
+
             if seccion and len(cells) >= 6 and all(es_numero(x) for x in cells[-5:]):
                 fila = {
                     "equipo": cells[0],
@@ -266,9 +321,22 @@ def parsear_tablas(soup: BeautifulSoup, categorias: List[str]) -> Dict:
                 if seccion == "general":
                     if fila not in resultado["general"]:
                         resultado["general"].append(fila)
+                        diag["filas_general"] += 1
+                        diag["filas_detectadas"] += 1
                 else:
                     if fila not in resultado["categorias"].setdefault(seccion, []):
                         resultado["categorias"][seccion].append(fila)
+                        diag["filas_por_categoria"][seccion] = diag["filas_por_categoria"].get(seccion, 0) + 1
+                        diag["filas_detectadas"] += 1
+
+        if seccion is not None and diag["secciones"] and diag["secciones"][-1]["fin"] is None:
+            diag["secciones"][-1]["fin"] = len(filas) - 1
+
+    return resultado, diag
+
+
+def parsear_tablas(soup: BeautifulSoup, categorias: List[str]) -> Dict:
+    resultado, _ = parsear_tablas_con_diagnostico(soup, categorias)
     return resultado
 
 
@@ -510,45 +578,113 @@ def agregar_tablas_sin_duplicar(destino: Dict, origen: Dict):
                 destino["categorias"][cat].append(fila)
 
 
-def procesar_tablas_zona(clave: str, info: Dict, forzar: bool = False) -> Dict:
-    print(f"Actualizando tablas {clave}: {info['url']}")
-    tabla = {"general": [], "categorias": {c: [] for c in info["categorias"]}}
-    htmls = obtener_htmls_renderizados(info["url"])
 
-    for html in htmls:
-        soup = BeautifulSoup(html, "html.parser")
-        tabla_tmp = parsear_tablas(soup, info["categorias"])
-        agregar_tablas_sin_duplicar(tabla, tabla_tmp)
+def obtener_html_tablas(url: str) -> str:
+    req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 BabyAllBoysScraper/1.0"})
+    with urllib.request.urlopen(req, timeout=45) as response:
+        return response.read().decode("utf-8", errors="replace")
+
+
+def lineas_texto_html(soup: BeautifulSoup) -> List[str]:
+    return [normalizar(linea) for linea in soup.get_text("\n").splitlines() if normalizar(linea)]
+
+
+def imprimir_contexto_debug(lineas: List[str], terminos: List[str]):
+    usados = set()
+    for termino in terminos:
+        termino_canon = canon(termino)
+        for idx, linea in enumerate(lineas):
+            if termino_canon and termino_canon in canon(linea):
+                inicio = max(0, idx - 3)
+                fin = min(len(lineas), idx + 4)
+                clave = (termino, inicio, fin)
+                if clave in usados:
+                    continue
+                usados.add(clave)
+                print(f"  DEBUG alrededor de '{termino}' (lineas {inicio + 1}-{fin}):")
+                for n in range(inicio, fin):
+                    print(f"    {n + 1}: {lineas[n]}")
+                break
+
+
+def imprimir_diagnostico_tablas(clave: str, diag: Dict, tabla: Dict, guardar: bool, motivo: str, rutas: List[Path]):
+    general, _ = contar_filas_tabla(tabla)
+    print(f"  Lineas parseadas: {diag['lineas']}")
+    print(f"  Tablas HTML detectadas: {diag['tablas']}")
+    if diag["encabezados"]:
+        for enc in diag["encabezados"]:
+            print(f"  Encabezado detectado: tabla={enc['tabla']} linea={enc['linea']} -> {enc['texto']}")
+    else:
+        print("  Encabezado detectado: NO")
+    if diag["secciones"]:
+        for sec in diag["secciones"]:
+            print(f"  Seccion tablas: {sec['nombre']} tabla={sec['tabla']} inicio={sec['inicio']} fin={sec['fin']}")
+    else:
+        print("  Seccion tablas: NO")
+    print(f"  Filas general: {general}")
+    print(f"  Cantidad de categorias con filas: {sum(1 for filas in (tabla.get('categorias') or {}).values() if filas)}")
+    for cat, filas in (tabla.get("categorias") or {}).items():
+        print(f"  Filas categoria {cat}: {len(filas)}")
+    print(f"  Decision guardar zona {clave}: {'SI' if guardar else 'NO'}")
+    if motivo:
+        print(f"  Motivo: {motivo}")
+    for ruta in rutas:
+        print(f"  Ruta destino: {ruta.resolve()}")
+
+
+def procesar_tablas_zona(clave: str, info: Dict, forzar: bool = False, debug: bool = False) -> Dict:
+    print(f"\nActualizando tablas {clave}")
+    print(f"  Carpeta actual: {os.getcwd()}")
+    print(f"  URL: {info['url']}")
+    tabla = {"general": [], "categorias": {c: [] for c in info["categorias"]}}
+    rutas = [Path("data") / clave / "tabla.json", Path(f"tabla_{clave}.json")]
+
+    html = obtener_html_tablas(info["url"])
+    print(f"  Tamano HTML descargado: {len(html)} bytes")
+    soup = BeautifulSoup(html, "html.parser")
+    lineas = lineas_texto_html(soup)
+    print(f"  Cantidad de lineas de texto: {len(lineas)}")
+    if debug:
+        imprimir_contexto_debug(lineas, ["TABLAS APERTURA", "TABLAS ANUALES", "EQUIPOS", "PJ", "Pts"])
+
+    tabla_tmp, diag = parsear_tablas_con_diagnostico(soup, info["categorias"])
+    agregar_tablas_sin_duplicar(tabla, tabla_tmp)
 
     general, categorias = contar_filas_tabla(tabla)
     tiene_datos = tabla_tiene_datos(tabla)
+    motivo = "" if tiene_datos else diagnostico_vacio_tablas(diag)
+    guardar = tiene_datos or forzar
+    if forzar and not tiene_datos:
+        motivo = f"{motivo}; guardado forzado"
 
-    if not tiene_datos:
-        print(f"AVISO: tabla vacía en zona {clave}")
-        if not forzar:
-            print(f"No se guardó tabla de zona {clave} porque vino vacía.")
-            return {"zona": clave, "estado": "sin datos", "general": general, "categorias": categorias}
+    imprimir_diagnostico_tablas(clave, diag, tabla, guardar, motivo, rutas)
 
-    guardar_json(Path("data") / clave / "tabla.json", tabla)
-    guardar_json(Path(f"tabla_{clave}.json"), tabla)
-    return {"zona": clave, "estado": "OK", "general": general, "categorias": categorias}
+    if not guardar:
+        print(f"AVISO: tabla vacia en zona {clave}")
+        print(f"No se guardo tabla de zona {clave} porque vino vacia. Motivo exacto: {motivo}")
+        return {"zona": clave, "estado": "sin datos", "general": general, "categorias": categorias, "motivo": motivo}
+
+    for ruta in rutas:
+        guardar_json(ruta, tabla)
+    return {"zona": clave, "estado": "OK", "general": general, "categorias": categorias, "motivo": motivo}
 
 
-def main_tablas(forzar: bool = False):
+def main_tablas(forzar: bool = False, debug: bool = False):
     resumen = []
     for clave, info in ZONAS.items():
         try:
-            resumen.append(procesar_tablas_zona(clave, info, forzar=forzar))
+            resumen.append(procesar_tablas_zona(clave, info, forzar=forzar, debug=debug))
         except Exception as e:
             print(f"ERROR: no se pudo actualizar tabla de zona {clave}: {e}")
-            resumen.append({"zona": clave, "estado": "error", "general": 0, "categorias": 0})
+            resumen.append({"zona": clave, "estado": "error", "general": 0, "categorias": 0, "motivo": str(e)})
 
     print("\nResumen tablas:")
     for item in resumen:
         if item["estado"] == "OK":
             print(f"Zona {item['zona']}: OK ({item['general']} equipos) | categorias={item['categorias']}")
         else:
-            print(f"Zona {item['zona']}: {item['estado']}")
+            detalle = f" - {item['motivo']}" if item.get("motivo") else ""
+            print(f"Zona {item['zona']}: {item['estado']}{detalle}")
 
 
 def actualizar_desde_fefi():
@@ -612,7 +748,8 @@ def main():
     comando = sys.argv[1].lower() if len(sys.argv) > 1 else ""
     if comando == "tablas":
         forzar = "--forzar" in [arg.lower() for arg in sys.argv[2:]]
-        main_tablas(forzar=forzar)
+        debug = "--debug" in [arg.lower() for arg in sys.argv[2:]]
+        main_tablas(forzar=forzar, debug=debug)
         print("\nLISTO. Se intentó actualizar solo tablas de FEFI.")
     elif comando == "actualizar":
         actualizar_desde_fefi()
@@ -626,3 +763,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

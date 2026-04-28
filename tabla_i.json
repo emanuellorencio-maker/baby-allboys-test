@@ -1,12 +1,1044 @@
 {
-  "general": [],
+  "general": [
+    {
+      "equipo": "LA MARCA",
+      "pj": 14,
+      "g": 8,
+      "e": 3,
+      "p": 3,
+      "pts": 33
+    },
+    {
+      "equipo": "MARCHIGIANA",
+      "pj": 14,
+      "g": 8,
+      "e": 3,
+      "p": 2,
+      "pts": 32
+    },
+    {
+      "equipo": "SOLDATI 32 F. C.",
+      "pj": 14,
+      "g": 8,
+      "e": 1,
+      "p": 5,
+      "pts": 31
+    },
+    {
+      "equipo": "AÑASCO",
+      "pj": 14,
+      "g": 7,
+      "e": 1,
+      "p": 6,
+      "pts": 29
+    },
+    {
+      "equipo": "LOMAS BLANCO",
+      "pj": 14,
+      "g": 7,
+      "e": 0,
+      "p": 7,
+      "pts": 28
+    },
+    {
+      "equipo": "FATIMA",
+      "pj": 14,
+      "g": 7,
+      "e": 0,
+      "p": 7,
+      "pts": 28
+    },
+    {
+      "equipo": "LOS ANDES",
+      "pj": 14,
+      "g": 6,
+      "e": 2,
+      "p": 6,
+      "pts": 28
+    },
+    {
+      "equipo": "VILLA REAL ROJO",
+      "pj": 14,
+      "g": 6,
+      "e": 1,
+      "p": 5,
+      "pts": 25
+    },
+    {
+      "equipo": "LUJAN DE LOS PATRIOTAS",
+      "pj": 14,
+      "g": 5,
+      "e": 1,
+      "p": 8,
+      "pts": 25
+    },
+    {
+      "equipo": "EL TREBOL F. C.",
+      "pj": 14,
+      "g": 5,
+      "e": 3,
+      "p": 4,
+      "pts": 25
+    },
+    {
+      "equipo": "HURACAN",
+      "pj": 14,
+      "g": 5,
+      "e": 1,
+      "p": 6,
+      "pts": 23
+    },
+    {
+      "equipo": "LIGA FOMENTO VILLA MITRE",
+      "pj": 14,
+      "g": 3,
+      "e": 1,
+      "p": 10,
+      "pts": 21
+    },
+    {
+      "equipo": "CLUB CIENCIA Y LABOR",
+      "pj": 7,
+      "g": 6,
+      "e": 0,
+      "p": 1,
+      "pts": 19
+    },
+    {
+      "equipo": "K. A. C.",
+      "pj": 7,
+      "g": 5,
+      "e": 0,
+      "p": 2,
+      "pts": 17
+    },
+    {
+      "equipo": "ALL BOYS \"B\"",
+      "pj": 7,
+      "g": 2,
+      "e": 0,
+      "p": 5,
+      "pts": 11
+    },
+    {
+      "equipo": "LUGANO TENNIS CLUB",
+      "pj": 7,
+      "g": 1,
+      "e": 1,
+      "p": 5,
+      "pts": 10
+    }
+  ],
   "categorias": {
-    "2019": [],
-    "2013": [],
-    "2018": [],
-    "2014": [],
-    "2017": [],
-    "2016": [],
-    "2015": []
+    "2019": [
+      {
+        "equipo": "FATIMA",
+        "pj": 2,
+        "g": 2,
+        "e": 0,
+        "p": 0,
+        "pts": 6
+      },
+      {
+        "equipo": "LUJAN DE LOS PATRIOTAS",
+        "pj": 2,
+        "g": 2,
+        "e": 0,
+        "p": 0,
+        "pts": 6
+      },
+      {
+        "equipo": "LA MARCA",
+        "pj": 2,
+        "g": 2,
+        "e": 0,
+        "p": 0,
+        "pts": 6
+      },
+      {
+        "equipo": "AÑASCO",
+        "pj": 2,
+        "g": 2,
+        "e": 0,
+        "p": 0,
+        "pts": 6
+      },
+      {
+        "equipo": "LIGA FOMENTO VILLA MITRE",
+        "pj": 2,
+        "g": 2,
+        "e": 0,
+        "p": 0,
+        "pts": 6
+      },
+      {
+        "equipo": "LOMAS BLANCO",
+        "pj": 2,
+        "g": 1,
+        "e": 0,
+        "p": 1,
+        "pts": 4
+      },
+      {
+        "equipo": "SOLDATI 32 F. C.",
+        "pj": 2,
+        "g": 1,
+        "e": 0,
+        "p": 1,
+        "pts": 4
+      },
+      {
+        "equipo": "MARCHIGIANA",
+        "pj": 2,
+        "g": 1,
+        "e": 0,
+        "p": 0,
+        "pts": 3
+      },
+      {
+        "equipo": "ALL BOYS \"B\"",
+        "pj": 1,
+        "g": 1,
+        "e": 0,
+        "p": 0,
+        "pts": 3
+      },
+      {
+        "equipo": "LOS ANDES",
+        "pj": 2,
+        "g": 0,
+        "e": 0,
+        "p": 2,
+        "pts": 2
+      },
+      {
+        "equipo": "CLUB CIENCIA Y LABOR",
+        "pj": 1,
+        "g": 0,
+        "e": 0,
+        "p": 1,
+        "pts": 1
+      },
+      {
+        "equipo": "LUGANO TENNIS CLUB",
+        "pj": 1,
+        "g": 0,
+        "e": 0,
+        "p": 1,
+        "pts": 1
+      },
+      {
+        "equipo": "K. A. C.",
+        "pj": 1,
+        "g": 0,
+        "e": 0,
+        "p": 1,
+        "pts": 1
+      },
+      {
+        "equipo": "VILLA REAL ROJO",
+        "pj": 2,
+        "g": 0,
+        "e": 0,
+        "p": 0,
+        "pts": 0
+      },
+      {
+        "equipo": "EL TREBOL F. C.",
+        "pj": 2,
+        "g": 0,
+        "e": 0,
+        "p": 0,
+        "pts": 0
+      },
+      {
+        "equipo": "HURACAN",
+        "pj": 2,
+        "g": 0,
+        "e": 0,
+        "p": 0,
+        "pts": 0
+      }
+    ],
+    "2013": [
+      {
+        "equipo": "FATIMA",
+        "pj": 2,
+        "g": 2,
+        "e": 0,
+        "p": 0,
+        "pts": 6
+      },
+      {
+        "equipo": "SOLDATI 32 F. C.",
+        "pj": 2,
+        "g": 2,
+        "e": 0,
+        "p": 0,
+        "pts": 6
+      },
+      {
+        "equipo": "VILLA REAL ROJO",
+        "pj": 2,
+        "g": 2,
+        "e": 0,
+        "p": 0,
+        "pts": 6
+      },
+      {
+        "equipo": "LUJAN DE LOS PATRIOTAS",
+        "pj": 2,
+        "g": 2,
+        "e": 0,
+        "p": 0,
+        "pts": 6
+      },
+      {
+        "equipo": "LA MARCA",
+        "pj": 2,
+        "g": 2,
+        "e": 0,
+        "p": 0,
+        "pts": 6
+      },
+      {
+        "equipo": "MARCHIGIANA",
+        "pj": 2,
+        "g": 1,
+        "e": 0,
+        "p": 1,
+        "pts": 4
+      },
+      {
+        "equipo": "AÑASCO",
+        "pj": 2,
+        "g": 1,
+        "e": 0,
+        "p": 1,
+        "pts": 4
+      },
+      {
+        "equipo": "CLUB CIENCIA Y LABOR",
+        "pj": 1,
+        "g": 1,
+        "e": 0,
+        "p": 0,
+        "pts": 3
+      },
+      {
+        "equipo": "K. A. C.",
+        "pj": 1,
+        "g": 1,
+        "e": 0,
+        "p": 0,
+        "pts": 3
+      },
+      {
+        "equipo": "LOMAS BLANCO",
+        "pj": 2,
+        "g": 0,
+        "e": 0,
+        "p": 2,
+        "pts": 2
+      },
+      {
+        "equipo": "EL TREBOL F. C.",
+        "pj": 2,
+        "g": 0,
+        "e": 0,
+        "p": 2,
+        "pts": 2
+      },
+      {
+        "equipo": "LOS ANDES",
+        "pj": 2,
+        "g": 0,
+        "e": 0,
+        "p": 2,
+        "pts": 2
+      },
+      {
+        "equipo": "LIGA FOMENTO VILLA MITRE",
+        "pj": 2,
+        "g": 0,
+        "e": 0,
+        "p": 2,
+        "pts": 2
+      },
+      {
+        "equipo": "HURACAN",
+        "pj": 2,
+        "g": 0,
+        "e": 0,
+        "p": 2,
+        "pts": 2
+      },
+      {
+        "equipo": "LUGANO TENNIS CLUB",
+        "pj": 1,
+        "g": 0,
+        "e": 0,
+        "p": 1,
+        "pts": 1
+      },
+      {
+        "equipo": "ALL BOYS \"B\"",
+        "pj": 1,
+        "g": 0,
+        "e": 0,
+        "p": 1,
+        "pts": 1
+      }
+    ],
+    "2018": [
+      {
+        "equipo": "SOLDATI 32 F. C.",
+        "pj": 2,
+        "g": 2,
+        "e": 0,
+        "p": 0,
+        "pts": 6
+      },
+      {
+        "equipo": "LA MARCA",
+        "pj": 2,
+        "g": 2,
+        "e": 0,
+        "p": 0,
+        "pts": 6
+      },
+      {
+        "equipo": "LOS ANDES",
+        "pj": 2,
+        "g": 2,
+        "e": 0,
+        "p": 0,
+        "pts": 6
+      },
+      {
+        "equipo": "VILLA REAL ROJO",
+        "pj": 2,
+        "g": 1,
+        "e": 1,
+        "p": 0,
+        "pts": 5
+      },
+      {
+        "equipo": "LOMAS BLANCO",
+        "pj": 2,
+        "g": 1,
+        "e": 0,
+        "p": 1,
+        "pts": 4
+      },
+      {
+        "equipo": "FATIMA",
+        "pj": 2,
+        "g": 1,
+        "e": 0,
+        "p": 1,
+        "pts": 4
+      },
+      {
+        "equipo": "MARCHIGIANA",
+        "pj": 2,
+        "g": 1,
+        "e": 0,
+        "p": 1,
+        "pts": 4
+      },
+      {
+        "equipo": "LUJAN DE LOS PATRIOTAS",
+        "pj": 2,
+        "g": 1,
+        "e": 0,
+        "p": 1,
+        "pts": 4
+      },
+      {
+        "equipo": "CLUB CIENCIA Y LABOR",
+        "pj": 1,
+        "g": 1,
+        "e": 0,
+        "p": 0,
+        "pts": 3
+      },
+      {
+        "equipo": "LIGA FOMENTO VILLA MITRE",
+        "pj": 2,
+        "g": 0,
+        "e": 1,
+        "p": 1,
+        "pts": 3
+      },
+      {
+        "equipo": "K. A. C.",
+        "pj": 1,
+        "g": 1,
+        "e": 0,
+        "p": 0,
+        "pts": 3
+      },
+      {
+        "equipo": "EL TREBOL F. C.",
+        "pj": 2,
+        "g": 0,
+        "e": 0,
+        "p": 2,
+        "pts": 2
+      },
+      {
+        "equipo": "AÑASCO",
+        "pj": 2,
+        "g": 0,
+        "e": 0,
+        "p": 2,
+        "pts": 2
+      },
+      {
+        "equipo": "HURACAN",
+        "pj": 2,
+        "g": 0,
+        "e": 0,
+        "p": 2,
+        "pts": 2
+      },
+      {
+        "equipo": "LUGANO TENNIS CLUB",
+        "pj": 1,
+        "g": 0,
+        "e": 0,
+        "p": 1,
+        "pts": 1
+      },
+      {
+        "equipo": "ALL BOYS \"B\"",
+        "pj": 1,
+        "g": 0,
+        "e": 0,
+        "p": 1,
+        "pts": 1
+      }
+    ],
+    "2014": [
+      {
+        "equipo": "EL TREBOL F. C.",
+        "pj": 2,
+        "g": 2,
+        "e": 0,
+        "p": 0,
+        "pts": 6
+      },
+      {
+        "equipo": "MARCHIGIANA",
+        "pj": 2,
+        "g": 1,
+        "e": 1,
+        "p": 0,
+        "pts": 5
+      },
+      {
+        "equipo": "LOS ANDES",
+        "pj": 2,
+        "g": 1,
+        "e": 1,
+        "p": 0,
+        "pts": 5
+      },
+      {
+        "equipo": "LOMAS BLANCO",
+        "pj": 2,
+        "g": 1,
+        "e": 0,
+        "p": 1,
+        "pts": 4
+      },
+      {
+        "equipo": "FATIMA",
+        "pj": 2,
+        "g": 1,
+        "e": 0,
+        "p": 1,
+        "pts": 4
+      },
+      {
+        "equipo": "SOLDATI 32 F. C.",
+        "pj": 2,
+        "g": 1,
+        "e": 0,
+        "p": 1,
+        "pts": 4
+      },
+      {
+        "equipo": "VILLA REAL ROJO",
+        "pj": 2,
+        "g": 1,
+        "e": 0,
+        "p": 1,
+        "pts": 4
+      },
+      {
+        "equipo": "AÑASCO",
+        "pj": 2,
+        "g": 1,
+        "e": 0,
+        "p": 1,
+        "pts": 4
+      },
+      {
+        "equipo": "HURACAN",
+        "pj": 2,
+        "g": 1,
+        "e": 0,
+        "p": 1,
+        "pts": 4
+      },
+      {
+        "equipo": "CLUB CIENCIA Y LABOR",
+        "pj": 1,
+        "g": 1,
+        "e": 0,
+        "p": 0,
+        "pts": 3
+      },
+      {
+        "equipo": "LUGANO TENNIS CLUB",
+        "pj": 1,
+        "g": 1,
+        "e": 0,
+        "p": 0,
+        "pts": 3
+      },
+      {
+        "equipo": "K. A. C.",
+        "pj": 1,
+        "g": 1,
+        "e": 0,
+        "p": 0,
+        "pts": 3
+      },
+      {
+        "equipo": "LUJAN DE LOS PATRIOTAS",
+        "pj": 2,
+        "g": 0,
+        "e": 0,
+        "p": 2,
+        "pts": 2
+      },
+      {
+        "equipo": "LA MARCA",
+        "pj": 2,
+        "g": 0,
+        "e": 0,
+        "p": 2,
+        "pts": 2
+      },
+      {
+        "equipo": "LIGA FOMENTO VILLA MITRE",
+        "pj": 2,
+        "g": 0,
+        "e": 0,
+        "p": 2,
+        "pts": 2
+      },
+      {
+        "equipo": "ALL BOYS \"B\"",
+        "pj": 1,
+        "g": 0,
+        "e": 0,
+        "p": 1,
+        "pts": 1
+      }
+    ],
+    "2017": [
+      {
+        "equipo": "LOMAS BLANCO",
+        "pj": 2,
+        "g": 2,
+        "e": 0,
+        "p": 0,
+        "pts": 6
+      },
+      {
+        "equipo": "HURACAN",
+        "pj": 2,
+        "g": 2,
+        "e": 0,
+        "p": 0,
+        "pts": 6
+      },
+      {
+        "equipo": "MARCHIGIANA",
+        "pj": 2,
+        "g": 1,
+        "e": 1,
+        "p": 0,
+        "pts": 5
+      },
+      {
+        "equipo": "LA MARCA",
+        "pj": 2,
+        "g": 1,
+        "e": 1,
+        "p": 0,
+        "pts": 5
+      },
+      {
+        "equipo": "LOS ANDES",
+        "pj": 2,
+        "g": 1,
+        "e": 1,
+        "p": 0,
+        "pts": 5
+      },
+      {
+        "equipo": "EL TREBOL F. C.",
+        "pj": 2,
+        "g": 0,
+        "e": 2,
+        "p": 0,
+        "pts": 4
+      },
+      {
+        "equipo": "AÑASCO",
+        "pj": 2,
+        "g": 1,
+        "e": 0,
+        "p": 1,
+        "pts": 4
+      },
+      {
+        "equipo": "LIGA FOMENTO VILLA MITRE",
+        "pj": 2,
+        "g": 1,
+        "e": 0,
+        "p": 1,
+        "pts": 4
+      },
+      {
+        "equipo": "CLUB CIENCIA Y LABOR",
+        "pj": 1,
+        "g": 1,
+        "e": 0,
+        "p": 0,
+        "pts": 3
+      },
+      {
+        "equipo": "LUJAN DE LOS PATRIOTAS",
+        "pj": 2,
+        "g": 0,
+        "e": 1,
+        "p": 1,
+        "pts": 3
+      },
+      {
+        "equipo": "ALL BOYS \"B\"",
+        "pj": 1,
+        "g": 1,
+        "e": 0,
+        "p": 0,
+        "pts": 3
+      },
+      {
+        "equipo": "FATIMA",
+        "pj": 2,
+        "g": 0,
+        "e": 0,
+        "p": 2,
+        "pts": 2
+      },
+      {
+        "equipo": "SOLDATI 32 F. C.",
+        "pj": 2,
+        "g": 0,
+        "e": 0,
+        "p": 2,
+        "pts": 2
+      },
+      {
+        "equipo": "VILLA REAL ROJO",
+        "pj": 2,
+        "g": 0,
+        "e": 0,
+        "p": 2,
+        "pts": 2
+      },
+      {
+        "equipo": "LUGANO TENNIS CLUB",
+        "pj": 1,
+        "g": 0,
+        "e": 0,
+        "p": 1,
+        "pts": 1
+      },
+      {
+        "equipo": "K. A. C.",
+        "pj": 1,
+        "g": 0,
+        "e": 0,
+        "p": 1,
+        "pts": 1
+      }
+    ],
+    "2016": [
+      {
+        "equipo": "HURACAN",
+        "pj": 2,
+        "g": 2,
+        "e": 0,
+        "p": 0,
+        "pts": 6
+      },
+      {
+        "equipo": "MARCHIGIANA",
+        "pj": 2,
+        "g": 1,
+        "e": 1,
+        "p": 0,
+        "pts": 5
+      },
+      {
+        "equipo": "EL TREBOL F. C.",
+        "pj": 2,
+        "g": 1,
+        "e": 1,
+        "p": 0,
+        "pts": 5
+      },
+      {
+        "equipo": "AÑASCO",
+        "pj": 2,
+        "g": 1,
+        "e": 1,
+        "p": 0,
+        "pts": 5
+      },
+      {
+        "equipo": "LOMAS BLANCO",
+        "pj": 2,
+        "g": 1,
+        "e": 0,
+        "p": 1,
+        "pts": 4
+      },
+      {
+        "equipo": "SOLDATI 32 F. C.",
+        "pj": 2,
+        "g": 1,
+        "e": 0,
+        "p": 1,
+        "pts": 4
+      },
+      {
+        "equipo": "VILLA REAL ROJO",
+        "pj": 2,
+        "g": 1,
+        "e": 0,
+        "p": 1,
+        "pts": 4
+      },
+      {
+        "equipo": "LA MARCA",
+        "pj": 2,
+        "g": 0,
+        "e": 2,
+        "p": 0,
+        "pts": 4
+      },
+      {
+        "equipo": "LOS ANDES",
+        "pj": 2,
+        "g": 1,
+        "e": 0,
+        "p": 1,
+        "pts": 4
+      },
+      {
+        "equipo": "CLUB CIENCIA Y LABOR",
+        "pj": 1,
+        "g": 1,
+        "e": 0,
+        "p": 0,
+        "pts": 3
+      },
+      {
+        "equipo": "K. A. C.",
+        "pj": 1,
+        "g": 1,
+        "e": 0,
+        "p": 0,
+        "pts": 3
+      },
+      {
+        "equipo": "FATIMA",
+        "pj": 2,
+        "g": 0,
+        "e": 0,
+        "p": 2,
+        "pts": 2
+      },
+      {
+        "equipo": "LUJAN DE LOS PATRIOTAS",
+        "pj": 2,
+        "g": 0,
+        "e": 0,
+        "p": 2,
+        "pts": 2
+      },
+      {
+        "equipo": "LUGANO TENNIS CLUB",
+        "pj": 1,
+        "g": 0,
+        "e": 1,
+        "p": 0,
+        "pts": 2
+      },
+      {
+        "equipo": "LIGA FOMENTO VILLA MITRE",
+        "pj": 2,
+        "g": 0,
+        "e": 0,
+        "p": 2,
+        "pts": 2
+      },
+      {
+        "equipo": "ALL BOYS \"B\"",
+        "pj": 1,
+        "g": 0,
+        "e": 0,
+        "p": 1,
+        "pts": 1
+      }
+    ],
+    "2015": [
+      {
+        "equipo": "MARCHIGIANA",
+        "pj": 2,
+        "g": 2,
+        "e": 0,
+        "p": 0,
+        "pts": 6
+      },
+      {
+        "equipo": "EL TREBOL F. C.",
+        "pj": 2,
+        "g": 2,
+        "e": 0,
+        "p": 0,
+        "pts": 6
+      },
+      {
+        "equipo": "SOLDATI 32 F. C.",
+        "pj": 2,
+        "g": 1,
+        "e": 1,
+        "p": 0,
+        "pts": 5
+      },
+      {
+        "equipo": "LOMAS BLANCO",
+        "pj": 2,
+        "g": 1,
+        "e": 0,
+        "p": 1,
+        "pts": 4
+      },
+      {
+        "equipo": "FATIMA",
+        "pj": 2,
+        "g": 1,
+        "e": 0,
+        "p": 1,
+        "pts": 4
+      },
+      {
+        "equipo": "VILLA REAL ROJO",
+        "pj": 2,
+        "g": 1,
+        "e": 0,
+        "p": 1,
+        "pts": 4
+      },
+      {
+        "equipo": "LA MARCA",
+        "pj": 2,
+        "g": 1,
+        "e": 0,
+        "p": 1,
+        "pts": 4
+      },
+      {
+        "equipo": "LOS ANDES",
+        "pj": 2,
+        "g": 1,
+        "e": 0,
+        "p": 1,
+        "pts": 4
+      },
+      {
+        "equipo": "AÑASCO",
+        "pj": 2,
+        "g": 1,
+        "e": 0,
+        "p": 1,
+        "pts": 4
+      },
+      {
+        "equipo": "CLUB CIENCIA Y LABOR",
+        "pj": 1,
+        "g": 1,
+        "e": 0,
+        "p": 0,
+        "pts": 3
+      },
+      {
+        "equipo": "HURACAN",
+        "pj": 2,
+        "g": 0,
+        "e": 1,
+        "p": 1,
+        "pts": 3
+      },
+      {
+        "equipo": "K. A. C.",
+        "pj": 1,
+        "g": 1,
+        "e": 0,
+        "p": 0,
+        "pts": 3
+      },
+      {
+        "equipo": "LUJAN DE LOS PATRIOTAS",
+        "pj": 2,
+        "g": 0,
+        "e": 0,
+        "p": 2,
+        "pts": 2
+      },
+      {
+        "equipo": "LIGA FOMENTO VILLA MITRE",
+        "pj": 2,
+        "g": 0,
+        "e": 0,
+        "p": 2,
+        "pts": 2
+      },
+      {
+        "equipo": "LUGANO TENNIS CLUB",
+        "pj": 1,
+        "g": 0,
+        "e": 0,
+        "p": 1,
+        "pts": 1
+      },
+      {
+        "equipo": "ALL BOYS \"B\"",
+        "pj": 1,
+        "g": 0,
+        "e": 0,
+        "p": 1,
+        "pts": 1
+      }
+    ]
   }
 }
