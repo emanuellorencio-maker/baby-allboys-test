@@ -8,6 +8,7 @@ ZONAS = ("c", "i", "mat1", "mat4")
 DATA_DIR = Path("data")
 CLUBES_PATH = DATA_DIR / "clubes.json"
 ESCUDOS_DIR = Path("assets") / "escudos"
+ESCUDO_FORMATOS = ("png", "jpg", "svg")
 
 
 def normalizar_texto(valor: str) -> str:
@@ -95,13 +96,27 @@ def indexar_existentes(data) -> dict[str, dict]:
     return existentes
 
 
+def escudo_para_slug(slug: str, actual: str = "") -> str:
+    if actual:
+        actual_path = Path(actual)
+        if actual_path.exists():
+            return actual
+
+    for ext in ESCUDO_FORMATOS:
+        candidato = ESCUDOS_DIR / f"{slug}.{ext}"
+        if candidato.exists():
+            return candidato.as_posix()
+
+    return (ESCUDOS_DIR / f"{slug}.png").as_posix()
+
+
 def fusionar_clubes(nuevos: dict[str, str], existentes: dict[str, dict]) -> list[dict]:
     resultado = {}
     for slug, nombre in nuevos.items():
         item = dict(existentes.get(slug, {}))
         item.setdefault("nombre", nombre)
         item.setdefault("slug", slug)
-        item.setdefault("escudo", f"assets/escudos/{slug}.png")
+        item["escudo"] = escudo_para_slug(slug, item.get("escudo", ""))
 
         aliases = []
         for alias in item.get("alias", []):
