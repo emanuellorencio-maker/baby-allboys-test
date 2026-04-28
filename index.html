@@ -207,6 +207,61 @@ body.modo-insta.zona-elegida main{display:block!important}
   #botones-vista:after{content:"Seleccioná qué querés ver";position:absolute;top:0;left:50%;transform:translateX(-50%);padding:0 10px;background:linear-gradient(145deg,rgba(12,12,12,.96),rgba(24,24,24,.94));color:#bdbdbd;font-size:10px;font-weight:1000;text-transform:uppercase;letter-spacing:.9px;white-space:nowrap}
   #botones-vista .vista-btn{min-height:50px;padding:10px 6px;font-size:12px;border-radius:15px}
 }
+
+/* Ajustes finales mobile: tablas sin scroll lateral, botones mas legibles y fixture con posiciones */
+.zona-btn,.vista-btn,.fecha-pill,.chip{
+  border-color:rgba(255,255,255,.2);
+  background:linear-gradient(145deg,rgba(255,255,255,.105),rgba(255,255,255,.045));
+  color:#fff;
+  text-shadow:0 1px 0 rgba(0,0,0,.45);
+}
+.zona-btn.activo,.vista-btn.activo,.fecha-pill.activa{
+  background:linear-gradient(145deg,#fff,#dcdcdc);
+  color:#070707;
+  border-color:#fff;
+  text-shadow:none;
+  box-shadow:0 10px 22px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.65);
+}
+.zona-btn small{color:#d0d0d0}
+.zona-btn.activo small{color:#262626}
+.suggestion-link{
+  width:48px;
+  height:48px;
+  background:linear-gradient(145deg,rgba(0,0,0,.92),rgba(28,28,28,.9));
+  border-color:rgba(255,255,255,.34);
+  box-shadow:0 14px 32px rgba(0,0,0,.42),inset 0 1px 0 rgba(255,255,255,.08);
+  transition:transform .18s ease,background .18s ease,color .18s ease;
+}
+.suggestion-link:hover{transform:translateY(-1px)}
+.tabla-pos{color:#d0d0d0}
+.equipo-allboys .tabla-pos{color:#fff}
+@media(max-width:760px){
+  .tabla-wrap{overflow-x:hidden}
+  .tabla-wrap table:not(.results-table){
+    min-width:0!important;
+    width:100%;
+    table-layout:fixed;
+  }
+  .tabla-wrap table:not(.results-table) th,
+  .tabla-wrap table:not(.results-table) td{
+    padding:9px 4px;
+    font-size:11px;
+    line-height:1.15;
+    white-space:normal;
+    overflow-wrap:anywhere;
+  }
+  .tabla-wrap table:not(.results-table) th:nth-child(1),
+  .tabla-wrap table:not(.results-table) td:nth-child(1){
+    width:28px;
+  }
+  .tabla-wrap table:not(.results-table) th:nth-child(2),
+  .tabla-wrap table:not(.results-table) td:nth-child(2){
+    width:38%;
+    text-align:left;
+  }
+  .fila-all-boys td{border-left-width:3px}
+  .suggestion-link{left:12px;bottom:12px;width:44px;height:44px;font-size:16px}
+}
 </style>
 </head>
 <body>
