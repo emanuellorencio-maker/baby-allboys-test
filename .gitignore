@@ -7,3 +7,4 @@ dist/
 .env
 .vercel/
 .DS_Store
+chat-*.png

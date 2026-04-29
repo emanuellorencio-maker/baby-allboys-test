@@ -354,6 +354,40 @@ body.modo-insta.zona-elegida .insta-full-link{display:inline-flex;justify-conten
   .club-crest{width:30px;height:30px}
   body.modo-insta .app{min-height:calc(100vh - 28px)}
 }
+/* Preguntale al Baby */
+.baby-chat-fab{position:fixed;right:18px;bottom:18px;z-index:10020;display:flex;align-items:flex-end;gap:10px;padding:0;background:transparent;color:#fff;border:0;filter:drop-shadow(0 18px 26px rgba(0,0,0,.45));animation:babyGlow 5.8s ease-in-out infinite}
+.baby-chat-fab:hover .baby-chat-fab-pet{transform:translateY(-5px) scale(1.04) rotate(-2deg)}
+.baby-chat-fab:hover .baby-chat-fab-text{background:#fff;color:#080808}
+.baby-chat-fab-pet{width:82px;height:116px;background:url("data/pet/mascota-float.png") center bottom/contain no-repeat;transition:transform .22s ease;animation:babyIdle 3.4s ease-in-out infinite;flex:0 0 auto}
+.baby-chat-fab-text{min-height:48px;display:inline-flex;align-items:center;justify-content:center;margin-bottom:8px;border-radius:18px;padding:11px 14px;background:rgba(0,0,0,.88);border:1px solid rgba(255,255,255,.34);box-shadow:var(--shadow2);font-size:13px;font-weight:1000;line-height:1.05;text-align:left;transition:.2s ease;backdrop-filter:blur(10px)}
+.baby-chat-shell{position:fixed;right:18px;bottom:18px;width:min(390px,calc(100vw - 24px));height:min(640px,calc(100vh - 24px));z-index:10030;display:none;flex-direction:column;overflow:hidden;border:1px solid rgba(255,255,255,.26);border-radius:24px;background:linear-gradient(145deg,rgba(4,4,4,.98),rgba(24,24,24,.96));box-shadow:0 28px 70px rgba(0,0,0,.62),inset 0 1px 0 rgba(255,255,255,.08);transform:translateY(18px) scale(.97);opacity:0}
+.baby-chat-shell.abierto{display:flex;animation:babyPanelIn .22s ease forwards}
+.baby-chat-shell.respondiendo .baby-chat-avatar,.baby-chat-shell.respondiendo .baby-chat-header-pet{animation:babyAnswer .55s ease}
+.baby-chat-header{display:flex;align-items:center;gap:12px;padding:14px;border-bottom:1px solid rgba(255,255,255,.12);background:linear-gradient(90deg,rgba(255,255,255,.08),rgba(255,255,255,.02))}
+.baby-chat-header-pet{width:58px;height:58px;border-radius:50%;background:#050505 url("data/pet/mascota-avatar.png") center/cover no-repeat;border:1px solid rgba(255,255,255,.35);box-shadow:0 10px 22px rgba(0,0,0,.38);flex:0 0 auto}
+.baby-chat-title{min-width:0;flex:1}.baby-chat-title strong{display:block;font-size:17px;font-weight:1000}.baby-chat-title span{display:block;margin-top:3px;color:#cfcfcf;font-size:12px;font-weight:800;line-height:1.25}
+.baby-chat-close{width:38px;height:38px;border-radius:14px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);color:#fff;font-size:20px;font-weight:900}
+.baby-chat-close:hover{background:#fff;color:#080808}
+.baby-chat-messages{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:11px;scroll-behavior:smooth}
+.baby-chat-row{display:flex;gap:8px;align-items:flex-end;max-width:92%}.baby-chat-row.user{align-self:flex-end;justify-content:flex-end}.baby-chat-row.bot{align-self:flex-start}
+.baby-chat-avatar{width:34px;height:34px;border-radius:50%;background:#050505 url("data/pet/mascota-avatar.png") center/cover no-repeat;border:1px solid rgba(255,255,255,.28);box-shadow:0 8px 16px rgba(0,0,0,.3);flex:0 0 auto}
+.baby-chat-bubble{border-radius:18px;padding:10px 12px;font-size:13px;font-weight:800;line-height:1.38;white-space:pre-line;overflow-wrap:anywhere}
+.baby-chat-row.bot .baby-chat-bubble{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.14);color:#f5f5f5;border-bottom-left-radius:7px}
+.baby-chat-row.user .baby-chat-bubble{background:#fff;color:#080808;border-bottom-right-radius:7px}
+.baby-chat-chips{display:flex;gap:8px;overflow-x:auto;padding:0 14px 12px;scrollbar-width:thin}
+.baby-chat-chip{white-space:nowrap;border-radius:999px;padding:9px 11px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);color:#fff;font-size:12px;font-weight:900}
+.baby-chat-chip:hover{background:#fff;color:#080808}
+.baby-chat-form{display:flex;gap:8px;padding:12px;border-top:1px solid rgba(255,255,255,.12);background:rgba(0,0,0,.5)}
+.baby-chat-input{flex:1;min-width:0;border:1px solid rgba(255,255,255,.18);border-radius:16px;background:rgba(255,255,255,.08);color:#fff;padding:12px 13px;font:800 14px Arial,Helvetica,sans-serif;outline:0}
+.baby-chat-input:focus{border-color:#fff;box-shadow:0 0 0 3px rgba(255,255,255,.12)}
+.baby-chat-send{width:46px;border-radius:16px;background:#fff;color:#080808;font-weight:1000;font-size:18px}
+.baby-chat-img-fallback{background-image:none!important}.baby-chat-img-fallback:before{content:"BABY";display:flex;align-items:center;justify-content:center;width:100%;height:100%;font-size:10px;font-weight:1000;color:#fff}
+body.chat-abierto .baby-chat-fab{display:none}
+@keyframes babyIdle{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-4px) rotate(-1deg)}}
+@keyframes babyGlow{0%,78%,100%{filter:drop-shadow(0 18px 26px rgba(0,0,0,.45))}82%{filter:drop-shadow(0 18px 26px rgba(0,0,0,.45)) drop-shadow(0 0 14px rgba(255,255,255,.75))}}
+@keyframes babyPanelIn{to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes babyAnswer{0%,100%{transform:scale(1)}35%{transform:scale(1.08) rotate(-3deg)}70%{transform:scale(1.02) rotate(2deg)}}
+@media(max-width:760px){.baby-chat-fab{right:8px;bottom:10px;gap:0;flex-direction:column;align-items:center}.baby-chat-fab-pet{width:58px;height:84px}.baby-chat-fab-text{max-width:104px;min-height:38px;margin:-4px 0 0;padding:8px 10px;font-size:11px;text-align:center}.baby-chat-shell{right:10px;bottom:10px;width:calc(100vw - 20px);height:min(610px,calc(100vh - 20px));border-radius:22px}.baby-chat-header{padding:12px}.baby-chat-header-pet{width:50px;height:50px}.baby-chat-title strong{font-size:16px}.baby-chat-messages{padding:12px}.baby-chat-bubble{font-size:13px}.instagram{bottom:108px}}
 </style>
 </head>
 <body>
@@ -413,6 +447,34 @@ body.modo-insta.zona-elegida .insta-full-link{display:inline-flex;justify-conten
   </section>
   <div class="footer-mini">Baby All Boys · Sitio no oficial</div>
 </div>
+<button class="baby-chat-fab" type="button" onclick="abrirChat()" aria-label="Abrir Preguntale al Baby">
+  <span class="baby-chat-fab-pet" aria-hidden="true"></span>
+  <span class="baby-chat-fab-text">Preguntale<br>al Baby</span>
+</button>
+<section class="baby-chat-shell" id="baby-chat" aria-label="Preguntale al Baby" aria-hidden="true">
+  <header class="baby-chat-header">
+    <span class="baby-chat-header-pet" aria-hidden="true"></span>
+    <div class="baby-chat-title">
+      <strong>Preguntale al Baby</strong>
+      <span>Fixture, tablas y resultados desde los JSON locales.</span>
+    </div>
+    <button class="baby-chat-close" type="button" onclick="cerrarChat()" aria-label="Cerrar chat">×</button>
+  </header>
+  <div class="baby-chat-messages" id="baby-chat-messages" aria-live="polite"></div>
+  <div class="baby-chat-chips" id="baby-chat-chips">
+    <button class="baby-chat-chip" type="button">¿Cuándo juega All Boys A?</button>
+    <button class="baby-chat-chip" type="button">¿Cuándo juega All Boys B?</button>
+    <button class="baby-chat-chip" type="button">Tabla de Los Albos</button>
+    <button class="baby-chat-chip" type="button">Resultados Fecha 1</button>
+    <button class="baby-chat-chip" type="button">Fixture MAT4</button>
+    <button class="baby-chat-chip" type="button">Posición All Boys A</button>
+    <button class="baby-chat-chip" type="button">¿Qué puedo preguntar?</button>
+  </div>
+  <form class="baby-chat-form" id="baby-chat-form">
+    <input class="baby-chat-input" id="baby-chat-input" autocomplete="off" placeholder="Escribí tu pregunta..." />
+    <button class="baby-chat-send" type="submit" aria-label="Enviar">➜</button>
+  </form>
+</section>
 <div class="suggestion-modal" id="suggestion-modal" role="dialog" aria-modal="true" aria-labelledby="suggestion-title">
   <div class="suggestion-dialog">
     <h2 id="suggestion-title">Enviar sugerencia</h2>
@@ -602,9 +664,76 @@ function aplicarEntradaCompartida(){
     vistaActual=vista;
   }
 }
+const CHATBOT_ZONAS=['c','i','mat1','mat4'];
+const CHATBOT_CACHE={zonas:{}};
+
+async function cargarDatosChatbot(zona=null){
+  const zonas=zona?[zona]:CHATBOT_ZONAS;
+  await Promise.all(zonas.map(async z=>{
+    if(CHATBOT_CACHE.zonas[z])return;
+    const [fixture,tabla,resultados]=await Promise.all([
+      getJSONOpcional(`data/${z}/fixture.json`),
+      getJSONOpcional(`data/${z}/tabla.json`),
+      getJSONOpcional(`data/${z}/resultados.json`)
+    ]);
+    CHATBOT_CACHE.zonas[z]={fixture:Array.isArray(fixture)?fixture:[],tabla:tabla||{},resultados:resultados||{}};
+  }));
+  return zona?CHATBOT_CACHE.zonas[zona]:CHATBOT_CACHE.zonas;
+}
+
+function normalizarTexto(texto){return String(texto||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[“”"']/g,' ').replace(/[^a-z0-9/ñ\s]/g,' ').replace(/\ballboys\b/g,'all boys').replace(/\bproxima\b/g,'proximo').replace(/\bposiciones\b/g,'posicion').replace(/\bpts\b/g,'puntos').replace(/\s+/g,' ').trim()}
+function detectarZona(texto){const t=normalizarTexto(texto);if(/\b(mat\s*1|zona mat\s*1|los albos|albos|albo)\b/.test(t))return 'mat1';if(/\b(all boys mat\s*4|mat\s*4|zona mat\s*4)\b/.test(t))return 'mat4';if(/\b(all boys equipo a|all boys a|all boy a|zona c|cat c)\b/.test(t)||t==='c')return 'c';if(/\b(all boys equipo b|all boys b|all boy b|zona i|cat i)\b/.test(t)||t==='i')return 'i';if(/\ball boys\b/.test(t)||/\ballboys\b/.test(t))return 'ambigua-allboys';return null}
+function detectarCategoria(texto){const t=normalizarTexto(texto);const combo=t.match(/\b(2014\/15|2016\/17|2018\/19\/20|2018\/19|2020\/21\/22)\b/);if(combo)return combo[1];const larga=t.match(/\b(2013|2014|2015|2016|2017|2018|2019)\b/);if(larga)return larga[1];const corta=t.match(/\b(?:cat(?:egoria)?|modelo|la)\s*(13|14|15|16|17|18|19)\b/);return corta?`20${corta[1]}`:null}
+function detectarFecha(texto){const m=normalizarTexto(texto).match(/\b(?:fecha|f)\s*(\d{1,2})\b/);return m?`F${Number(m[1])}`:null}
+function detectarIntencion(texto){const t=normalizarTexto(texto);if(/\b(ayuda|que puedo preguntar|opciones)\b/.test(t))return 'ayuda';if(/\b(resultado|resultados|como salio|marcador|goles|ultima fecha|ultimo resultado)\b/.test(t))return 'resultados';if(/\b(tabla|posicion|puntos|pj|partidos jugados|ganados|empatados|perdidos)\b/.test(t))return 'tabla';if(/\b(fixture|calendario|fechas|partidos)\b/.test(t))return 'fixture';if(/\b(local|visitante|donde juega)\b/.test(t))return 'condicion';if(/\b(cuando juega|proximo|siguiente|contra quien juega|rival|proxima fecha)\b/.test(t))return 'proximo';return null}
+
+function chatbotNombreZona(z){return ZONA_CONFIG[z]?.etiqueta||z}
+function chatbotEquipoZona(z){return ZONA_CONFIG[z]?.equipo||''}
+function chatbotEsPropio(nombre,z){const a=norm(nombre),b=norm(chatbotEquipoZona(z));return !!b&&(a===b||a.includes(b))}
+function chatbotFilaPropia(filas,z){return (Array.isArray(filas)?filas:[]).find(f=>chatbotEsPropio(f.equipo,z))||null}
+function chatbotPosicion(filas,z){const i=(Array.isArray(filas)?filas:[]).findIndex(f=>chatbotEsPropio(f.equipo,z));return i>=0?i+1:null}
+function chatbotTieneMarcador(v){return v&&v.local!==null&&v.local!==undefined&&v.local!==''&&v.visitante!==null&&v.visitante!==undefined&&v.visitante!==''}
+function chatbotPartidoPropio(partidos,z){return (Array.isArray(partidos)?partidos:[]).find(p=>chatbotEsPropio(p.local,z)||chatbotEsPropio(p.visitante,z))||null}
+function chatbotRival(p,z){return chatbotEsPropio(p.local,z)?p.visitante:p.local}
+function chatbotOrdenFixture(fixture){return [...(Array.isArray(fixture)?fixture:[])].sort((a,b)=>parseFecha(a.fecha).t-parseFecha(b.fecha).t||fechaNum(a.fecha)-fechaNum(b.fecha))}
+function chatbotProximo(fixture){const hoy=new Date(),base=new Date(hoy.getFullYear(),hoy.getMonth(),hoy.getDate()).getTime();const ord=chatbotOrdenFixture(fixture);return ord.find(p=>parseFecha(p.fecha).t>=base)||ord.at(-1)||null}
+function chatbotUltimaFechaConDatos(resultados,categoria=null){const gen=resultados?.general||{};return Object.keys(gen).sort((a,b)=>fechaNum(a)-fechaNum(b)).filter(fid=>(gen[fid]||[]).some(p=>Object.entries(p.resultados||{}).some(([cat,val])=>(!categoria||cat===categoria)&&chatbotTieneMarcador(val)))).pop()||null}
+function chatbotFechaDisponible(resultados,fecha,categoria=null){return fecha||chatbotUltimaFechaConDatos(resultados,categoria)||Object.keys(resultados?.general||{}).sort((a,b)=>fechaNum(a)-fechaNum(b))[0]||null}
+
+function respuestaAyuda(){return 'Puedo responder con datos cargados del fixture, tablas y resultados.\n\nEjemplos:\n- ¿Cuándo juega All Boys A?\n- Tabla de Los Albos\n- Resultados Fecha 1\n- Fixture MAT4\n- Posición All Boys B\n- ¿Cómo salió la 2016?'}
+function respuestaProximo(datos,z,soloCondicion=false){const p=chatbotProximo(datos.fixture);if(!p)return 'No tengo fixture cargado para esa zona todavía.';const nombre=chatbotNombreZona(z),rival=chatbotRival(p,z);if(soloCondicion)return `📍 ${nombre} juega la ${p.fecha}.\n${p.local} vs ${p.visitante}.\nCondición: ${p.condicion||'Sin dato'}.`;return `⚽ ${nombre} juega la ${p.fecha}.\n${p.local} vs ${p.visitante}.\nRival: ${rival}.\nCondición: ${p.condicion||'Sin dato'}.`}
+function respuestaFixture(datos,z,fecha=null){const partidos=chatbotOrdenFixture(datos.fixture).filter(p=>!fecha||(p.fecha_id||fechaId(p.fecha))===fecha);if(!partidos.length)return 'No tengo ese fixture cargado todavía.';return `📅 Fixture de ${chatbotNombreZona(z)}:\n${partidos.map(p=>`${p.fecha}: ${p.local} vs ${p.visitante} (${p.condicion||'sin condición'})`).join('\n')}`}
+function respuestaTabla(datos,z,categoria=null){const filas=categoria?(datos.tabla?.categorias?.[categoria]||[]):(datos.tabla?.general||[]);if(!filas.length)return 'No tengo ese dato cargado todavía. Puede ser que el JSON esté vacío o que esa fecha/categoría no tenga resultados.';const fila=chatbotFilaPropia(filas,z),pos=chatbotPosicion(filas,z);if(!fila)return `No encontré a ${chatbotNombreZona(z)} en esa tabla.`;const scope=categoria?`tabla de la categoría ${categoria}`:'tabla general';return `📊 En la ${scope}, ${chatbotNombreZona(z)} está en la posición ${pos} con ${fila.pts??'-'} puntos, ${fila.pj??'-'} PJ, ${fila.g??'-'} ganados, ${fila.e??'-'} empatados y ${fila.p??'-'} perdidos.`}
+function respuestaResultadosZona(datos,z,fecha=null,categoria=null){const fid=chatbotFechaDisponible(datos.resultados,fecha,categoria);if(!fid)return 'No tengo resultados cargados todavía para esa zona.';const p=chatbotPartidoPropio(datos.resultados?.general?.[fid],z);if(!p)return 'No tengo ese dato cargado todavía. Puede ser que el JSON esté vacío o que esa fecha/categoría no tenga resultados.';const cats=categoria?[categoria]:ordenarCategorias(Object.keys(p.resultados||{}),z);const ownLocal=chatbotEsPropio(p.local,z);const lineas=cats.map(cat=>{const val=p.resultados?.[cat];if(!chatbotTieneMarcador(val))return `${cat}: sin resultado cargado`;const gf=ownLocal?val.local:val.visitante,gc=ownLocal?val.visitante:val.local;return `${cat}: ${chatbotNombreZona(z)} ${resultadoTexto(Number(gf),Number(gc))}`});if(!lineas.some(l=>!l.includes('sin resultado cargado')))return 'No tengo ese dato cargado todavía. Puede ser que el JSON esté vacío o que esa fecha/categoría no tenga resultados.';return `🏁 Resultados ${fid} - ${chatbotNombreZona(z)}:\n${p.local} vs ${p.visitante}\n${lineas.join('\n')}`}
+function respuestaResultadosTodas(zonas,fecha=null,categoria=null){const partes=CHATBOT_ZONAS.map(z=>{const datos=zonas[z];const fid=chatbotFechaDisponible(datos?.resultados||{},fecha,categoria);const p=chatbotPartidoPropio(datos?.resultados?.general?.[fid],z);if(!p)return `${chatbotNombreZona(z)}: sin datos cargados`;const cats=categoria?[categoria]:ordenarCategorias(Object.keys(p.resultados||{}),z);const ownLocal=chatbotEsPropio(p.local,z);const cargadas=cats.filter(cat=>chatbotTieneMarcador(p.resultados?.[cat]));if(!cargadas.length)return `${chatbotNombreZona(z)} ${fid}: sin resultados cargados`;const detalle=cargadas.slice(0,4).map(cat=>{const val=p.resultados[cat],gf=ownLocal?val.local:val.visitante,gc=ownLocal?val.visitante:val.local;return `${cat} ${gf}-${gc}`}).join(', ');return `${chatbotNombreZona(z)} ${fid}: ${detalle}${cargadas.length>4?'...':''}`});return `🏁 Resultados${categoria?` categoría ${categoria}`:''}${fecha?` ${fecha}`:''}:\n${partes.join('\n')}`}
+function respuestaResumenZona(datos,z){const prox=chatbotProximo(datos.fixture),fila=chatbotFilaPropia(datos.tabla?.general||[],z),pos=chatbotPosicion(datos.tabla?.general||[],z),ult=chatbotUltimaFechaConDatos(datos.resultados);const lineas=[`Resumen de ${chatbotNombreZona(z)}.`];if(prox)lineas.push(`Próximo: ${prox.fecha}, ${prox.local} vs ${prox.visitante} (${prox.condicion||'sin condición'}).`);if(fila)lineas.push(`Tabla: posición ${pos}, ${fila.pts} pts, ${fila.pj} PJ.`);lineas.push(`Última fecha con resultados: ${ult||'sin resultados cargados'}.`);return lineas.join('\n')}
+
+async function responderPregunta(pregunta){
+  const texto=normalizarTexto(pregunta),zona=detectarZona(texto),categoria=detectarCategoria(texto),fecha=detectarFecha(texto),intencion=detectarIntencion(texto);
+  if(zona==='ambigua-allboys')return '¿Te referís a All Boys A, All Boys B o All Boys MAT4?';
+  if(intencion==='ayuda')return respuestaAyuda();
+  const datos=await cargarDatosChatbot(zona&&CHATBOT_ZONAS.includes(zona)?zona:null);
+  if(intencion==='resultados'&&(!zona||!CHATBOT_ZONAS.includes(zona)))return respuestaResultadosTodas(datos,fecha,categoria);
+  if(!zona||!CHATBOT_ZONAS.includes(zona))return '¿De qué equipo querés saber? All Boys A, All Boys B, Los Albos o All Boys MAT4.';
+  if(intencion==='proximo')return respuestaProximo(datos,zona);
+  if(intencion==='condicion')return respuestaProximo(datos,zona,true);
+  if(intencion==='fixture')return respuestaFixture(datos,zona,fecha);
+  if(intencion==='tabla')return respuestaTabla(datos,zona,categoria);
+  if(intencion==='resultados')return respuestaResultadosZona(datos,zona,fecha,categoria);
+  return respuestaResumenZona(datos,zona);
+}
+
+function renderMensajeChat(tipo,texto){const cont=document.getElementById('baby-chat-messages');if(!cont)return;const row=document.createElement('div');row.className=`baby-chat-row ${tipo}`;const bubble=document.createElement('div');bubble.className='baby-chat-bubble';bubble.textContent=texto;if(tipo==='bot'){const av=document.createElement('span');av.className='baby-chat-avatar';row.append(av,bubble)}else row.appendChild(bubble);cont.appendChild(row);cont.scrollTop=cont.scrollHeight}
+function abrirChat(){const chat=document.getElementById('baby-chat');if(!chat)return;chat.classList.add('abierto');chat.setAttribute('aria-hidden','false');document.body.classList.add('chat-abierto');if(!document.getElementById('baby-chat-messages')?.children.length)renderMensajeChat('bot','¡Hola! Soy el Baby. Preguntame por fixtures, tablas, posiciones o resultados.');document.getElementById('baby-chat-input')?.focus()}
+function cerrarChat(){const chat=document.getElementById('baby-chat');if(!chat)return;chat.classList.remove('abierto','respondiendo');chat.setAttribute('aria-hidden','true');document.body.classList.remove('chat-abierto')}
+async function enviarPreguntaChat(texto){const pregunta=String(texto||'').trim();if(!pregunta)return;renderMensajeChat('user',pregunta);const input=document.getElementById('baby-chat-input');if(input)input.value='';const chat=document.getElementById('baby-chat');try{const respuesta=await responderPregunta(pregunta);chat?.classList.add('respondiendo');renderMensajeChat('bot',respuesta);setTimeout(()=>chat?.classList.remove('respondiendo'),650)}catch(e){console.warn('Error en chatbot',e);renderMensajeChat('bot','No pude leer esos datos ahora. Probá de nuevo en unos segundos.')}}
+
 document.getElementById('suggestion-form')?.addEventListener('submit',enviarSugerencia);
 document.getElementById('suggestion-modal')?.addEventListener('click',e=>{if(e.target.id==='suggestion-modal')cerrarSugerencias()});
-document.addEventListener('keydown',e=>{if(e.key==='Escape')cerrarSugerencias()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){cerrarSugerencias();cerrarChat()}});
+document.getElementById('baby-chat-form')?.addEventListener('submit',e=>{e.preventDefault();enviarPreguntaChat(document.getElementById('baby-chat-input')?.value)});
+document.getElementById('baby-chat-chips')?.addEventListener('click',e=>{const btn=e.target.closest('.baby-chat-chip');if(btn)enviarPreguntaChat(btn.textContent)});
+document.querySelectorAll('.baby-chat-header-pet,.baby-chat-avatar,.baby-chat-fab-pet').forEach(el=>{const img=new Image();img.onerror=()=>el.classList.add('baby-chat-img-fallback');img.src=getComputedStyle(el).backgroundImage.replace(/^url\(["']?|["']?\)$/g,'')});
 (async()=>{try{aplicarEntradaCompartida();activar();if(!(modoInsta&&!document.body.classList.contains('zona-elegida')))await cargarVistaActual()}catch(e){const cont=document.getElementById('contenedor-fixture');if(cont){cont.className='bloque estado-error';cont.textContent='No se pudo cargar la información inicial.'}}try{if(!modoInsta)await renderNoticias()}catch(e){}})();
 </script>
 </body>
