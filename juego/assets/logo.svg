@@ -1,16 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 320">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 340">
   <defs>
-    <filter id="s" x="-15%" y="-15%" width="130%" height="130%"><feDropShadow dx="0" dy="12" stdDeviation="9" flood-opacity=".38"/></filter>
+    <filter id="s" x="-15%" y="-15%" width="130%" height="130%"><feDropShadow dx="0" dy="14" stdDeviation="10" flood-opacity=".45"/></filter>
+    <linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#cfcfcf"/></linearGradient>
   </defs>
-  <rect width="520" height="320" rx="46" fill="#070707"/>
+  <rect width="560" height="340" rx="52" fill="#050505"/>
   <g filter="url(#s)">
-    <path d="M64 46h392c22 0 40 18 40 40v148c0 22-18 40-40 40H64c-22 0-40-18-40-40V86c0-22 18-40 40-40z" fill="#fff" stroke="#111" stroke-width="10"/>
-    <path d="M88 70h344v180H88z" fill="#111"/>
-    <path d="M128 70h64v180h-64zm128 0h64v180h-64zm128 0h48v180h-48z" fill="#fff"/>
-    <path d="M62 224c94-38 295-37 396 0v35H62z" fill="#39b66a" stroke="#111" stroke-width="8"/>
-    <text x="260" y="145" text-anchor="middle" font-family="Arial Black,Arial" font-size="58" fill="#fff" stroke="#111" stroke-width="6" paint-order="stroke">BABY</text>
-    <text x="260" y="204" text-anchor="middle" font-family="Arial Black,Arial" font-size="54" fill="#f4f4f4" stroke="#111" stroke-width="6" paint-order="stroke">ALBO JUMP</text>
-    <circle cx="421" cy="85" r="28" fill="#f4c84a" stroke="#111" stroke-width="7"/>
-    <path d="M421 68 436 77v18l-15 11-15-11V77z" fill="#fff" stroke="#111" stroke-width="4"/>
+    <path d="M58 40h444c24 0 42 18 42 42v172c0 24-18 42-42 42H58c-24 0-42-18-42-42V82c0-24 18-42 42-42z" fill="url(#g)" stroke="#050505" stroke-width="12"/>
+    <path d="M78 62h404v204H78z" fill="#111"/>
+    <path d="M118 62h72v204h-72zm144 0h72v204h-72zm144 0h76v204h-76z" fill="#fff"/>
+    <path d="M56 236c112-45 337-43 448 0v45H56z" fill="#39b66a" stroke="#050505" stroke-width="9"/>
+    <text x="280" y="146" text-anchor="middle" font-family="Arial Black,Arial" font-size="64" fill="#fff" stroke="#050505" stroke-width="8" paint-order="stroke">BABY</text>
+    <text x="280" y="212" text-anchor="middle" font-family="Arial Black,Arial" font-size="58" fill="#f4f4f4" stroke="#050505" stroke-width="8" paint-order="stroke">ALBO JUMP</text>
+    <circle cx="454" cy="86" r="31" fill="#f4c84a" stroke="#050505" stroke-width="8"/>
+    <path d="M454 67 471 78v19l-17 13-17-13V78z" fill="#fff" stroke="#050505" stroke-width="5"/>
+    <path d="M104 264c88-18 234-18 350 0" stroke="#fff" stroke-width="5" opacity=".35" stroke-linecap="round"/>
   </g>
 </svg>

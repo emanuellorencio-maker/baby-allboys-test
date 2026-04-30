@@ -15,7 +15,8 @@
     <section class="screen screen-start" id="start-screen">
       <img src="assets/logo.svg" class="game-logo" alt="Baby Albo Jump" />
       <h1>Baby Albo Jump</h1>
-      <p>Salta por la tribuna, junta escuditos, arma combo y esquiva rivales.</p>
+      <p>Desliza para moverte. Salta hasta Primera.</p>
+      <p class="start-mini">Junta escuditos, arma combo y esquiva rivales.</p>
       <button class="primary-button" id="play-button" type="button">JUGAR</button>
       <a class="back-link" href="../index.html">Volver al sitio</a>
     </section>
@@ -23,13 +24,15 @@
     <section class="screen screen-over hidden" id="game-over-screen" aria-live="polite">
       <h2>Game Over</h2>
       <p class="lose-phrase" id="lose-phrase">Una mas y sale</p>
-      <div class="score-card">
-        <span>Puntaje</span>
-        <strong id="final-score">0</strong>
-      </div>
-      <div class="score-card">
-        <span>Record</span>
-        <strong id="final-best">0</strong>
+      <div class="game-over-card">
+        <div class="score-card">
+          <span>Puntaje</span>
+          <strong id="final-score">0</strong>
+        </div>
+        <div class="score-card">
+          <span>Record</span>
+          <strong id="final-best">0</strong>
+        </div>
       </div>
       <button class="primary-button" id="retry-button" type="button">JUGAR DE NUEVO</button>
       <button class="secondary-button" id="share-button" type="button">COMPARTIR RECORD</button>

@@ -1,11 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 48">
-  <defs><filter id="s" x="-15%" y="-40%" width="130%" height="180%"><feDropShadow dx="0" dy="7" stdDeviation="4" flood-opacity=".35"/></filter></defs>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 190 58">
+  <defs><filter id="s" x="-18%" y="-40%" width="136%" height="190%"><feDropShadow dx="0" dy="8" stdDeviation="4" flood-opacity=".45"/></filter></defs>
   <g filter="url(#s)">
-    <path d="M10 9h160c6 0 10 4 10 10v7c0 7-5 12-12 12H12C5 38 0 33 0 26v-7C0 13 4 9 10 9z" fill="#8a6a45" stroke="#111" stroke-width="4"/>
-    <path d="M0 8h180v13H0z" fill="#303030"/>
-    <path d="M0 4h180v13H0z" fill="#f7f7f7"/>
-    <path d="M45 4h45v13H45zm90 0h45v13h-45z" fill="#111"/>
-    <path d="M20 27h140" stroke="#5b3d26" stroke-width="4" stroke-linecap="round"/>
-    <path d="M34 35h20m34 0h18m28 0h22" stroke="#111" stroke-width="3" stroke-linecap="round" opacity=".48"/>
+    <path d="M13 8h164c8 0 13 5 13 13v17c0 8-5 13-13 13H13C5 51 0 46 0 38V21C0 13 5 8 13 8z" fill="#f7f7f7" stroke="#050505" stroke-width="6"/>
+    <path d="M17 14h156v31H17z" fill="#111"/>
+    <path d="M22 18h22v23H22zm124 0h22v23h-22z" fill="#fff"/>
+    <text x="95" y="37" text-anchor="middle" font-family="Arial Black,Arial" font-size="22" fill="#fff">DALE ALBO</text>
+    <path d="M24 47h142" stroke="#39b66a" stroke-width="5" stroke-linecap="round"/>
+    <path d="M28 13h134" stroke="#fff" stroke-width="2" opacity=".38" stroke-linecap="round"/>
   </g>
 </svg>

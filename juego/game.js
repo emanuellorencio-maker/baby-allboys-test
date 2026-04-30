@@ -24,6 +24,7 @@
     platform1: "assets/plataforma.svg",
     platform2: "assets/plataforma2.svg",
     platform3: "assets/plataforma3.svg",
+    platform4: "assets/plataforma4.svg",
     background: "assets/fondo-tribuna.svg",
     cone: "assets/cono.svg",
     rival: "assets/rival.svg",
@@ -58,6 +59,8 @@
     touchHoldUntil: 0,
     inputX: 0,
     screenShake: 0,
+    hitFlash: 0,
+    recordFlash: 0,
     keys: { left: false, right: false },
     platforms: [],
     collectibles: [],
@@ -128,6 +131,8 @@
     state.touchHoldUntil = 0;
     state.inputX = 0;
     state.screenShake = 0;
+    state.hitFlash = 0;
+    state.recordFlash = 0;
     state.particles = [];
     state.popups = [];
     state.platforms = [];
@@ -178,7 +183,7 @@
     const x = rand(14, state.width - platformWidth - 14);
     const movingChance = Math.min(.48, .1 + ramp * .3 + state.difficulty * .03);
     const type = Math.random() < movingChance ? "moving" : "normal";
-    const variant = 1 + Math.floor(Math.random() * 3);
+    const variant = Math.random() < Math.min(.16, .04 + ramp * .12) ? 4 : 1 + Math.floor(Math.random() * 3);
     const platform = makePlatform(x, state.spawnY, platformWidth, type, variant);
     state.platforms.push(platform);
 
@@ -214,7 +219,8 @@
     p.vy = -strength - Math.min(2.4, state.difficulty * .14);
     p.squash = .2;
     if (platform) platform.squash = .24;
-    burst(p.x + p.w / 2, p.y + p.h, "#ffffff", 18, 1.15);
+    burst(p.x + p.w / 2, p.y + p.h, "#ffffff", 22, 1.25);
+    burst(p.x + p.w / 2, p.y + p.h + 2, "#39b66a", 6, .7);
   }
 
   function burst(x, y, color, count, power = 1) {
@@ -301,9 +307,11 @@
           state.coins += 1;
           state.score += gain;
           burst(item.x + item.w / 2, item.y + item.h / 2, "#f4c84a", 20, 1.2);
+          if (state.combo > 2) burst(item.x + item.w / 2, item.y + item.h / 2, "#ffffff", 10, 1.45);
           popup(`+${gain} x${state.combo}`, item.x - 5, item.y);
         } else {
           p.boost = 4.5;
+          state.recordFlash = Math.max(state.recordFlash, .25);
           jump(17.2);
           burst(item.x + item.w / 2, item.y + item.h / 2, "#39b66a", 22, 1.25);
           popup("BOTIN!", item.x - 8, item.y, "#39b66a");
@@ -340,6 +348,8 @@
 
   function updateEffects(dt) {
     state.screenShake = Math.max(0, state.screenShake - dt * 12);
+    state.hitFlash = Math.max(0, state.hitFlash - dt * 4.5);
+    state.recordFlash = Math.max(0, state.recordFlash - dt * 2.5);
     state.particles.forEach((part) => {
       part.life -= dt;
       part.x += part.vx * 60 * dt;
@@ -357,10 +367,14 @@
   function endGame() {
     state.mode = "over";
     state.screenShake = 1;
+    state.hitFlash = 1;
     state.touchActive = false;
     state.touchX = null;
+    if (state.player) burst(state.player.x + state.player.w / 2, state.player.y + state.player.h / 2, "#ff4b4b", 28, 1.8);
     vibrate(55);
+    const newRecord = state.score > state.best;
     state.best = Math.max(state.best, state.score);
+    if (newRecord) state.recordFlash = 1;
     localStorage.setItem("babyAlboJumpBest", String(state.best));
     losePhraseEl.textContent = LOSE_PHRASES[Math.floor(Math.random() * LOSE_PHRASES.length)];
     finalScoreEl.textContent = state.score;
@@ -397,17 +411,26 @@
     ctx.restore();
     drawEffects();
     if (state.screenShake > .01) {
-      ctx.fillStyle = `rgba(255,255,255,${state.screenShake * .16})`;
+      ctx.fillStyle = `rgba(255,255,255,${state.screenShake * .1})`;
+      ctx.fillRect(0, 0, state.width, state.height);
+    }
+    if (state.hitFlash > .01) {
+      ctx.fillStyle = `rgba(120,0,0,${state.hitFlash * .28})`;
+      ctx.fillRect(0, 0, state.width, state.height);
+    }
+    if (state.recordFlash > .01) {
+      ctx.fillStyle = `rgba(244,200,74,${state.recordFlash * .12})`;
       ctx.fillRect(0, 0, state.width, state.height);
     }
     ctx.restore();
   }
 
   function drawBackground() {
-    const bg = images.background;
-    if (bg?.complete) ctx.drawImage(bg, 0, 0, state.width, state.height);
     const t = performance.now() / 1000;
-    ctx.fillStyle = "rgba(0,0,0,.08)";
+    const bg = images.background;
+    const bgOffset = ((-state.cameraY * .04) % 80) - 40;
+    if (bg?.complete) ctx.drawImage(bg, 0, bgOffset, state.width, state.height + 90);
+    ctx.fillStyle = "rgba(0,0,0,.06)";
     ctx.fillRect(0, 0, state.width, state.height);
 
     ctx.save();
@@ -417,13 +440,14 @@
       const y = 120 + i * 145 + Math.sin(t + i) * 12;
       const x = (i % 2 ? state.width * .68 : state.width * .28) + Math.sin(t * .45 + i) * 28;
       ctx.beginPath();
-      ctx.ellipse(x, y + ((-state.cameraY * .08) % 80), 86, 24, 0, 0, Math.PI * 2);
+      ctx.ellipse(x, y + ((-state.cameraY * .1) % 110), 92, 26, 0, 0, Math.PI * 2);
       ctx.fill();
     }
     ctx.restore();
 
-    drawFlag(22, 104 + Math.sin(t * 1.4) * 7, 56, Math.sin(t * 2) * .05);
-    drawFlag(state.width - 78, 162 + Math.sin(t * 1.2) * 7, 58, Math.sin(t * 2.2) * -.05);
+    drawFlag(18, 100 + Math.sin(t * 1.4) * 8 + ((-state.cameraY * .07) % 80), 62, Math.sin(t * 2) * .07);
+    drawFlag(state.width - 86, 168 + Math.sin(t * 1.2) * 8 + ((-state.cameraY * .05) % 90), 64, Math.sin(t * 2.2) * -.07);
+    drawFlag(state.width * .48, 292 + Math.sin(t * 1.1) * 6 + ((-state.cameraY * .035) % 120), 50, Math.sin(t * 1.8) * .05);
 
     ctx.fillStyle = "rgba(255,255,255,.08)";
     for (let y = 80; y < state.height; y += 110) {
@@ -457,7 +481,27 @@
 
     for (const item of state.collectibles) {
       const bounce = Math.sin(item.spin) * 4;
-      drawImage(images[item.kind === "coin" ? "coin" : "boot"], item.x, item.y + bounce, item.w, item.h);
+      ctx.save();
+      ctx.translate(item.x + item.w / 2, item.y + item.h / 2 + bounce);
+      if (item.kind === "coin") {
+        const spinScale = .72 + Math.abs(Math.sin(item.spin)) * .32;
+        ctx.globalAlpha = .28;
+        ctx.fillStyle = "#f4c84a";
+        ctx.beginPath();
+        ctx.arc(0, 0, item.w * .72, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.globalAlpha = 1;
+        ctx.scale(spinScale, 1);
+      } else {
+        ctx.globalAlpha = .32 + Math.sin(item.spin * 2) * .08;
+        ctx.fillStyle = "#39b66a";
+        ctx.beginPath();
+        ctx.arc(0, 0, item.w * .78, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.globalAlpha = 1;
+      }
+      drawImage(images[item.kind === "coin" ? "coin" : "boot"], -item.w / 2, -item.h / 2, item.w, item.h);
+      ctx.restore();
     }
 
     for (const obstacle of state.obstacles) {
@@ -471,6 +515,7 @@
       const squashX = 1 + p.squash * .22;
       const squashY = 1 - p.squash * .18;
       ctx.translate(cx, p.y + p.h);
+      ctx.rotate(clamp(p.vx / 18, -.26, .26));
       ctx.scale(p.facing * squashX, squashY);
       drawImage(images.player, -p.w / 2, -p.h, p.w, p.h);
       if (p.boost > 0) {

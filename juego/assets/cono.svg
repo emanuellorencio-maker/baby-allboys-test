@@ -1,9 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 96">
-  <defs><filter id="s" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="5" stdDeviation="3" flood-opacity=".35"/></filter></defs>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 86 102">
+  <defs><filter id="s" x="-25%" y="-20%" width="150%" height="150%"><feDropShadow dx="0" dy="7" stdDeviation="4" flood-opacity=".42"/></filter></defs>
   <g filter="url(#s)">
-    <path d="M40 7 66 76H14z" fill="#f4f4f4" stroke="#111" stroke-width="5" stroke-linejoin="round"/>
-    <path d="M28 38h24l6 16H22z" fill="#111"/>
-    <path d="M18 68h44l8 16H10z" fill="#111"/>
-    <rect x="7" y="78" width="66" height="12" rx="6" fill="#fff" stroke="#111" stroke-width="5"/>
+    <path d="M43 7 72 80H14z" fill="#f7f7f7" stroke="#050505" stroke-width="7" stroke-linejoin="round"/>
+    <path d="M28 38h30l7 17H21z" fill="#111"/>
+    <path d="M18 67h50l8 17H10z" fill="#111"/>
+    <path d="M36 18h14l5 14H31z" fill="#fff" opacity=".75"/>
+    <rect x="6" y="80" width="74" height="16" rx="8" fill="#fff" stroke="#050505" stroke-width="7"/>
+    <path d="M17 88h52" stroke="#111" stroke-width="4" stroke-linecap="round"/>
   </g>
 </svg>
