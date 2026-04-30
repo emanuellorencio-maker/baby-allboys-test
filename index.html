@@ -126,6 +126,13 @@ a{
 .hero-actions:empty{display:none}.prode-callout{display:grid;gap:12px;align-items:center;background:linear-gradient(135deg,#050505,#191919);border:1px solid rgba(255,255,255,.14);border-radius:22px;padding:16px;margin:18px 0;box-shadow:var(--shadow2)}
 .prode-callout h2{margin:0;font-size:24px}.prode-callout p{margin:6px 0 0;color:#d8d8d8;font-weight:800;line-height:1.4}.prode-callout .hero-btn{width:max-content}
 @media(min-width:760px){.prode-callout{grid-template-columns:1fr auto}}
+.baby-jump-callout{position:relative;overflow:hidden;display:grid;gap:14px;align-items:center;margin:0 0 18px;padding:16px;border:1px solid rgba(255,255,255,.18);border-radius:22px;background:linear-gradient(135deg,#050505,#1b1b1b 58%,#12351f);box-shadow:var(--shadow2)}
+.baby-jump-callout:before{content:"";position:absolute;inset:auto -40px -70px auto;width:190px;height:190px;border-radius:50%;background:rgba(57,182,106,.24);filter:blur(12px)}
+.baby-jump-callout h2{position:relative;margin:0;font-size:26px;line-height:1;font-weight:1000}
+.baby-jump-callout p{position:relative;margin:7px 0 0;color:#e2e2e2;font-weight:850;line-height:1.38}
+.baby-jump-callout .hero-btn{position:relative;width:max-content;min-height:48px}
+@media(min-width:760px){.baby-jump-callout{grid-template-columns:1fr auto;padding:18px 20px}}
+@media(max-width:760px){.baby-jump-callout .hero-btn{width:100%}}
 
 .fecha-summary{position:relative;overflow:hidden;border-radius:24px;padding:17px;margin:0 0 14px;background:linear-gradient(145deg,#030303,#171717 58%,#242424);border:1px solid rgba(255,255,255,.18);box-shadow:var(--shadow)}
 .fecha-summary.ganada{border-color:rgba(255,255,255,.72);box-shadow:0 16px 34px rgba(0,0,0,.45),0 0 0 1px rgba(255,255,255,.16) inset}
@@ -403,6 +410,14 @@ body.chat-abierto .baby-chat-fab{display:none}
     <div class="hero-kicker">Fixture · Tablas · Resultados</div>
     <h1>Baby All Boys</h1>
     <p>Toda la información de las tiras de All Boys en un solo lugar, ordenada por zona, fecha y categoría.</p>
+  </section>
+
+  <section class="baby-jump-callout" aria-label="Baby Albo Jump">
+    <div>
+      <h2>Baby Albo Jump</h2>
+      <p>Un mini juego mobile de tribuna, barrio y baby fútbol para saltar, juntar escuditos y buscar récord.</p>
+    </div>
+    <a class="hero-btn" href="juego/index.html">Jugar Baby Albo Jump</a>
   </section>
 
   <a href="https://instagram.com/baby_allboys" target="_blank" rel="noopener noreferrer" class="instagram"><i class="fab fa-instagram"></i> Instagram</a>

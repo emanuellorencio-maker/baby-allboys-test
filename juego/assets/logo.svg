@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 320">
+  <defs>
+    <filter id="s" x="-15%" y="-15%" width="130%" height="130%"><feDropShadow dx="0" dy="12" stdDeviation="9" flood-opacity=".38"/></filter>
+  </defs>
+  <rect width="520" height="320" rx="46" fill="#070707"/>
+  <g filter="url(#s)">
+    <path d="M64 46h392c22 0 40 18 40 40v148c0 22-18 40-40 40H64c-22 0-40-18-40-40V86c0-22 18-40 40-40z" fill="#fff" stroke="#111" stroke-width="10"/>
+    <path d="M88 70h344v180H88z" fill="#111"/>
+    <path d="M128 70h64v180h-64zm128 0h64v180h-64zm128 0h48v180h-48z" fill="#fff"/>
+    <path d="M62 224c94-38 295-37 396 0v35H62z" fill="#39b66a" stroke="#111" stroke-width="8"/>
+    <text x="260" y="145" text-anchor="middle" font-family="Arial Black,Arial" font-size="58" fill="#fff" stroke="#111" stroke-width="6" paint-order="stroke">BABY</text>
+    <text x="260" y="204" text-anchor="middle" font-family="Arial Black,Arial" font-size="54" fill="#f4f4f4" stroke="#111" stroke-width="6" paint-order="stroke">ALBO JUMP</text>
+    <circle cx="421" cy="85" r="28" fill="#f4c84a" stroke="#111" stroke-width="7"/>
+    <path d="M421 68 436 77v18l-15 11-15-11V77z" fill="#fff" stroke="#111" stroke-width="4"/>
+  </g>
+</svg>
