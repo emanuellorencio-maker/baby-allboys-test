@@ -85,9 +85,10 @@
     if (navigator.vibrate) navigator.vibrate(ms);
   }
 
-  function resetGame() {
+  function startGame() {
     const w = state.width;
     const h = state.height;
+    if (state.mode === "playing") return;
     state.mode = "playing";
     state.cameraY = 0;
     state.score = 0;
@@ -392,25 +393,37 @@
     state.touchX = x - rect.left;
   }
 
+  function handleStart(event) {
+    if (event) event.preventDefault();
+    if (state.mode === "playing") return;
+    startGame();
+  }
+
   canvas.addEventListener("touchstart", (event) => {
+    if (state.mode !== "playing") return;
     event.preventDefault();
     if (event.touches[0]) setTouch(event.touches[0].clientX);
   }, { passive: false });
 
   canvas.addEventListener("touchmove", (event) => {
+    if (state.mode !== "playing") return;
     event.preventDefault();
     if (event.touches[0]) setTouch(event.touches[0].clientX);
   }, { passive: false });
 
   canvas.addEventListener("touchend", () => {
+    if (state.mode !== "playing") return;
     state.touchX = null;
   });
 
-  canvas.addEventListener("pointerdown", (event) => setTouch(event.clientX));
+  canvas.addEventListener("pointerdown", (event) => {
+    if (state.mode === "playing") setTouch(event.clientX);
+  });
   canvas.addEventListener("pointermove", (event) => {
-    if (event.pressure || event.buttons) setTouch(event.clientX);
+    if (state.mode === "playing" && (event.pressure || event.buttons)) setTouch(event.clientX);
   });
   canvas.addEventListener("pointerup", () => {
+    if (state.mode !== "playing") return;
     state.touchX = null;
   });
 
@@ -424,8 +437,10 @@
     if (event.key === "ArrowRight" || event.key.toLowerCase() === "d") state.keys.right = false;
   });
 
-  playButton.addEventListener("click", resetGame);
-  retryButton.addEventListener("click", resetGame);
+  playButton.addEventListener("click", handleStart);
+  playButton.addEventListener("touchend", handleStart, { passive: false });
+  retryButton.addEventListener("click", handleStart);
+  retryButton.addEventListener("touchend", handleStart, { passive: false });
   shareButton.addEventListener("click", async () => {
     const text = `Mi récord en Baby Albo Jump es ${state.best} puntos. ¿Lo superás?`;
     shareFallback.classList.add("hidden");

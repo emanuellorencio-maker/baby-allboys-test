@@ -40,10 +40,13 @@ a {
 }
 
 #game-canvas {
+  position: relative;
+  z-index: 1;
   width: 100vw;
   height: 100vh;
   display: block;
   background: #080808;
+  pointer-events: auto;
 }
 
 .hud {
@@ -92,7 +95,7 @@ a {
 .screen {
   position: fixed;
   inset: 0;
-  z-index: 6;
+  z-index: 10;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -103,6 +106,7 @@ a {
   background:
     linear-gradient(rgba(0, 0, 0, .42), rgba(0, 0, 0, .82)),
     url("assets/fondo-tribuna.svg") center / cover no-repeat;
+  pointer-events: auto;
 }
 
 .screen.hidden {
@@ -155,6 +159,8 @@ h2 {
   font-weight: 1000;
   letter-spacing: .4px;
   box-shadow: 0 16px 32px rgba(0, 0, 0, .36);
+  pointer-events: auto;
+  touch-action: manipulation;
 }
 
 .primary-button {
