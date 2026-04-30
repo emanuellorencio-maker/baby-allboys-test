@@ -17,6 +17,7 @@
   const bestEl = document.getElementById("best");
   const finalScoreEl = document.getElementById("final-score");
   const finalBestEl = document.getElementById("final-best");
+  const finalCoinsEl = document.getElementById("final-coins");
   const losePhraseEl = document.getElementById("lose-phrase");
 
   const ASSETS = {
@@ -25,6 +26,7 @@
     platform2: "assets/plataforma2.svg",
     platform3: "assets/plataforma3.svg",
     platform4: "assets/plataforma4.svg",
+    ball: "assets/pelota.svg",
     background: "assets/fondo-tribuna.svg",
     cone: "assets/cono.svg",
     rival: "assets/rival.svg",
@@ -38,7 +40,8 @@
     "Una mas y sale",
     "Casi llegas a Primera",
     "Dale Albo, no aflojes",
-    "El baby no perdona"
+    "El baby no perdona",
+    "Hoy no fue, manana si"
   ];
 
   const images = {};
@@ -379,6 +382,7 @@
     losePhraseEl.textContent = LOSE_PHRASES[Math.floor(Math.random() * LOSE_PHRASES.length)];
     finalScoreEl.textContent = state.score;
     finalBestEl.textContent = state.best;
+    finalCoinsEl.textContent = state.coins;
     pauseButton.classList.add("hidden");
     pauseBadge.classList.add("hidden");
     updateHud();
@@ -405,6 +409,7 @@
     ctx.save();
     ctx.translate(shakeX, shakeY);
     drawBackground();
+    drawSpeedLines();
     ctx.save();
     ctx.translate(0, -state.cameraY);
     drawWorld();
@@ -453,6 +458,43 @@
     for (let y = 80; y < state.height; y += 110) {
       ctx.fillRect(0, y + ((-state.cameraY * .18) % 110), state.width, 1);
     }
+
+    if (state.cameraY > -160) {
+      ctx.save();
+      ctx.translate(state.width * .5, state.height - 76);
+      ctx.rotate(-.05);
+      ctx.fillStyle = "rgba(0,0,0,.78)";
+      roundRect(-state.width * .48, -34, state.width * .96, 68, 9);
+      ctx.fill();
+      ctx.fillStyle = "#fff";
+      ctx.font = "900 24px Arial";
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.shadowColor = "#000";
+      ctx.shadowBlur = 8;
+      ctx.fillText("LLEGA LO MAS ALTO", 0, -6);
+      ctx.font = "900 16px Arial";
+      ctx.fillText("Y HACETE LEYENDA", 0, 20);
+      ctx.restore();
+    }
+  }
+
+  function drawSpeedLines() {
+    if (state.mode !== "playing" || !state.player || state.player.vy > -6) return;
+    const strength = clamp((-state.player.vy - 6) / 8, 0, 1);
+    ctx.save();
+    ctx.globalAlpha = .14 * strength;
+    ctx.strokeStyle = "#ffffff";
+    ctx.lineWidth = 3;
+    for (let i = 0; i < 9; i += 1) {
+      const x = (i * 47 + performance.now() * .04) % state.width;
+      const y = (i * 83 + (-state.cameraY * .34)) % state.height;
+      ctx.beginPath();
+      ctx.moveTo(x, y);
+      ctx.lineTo(x - 16, y + 46);
+      ctx.stroke();
+    }
+    ctx.restore();
   }
 
   function drawFlag(x, y, size, rotation) {
@@ -536,6 +578,17 @@
       ctx.fillStyle = "#fff";
       ctx.fillRect(x, y, w, h);
     }
+  }
+
+  function roundRect(x, y, w, h, r) {
+    const radius = Math.min(r, w / 2, h / 2);
+    ctx.beginPath();
+    ctx.moveTo(x + radius, y);
+    ctx.arcTo(x + w, y, x + w, y + h, radius);
+    ctx.arcTo(x + w, y + h, x, y + h, radius);
+    ctx.arcTo(x, y + h, x, y, radius);
+    ctx.arcTo(x, y, x + w, y, radius);
+    ctx.closePath();
   }
 
   function drawEffects() {

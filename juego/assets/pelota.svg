@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+  <defs>
+    <radialGradient id="ball" cx=".32" cy=".24" r=".72"><stop offset="0" stop-color="#fff"/><stop offset=".72" stop-color="#d9d9d9"/><stop offset="1" stop-color="#9b9b9b"/></radialGradient>
+    <filter id="s" x="-25%" y="-25%" width="150%" height="150%"><feDropShadow dx="0" dy="8" stdDeviation="5" flood-opacity=".38"/></filter>
+  </defs>
+  <g filter="url(#s)">
+    <circle cx="60" cy="60" r="48" fill="url(#ball)" stroke="#050505" stroke-width="7"/>
+    <path d="M60 30 80 45l-8 24H48l-8-24z" fill="#101010" stroke="#050505" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M34 42 18 50m68-8 16 8M29 82l-12 8m74-8 12 8M60 30V12M48 69 33 89m24-20 15 20" fill="none" stroke="#050505" stroke-width="4" stroke-linecap="round"/>
+    <path d="M22 51 34 42l14 27-19 13zm76 0-12-9-14 27 19 13zM33 89l15-20h24l15 20-27 15z" fill="#fff" stroke="#050505" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M34 24c13-12 34-15 52-2" fill="none" stroke="#fff" stroke-width="5" opacity=".55" stroke-linecap="round"/>
+  </g>
+</svg>

@@ -14,9 +14,14 @@
 
     <section class="screen screen-start" id="start-screen">
       <img src="assets/logo.svg" class="game-logo" alt="Baby Albo Jump" />
+      <div class="start-art" aria-hidden="true">
+        <img src="assets/jugador.svg" alt="" />
+        <img src="assets/pelota.svg" alt="" />
+      </div>
       <h1>Baby Albo Jump</h1>
-      <p>Desliza para moverte. Salta hasta Primera.</p>
+      <p>Salta hasta lo mas alto y hacete leyenda.</p>
       <p class="start-mini">Junta escuditos, arma combo y esquiva rivales.</p>
+      <p class="gesture-hint">Desliza para moverte</p>
       <button class="primary-button" id="play-button" type="button">JUGAR</button>
       <a class="back-link" href="../index.html">Volver al sitio</a>
     </section>
@@ -33,6 +38,10 @@
           <span>Record</span>
           <strong id="final-best">0</strong>
         </div>
+        <div class="score-card score-card-wide">
+          <span>Escuditos juntados</span>
+          <strong id="final-coins">0</strong>
+        </div>
       </div>
       <button class="primary-button" id="retry-button" type="button">JUGAR DE NUEVO</button>
       <button class="secondary-button" id="share-button" type="button">COMPARTIR RECORD</button>
@@ -40,10 +49,13 @@
     </section>
 
     <div class="hud" aria-hidden="true">
-      <div><span>Puntos</span><strong id="score">0</strong></div>
-      <div><span>Escuditos</span><strong id="coins">0</strong></div>
-      <div><span>Combo</span><strong id="combo">x1</strong></div>
-      <div><span>Record</span><strong id="best">0</strong></div>
+      <div class="score-panel">
+        <span>Altura</span>
+        <strong id="score">0</strong>
+        <em>Mejor: <b id="best">0</b></em>
+      </div>
+      <div class="coins-panel"><span>Escuditos</span><strong id="coins">0</strong></div>
+      <div class="combo-panel"><span>Combo</span><strong id="combo">x1</strong></div>
     </div>
     <button class="pause-button hidden" id="pause-button" type="button" aria-label="Pausar juego">II</button>
     <div class="pause-badge hidden" id="pause-badge">PAUSA</div>
