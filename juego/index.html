@@ -15,31 +15,35 @@
     <section class="screen screen-start" id="start-screen">
       <img src="assets/logo.svg" class="game-logo" alt="Baby Albo Jump" />
       <h1>Baby Albo Jump</h1>
-      <p>Saltá por la tribuna, juntá escuditos y esquivá rivales.</p>
+      <p>Salta por la tribuna, junta escuditos, arma combo y esquiva rivales.</p>
       <button class="primary-button" id="play-button" type="button">JUGAR</button>
       <a class="back-link" href="../index.html">Volver al sitio</a>
     </section>
 
     <section class="screen screen-over hidden" id="game-over-screen" aria-live="polite">
       <h2>Game Over</h2>
+      <p class="lose-phrase" id="lose-phrase">Una mas y sale</p>
       <div class="score-card">
         <span>Puntaje</span>
         <strong id="final-score">0</strong>
       </div>
       <div class="score-card">
-        <span>Récord</span>
+        <span>Record</span>
         <strong id="final-best">0</strong>
       </div>
       <button class="primary-button" id="retry-button" type="button">JUGAR DE NUEVO</button>
-      <button class="secondary-button" id="share-button" type="button">COMPARTIR RÉCORD</button>
+      <button class="secondary-button" id="share-button" type="button">COMPARTIR RECORD</button>
       <p class="share-fallback hidden" id="share-fallback"></p>
     </section>
 
     <div class="hud" aria-hidden="true">
       <div><span>Puntos</span><strong id="score">0</strong></div>
       <div><span>Escuditos</span><strong id="coins">0</strong></div>
-      <div><span>Récord</span><strong id="best">0</strong></div>
+      <div><span>Combo</span><strong id="combo">x1</strong></div>
+      <div><span>Record</span><strong id="best">0</strong></div>
     </div>
+    <button class="pause-button hidden" id="pause-button" type="button" aria-label="Pausar juego">II</button>
+    <div class="pause-badge hidden" id="pause-badge">PAUSA</div>
   </main>
 
   <script src="game.js"></script>

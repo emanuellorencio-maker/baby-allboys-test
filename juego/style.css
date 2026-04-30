@@ -1,7 +1,6 @@
 :root {
   --black: #050505;
   --white: #ffffff;
-  --ink: #111111;
   --line: rgba(255, 255, 255, .18);
   --green: #39b66a;
   --gold: #f4c84a;
@@ -23,6 +22,8 @@ body {
   background: var(--black);
   color: var(--white);
   font-family: Arial, Helvetica, sans-serif;
+  position: fixed;
+  inset: 0;
 }
 
 button,
@@ -53,43 +54,75 @@ a {
   position: fixed;
   top: max(10px, env(safe-area-inset-top));
   left: 10px;
-  right: 10px;
+  right: 62px;
   z-index: 4;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 7px;
   pointer-events: none;
 }
 
 .hud div,
 .score-card {
   border: 1px solid var(--line);
-  border-radius: 16px;
-  background: rgba(5, 5, 5, .68);
-  box-shadow: 0 10px 26px rgba(0, 0, 0, .28);
-  backdrop-filter: blur(8px);
+  border-radius: 15px;
+  background: rgba(5, 5, 5, .72);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, .3);
+  backdrop-filter: blur(10px);
   text-align: center;
 }
 
 .hud div {
-  padding: 8px 6px;
+  min-height: 48px;
+  padding: 7px 4px;
 }
 
 .hud span,
 .score-card span {
   display: block;
   color: #d7d7d7;
-  font-size: 10px;
+  font-size: 9px;
   font-weight: 900;
-  letter-spacing: .6px;
+  letter-spacing: .45px;
   text-transform: uppercase;
 }
 
 .hud strong {
   display: block;
   margin-top: 2px;
-  font-size: clamp(17px, 5vw, 26px);
+  font-size: clamp(15px, 4.5vw, 24px);
   line-height: 1;
+}
+
+.pause-button {
+  position: fixed;
+  z-index: 5;
+  top: max(10px, env(safe-area-inset-top));
+  right: 10px;
+  width: 46px;
+  height: 48px;
+  border: 1px solid var(--line);
+  border-radius: 15px;
+  background: rgba(255, 255, 255, .94);
+  color: #050505;
+  font-weight: 1000;
+  box-shadow: 0 12px 26px rgba(0, 0, 0, .32);
+  pointer-events: auto;
+  touch-action: manipulation;
+}
+
+.pause-badge {
+  position: fixed;
+  inset: 0;
+  z-index: 7;
+  display: grid;
+  place-items: center;
+  background: rgba(0, 0, 0, .28);
+  color: #fff;
+  font-size: clamp(42px, 14vw, 78px);
+  font-weight: 1000;
+  text-shadow: 0 12px 28px rgba(0, 0, 0, .65);
+  pointer-events: none;
 }
 
 .screen {
@@ -101,22 +134,34 @@ a {
   align-items: center;
   justify-content: center;
   gap: 14px;
-  padding: max(24px, env(safe-area-inset-top)) 22px max(22px, env(safe-area-inset-bottom));
+  padding: max(34px, env(safe-area-inset-top)) 24px max(30px, env(safe-area-inset-bottom));
   text-align: center;
   background:
-    linear-gradient(rgba(0, 0, 0, .42), rgba(0, 0, 0, .82)),
+    radial-gradient(circle at 50% 18%, rgba(255, 255, 255, .22), transparent 28%),
+    linear-gradient(rgba(0, 0, 0, .24), rgba(0, 0, 0, .86)),
     url("assets/fondo-tribuna.svg") center / cover no-repeat;
   pointer-events: auto;
 }
 
-.screen.hidden {
+.screen::before {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  border: 1px solid rgba(255, 255, 255, .12);
+  border-radius: 28px;
+  pointer-events: none;
+}
+
+.screen.hidden,
+.hidden {
   display: none;
 }
 
 .game-logo {
-  width: min(62vw, 260px);
+  width: min(66vw, 270px);
   height: auto;
   filter: drop-shadow(0 18px 28px rgba(0, 0, 0, .48));
+  animation: logoFloat 2.8s ease-in-out infinite;
 }
 
 h1,
@@ -132,23 +177,37 @@ h1 {
 }
 
 h2 {
-  font-size: clamp(42px, 12vw, 70px);
+  font-size: clamp(46px, 13vw, 74px);
 }
 
 .screen p {
-  max-width: 330px;
+  max-width: 340px;
   margin: 0;
   color: #eeeeee;
   font-size: 17px;
-  font-weight: 800;
+  font-weight: 850;
   line-height: 1.35;
+}
+
+.screen-over {
+  gap: 12px;
+}
+
+.lose-phrase {
+  width: min(100%, 330px);
+  padding: 11px 13px;
+  border: 1px solid rgba(244, 200, 74, .4);
+  border-radius: 16px;
+  background: rgba(244, 200, 74, .12);
+  color: #fff2b0 !important;
+  font-size: 18px !important;
 }
 
 .primary-button,
 .secondary-button,
 .back-link {
   width: min(100%, 330px);
-  min-height: 58px;
+  min-height: 60px;
   border: 0;
   border-radius: 18px;
   display: inline-flex;
@@ -178,7 +237,8 @@ h2 {
 
 .primary-button:active,
 .secondary-button:active,
-.back-link:active {
+.back-link:active,
+.pause-button:active {
   transform: translateY(2px) scale(.99);
 }
 
@@ -204,9 +264,26 @@ h2 {
   word-break: break-word;
 }
 
+@keyframes logoFloat {
+  0%,
+  100% { transform: translateY(0) rotate(-1deg); }
+  50% { transform: translateY(-8px) rotate(1deg); }
+}
+
 @media (min-aspect-ratio: 9 / 16) {
   #game-canvas {
     width: min(100vw, 56.25vh);
     height: 100vh;
+  }
+}
+
+@media (max-width: 370px) {
+  .hud {
+    gap: 5px;
+    right: 58px;
+  }
+
+  .hud span {
+    font-size: 8px;
   }
 }
