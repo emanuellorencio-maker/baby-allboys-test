@@ -204,6 +204,7 @@ a {
     radial-gradient(circle at 50% 16%, rgba(255, 255, 255, .26), transparent 28%),
     radial-gradient(circle at 50% 70%, rgba(57, 182, 106, .17), transparent 34%),
     linear-gradient(rgba(0, 0, 0, .2), rgba(0, 0, 0, .88)),
+    url("assets/png/fondo-tribuna.png") center / cover no-repeat,
     url("assets/fondo-tribuna.svg") center / cover no-repeat;
   pointer-events: auto;
   transition: opacity .22s ease, transform .22s ease;

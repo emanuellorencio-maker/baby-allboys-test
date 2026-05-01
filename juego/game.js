@@ -21,18 +21,19 @@
   const losePhraseEl = document.getElementById("lose-phrase");
 
   const ASSETS = {
-    player: "assets/jugador.svg",
-    platform1: "assets/plataforma.svg",
-    platform2: "assets/plataforma2.svg",
-    platform3: "assets/plataforma3.svg",
-    platform4: "assets/plataforma4.svg",
-    ball: "assets/pelota.svg",
-    background: "assets/fondo-tribuna.svg",
-    cone: "assets/cono.svg",
-    rival: "assets/rival.svg",
-    coin: "assets/moneda.svg",
-    boot: "assets/botin.svg",
-    flag: "assets/bandera.svg"
+    player: ["assets/png/jugador.png", "assets/jugador.svg"],
+    platform1: ["assets/png/plataforma.png", "assets/plataforma.svg"],
+    platform2: ["assets/png/plataforma2.png", "assets/plataforma2.svg"],
+    platform3: ["assets/png/plataforma3.png", "assets/plataforma3.svg"],
+    platform4: ["assets/png/plataforma4.png", "assets/plataforma4.svg"],
+    ball: ["assets/png/pelota.png", "assets/pelota.svg"],
+    background: ["assets/png/fondo-tribuna.png", "assets/fondo-tribuna.svg"],
+    cone: ["assets/png/cono.png", "assets/cono.svg"],
+    rival: ["assets/png/rival.png", "assets/rival.svg"],
+    coin: ["assets/png/moneda.png", "assets/moneda.svg"],
+    boot: ["assets/png/botin.png", "assets/botin.svg"],
+    flag: ["assets/png/bandera.png", "assets/bandera.svg"],
+    logo: ["assets/png/logo.png", "assets/logo.svg"]
   };
 
   const LOSE_PHRASES = [
@@ -79,13 +80,26 @@
 
   bestEl.textContent = state.best;
 
+  function loadImageWithFallback(sources, resolve) {
+    const [src, ...fallbacks] = Array.isArray(sources) ? sources : [sources];
+    const img = new Image();
+    img.onload = () => resolve(img);
+    img.onerror = () => {
+      if (fallbacks.length) {
+        loadImageWithFallback(fallbacks, resolve);
+      } else {
+        resolve(img);
+      }
+    };
+    img.src = src;
+  }
+
   function loadImages() {
-    return Promise.all(Object.entries(ASSETS).map(([key, src]) => new Promise((resolve) => {
-      const img = new Image();
-      img.onload = resolve;
-      img.onerror = resolve;
-      img.src = src;
-      images[key] = img;
+    return Promise.all(Object.entries(ASSETS).map(([key, sources]) => new Promise((resolve) => {
+      loadImageWithFallback(sources, (loaded) => {
+        images[key] = loaded;
+        resolve();
+      });
     })));
   }
 
@@ -102,6 +116,8 @@
     canvas.style.width = `${state.width}px`;
     canvas.style.height = `${state.height}px`;
     ctx.setTransform(state.dpr, 0, 0, state.dpr, 0, 0);
+    ctx.imageSmoothingEnabled = true;
+    ctx.imageSmoothingQuality = "high";
   }
 
   function rand(min, max) {
@@ -191,9 +207,9 @@
     state.platforms.push(platform);
 
     if (Math.random() < .46) {
-      state.collectibles.push({ kind: "coin", x: x + platformWidth * .5 - 16, y: platform.y - 46, w: 32, h: 32, taken: false, spin: rand(0, 6) });
+      state.collectibles.push({ kind: "coin", x: x + platformWidth * .5 - 18, y: platform.y - 50, w: 36, h: 36, taken: false, spin: rand(0, 6) });
     } else if (Math.random() < .12) {
-      state.collectibles.push({ kind: "boot", x: x + platformWidth * .5 - 18, y: platform.y - 50, w: 36, h: 36, taken: false, spin: 0 });
+      state.collectibles.push({ kind: "boot", x: x + platformWidth * .5 - 24, y: platform.y - 48, w: 48, h: 31, taken: false, spin: 0 });
     }
 
     const obstacleChance = Math.min(.36, .05 + ramp * .2 + state.difficulty * .025);
@@ -510,10 +526,11 @@
     for (const platform of state.platforms) {
       const img = images[`platform${platform.variant}`] || images.platform1;
       const scaleY = 1 - platform.squash * .28;
+      const visualH = Math.max(34, Math.min(48, platform.w * .34));
       ctx.save();
       ctx.translate(platform.x + platform.w / 2, platform.y + platform.h / 2);
       ctx.scale(1 + platform.squash * .08, scaleY);
-      drawImage(img, -platform.w / 2, -platform.h / 2, platform.w, platform.h);
+      drawImage(img, -platform.w / 2, -visualH / 2 - 3, platform.w, visualH);
       ctx.restore();
       if (platform.type === "moving") {
         ctx.fillStyle = "rgba(255,255,255,.78)";
