@@ -4,8 +4,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#070707" />
+  <meta name="application-name" content="Baby All Boys" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="Baby All Boys" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="mobile-web-app-capable" content="yes" />
   <title>Baby All Boys</title>
-  <link rel="icon" href="data:," />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <link rel="icon" href="/icons/icon-192.png" />
+  <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
     :root{
@@ -361,6 +368,16 @@ body.modo-insta.zona-elegida .insta-full-link{display:inline-flex;justify-conten
   .club-crest{width:30px;height:30px}
   body.modo-insta .app{min-height:calc(100vh - 28px)}
 }
+.pwa-install-banner{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:10010;display:none;align-items:center;gap:10px;width:min(520px,calc(100vw - 24px));padding:10px 11px;border:1px solid rgba(255,255,255,.2);border-radius:16px;background:rgba(5,5,5,.92);color:#fff;box-shadow:0 16px 38px rgba(0,0,0,.42);backdrop-filter:blur(10px)}
+.pwa-install-banner.visible{display:flex}
+.pwa-install-text{min-width:0;flex:1;font-size:12px;font-weight:900;line-height:1.3;color:#e8e8e8}
+.pwa-install-text strong{display:block;color:#fff;font-size:13px}
+.pwa-install-actions{display:flex;gap:7px;align-items:center;flex:0 0 auto}
+.pwa-install-btn,.pwa-install-close{min-height:36px;border-radius:12px;font-weight:1000}
+.pwa-install-btn{padding:0 12px;background:#fff;color:#070707}
+.pwa-install-close{width:36px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);color:#fff;font-size:18px}
+body.modo-insta .pwa-install-banner,body.chat-abierto .pwa-install-banner{display:none!important}
+@media(max-width:760px){.pwa-install-banner{bottom:64px;align-items:flex-start}.pwa-install-actions{padding-top:1px}.pwa-install-btn{padding:0 10px}.pwa-install-text{font-size:11px}.pwa-install-text strong{font-size:12px}}
 /* Preguntale al Baby */
 .baby-chat-fab{position:fixed;right:18px;bottom:18px;z-index:10020;display:flex;align-items:flex-end;gap:10px;padding:0;background:transparent;color:#fff;border:0;filter:drop-shadow(0 18px 26px rgba(0,0,0,.45));animation:babyGlow 5.8s ease-in-out infinite}
 .baby-chat-fab:hover .baby-chat-fab-pet{transform:translateY(-5px) scale(1.04) rotate(-2deg)}
@@ -461,6 +478,16 @@ body.chat-abierto .baby-chat-fab{display:none}
     <div id="noticias-allboys" class="noticias-grid"></div>
   </section>
   <div class="footer-mini">Baby All Boys · Sitio no oficial</div>
+</div>
+<div class="pwa-install-banner" id="pwa-install-banner" role="status" aria-live="polite">
+  <div class="pwa-install-text" id="pwa-install-text">
+    <strong>Instalar Baby All Boys</strong>
+    Acceso directo para ver fixture, tablas y resultados.
+  </div>
+  <div class="pwa-install-actions">
+    <button class="pwa-install-btn" id="pwa-install-btn" type="button">Instalar</button>
+    <button class="pwa-install-close" id="pwa-install-close" type="button" aria-label="Cerrar aviso">×</button>
+  </div>
 </div>
 <button class="baby-chat-fab" type="button" onclick="abrirChat()" aria-label="Abrir Preguntale al Baby">
   <span class="baby-chat-fab-pet" aria-hidden="true"></span>
@@ -736,6 +763,62 @@ async function responderPregunta(pregunta){
   if(intencion==='tabla')return respuestaTabla(datos,zona,categoria);
   if(intencion==='resultados')return respuestaResultadosZona(datos,zona,fecha,categoria);
   return respuestaResumenZona(datos,zona);
+}
+
+let deferredInstallPrompt=null;
+const PWA_DISMISSED_KEY='babyAllBoysPwaDismissed';
+const isIosDevice=/iphone|ipad|ipod/i.test(navigator.userAgent);
+const isStandalone=window.matchMedia('(display-mode: standalone)').matches||window.navigator.standalone===true;
+
+function mostrarBannerInstalacion(tipo='android'){
+  if(isStandalone||localStorage.getItem(PWA_DISMISSED_KEY)==='1')return;
+  const banner=document.getElementById('pwa-install-banner');
+  const text=document.getElementById('pwa-install-text');
+  const btn=document.getElementById('pwa-install-btn');
+  if(!banner||!text||!btn)return;
+  if(tipo==='ios'){
+    text.innerHTML='<strong>Instalar en iPhone</strong>Compartir &gt; Agregar a pantalla de inicio.';
+    btn.textContent='OK';
+  }else{
+    text.innerHTML='<strong>Instalar Baby All Boys</strong>Acceso directo para ver fixture, tablas y resultados.';
+    btn.textContent='Instalar';
+  }
+  banner.classList.add('visible');
+}
+
+function cerrarBannerInstalacion(recordar=true){
+  document.getElementById('pwa-install-banner')?.classList.remove('visible');
+  if(recordar)localStorage.setItem(PWA_DISMISSED_KEY,'1');
+}
+
+window.addEventListener('beforeinstallprompt',event=>{
+  event.preventDefault();
+  deferredInstallPrompt=event;
+  mostrarBannerInstalacion('android');
+});
+
+window.addEventListener('appinstalled',()=>cerrarBannerInstalacion(true));
+
+document.getElementById('pwa-install-btn')?.addEventListener('click',async()=>{
+  if(isIosDevice&&!deferredInstallPrompt){
+    cerrarBannerInstalacion(true);
+    return;
+  }
+  if(!deferredInstallPrompt)return;
+  const promptEvent=deferredInstallPrompt;
+  deferredInstallPrompt=null;
+  promptEvent.prompt();
+  await promptEvent.userChoice.catch(()=>null);
+  cerrarBannerInstalacion(true);
+});
+
+document.getElementById('pwa-install-close')?.addEventListener('click',()=>cerrarBannerInstalacion(true));
+
+if('serviceWorker' in navigator){
+  window.addEventListener('load',()=>{
+    navigator.serviceWorker.register('/sw.js').catch(error=>console.warn('No se pudo registrar el service worker',error));
+    if(isIosDevice&&!isStandalone)setTimeout(()=>mostrarBannerInstalacion('ios'),1600);
+  });
 }
 
 function renderMensajeChat(tipo,texto){const cont=document.getElementById('baby-chat-messages');if(!cont)return;const row=document.createElement('div');row.className=`baby-chat-row ${tipo}`;const bubble=document.createElement('div');bubble.className='baby-chat-bubble';bubble.textContent=texto;if(tipo==='bot'){const av=document.createElement('span');av.className='baby-chat-avatar';row.append(av,bubble)}else row.appendChild(bubble);cont.appendChild(row);cont.scrollTop=cont.scrollHeight}
