@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'baby-allboys-pwa-v1';
+const CACHE_VERSION = 'baby-allboys-pwa-v2';
 const STATIC_CACHE = `${CACHE_VERSION}-static`;
 const JSON_CACHE = `${CACHE_VERSION}-json`;
 const RUNTIME_CACHE = `${CACHE_VERSION}-runtime`;
