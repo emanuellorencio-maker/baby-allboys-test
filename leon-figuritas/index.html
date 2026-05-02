@@ -1,40 +1,64 @@
 <!doctype html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Figuritas León</title>
-<link rel="stylesheet" href="./leon-figuritas.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>León Figuritas Tracker</title>
+  <link rel="stylesheet" href="./leon-figuritas.css" />
 </head>
 <body>
-<div class="app">
-<h1>Figuritas de León</h1>
+  <main class="app">
+    <h1>León Figuritas Tracker</h1>
+    <p class="hint">Herramienta privada por URL directa. Coordinar cambios con adultos. No cargar datos personales.</p>
 
-<h2>Base de León</h2>
-<textarea id="repes" placeholder="Repetidas"></textarea>
-<textarea id="faltan" placeholder="Faltantes"></textarea>
+    <section class="card">
+      <h2>Imagen / OCR</h2>
+      <input id="imageInput" type="file" accept="image/*" capture="environment" />
+      <p class="warning">La lectura automática por foto todavía necesita conectar OCR/IA. Por ahora pegá el texto manualmente.</p>
+    </section>
 
-<h2>Amigo</h2>
-<input id="amigo" placeholder="Nombre">
-<textarea id="repesA" placeholder="Repetidas amigo"></textarea>
-<textarea id="faltanA" placeholder="Faltantes amigo"></textarea>
+    <section class="card">
+      <h2>Base de León</h2>
+      <div class="grid3" id="leonLists"></div>
+    </section>
 
-<button onclick="buscar()">Buscar cambios</button>
+    <section class="card">
+      <h2>Amigo</h2>
+      <label>Apodo del amigo</label>
+      <input id="friendNickname" maxlength="40" placeholder="Ej: Mati" />
+      <div class="grid2" id="friendLists"></div>
+    </section>
 
-<h3>Recibe</h3>
-<div id="recibe"></div>
+    <section class="card">
+      <h2>Cambios posibles</h2>
+      <button id="findTradesBtn">Buscar cambios posibles</button>
+      <p id="tradeSummary"></p>
+      <div class="grid2">
+        <div><h3>León recibe (<span id="receiveCount">0</span>)</h3><div id="receiveOptions"></div></div>
+        <div><h3>León entrega (<span id="giveCount">0</span>)</h3><div id="giveOptions"></div></div>
+      </div>
+      <button id="confirmTradeBtn" class="secondary">Confirmar cambio</button>
+      <button id="undoTradeBtn" class="secondary">Deshacer último cambio</button>
+    </section>
 
-<h3>Entrega</h3>
-<div id="entrega"></div>
+    <section class="card">
+      <h2>Historial</h2>
+      <div id="historyList"></div>
+      <button id="clearHistoryBtn" class="danger">Borrar historial</button>
+    </section>
 
-<button onclick="confirmar()">Confirmar cambio</button>
+    <section class="card">
+      <h2>Backup y Excel</h2>
+      <button id="copyBackupBtn">Copiar backup JSON</button>
+      <textarea id="backupInput" rows="6" placeholder="Pegar backup JSON para importar"></textarea>
+      <button id="importBackupBtn" class="secondary">Importar backup JSON</button>
+      <button id="exportExcelBtn">Exportar Excel</button>
+    </section>
 
-<h2>Historial</h2>
-<div id="historial"></div>
+    <p id="status" class="status"></p>
+  </main>
 
-<button onclick="guardar()">Guardar</button>
-</div>
-
-<script src="./leon-figuritas.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+  <script src="./leon-figuritas.js"></script>
 </body>
 </html>
