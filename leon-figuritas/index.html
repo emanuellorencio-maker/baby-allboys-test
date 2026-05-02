@@ -9,53 +9,100 @@
 <body>
   <main class="app">
     <h1>Lector de figuritas de León</h1>
-    <p class="hint">Herramienta privada de prueba (solo URL directa). Cambios coordinados con adultos. No cargar datos personales.</p>
+    <p class="hint">Herramienta privada (solo URL directa). Coordinar cambios con adultos. No cargar datos personales.</p>
 
     <section class="card">
-      <label for="listType">Tipo de lista</label>
-      <select id="listType">
-        <option>Repetidas de León</option>
-        <option>Faltantes de León</option>
-        <option>Repetidas de un amigo</option>
-        <option>Faltantes de un amigo</option>
-      </select>
-
+      <h2>Ingreso por texto o imagen</h2>
       <label for="imageInput">Subir imagen (opcional)</label>
       <input id="imageInput" type="file" accept="image/*" capture="environment" />
-      <p class="warning">Por ahora la lectura automática de imagen necesita conectar una API de OCR/IA. Pegá el texto leído o transcripto para probar el normalizador.</p>
-
-      <label for="textInput">Pegar listado</label>
-      <textarea id="textInput" rows="9" placeholder="Ejemplo:&#10;ESP: 2, 3, 7, 16&#10;MEX-6-10-16&#10;ARG 3"></textarea>
-
-      <div class="actions">
-        <button id="parseBtn">Normalizar listado</button>
-        <button id="saveBtn" class="secondary">Guardar en este navegador</button>
-        <button id="compareBtn" class="secondary">Comparar con otra lista</button>
-      </div>
-      <p id="status" class="status"></p>
+      <p class="warning">Por ahora la lectura automática de imagen necesita conectar una API de OCR/IA. Pegá el texto manualmente para probar.</p>
     </section>
 
-    <section class="card" id="results">
-      <h2>Resultado</h2>
-      <p><strong>Cantidad total:</strong> <span id="totalCount">0</span></p>
-      <div>
-        <strong>Figuritas detectadas:</strong>
-        <ul id="detectedList"></ul>
+    <section class="card">
+      <h2>Base de León</h2>
+      <div class="grid2">
+        <div>
+          <h3>Repetidas de León</h3>
+          <textarea id="leonRepeatedInput" rows="6" placeholder="ESP: 2,3\nPOR 10"></textarea>
+          <div class="actions mini"><button data-action="parse-save" data-key="leonRepeated">Normalizar y guardar</button></div>
+          <p>Total: <span id="leonRepeatedTotal">0</span></p>
+          <pre id="leonRepeatedGrouped"></pre>
+          <textarea id="leonRepeatedFlat" rows="2" readonly></textarea>
+          <ul id="leonRepeatedIssues"></ul>
+          <div class="actions mini">
+            <button class="secondary" data-action="load" data-key="leonRepeated">Editar cargando guardado</button>
+            <button class="danger" data-action="clear" data-key="leonRepeated">Borrar lista</button>
+          </div>
+        </div>
+        <div>
+          <h3>Faltantes de León</h3>
+          <textarea id="leonMissingInput" rows="6" placeholder="ARG 7\nBRA 5,16"></textarea>
+          <div class="actions mini"><button data-action="parse-save" data-key="leonMissing">Normalizar y guardar</button></div>
+          <p>Total: <span id="leonMissingTotal">0</span></p>
+          <pre id="leonMissingGrouped"></pre>
+          <textarea id="leonMissingFlat" rows="2" readonly></textarea>
+          <ul id="leonMissingIssues"></ul>
+          <div class="actions mini">
+            <button class="secondary" data-action="load" data-key="leonMissing">Editar cargando guardado</button>
+            <button class="danger" data-action="clear" data-key="leonMissing">Borrar lista</button>
+          </div>
+        </div>
       </div>
-      <div>
-        <strong>Agrupadas por país:</strong>
-        <pre id="grouped"></pre>
-      </div>
-      <div>
-        <strong>Lista plana copiable:</strong>
-        <textarea id="flatOutput" rows="4" readonly></textarea>
-      </div>
-      <div>
-        <strong>Errores / dudosas:</strong>
-        <ul id="issues"></ul>
-      </div>
-      <div id="comparison"></div>
     </section>
+
+    <section class="card">
+      <h2>Lista del amigo</h2>
+      <label for="friendName">Nombre o apodo</label>
+      <input id="friendName" type="text" maxlength="40" placeholder="Ej: Mati" />
+      <div class="grid2">
+        <div>
+          <h3>Repetidas del amigo</h3>
+          <textarea id="friendRepeatedInput" rows="6"></textarea>
+          <div class="actions mini"><button data-action="parse-save" data-key="friendRepeated">Normalizar y guardar</button></div>
+          <p>Total: <span id="friendRepeatedTotal">0</span></p>
+          <pre id="friendRepeatedGrouped"></pre>
+          <textarea id="friendRepeatedFlat" rows="2" readonly></textarea>
+          <ul id="friendRepeatedIssues"></ul>
+        </div>
+        <div>
+          <h3>Faltantes del amigo</h3>
+          <textarea id="friendMissingInput" rows="6"></textarea>
+          <div class="actions mini"><button data-action="parse-save" data-key="friendMissing">Normalizar y guardar</button></div>
+          <p>Total: <span id="friendMissingTotal">0</span></p>
+          <pre id="friendMissingGrouped"></pre>
+          <textarea id="friendMissingFlat" rows="2" readonly></textarea>
+          <ul id="friendMissingIssues"></ul>
+        </div>
+      </div>
+      <div class="actions"><button class="danger" id="clearFriendBtn">Limpiar listas del amigo</button></div>
+    </section>
+
+    <section class="card">
+      <h2>Cambios posibles</h2>
+      <div class="actions"><button id="findTradesBtn">Buscar cambios posibles</button></div>
+      <p id="tradeMessage"></p>
+      <div class="grid2">
+        <div><h3>León recibe (<span id="receiveCount">0</span>)</h3><div id="receiveOptions"></div></div>
+        <div><h3>León entrega (<span id="giveCount">0</span>)</h3><div id="giveOptions"></div></div>
+      </div>
+      <p id="balance"></p>
+      <div class="actions"><button id="confirmTradeBtn" class="secondary">Confirmar cambio</button></div>
+    </section>
+
+    <section class="card">
+      <h2>Historial de cambios</h2>
+      <div id="historyList"></div>
+      <div class="actions"><button id="clearHistoryBtn" class="danger">Borrar historial</button></div>
+    </section>
+
+    <section class="card">
+      <h2>Backup</h2>
+      <div class="actions"><button id="copyBackupBtn">Copiar backup de León</button></div>
+      <textarea id="backupInput" rows="6" placeholder="Pegar JSON de backup"></textarea>
+      <div class="actions"><button id="importBackupBtn" class="secondary">Importar backup</button></div>
+    </section>
+
+    <p id="status" class="status"></p>
   </main>
   <script src="./leon-figuritas.js"></script>
 </body>
