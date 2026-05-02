@@ -1,0 +1,221 @@
+# 1) Guardar patch en archivo
+cat > leon-figuritas.patch <<'PATCH'
+diff --git a/leon-figuritas/index.html b/leon-figuritas/index.html
+new file mode 100644
+index 0000000..b7a420b
+--- /dev/null
++++ b/leon-figuritas/index.html
+@@ -0,0 +1,62 @@
++<!doctype html>
++<html lang="es">
++<head>
++  <meta charset="UTF-8" />
++  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
++  <title>Lector de figuritas de León</title>
++  <link rel="stylesheet" href="./leon-figuritas.css" />
++</head>
++<body>
++  <main class="app">
++    <h1>Lector de figuritas de León</h1>
++    <p class="hint">Herramienta privada de prueba (solo URL directa). Cambios coordinados con adultos. No cargar datos personales.</p>
++
++    <section class="card">
++      <label for="listType">Tipo de lista</label>
++      <select id="listType">
++        <option>Repetidas de León</option>
++        <option>Faltantes de León</option>
++        <option>Repetidas de un amigo</option>
++        <option>Faltantes de un amigo</option>
++      </select>
++
++      <label for="imageInput">Subir imagen (opcional)</label>
++      <input id="imageInput" type="file" accept="image/*" capture="environment" />
++      <p class="warning">Por ahora la lectura automática de imagen necesita conectar una API de OCR/IA. Pegá el texto leído o transcripto para probar el normalizador.</p>
++
++      <label for="textInput">Pegar listado</label>
++      <textarea id="textInput" rows="9" placeholder="Ejemplo:&#10;ESP: 2, 3, 7, 16&#10;MEX-6-10-16&#10;ARG 3"></textarea>
++
++      <div class="actions">
++        <button id="parseBtn">Normalizar listado</button>
++        <button id="saveBtn" class="secondary">Guardar en este navegador</button>
++        <button id="compareBtn" class="secondary">Comparar con otra lista</button>
++      </div>
++      <p id="status" class="status"></p>
++    </section>
++
++    <section class="card" id="results">
++      <h2>Resultado</h2>
++      <p><strong>Cantidad total:</strong> <span id="totalCount">0</span></p>
++      <div>
++        <strong>Figuritas detectadas:</strong>
++        <ul id="detectedList"></ul>
++      </div>
++      <div>
++        <strong>Agrupadas por país:</strong>
++        <pre id="grouped"></pre>
++      </div>
++      <div>
++        <strong>Lista plana copiable:</strong>
++        <textarea id="flatOutput" rows="4" readonly></textarea>
++      </div>
++      <div>
++        <strong>Errores / dudosas:</strong>
++        <ul id="issues"></ul>
++      </div>
++      <div id="comparison"></div>
++    </section>
++  </main>
++  <script src="./leon-figuritas.js"></script>
++</body>
++</html>
+diff --git a/leon-figuritas/leon-figuritas.css b/leon-figuritas/leon-figuritas.css
+new file mode 100644
+index 0000000..2c427eb
+--- /dev/null
++++ b/leon-figuritas/leon-figuritas.css
+@@ -0,0 +1,17 @@
++:root { --bg:#070707; --card:#111; --line:#2a2a2a; --text:#f4f4f4; --muted:#a7a7a7; --accent:#fff; }
++*{box-sizing:border-box}
++body{margin:0;font-family:Arial,sans-serif;background:var(--bg);color:var(--text);padding:14px}
++.app{max-width:760px;margin:0 auto}
++h1{font-size:1.6rem;margin:4px 0 10px}
++.hint{color:var(--muted);font-size:.92rem}
++.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;margin-top:12px}
++label{display:block;margin:10px 0 6px;font-weight:700}
++select,input,textarea,button{width:100%;border-radius:12px;border:1px solid #3a3a3a;background:#0d0d0d;color:#fff;padding:12px;font-size:1rem}
++textarea{resize:vertical}
++.actions{display:grid;gap:8px;margin-top:10px}
++button{background:#fff;color:#111;font-weight:800}
++button.secondary{background:#222;color:#fff}
++.warning{background:#1d1300;border:1px solid #705000;color:#ffd887;padding:10px;border-radius:10px;font-size:.92rem}
++.status{min-height:20px;color:#ddd}
++ul{padding-left:18px}
++pre, #flatOutput{background:#0b0b0b;border:1px solid #2f2f2f;padding:10px;border-radius:10px;overflow:auto}
+diff --git a/leon-figuritas/leon-figuritas.js b/leon-figuritas/leon-figuritas.js
+new file mode 100644
+index 0000000..bff6c69
+--- /dev/null
++++ b/leon-figuritas/leon-figuritas.js
+@@ -0,0 +1,114 @@
++const refs = {
++  listType: document.getElementById('listType'),
++  textInput: document.getElementById('textInput'),
++  parseBtn: document.getElementById('parseBtn'),
++  saveBtn: document.getElementById('saveBtn'),
++  compareBtn: document.getElementById('compareBtn'),
++  status: document.getElementById('status'),
++  totalCount: document.getElementById('totalCount'),
++  detectedList: document.getElementById('detectedList'),
++  grouped: document.getElementById('grouped'),
++  flatOutput: document.getElementById('flatOutput'),
++  issues: document.getElementById('issues'),
++  comparison: document.getElementById('comparison')
++};
++
++const STORAGE_KEY = 'leonFiguritasListsV1';
++
++function normalizeInput(raw) {
++  const lines = raw.split(/\n+/).map(l => l.trim()).filter(Boolean);
++  const detected = new Set();
++  const grouped = {};
++  const issues = [];
++
++  for (const line of lines) {
++    const upper = line.toUpperCase().replace(/\s+/g, ' ').trim();
++    const countryMatch = upper.match(/^([A-Z]{3})\s*[:\-\s]\s*(.+)$/);
++    if (countryMatch) {
++      const [, country, rest] = countryMatch;
++      processCountryNumbers(country, rest, detected, grouped, issues, line);
++      continue;
++    }
++
++    const packed = upper.match(/^([A-Z]{3})(?:\s*[-\s]\s*|\s+)([0-9\-,\s]+)$/);
++    if (packed) {
++      processCountryNumbers(packed[1], packed[2], detected, grouped, issues, line);
++      continue;
++    }
++
++    issues.push(`No interpretado: "${line}"`);
++  }
++
++  return { detected: [...detected], grouped, issues };
++}
++
++function processCountryNumbers(country, rawNums, detected, grouped, issues, originalLine) {
++  if (!/^[A-Z]{3}$/.test(country)) {
++    issues.push(`Código país inválido en: "${originalLine}"`);
++    return;
++  }
++  const nums = rawNums.split(/[\-,\s]+/).filter(Boolean);
++  if (!nums.length) {
++    issues.push(`Sin números en: "${originalLine}"`);
++    return;
++  }
++  for (const n of nums) {
++    const value = Number.parseInt(n, 10);
++    if (!Number.isInteger(value) || value < 1 || value > 20) {
++      issues.push(`Número fuera de rango (${n}) en: "${originalLine}"`);
++      continue;
++    }
++    const code = `${country}-${value}`;
++    if (detected.has(code)) continue;
++    detected.add(code);
++    if (!grouped[country]) grouped[country] = [];
++    grouped[country].push(value);
++  }
++}
++
++function renderResult(result) {
++  refs.totalCount.textContent = String(result.detected.length);
++  refs.detectedList.innerHTML = result.detected.map(c => `<li>${c}</li>`).join('') || '<li>Sin resultados</li>';
++
++  const groupLines = Object.keys(result.grouped)
++    .sort()
++    .map(k => `${k}: ${result.grouped[k].sort((a,b)=>a-b).join(', ')}`);
++  refs.grouped.textContent = groupLines.join('\n') || 'Sin datos';
++  refs.flatOutput.value = result.detected.join(', ');
++  refs.issues.innerHTML = result.issues.map(i => `<li>${i}</li>`).join('') || '<li>Sin errores</li>';
++}
++
++function saveCurrent() {
++  const parsed = normalizeInput(refs.textInput.value);
++  const db = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
++  db[refs.listType.value] = parsed.detected;
++  localStorage.setItem(STORAGE_KEY, JSON.stringify(db));
++  refs.status.textContent = 'Lista guardada localmente en este navegador.';
++}
++
++function compareWithOther() {
++  const db = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
++  const currentType = refs.listType.value;
++  const current = new Set((db[currentType] || []));
++  const otherKey = Object.keys(db).find(k => k !== currentType && (db[k] || []).length);
++  if (!otherKey) {
++    refs.comparison.innerHTML = '<p>No hay otra lista guardada para comparar.</p>';
++    return;
++  }
++  const other = new Set(db[otherKey]);
++  const onlyCurrent = [...current].filter(x => !other.has(x));
++  const onlyOther = [...other].filter(x => !current.has(x));
++  refs.comparison.innerHTML = `
++    <h3>Comparación con: ${otherKey}</h3>
++    <p>Solo en ${currentType}: ${onlyCurrent.join(', ') || 'ninguna'}</p>
++    <p>Solo en ${otherKey}: ${onlyOther.join(', ') || 'ninguna'}</p>
++  `;
++}
++
++refs.parseBtn.addEventListener('click', () => {
++  const parsed = normalizeInput(refs.textInput.value);
++  renderResult(parsed);
++  refs.status.textContent = 'Normalización completada.';
++});
++refs.saveBtn.addEventListener('click', saveCurrent);
++refs.compareBtn.addEventListener('click', compareWithOther);
+PATCH
+
+# 2) Aplicar
+git apply --check leon-figuritas.patch
+git apply leon-figuritas.patch
+
+# 3) Verificar
+git status --short
