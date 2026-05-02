@@ -1,109 +1,40 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lector de figuritas de León</title>
-  <link rel="stylesheet" href="./leon-figuritas.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Figuritas León</title>
+<link rel="stylesheet" href="./leon-figuritas.css">
 </head>
 <body>
-  <main class="app">
-    <h1>Lector de figuritas de León</h1>
-    <p class="hint">Herramienta privada (solo URL directa). Coordinar cambios con adultos. No cargar datos personales.</p>
+<div class="app">
+<h1>Figuritas de León</h1>
 
-    <section class="card">
-      <h2>Ingreso por texto o imagen</h2>
-      <label for="imageInput">Subir imagen (opcional)</label>
-      <input id="imageInput" type="file" accept="image/*" capture="environment" />
-      <p class="warning">Por ahora la lectura automática de imagen necesita conectar una API de OCR/IA. Pegá el texto manualmente para probar.</p>
-    </section>
+<h2>Base de León</h2>
+<textarea id="repes" placeholder="Repetidas"></textarea>
+<textarea id="faltan" placeholder="Faltantes"></textarea>
 
-    <section class="card">
-      <h2>Base de León</h2>
-      <div class="grid2">
-        <div>
-          <h3>Repetidas de León</h3>
-          <textarea id="leonRepeatedInput" rows="6" placeholder="ESP: 2,3\nPOR 10"></textarea>
-          <div class="actions mini"><button data-action="parse-save" data-key="leonRepeated">Normalizar y guardar</button></div>
-          <p>Total: <span id="leonRepeatedTotal">0</span></p>
-          <pre id="leonRepeatedGrouped"></pre>
-          <textarea id="leonRepeatedFlat" rows="2" readonly></textarea>
-          <ul id="leonRepeatedIssues"></ul>
-          <div class="actions mini">
-            <button class="secondary" data-action="load" data-key="leonRepeated">Editar cargando guardado</button>
-            <button class="danger" data-action="clear" data-key="leonRepeated">Borrar lista</button>
-          </div>
-        </div>
-        <div>
-          <h3>Faltantes de León</h3>
-          <textarea id="leonMissingInput" rows="6" placeholder="ARG 7\nBRA 5,16"></textarea>
-          <div class="actions mini"><button data-action="parse-save" data-key="leonMissing">Normalizar y guardar</button></div>
-          <p>Total: <span id="leonMissingTotal">0</span></p>
-          <pre id="leonMissingGrouped"></pre>
-          <textarea id="leonMissingFlat" rows="2" readonly></textarea>
-          <ul id="leonMissingIssues"></ul>
-          <div class="actions mini">
-            <button class="secondary" data-action="load" data-key="leonMissing">Editar cargando guardado</button>
-            <button class="danger" data-action="clear" data-key="leonMissing">Borrar lista</button>
-          </div>
-        </div>
-      </div>
-    </section>
+<h2>Amigo</h2>
+<input id="amigo" placeholder="Nombre">
+<textarea id="repesA" placeholder="Repetidas amigo"></textarea>
+<textarea id="faltanA" placeholder="Faltantes amigo"></textarea>
 
-    <section class="card">
-      <h2>Lista del amigo</h2>
-      <label for="friendName">Nombre o apodo</label>
-      <input id="friendName" type="text" maxlength="40" placeholder="Ej: Mati" />
-      <div class="grid2">
-        <div>
-          <h3>Repetidas del amigo</h3>
-          <textarea id="friendRepeatedInput" rows="6"></textarea>
-          <div class="actions mini"><button data-action="parse-save" data-key="friendRepeated">Normalizar y guardar</button></div>
-          <p>Total: <span id="friendRepeatedTotal">0</span></p>
-          <pre id="friendRepeatedGrouped"></pre>
-          <textarea id="friendRepeatedFlat" rows="2" readonly></textarea>
-          <ul id="friendRepeatedIssues"></ul>
-        </div>
-        <div>
-          <h3>Faltantes del amigo</h3>
-          <textarea id="friendMissingInput" rows="6"></textarea>
-          <div class="actions mini"><button data-action="parse-save" data-key="friendMissing">Normalizar y guardar</button></div>
-          <p>Total: <span id="friendMissingTotal">0</span></p>
-          <pre id="friendMissingGrouped"></pre>
-          <textarea id="friendMissingFlat" rows="2" readonly></textarea>
-          <ul id="friendMissingIssues"></ul>
-        </div>
-      </div>
-      <div class="actions"><button class="danger" id="clearFriendBtn">Limpiar listas del amigo</button></div>
-    </section>
+<button onclick="buscar()">Buscar cambios</button>
 
-    <section class="card">
-      <h2>Cambios posibles</h2>
-      <div class="actions"><button id="findTradesBtn">Buscar cambios posibles</button></div>
-      <p id="tradeMessage"></p>
-      <div class="grid2">
-        <div><h3>León recibe (<span id="receiveCount">0</span>)</h3><div id="receiveOptions"></div></div>
-        <div><h3>León entrega (<span id="giveCount">0</span>)</h3><div id="giveOptions"></div></div>
-      </div>
-      <p id="balance"></p>
-      <div class="actions"><button id="confirmTradeBtn" class="secondary">Confirmar cambio</button></div>
-    </section>
+<h3>Recibe</h3>
+<div id="recibe"></div>
 
-    <section class="card">
-      <h2>Historial de cambios</h2>
-      <div id="historyList"></div>
-      <div class="actions"><button id="clearHistoryBtn" class="danger">Borrar historial</button></div>
-    </section>
+<h3>Entrega</h3>
+<div id="entrega"></div>
 
-    <section class="card">
-      <h2>Backup</h2>
-      <div class="actions"><button id="copyBackupBtn">Copiar backup de León</button></div>
-      <textarea id="backupInput" rows="6" placeholder="Pegar JSON de backup"></textarea>
-      <div class="actions"><button id="importBackupBtn" class="secondary">Importar backup</button></div>
-    </section>
+<button onclick="confirmar()">Confirmar cambio</button>
 
-    <p id="status" class="status"></p>
-  </main>
-  <script src="./leon-figuritas.js"></script>
+<h2>Historial</h2>
+<div id="historial"></div>
+
+<button onclick="guardar()">Guardar</button>
+</div>
+
+<script src="./leon-figuritas.js"></script>
 </body>
 </html>
