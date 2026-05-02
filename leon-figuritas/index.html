@@ -1,62 +1,40 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lector de figuritas de León</title>
-  <link rel="stylesheet" href="./leon-figuritas.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Figuritas León</title>
+<link rel="stylesheet" href="./leon-figuritas.css">
 </head>
 <body>
-  <main class="app">
-    <h1>Lector de figuritas de León</h1>
-    <p class="hint">Herramienta privada de prueba (solo URL directa). Cambios coordinados con adultos. No cargar datos personales.</p>
+<div class="app">
+<h1>Figuritas de León</h1>
 
-    <section class="card">
-      <label for="listType">Tipo de lista</label>
-      <select id="listType">
-        <option>Repetidas de León</option>
-        <option>Faltantes de León</option>
-        <option>Repetidas de un amigo</option>
-        <option>Faltantes de un amigo</option>
-      </select>
+<h2>Base de León</h2>
+<textarea id="repes" placeholder="Repetidas"></textarea>
+<textarea id="faltan" placeholder="Faltantes"></textarea>
 
-      <label for="imageInput">Subir imagen (opcional)</label>
-      <input id="imageInput" type="file" accept="image/*" capture="environment" />
-      <p class="warning">Por ahora la lectura automática de imagen necesita conectar una API de OCR/IA. Pegá el texto leído o transcripto para probar el normalizador.</p>
+<h2>Amigo</h2>
+<input id="amigo" placeholder="Nombre">
+<textarea id="repesA" placeholder="Repetidas amigo"></textarea>
+<textarea id="faltanA" placeholder="Faltantes amigo"></textarea>
 
-      <label for="textInput">Pegar listado</label>
-      <textarea id="textInput" rows="9" placeholder="Ejemplo:&#10;ESP: 2, 3, 7, 16&#10;MEX-6-10-16&#10;ARG 3"></textarea>
+<button onclick="buscar()">Buscar cambios</button>
 
-      <div class="actions">
-        <button id="parseBtn">Normalizar listado</button>
-        <button id="saveBtn" class="secondary">Guardar en este navegador</button>
-        <button id="compareBtn" class="secondary">Comparar con otra lista</button>
-      </div>
-      <p id="status" class="status"></p>
-    </section>
+<h3>Recibe</h3>
+<div id="recibe"></div>
 
-    <section class="card" id="results">
-      <h2>Resultado</h2>
-      <p><strong>Cantidad total:</strong> <span id="totalCount">0</span></p>
-      <div>
-        <strong>Figuritas detectadas:</strong>
-        <ul id="detectedList"></ul>
-      </div>
-      <div>
-        <strong>Agrupadas por país:</strong>
-        <pre id="grouped"></pre>
-      </div>
-      <div>
-        <strong>Lista plana copiable:</strong>
-        <textarea id="flatOutput" rows="4" readonly></textarea>
-      </div>
-      <div>
-        <strong>Errores / dudosas:</strong>
-        <ul id="issues"></ul>
-      </div>
-      <div id="comparison"></div>
-    </section>
-  </main>
-  <script src="./leon-figuritas.js"></script>
+<h3>Entrega</h3>
+<div id="entrega"></div>
+
+<button onclick="confirmar()">Confirmar cambio</button>
+
+<h2>Historial</h2>
+<div id="historial"></div>
+
+<button onclick="guardar()">Guardar</button>
+</div>
+
+<script src="./leon-figuritas.js"></script>
 </body>
 </html>
