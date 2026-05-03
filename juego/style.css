@@ -24,6 +24,9 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   position: fixed;
   inset: 0;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
 }
 
 button,
@@ -61,6 +64,47 @@ a {
   display: block;
   background: #080808;
   pointer-events: auto;
+  touch-action: none;
+}
+
+.control-zone-hint {
+  position: fixed;
+  left: max(28px, env(safe-area-inset-left));
+  right: max(28px, env(safe-area-inset-right));
+  bottom: max(26px, calc(env(safe-area-inset-bottom) + 18px));
+  z-index: 4;
+  height: min(72px, 12vh);
+  border: 1px solid rgba(255, 255, 255, .16);
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  color: rgba(255, 255, 255, .46);
+  background: linear-gradient(90deg, rgba(255, 255, 255, .03), rgba(255, 255, 255, .09), rgba(255, 255, 255, .03));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .08);
+  pointer-events: none;
+  opacity: .72;
+  transition: opacity .35s ease, transform .35s ease;
+}
+
+.control-zone-hint.is-fading {
+  opacity: 0;
+  transform: translateY(12px);
+}
+
+.control-zone-hint span {
+  font-size: 34px;
+  font-weight: 1000;
+  line-height: 1;
+}
+
+.control-zone-hint strong {
+  font-size: 11px;
+  font-weight: 1000;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  text-shadow: 0 2px 0 rgba(0, 0, 0, .6);
 }
 
 .hud {

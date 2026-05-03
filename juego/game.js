@@ -10,6 +10,7 @@
   const shareButton = document.getElementById("share-button");
   const pauseButton = document.getElementById("pause-button");
   const pauseBadge = document.getElementById("pause-badge");
+  const controlZoneHint = document.getElementById("control-zone-hint");
   const shareFallback = document.getElementById("share-fallback");
   const scoreEl = document.getElementById("score");
   const coinsEl = document.getElementById("coins");
@@ -43,8 +44,19 @@
     "Casi llegas a Primera",
     "Dale Albo, no aflojes",
     "El baby no perdona",
-    "Hoy no fue, manana si"
+    "Hoy no fue, manana si",
+    "La tribuna pide revancha",
+    "Te comio el potrero"
   ];
+
+  const CONTROL_ZONE_RATIO = .32;
+  const TOUCH_SENSITIVITY = 1.18;
+  const HORIZONTAL_ACCELERATION = 44;
+  const MAX_HORIZONTAL_SPEED = 8.4;
+  const HORIZONTAL_FRICTION = .028;
+  const INPUT_SMOOTHING = 15;
+  const CAMERA_TARGET_RATIO = .36;
+  const TRAINING_PLATFORM_COUNT = 10;
 
   const images = {};
   const state = {
@@ -55,14 +67,20 @@
     cameraY: 0,
     score: 0,
     best: Number(localStorage.getItem("babyAlboJumpBest") || 0),
+    totalCoins: Number(localStorage.getItem("babyAlboJumpTotalCoins") || 0),
     coins: 0,
     combo: 1,
     comboTimer: 0,
     difficulty: 1,
     touchX: null,
+    touchY: null,
     touchActive: false,
     touchHoldUntil: 0,
     inputX: 0,
+    platformCount: 0,
+    lastPlatformX: 0,
+    controlHintTimer: 0,
+    trailTimer: 0,
     screenShake: 0,
     hitFlash: 0,
     recordFlash: 0,
@@ -147,9 +165,14 @@
     state.highestY = 0;
     state.spawnY = h - 80;
     state.touchX = null;
+    state.touchY = null;
     state.touchActive = false;
     state.touchHoldUntil = 0;
     state.inputX = 0;
+    state.platformCount = 0;
+    state.lastPlatformX = w * .5 - 62;
+    state.controlHintTimer = 4.2;
+    state.trailTimer = 0;
     state.screenShake = 0;
     state.hitFlash = 0;
     state.recordFlash = 0;
@@ -177,6 +200,7 @@
     pauseButton.classList.remove("hidden");
     pauseButton.textContent = "II";
     pauseBadge.classList.add("hidden");
+    controlZoneHint.classList.remove("hidden", "is-fading");
     shareFallback.classList.add("hidden");
     updateHud();
   }
@@ -197,15 +221,21 @@
   function spawnPlatform() {
     const altitude = Math.max(0, -state.spawnY);
     const ramp = Math.min(1, altitude / 3600);
-    const gap = rand(78 + ramp * 18, 112 + ramp * 58 + state.difficulty * 10);
+    state.platformCount += 1;
+    const training = state.platformCount <= TRAINING_PLATFORM_COUNT;
+    const gap = training ? rand(66, 92) : rand(78 + ramp * 18, 112 + ramp * 58 + state.difficulty * 10);
     state.spawnY -= gap;
-    const platformWidth = Math.max(72, 124 - ramp * 34 - state.difficulty * 3);
-    const x = rand(14, state.width - platformWidth - 14);
-    const movingChance = Math.min(.48, .1 + ramp * .3 + state.difficulty * .03);
+    const platformWidth = training ? rand(122, 142) : Math.max(72, 124 - ramp * 34 - state.difficulty * 3);
+    const maxStep = training ? state.width * .34 : state.width;
+    const x = training
+      ? clamp(state.lastPlatformX + rand(-maxStep, maxStep), 14, state.width - platformWidth - 14)
+      : rand(14, state.width - platformWidth - 14);
+    const movingChance = training ? 0 : Math.min(.48, .1 + ramp * .3 + state.difficulty * .03);
     const type = Math.random() < movingChance ? "moving" : "normal";
-    const variant = Math.random() < Math.min(.16, .04 + ramp * .12) ? 4 : 1 + Math.floor(Math.random() * 3);
+    const variant = training ? 1 + Math.floor(Math.random() * 2) : Math.random() < Math.min(.16, .04 + ramp * .12) ? 4 : 1 + Math.floor(Math.random() * 3);
     const platform = makePlatform(x, state.spawnY, platformWidth, type, variant);
     state.platforms.push(platform);
+    state.lastPlatformX = x;
 
     if (Math.random() < .46) {
       state.collectibles.push({ kind: "coin", x: x + platformWidth * .5 - 18, y: platform.y - 50, w: 36, h: 36, taken: false, spin: rand(0, 6) });
@@ -214,7 +244,7 @@
     }
 
     const obstacleChance = Math.min(.36, .05 + ramp * .2 + state.difficulty * .025);
-    if (altitude > 850 && Math.random() < obstacleChance) {
+    if (!training && altitude > 850 && Math.random() < obstacleChance) {
       const rival = Math.random() < .6;
       state.obstacles.push({
         kind: rival ? "rival" : "cone",
@@ -232,6 +262,12 @@
     coinsEl.textContent = state.coins;
     comboEl.textContent = `x${state.combo}`;
     bestEl.textContent = state.best;
+    if (state.controlHintTimer > 0) {
+      controlZoneHint.classList.remove("hidden");
+      controlZoneHint.classList.toggle("is-fading", state.controlHintTimer < 1.2);
+    } else {
+      controlZoneHint.classList.add("hidden");
+    }
   }
 
   function jump(strength = 14.2, platform = null) {
@@ -275,27 +311,34 @@
     const p = state.player;
     state.difficulty = 1 + Math.min(5, state.score / 720);
     state.comboTimer = Math.max(0, state.comboTimer - dt);
+    state.controlHintTimer = Math.max(0, state.controlHintTimer - dt);
     if (state.comboTimer <= 0) state.combo = 1;
 
     let target = 0;
     const touchHeld = state.touchActive || performance.now() < state.touchHoldUntil;
     if (touchHeld && state.touchX !== null) {
-      const center = p.x + p.w / 2;
-      target = clamp((state.touchX - center) / (state.width * .28), -1, 1);
+      target = clamp(((state.touchX - state.width * .5) / (state.width * .34)) * TOUCH_SENSITIVITY, -1, 1);
     }
     if (state.keys.left) target -= 1;
     if (state.keys.right) target += 1;
-    state.inputX += (clamp(target, -1, 1) - state.inputX) * Math.min(1, dt * 13);
+    state.inputX += (clamp(target, -1, 1) - state.inputX) * Math.min(1, dt * INPUT_SMOOTHING);
 
-    const maxSpeed = 7.8 + Math.min(1.35, state.difficulty * .16);
-    p.vx += state.inputX * 37 * dt;
-    p.vx *= Math.pow(.015, dt);
+    const maxSpeed = MAX_HORIZONTAL_SPEED + Math.min(1.2, state.difficulty * .14);
+    p.vx += state.inputX * HORIZONTAL_ACCELERATION * dt;
+    p.vx *= Math.pow(HORIZONTAL_FRICTION, dt);
     p.vx = clamp(p.vx, -maxSpeed, maxSpeed);
     p.x += p.vx * 60 * dt;
     p.vy += (28.6 + state.difficulty * .55) * dt;
     p.y += p.vy * 60 * dt;
     p.squash = Math.max(0, p.squash - dt * 2.6);
     if (Math.abs(p.vx) > .18) p.facing = Math.sign(p.vx);
+    if (Math.abs(p.vx) > 5.2) {
+      state.trailTimer -= dt;
+      if (state.trailTimer <= 0) {
+        state.trailTimer = .045;
+        burst(p.x + p.w / 2 - Math.sign(p.vx) * 16, p.y + p.h * .72, "rgba(255,255,255,.7)", 2, .35);
+      }
+    }
 
     if (p.x > state.width + 18) p.x = -p.w;
     if (p.x < -p.w - 18) p.x = state.width;
@@ -350,7 +393,7 @@
       }
     }
 
-    const desiredCamera = Math.min(state.cameraY, p.y - state.height * .42);
+    const desiredCamera = Math.min(state.cameraY, p.y - state.height * CAMERA_TARGET_RATIO);
     state.cameraY += (desiredCamera - state.cameraY) * Math.min(1, dt * 5.6);
     state.highestY = Math.min(state.highestY, p.y);
     state.score = Math.max(state.score, Math.floor(-state.highestY * .2));
@@ -394,13 +437,16 @@
     vibrate(55);
     const newRecord = state.score > state.best;
     state.best = Math.max(state.best, state.score);
+    state.totalCoins += state.coins;
     if (newRecord) state.recordFlash = 1;
     localStorage.setItem("babyAlboJumpBest", String(state.best));
+    localStorage.setItem("babyAlboJumpTotalCoins", String(state.totalCoins));
     losePhraseEl.textContent = LOSE_PHRASES[Math.floor(Math.random() * LOSE_PHRASES.length)];
     finalScoreEl.textContent = state.score;
     finalBestEl.textContent = state.best;
     finalCoinsEl.textContent = state.coins;
     pauseButton.classList.add("hidden");
+    controlZoneHint.classList.add("hidden");
     pauseBadge.classList.add("hidden");
     updateHud();
     overScreen.classList.remove("hidden");
@@ -657,15 +703,26 @@
     requestAnimationFrame(loop);
   }
 
-  function setTouch(x) {
+  function controlZoneTop() {
+    return state.height * (1 - CONTROL_ZONE_RATIO);
+  }
+
+  function setTouch(clientX, clientY, force = false) {
     const rect = canvas.getBoundingClientRect();
-    state.touchX = x - rect.left;
+    const localX = clientX - rect.left;
+    const localY = clientY - rect.top;
+    if (!force && !state.touchActive && localY < controlZoneTop()) return false;
+    state.touchX = clamp(localX, 0, state.width);
+    state.touchY = clamp(localY, 0, state.height);
     state.touchActive = true;
-    state.touchHoldUntil = performance.now() + 340;
+    state.touchHoldUntil = performance.now() + 220;
+    state.controlHintTimer = Math.min(state.controlHintTimer, .75);
+    return true;
   }
 
   function clearTouch() {
     state.touchActive = false;
+    state.touchY = null;
   }
 
   function handleStart(event) {
@@ -679,13 +736,13 @@
   function handleCanvasTouchStart(event) {
     if (state.mode !== "playing") return;
     event.preventDefault();
-    if (event.touches[0]) setTouch(event.touches[0].clientX);
+    if (event.touches[0]) setTouch(event.touches[0].clientX, event.touches[0].clientY);
   }
 
   function handleCanvasTouchMove(event) {
     if (state.mode !== "playing") return;
     event.preventDefault();
-    if (event.touches[0]) setTouch(event.touches[0].clientX);
+    if (event.touches[0]) setTouch(event.touches[0].clientX, event.touches[0].clientY, state.touchActive);
   }
 
   canvas.addEventListener("touchstart", handleCanvasTouchStart, { passive: false });
@@ -694,10 +751,10 @@
   canvas.addEventListener("touchcancel", clearTouch);
 
   canvas.addEventListener("pointerdown", (event) => {
-    if (state.mode === "playing") setTouch(event.clientX);
+    if (state.mode === "playing") setTouch(event.clientX, event.clientY);
   });
   canvas.addEventListener("pointermove", (event) => {
-    if (state.mode === "playing" && (event.pressure || event.buttons)) setTouch(event.clientX);
+    if (state.mode === "playing" && (event.pressure || event.buttons)) setTouch(event.clientX, event.clientY, state.touchActive);
   });
   canvas.addEventListener("pointerup", clearTouch);
   canvas.addEventListener("pointercancel", clearTouch);
@@ -721,7 +778,7 @@
   pauseButton.addEventListener("touchend", togglePause, { passive: false });
 
   shareButton.addEventListener("click", async () => {
-    const text = `Mi record en Baby Albo Jump es ${state.best} puntos. Lo superas?`;
+    const text = `Mi record en Baby Albo Jump es ${state.best} puntos y ya junte ${state.totalCoins} escuditos. Lo superas?`;
     shareFallback.classList.add("hidden");
     if (navigator.share) {
       try {
@@ -731,7 +788,8 @@
         if (error.name === "AbortError") return;
       }
     }
-    shareFallback.textContent = text;
+    const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(`${text} ${location.href}`)}`;
+    shareFallback.innerHTML = `${text}<br><a href="${whatsappUrl}" target="_blank" rel="noopener noreferrer">Compartir por WhatsApp</a>`;
     shareFallback.classList.remove("hidden");
   });
 
