@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
   <meta name="theme-color" content="#050505" />
   <title>Baby Albo Jump</title>
-  <link rel="icon" href="assets/png/logo.png" />
+  <link rel="icon" href="assets/png-referencia/logo.png" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -13,9 +13,9 @@
     <canvas id="game-canvas" aria-label="Campo de juego"></canvas>
 
     <section class="screen screen-start" id="start-screen">
-      <img src="assets/png/logo.png" onerror="this.onerror=null;this.src='assets/logo.svg';" class="game-logo" alt="Baby Albo Jump" />
+      <img src="assets/png-referencia/logo.png" onerror="this.onerror=function(){this.onerror=null;this.src='assets/logo.svg';};this.src='assets/png/logo.png';" class="game-logo" alt="Baby Albo Jump" />
       <div class="start-art" aria-hidden="true">
-        <img src="assets/png/jugador.png" onerror="this.onerror=null;this.src='assets/jugador.svg';" alt="" />
+        <img src="assets/png-referencia/jugador.png" onerror="this.onerror=function(){this.onerror=null;this.src='assets/jugador.svg';};this.src='assets/png/jugador.png';" alt="" />
         <img src="assets/png/pelota.png" onerror="this.onerror=null;this.src='assets/pelota.svg';" alt="" />
       </div>
       <h1>Baby Albo Jump</h1>

@@ -21,19 +21,20 @@
   const losePhraseEl = document.getElementById("lose-phrase");
 
   const ASSETS = {
-    player: ["assets/png/jugador.png", "assets/jugador.svg"],
-    platform1: ["assets/png/plataforma.png", "assets/plataforma.svg"],
-    platform2: ["assets/png/plataforma2.png", "assets/plataforma2.svg"],
-    platform3: ["assets/png/plataforma3.png", "assets/plataforma3.svg"],
-    platform4: ["assets/png/plataforma4.png", "assets/plataforma4.svg"],
+    player: ["assets/png-referencia/jugador.png", "assets/png/jugador.png", "assets/jugador.svg"],
+    platform1: ["assets/png-referencia/plataforma.png", "assets/png/plataforma.png", "assets/plataforma.svg"],
+    platform2: ["assets/png-referencia/plataforma2.png", "assets/png/plataforma2.png", "assets/plataforma2.svg"],
+    platform3: ["assets/png-referencia/plataforma3.png", "assets/png/plataforma3.png", "assets/plataforma3.svg"],
+    platform4: ["assets/png-referencia/plataforma4.png", "assets/png/plataforma4.png", "assets/plataforma4.svg"],
     ball: ["assets/png/pelota.png", "assets/pelota.svg"],
-    background: ["assets/png/fondo-tribuna.png", "assets/fondo-tribuna.svg"],
-    cone: ["assets/png/cono.png", "assets/cono.svg"],
-    rival: ["assets/png/rival.png", "assets/rival.svg"],
-    coin: ["assets/png/moneda.png", "assets/moneda.svg"],
-    boot: ["assets/png/botin.png", "assets/botin.svg"],
-    flag: ["assets/png/bandera.png", "assets/bandera.svg"],
-    logo: ["assets/png/logo.png", "assets/logo.svg"]
+    background: ["assets/png-referencia/fondo-tribuna.png", "assets/png-referencia/fondo.png", "assets/png/fondo-tribuna.png", "assets/fondo-tribuna.svg"],
+    cone: ["assets/png-referencia/cono.png", "assets/png/cono.png", "assets/cono.svg"],
+    rival: ["assets/png-referencia/rival.png", "assets/png/rival.png", "assets/rival.svg"],
+    coin: ["assets/png-referencia/moneda.png", "assets/png/moneda.png", "assets/moneda.svg"],
+    boot: ["assets/png-referencia/botin.png", "assets/png-referencia/botin-powerup.png", "assets/png/botin.png", "assets/botin.svg"],
+    flag: ["assets/png-referencia/bandera.png", "assets/png-referencia/bombo-bandera.png", "assets/png/bandera.png", "assets/bandera.svg"],
+    arch: ["assets/png-referencia/arco.png", "assets/png/arco.png"],
+    logo: ["assets/png-referencia/logo.png", "assets/png-referencia/logo-baby-albo-jump.png", "assets/png/logo.png", "assets/logo.svg"]
   };
 
   const LOSE_PHRASES = [
@@ -219,8 +220,8 @@
         kind: rival ? "rival" : "cone",
         x: rand(18, state.width - 58),
         y: platform.y - rand(84, 165),
-        w: rival ? 54 : 38,
-        h: rival ? 58 : 48,
+        w: rival ? 54 : 42,
+        h: rival ? 62 : 46,
         phase: rand(0, 100)
       });
     }
@@ -450,7 +451,13 @@
     const t = performance.now() / 1000;
     const bg = images.background;
     const bgOffset = ((-state.cameraY * .04) % 80) - 40;
-    if (bg?.complete) ctx.drawImage(bg, 0, bgOffset, state.width, state.height + 90);
+    if (bg?.complete && bg.naturalWidth) {
+      const bgScale = Math.max((state.width * 1.18) / bg.naturalWidth, (state.height + 120) / bg.naturalHeight);
+      const bgW = bg.naturalWidth * bgScale;
+      const bgH = bg.naturalHeight * bgScale;
+      const bgX = (state.width - bgW) / 2 + Math.sin(t * .22) * 12;
+      ctx.drawImage(bg, bgX, bgOffset, bgW, bgH);
+    }
     ctx.fillStyle = "rgba(0,0,0,.06)";
     ctx.fillRect(0, 0, state.width, state.height);
 
@@ -469,6 +476,7 @@
     drawFlag(18, 100 + Math.sin(t * 1.4) * 8 + ((-state.cameraY * .07) % 80), 62, Math.sin(t * 2) * .07);
     drawFlag(state.width - 86, 168 + Math.sin(t * 1.2) * 8 + ((-state.cameraY * .05) % 90), 64, Math.sin(t * 2.2) * -.07);
     drawFlag(state.width * .48, 292 + Math.sin(t * 1.1) * 6 + ((-state.cameraY * .035) % 120), 50, Math.sin(t * 1.8) * .05);
+    drawDecoration(images.arch, 18, state.height - 142 + ((-state.cameraY * .025) % 120), 96, 62, .2);
 
     ctx.fillStyle = "rgba(255,255,255,.08)";
     for (let y = 80; y < state.height; y += 110) {
@@ -522,15 +530,23 @@
     ctx.restore();
   }
 
+  function drawDecoration(img, x, y, w, h, alpha = 1) {
+    if (!img?.complete || !img.naturalWidth) return;
+    ctx.save();
+    ctx.globalAlpha = alpha;
+    drawImage(img, x, y, w, h);
+    ctx.restore();
+  }
+
   function drawWorld() {
     for (const platform of state.platforms) {
       const img = images[`platform${platform.variant}`] || images.platform1;
       const scaleY = 1 - platform.squash * .28;
-      const visualH = Math.max(34, Math.min(48, platform.w * .34));
+      const visualH = platform.variant === 4 ? Math.max(30, Math.min(42, platform.w * .28)) : Math.max(42, Math.min(58, platform.w * .44));
       ctx.save();
       ctx.translate(platform.x + platform.w / 2, platform.y + platform.h / 2);
       ctx.scale(1 + platform.squash * .08, scaleY);
-      drawImage(img, -platform.w / 2, -visualH / 2 - 3, platform.w, visualH);
+      drawImage(img, -platform.w / 2, -visualH / 2 - 5, platform.w, visualH);
       ctx.restore();
       if (platform.type === "moving") {
         ctx.fillStyle = "rgba(255,255,255,.78)";
@@ -573,10 +589,12 @@
       const cx = p.x + p.w / 2;
       const squashX = 1 + p.squash * .22;
       const squashY = 1 - p.squash * .18;
+      const visualW = p.w * 1.02;
+      const visualH = p.h * 1.34;
       ctx.translate(cx, p.y + p.h);
       ctx.rotate(clamp(p.vx / 18, -.26, .26));
       ctx.scale(p.facing * squashX, squashY);
-      drawImage(images.player, -p.w / 2, -p.h, p.w, p.h);
+      drawImage(images.player, -visualW / 2, -visualH, visualW, visualH);
       if (p.boost > 0) {
         ctx.globalAlpha = .78;
         ctx.fillStyle = "#39b66a";
