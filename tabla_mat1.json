@@ -2,59 +2,107 @@
   "general": [
     {
       "equipo": "FLORES CLUB",
-      "pj": 10,
-      "g": 7,
+      "pj": 15,
+      "g": 10,
       "e": 1,
-      "p": 1,
-      "pts": 24
-    },
-    {
-      "equipo": "NUEVA CHICAGO",
-      "pj": 10,
-      "g": 3,
-      "e": 1,
-      "p": 6,
-      "pts": 17
+      "p": 2,
+      "pts": 34
     },
     {
       "equipo": "CLUB AT. LUGANO",
-      "pj": 5,
-      "g": 5,
-      "e": 0,
-      "p": 0,
-      "pts": 15
+      "pj": 15,
+      "g": 8,
+      "e": 2,
+      "p": 5,
+      "pts": 33
     },
     {
       "equipo": "VILLA LURO NORTE",
-      "pj": 5,
-      "g": 5,
+      "pj": 10,
+      "g": 10,
       "e": 0,
       "p": 0,
-      "pts": 15
-    },
-    {
-      "equipo": "C. A. VIRGEN DEL CARMEN",
-      "pj": 5,
-      "g": 5,
-      "e": 0,
-      "p": 0,
-      "pts": 15
-    },
-    {
-      "equipo": "LOS CUERVOS",
-      "pj": 5,
-      "g": 4,
-      "e": 1,
-      "p": 0,
-      "pts": 14
+      "pts": 30
     },
     {
       "equipo": "A. A. A. J.",
-      "pj": 5,
-      "g": 4,
+      "pj": 15,
+      "g": 7,
+      "e": 0,
+      "p": 8,
+      "pts": 29
+    },
+    {
+      "equipo": "CLUB LA PATERNAL",
+      "pj": 15,
+      "g": 7,
+      "e": 0,
+      "p": 8,
+      "pts": 29
+    },
+    {
+      "equipo": "LOS CUERVOS",
+      "pj": 10,
+      "g": 9,
+      "e": 1,
+      "p": 0,
+      "pts": 29
+    },
+    {
+      "equipo": "C. A. VIRGEN DEL CARMEN",
+      "pj": 10,
+      "g": 9,
       "e": 0,
       "p": 1,
-      "pts": 13
+      "pts": 28
+    },
+    {
+      "equipo": "NUEVA CHICAGO",
+      "pj": 15,
+      "g": 6,
+      "e": 1,
+      "p": 8,
+      "pts": 28
+    },
+    {
+      "equipo": "ESTRELLA DE BOEDO",
+      "pj": 10,
+      "g": 7,
+      "e": 0,
+      "p": 3,
+      "pts": 24
+    },
+    {
+      "equipo": "PLATENSE BLANCO",
+      "pj": 10,
+      "g": 6,
+      "e": 0,
+      "p": 4,
+      "pts": 22
+    },
+    {
+      "equipo": "CLUB PACIFICO",
+      "pj": 10,
+      "g": 4,
+      "e": 3,
+      "p": 3,
+      "pts": 21
+    },
+    {
+      "equipo": "VILLA HERMINIA",
+      "pj": 15,
+      "g": 4,
+      "e": 0,
+      "p": 8,
+      "pts": 20
+    },
+    {
+      "equipo": "C. S. y D. PAMPERO",
+      "pj": 10,
+      "g": 2,
+      "e": 0,
+      "p": 8,
+      "pts": 14
     },
     {
       "equipo": "LOS ALBOS",
@@ -65,44 +113,12 @@
       "pts": 12
     },
     {
-      "equipo": "ESTRELLA DE BOEDO",
-      "pj": 5,
-      "g": 3,
+      "equipo": "SANELI F.C.",
+      "pj": 10,
+      "g": 0,
       "e": 0,
-      "p": 2,
-      "pts": 11
-    },
-    {
-      "equipo": "CLUB LA PATERNAL",
-      "pj": 5,
-      "g": 3,
-      "e": 0,
-      "p": 2,
-      "pts": 11
-    },
-    {
-      "equipo": "CLUB PACIFICO",
-      "pj": 5,
-      "g": 2,
-      "e": 1,
-      "p": 2,
+      "p": 10,
       "pts": 10
-    },
-    {
-      "equipo": "VILLA HERMINIA",
-      "pj": 5,
-      "g": 2,
-      "e": 0,
-      "p": 3,
-      "pts": 9
-    },
-    {
-      "equipo": "PLATENSE BLANCO",
-      "pj": 5,
-      "g": 2,
-      "e": 0,
-      "p": 3,
-      "pts": 9
     },
     {
       "equipo": "EST. PORTEÑO ROJO",
@@ -111,26 +127,42 @@
       "e": 0,
       "p": 8,
       "pts": 8
-    },
-    {
-      "equipo": "C. S. y D. PAMPERO",
-      "pj": 5,
-      "g": 1,
-      "e": 0,
-      "p": 4,
-      "pts": 7
-    },
-    {
-      "equipo": "SANELI F.C.",
-      "pj": 5,
-      "g": 0,
-      "e": 0,
-      "p": 5,
-      "pts": 5
     }
   ],
   "categorias": {
     "2013": [
+      {
+        "equipo": "CLUB AT. LUGANO",
+        "pj": 3,
+        "g": 3,
+        "e": 0,
+        "p": 0,
+        "pts": 9
+      },
+      {
+        "equipo": "CLUB LA PATERNAL",
+        "pj": 3,
+        "g": 3,
+        "e": 0,
+        "p": 0,
+        "pts": 9
+      },
+      {
+        "equipo": "VILLA LURO NORTE",
+        "pj": 2,
+        "g": 2,
+        "e": 0,
+        "p": 0,
+        "pts": 6
+      },
+      {
+        "equipo": "C. A. VIRGEN DEL CARMEN",
+        "pj": 2,
+        "g": 2,
+        "e": 0,
+        "p": 0,
+        "pts": 6
+      },
       {
         "equipo": "LOS ALBOS",
         "pj": 2,
@@ -140,79 +172,71 @@
         "pts": 5
       },
       {
-        "equipo": "CLUB PACIFICO",
-        "pj": 1,
+        "equipo": "VILLA HERMINIA",
+        "pj": 3,
         "g": 1,
         "e": 0,
-        "p": 0,
-        "pts": 3
-      },
-      {
-        "equipo": "CLUB AT. LUGANO",
-        "pj": 1,
-        "g": 1,
-        "e": 0,
-        "p": 0,
-        "pts": 3
-      },
-      {
-        "equipo": "VILLA LURO NORTE",
-        "pj": 1,
-        "g": 1,
-        "e": 0,
-        "p": 0,
-        "pts": 3
-      },
-      {
-        "equipo": "PLATENSE BLANCO",
-        "pj": 1,
-        "g": 1,
-        "e": 0,
-        "p": 0,
-        "pts": 3
+        "p": 2,
+        "pts": 5
       },
       {
         "equipo": "A. A. A. J.",
-        "pj": 1,
+        "pj": 3,
         "g": 1,
         "e": 0,
-        "p": 0,
-        "pts": 3
+        "p": 2,
+        "pts": 5
       },
       {
-        "equipo": "C. A. VIRGEN DEL CARMEN",
-        "pj": 1,
+        "equipo": "LOS CUERVOS",
+        "pj": 2,
         "g": 1,
-        "e": 0,
+        "e": 1,
         "p": 0,
-        "pts": 3
+        "pts": 5
       },
       {
-        "equipo": "CLUB LA PATERNAL",
-        "pj": 1,
+        "equipo": "CLUB PACIFICO",
+        "pj": 2,
         "g": 1,
         "e": 0,
-        "p": 0,
+        "p": 1,
+        "pts": 4
+      },
+      {
+        "equipo": "PLATENSE BLANCO",
+        "pj": 2,
+        "g": 1,
+        "e": 0,
+        "p": 1,
+        "pts": 4
+      },
+      {
+        "equipo": "ESTRELLA DE BOEDO",
+        "pj": 2,
+        "g": 1,
+        "e": 0,
+        "p": 1,
+        "pts": 4
+      },
+      {
+        "equipo": "NUEVA CHICAGO",
+        "pj": 3,
+        "g": 0,
+        "e": 0,
+        "p": 3,
         "pts": 3
       },
       {
         "equipo": "FLORES CLUB",
-        "pj": 2,
+        "pj": 3,
         "g": 1,
         "e": 0,
         "p": 0,
         "pts": 3
       },
       {
-        "equipo": "LOS CUERVOS",
-        "pj": 1,
-        "g": 0,
-        "e": 1,
-        "p": 0,
-        "pts": 2
-      },
-      {
-        "equipo": "NUEVA CHICAGO",
+        "equipo": "C. S. y D. PAMPERO",
         "pj": 2,
         "g": 0,
         "e": 0,
@@ -220,36 +244,12 @@
         "pts": 2
       },
       {
-        "equipo": "VILLA HERMINIA",
-        "pj": 1,
-        "g": 0,
-        "e": 0,
-        "p": 1,
-        "pts": 1
-      },
-      {
-        "equipo": "C. S. y D. PAMPERO",
-        "pj": 1,
-        "g": 0,
-        "e": 0,
-        "p": 1,
-        "pts": 1
-      },
-      {
-        "equipo": "ESTRELLA DE BOEDO",
-        "pj": 1,
-        "g": 0,
-        "e": 0,
-        "p": 1,
-        "pts": 1
-      },
-      {
         "equipo": "SANELI F.C.",
-        "pj": 1,
+        "pj": 2,
         "g": 0,
         "e": 0,
-        "p": 1,
-        "pts": 1
+        "p": 2,
+        "pts": 2
       },
       {
         "equipo": "EST. PORTEÑO ROJO",
@@ -262,84 +262,100 @@
     ],
     "2014/15": [
       {
-        "equipo": "NUEVA CHICAGO",
-        "pj": 2,
-        "g": 1,
+        "equipo": "VILLA HERMINIA",
+        "pj": 3,
+        "g": 2,
         "e": 0,
         "p": 1,
-        "pts": 4
+        "pts": 7
       },
       {
         "equipo": "FLORES CLUB",
+        "pj": 3,
+        "g": 2,
+        "e": 0,
+        "p": 1,
+        "pts": 7
+      },
+      {
+        "equipo": "CLUB PACIFICO",
+        "pj": 2,
+        "g": 2,
+        "e": 0,
+        "p": 0,
+        "pts": 6
+      },
+      {
+        "equipo": "VILLA LURO NORTE",
+        "pj": 2,
+        "g": 2,
+        "e": 0,
+        "p": 0,
+        "pts": 6
+      },
+      {
+        "equipo": "C. A. VIRGEN DEL CARMEN",
+        "pj": 2,
+        "g": 2,
+        "e": 0,
+        "p": 0,
+        "pts": 6
+      },
+      {
+        "equipo": "ESTRELLA DE BOEDO",
+        "pj": 2,
+        "g": 2,
+        "e": 0,
+        "p": 0,
+        "pts": 6
+      },
+      {
+        "equipo": "LOS CUERVOS",
+        "pj": 2,
+        "g": 2,
+        "e": 0,
+        "p": 0,
+        "pts": 6
+      },
+      {
+        "equipo": "CLUB AT. LUGANO",
+        "pj": 3,
+        "g": 1,
+        "e": 0,
+        "p": 2,
+        "pts": 5
+      },
+      {
+        "equipo": "A. A. A. J.",
+        "pj": 3,
+        "g": 1,
+        "e": 0,
+        "p": 2,
+        "pts": 5
+      },
+      {
+        "equipo": "CLUB LA PATERNAL",
+        "pj": 3,
+        "g": 1,
+        "e": 0,
+        "p": 2,
+        "pts": 5
+      },
+      {
+        "equipo": "NUEVA CHICAGO",
+        "pj": 3,
+        "g": 1,
+        "e": 0,
+        "p": 2,
+        "pts": 5
+      },
+      {
+        "equipo": "PLATENSE BLANCO",
         "pj": 2,
         "g": 1,
         "e": 0,
         "p": 1,
         "pts": 4
-      },
-      {
-        "equipo": "CLUB PACIFICO",
-        "pj": 1,
-        "g": 1,
-        "e": 0,
-        "p": 0,
-        "pts": 3
-      },
-      {
-        "equipo": "CLUB AT. LUGANO",
-        "pj": 1,
-        "g": 1,
-        "e": 0,
-        "p": 0,
-        "pts": 3
-      },
-      {
-        "equipo": "VILLA LURO NORTE",
-        "pj": 1,
-        "g": 1,
-        "e": 0,
-        "p": 0,
-        "pts": 3
-      },
-      {
-        "equipo": "VILLA HERMINIA",
-        "pj": 1,
-        "g": 1,
-        "e": 0,
-        "p": 0,
-        "pts": 3
-      },
-      {
-        "equipo": "A. A. A. J.",
-        "pj": 1,
-        "g": 1,
-        "e": 0,
-        "p": 0,
-        "pts": 3
-      },
-      {
-        "equipo": "C. A. VIRGEN DEL CARMEN",
-        "pj": 1,
-        "g": 1,
-        "e": 0,
-        "p": 0,
-        "pts": 3
-      },
-      {
-        "equipo": "ESTRELLA DE BOEDO",
-        "pj": 1,
-        "g": 1,
-        "e": 0,
-        "p": 0,
-        "pts": 3
-      },
-      {
-        "equipo": "LOS CUERVOS",
-        "pj": 1,
-        "g": 1,
-        "e": 0,
-        "p": 0,
-        "pts": 3
       },
       {
         "equipo": "LOS ALBOS",
@@ -358,41 +374,49 @@
         "pts": 2
       },
       {
-        "equipo": "PLATENSE BLANCO",
-        "pj": 1,
-        "g": 0,
-        "e": 0,
-        "p": 1,
-        "pts": 1
-      },
-      {
         "equipo": "C. S. y D. PAMPERO",
-        "pj": 1,
+        "pj": 2,
         "g": 0,
         "e": 0,
-        "p": 1,
-        "pts": 1
-      },
-      {
-        "equipo": "CLUB LA PATERNAL",
-        "pj": 1,
-        "g": 0,
-        "e": 0,
-        "p": 1,
-        "pts": 1
+        "p": 2,
+        "pts": 2
       },
       {
         "equipo": "SANELI F.C.",
-        "pj": 1,
+        "pj": 2,
         "g": 0,
         "e": 0,
-        "p": 1,
-        "pts": 1
+        "p": 2,
+        "pts": 2
       }
     ],
     "2016/17": [
       {
         "equipo": "FLORES CLUB",
+        "pj": 3,
+        "g": 3,
+        "e": 0,
+        "p": 0,
+        "pts": 9
+      },
+      {
+        "equipo": "NUEVA CHICAGO",
+        "pj": 3,
+        "g": 2,
+        "e": 0,
+        "p": 1,
+        "pts": 7
+      },
+      {
+        "equipo": "CLUB AT. LUGANO",
+        "pj": 3,
+        "g": 1,
+        "e": 1,
+        "p": 1,
+        "pts": 6
+      },
+      {
+        "equipo": "VILLA LURO NORTE",
         "pj": 2,
         "g": 2,
         "e": 0,
@@ -400,7 +424,47 @@
         "pts": 6
       },
       {
-        "equipo": "NUEVA CHICAGO",
+        "equipo": "C. A. VIRGEN DEL CARMEN",
+        "pj": 2,
+        "g": 2,
+        "e": 0,
+        "p": 0,
+        "pts": 6
+      },
+      {
+        "equipo": "ESTRELLA DE BOEDO",
+        "pj": 2,
+        "g": 2,
+        "e": 0,
+        "p": 0,
+        "pts": 6
+      },
+      {
+        "equipo": "LOS CUERVOS",
+        "pj": 2,
+        "g": 2,
+        "e": 0,
+        "p": 0,
+        "pts": 6
+      },
+      {
+        "equipo": "A. A. A. J.",
+        "pj": 3,
+        "g": 1,
+        "e": 0,
+        "p": 2,
+        "pts": 5
+      },
+      {
+        "equipo": "VILLA HERMINIA",
+        "pj": 3,
+        "g": 1,
+        "e": 0,
+        "p": 1,
+        "pts": 4
+      },
+      {
+        "equipo": "PLATENSE BLANCO",
         "pj": 2,
         "g": 1,
         "e": 0,
@@ -408,59 +472,27 @@
         "pts": 4
       },
       {
-        "equipo": "CLUB AT. LUGANO",
-        "pj": 1,
-        "g": 1,
-        "e": 0,
-        "p": 0,
-        "pts": 3
-      },
-      {
-        "equipo": "VILLA LURO NORTE",
-        "pj": 1,
-        "g": 1,
-        "e": 0,
-        "p": 0,
-        "pts": 3
-      },
-      {
-        "equipo": "VILLA HERMINIA",
-        "pj": 1,
-        "g": 1,
-        "e": 0,
-        "p": 0,
-        "pts": 3
-      },
-      {
-        "equipo": "C. A. VIRGEN DEL CARMEN",
-        "pj": 1,
-        "g": 1,
-        "e": 0,
-        "p": 0,
-        "pts": 3
-      },
-      {
         "equipo": "C. S. y D. PAMPERO",
-        "pj": 1,
+        "pj": 2,
         "g": 1,
         "e": 0,
-        "p": 0,
+        "p": 1,
+        "pts": 4
+      },
+      {
+        "equipo": "CLUB PACIFICO",
+        "pj": 2,
+        "g": 0,
+        "e": 1,
+        "p": 1,
         "pts": 3
       },
       {
-        "equipo": "ESTRELLA DE BOEDO",
-        "pj": 1,
-        "g": 1,
+        "equipo": "CLUB LA PATERNAL",
+        "pj": 3,
+        "g": 0,
         "e": 0,
-        "p": 0,
-        "pts": 3
-      },
-      {
-        "equipo": "LOS CUERVOS",
-        "pj": 1,
-        "g": 1,
-        "e": 0,
-        "p": 0,
+        "p": 3,
         "pts": 3
       },
       {
@@ -480,49 +512,41 @@
         "pts": 2
       },
       {
-        "equipo": "CLUB PACIFICO",
-        "pj": 1,
-        "g": 0,
-        "e": 0,
-        "p": 1,
-        "pts": 1
-      },
-      {
-        "equipo": "PLATENSE BLANCO",
-        "pj": 1,
-        "g": 0,
-        "e": 0,
-        "p": 1,
-        "pts": 1
-      },
-      {
-        "equipo": "A. A. A. J.",
-        "pj": 1,
-        "g": 0,
-        "e": 0,
-        "p": 1,
-        "pts": 1
-      },
-      {
-        "equipo": "CLUB LA PATERNAL",
-        "pj": 1,
-        "g": 0,
-        "e": 0,
-        "p": 1,
-        "pts": 1
-      },
-      {
         "equipo": "SANELI F.C.",
-        "pj": 1,
+        "pj": 2,
         "g": 0,
         "e": 0,
-        "p": 1,
-        "pts": 1
+        "p": 2,
+        "pts": 2
       }
     ],
     "2018/19": [
       {
+        "equipo": "A. A. A. J.",
+        "pj": 3,
+        "g": 3,
+        "e": 0,
+        "p": 0,
+        "pts": 9
+      },
+      {
         "equipo": "FLORES CLUB",
+        "pj": 3,
+        "g": 3,
+        "e": 0,
+        "p": 0,
+        "pts": 9
+      },
+      {
+        "equipo": "NUEVA CHICAGO",
+        "pj": 3,
+        "g": 2,
+        "e": 0,
+        "p": 1,
+        "pts": 7
+      },
+      {
+        "equipo": "VILLA LURO NORTE",
         "pj": 2,
         "g": 2,
         "e": 0,
@@ -530,7 +554,47 @@
         "pts": 6
       },
       {
-        "equipo": "NUEVA CHICAGO",
+        "equipo": "PLATENSE BLANCO",
+        "pj": 2,
+        "g": 2,
+        "e": 0,
+        "p": 0,
+        "pts": 6
+      },
+      {
+        "equipo": "C. A. VIRGEN DEL CARMEN",
+        "pj": 2,
+        "g": 2,
+        "e": 0,
+        "p": 0,
+        "pts": 6
+      },
+      {
+        "equipo": "LOS CUERVOS",
+        "pj": 2,
+        "g": 2,
+        "e": 0,
+        "p": 0,
+        "pts": 6
+      },
+      {
+        "equipo": "CLUB AT. LUGANO",
+        "pj": 3,
+        "g": 1,
+        "e": 0,
+        "p": 2,
+        "pts": 5
+      },
+      {
+        "equipo": "CLUB LA PATERNAL",
+        "pj": 3,
+        "g": 1,
+        "e": 0,
+        "p": 2,
+        "pts": 5
+      },
+      {
+        "equipo": "CLUB PACIFICO",
         "pj": 2,
         "g": 1,
         "e": 0,
@@ -538,60 +602,12 @@
         "pts": 4
       },
       {
-        "equipo": "CLUB AT. LUGANO",
-        "pj": 1,
-        "g": 1,
+        "equipo": "VILLA HERMINIA",
+        "pj": 3,
+        "g": 0,
         "e": 0,
-        "p": 0,
-        "pts": 3
-      },
-      {
-        "equipo": "VILLA LURO NORTE",
-        "pj": 1,
-        "g": 1,
-        "e": 0,
-        "p": 0,
-        "pts": 3
-      },
-      {
-        "equipo": "PLATENSE BLANCO",
-        "pj": 1,
-        "g": 1,
-        "e": 0,
-        "p": 0,
-        "pts": 3
-      },
-      {
-        "equipo": "A. A. A. J.",
-        "pj": 1,
-        "g": 1,
-        "e": 0,
-        "p": 0,
-        "pts": 3
-      },
-      {
-        "equipo": "C. A. VIRGEN DEL CARMEN",
-        "pj": 1,
-        "g": 1,
-        "e": 0,
-        "p": 0,
-        "pts": 3
-      },
-      {
-        "equipo": "CLUB LA PATERNAL",
-        "pj": 1,
-        "g": 1,
-        "e": 0,
-        "p": 0,
-        "pts": 3
-      },
-      {
-        "equipo": "LOS CUERVOS",
-        "pj": 1,
-        "g": 1,
-        "e": 0,
-        "p": 0,
-        "pts": 3
+        "p": 2,
+        "pts": 2
       },
       {
         "equipo": "EST. PORTEÑO ROJO",
@@ -602,44 +618,28 @@
         "pts": 2
       },
       {
-        "equipo": "CLUB PACIFICO",
-        "pj": 1,
-        "g": 0,
-        "e": 0,
-        "p": 1,
-        "pts": 1
-      },
-      {
-        "equipo": "VILLA HERMINIA",
-        "pj": 1,
-        "g": 0,
-        "e": 0,
-        "p": 1,
-        "pts": 1
-      },
-      {
         "equipo": "C. S. y D. PAMPERO",
-        "pj": 1,
+        "pj": 2,
         "g": 0,
         "e": 0,
-        "p": 1,
-        "pts": 1
+        "p": 2,
+        "pts": 2
       },
       {
         "equipo": "ESTRELLA DE BOEDO",
-        "pj": 1,
+        "pj": 2,
         "g": 0,
         "e": 0,
-        "p": 1,
-        "pts": 1
+        "p": 2,
+        "pts": 2
       },
       {
         "equipo": "SANELI F.C.",
-        "pj": 1,
+        "pj": 2,
         "g": 0,
         "e": 0,
-        "p": 1,
-        "pts": 1
+        "p": 2,
+        "pts": 2
       },
       {
         "equipo": "LOS ALBOS",
@@ -652,28 +652,100 @@
     ],
     "2020/21/22": [
       {
-        "equipo": "FLORES CLUB",
-        "pj": 2,
-        "g": 1,
+        "equipo": "CLUB AT. LUGANO",
+        "pj": 3,
+        "g": 2,
         "e": 1,
         "p": 0,
-        "pts": 5
+        "pts": 8
       },
       {
-        "equipo": "CLUB AT. LUGANO",
-        "pj": 1,
-        "g": 1,
+        "equipo": "CLUB LA PATERNAL",
+        "pj": 3,
+        "g": 2,
         "e": 0,
-        "p": 0,
-        "pts": 3
+        "p": 1,
+        "pts": 7
       },
       {
         "equipo": "VILLA LURO NORTE",
-        "pj": 1,
-        "g": 1,
+        "pj": 2,
+        "g": 2,
         "e": 0,
         "p": 0,
-        "pts": 3
+        "pts": 6
+      },
+      {
+        "equipo": "ESTRELLA DE BOEDO",
+        "pj": 2,
+        "g": 2,
+        "e": 0,
+        "p": 0,
+        "pts": 6
+      },
+      {
+        "equipo": "LOS CUERVOS",
+        "pj": 2,
+        "g": 2,
+        "e": 0,
+        "p": 0,
+        "pts": 6
+      },
+      {
+        "equipo": "NUEVA CHICAGO",
+        "pj": 3,
+        "g": 1,
+        "e": 1,
+        "p": 1,
+        "pts": 6
+      },
+      {
+        "equipo": "FLORES CLUB",
+        "pj": 3,
+        "g": 1,
+        "e": 1,
+        "p": 1,
+        "pts": 6
+      },
+      {
+        "equipo": "A. A. A. J.",
+        "pj": 3,
+        "g": 1,
+        "e": 0,
+        "p": 2,
+        "pts": 5
+      },
+      {
+        "equipo": "CLUB PACIFICO",
+        "pj": 2,
+        "g": 0,
+        "e": 2,
+        "p": 0,
+        "pts": 4
+      },
+      {
+        "equipo": "PLATENSE BLANCO",
+        "pj": 2,
+        "g": 1,
+        "e": 0,
+        "p": 1,
+        "pts": 4
+      },
+      {
+        "equipo": "C. A. VIRGEN DEL CARMEN",
+        "pj": 2,
+        "g": 1,
+        "e": 0,
+        "p": 1,
+        "pts": 4
+      },
+      {
+        "equipo": "C. S. y D. PAMPERO",
+        "pj": 2,
+        "g": 1,
+        "e": 0,
+        "p": 1,
+        "pts": 4
       },
       {
         "equipo": "LOS ALBOS",
@@ -684,59 +756,11 @@
         "pts": 3
       },
       {
-        "equipo": "A. A. A. J.",
-        "pj": 1,
-        "g": 1,
-        "e": 0,
-        "p": 0,
-        "pts": 3
-      },
-      {
-        "equipo": "C. A. VIRGEN DEL CARMEN",
-        "pj": 1,
-        "g": 1,
-        "e": 0,
-        "p": 0,
-        "pts": 3
-      },
-      {
-        "equipo": "ESTRELLA DE BOEDO",
-        "pj": 1,
-        "g": 1,
-        "e": 0,
-        "p": 0,
-        "pts": 3
-      },
-      {
-        "equipo": "CLUB LA PATERNAL",
-        "pj": 1,
-        "g": 1,
-        "e": 0,
-        "p": 0,
-        "pts": 3
-      },
-      {
-        "equipo": "LOS CUERVOS",
-        "pj": 1,
-        "g": 1,
-        "e": 0,
-        "p": 0,
-        "pts": 3
-      },
-      {
-        "equipo": "NUEVA CHICAGO",
-        "pj": 2,
+        "equipo": "VILLA HERMINIA",
+        "pj": 3,
         "g": 0,
-        "e": 1,
-        "p": 1,
-        "pts": 3
-      },
-      {
-        "equipo": "CLUB PACIFICO",
-        "pj": 1,
-        "g": 0,
-        "e": 1,
-        "p": 0,
+        "e": 0,
+        "p": 2,
         "pts": 2
       },
       {
@@ -748,36 +772,12 @@
         "pts": 2
       },
       {
-        "equipo": "VILLA HERMINIA",
-        "pj": 1,
-        "g": 0,
-        "e": 0,
-        "p": 1,
-        "pts": 1
-      },
-      {
-        "equipo": "PLATENSE BLANCO",
-        "pj": 1,
-        "g": 0,
-        "e": 0,
-        "p": 1,
-        "pts": 1
-      },
-      {
-        "equipo": "C. S. y D. PAMPERO",
-        "pj": 1,
-        "g": 0,
-        "e": 0,
-        "p": 1,
-        "pts": 1
-      },
-      {
         "equipo": "SANELI F.C.",
-        "pj": 1,
+        "pj": 2,
         "g": 0,
         "e": 0,
-        "p": 1,
-        "pts": 1
+        "p": 2,
+        "pts": 2
       }
     ]
   }
