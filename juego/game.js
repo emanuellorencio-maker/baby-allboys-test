@@ -19,7 +19,10 @@
   const finalScoreEl = document.getElementById("final-score");
   const finalBestEl = document.getElementById("final-best");
   const finalCoinsEl = document.getElementById("final-coins");
+  const finalTotalCoinsEl = document.getElementById("final-total-coins");
+  const finalMissionEl = document.getElementById("final-mission");
   const losePhraseEl = document.getElementById("lose-phrase");
+  const startMissionEl = document.getElementById("start-mission");
 
   const ASSETS = {
     player: ["assets/png-referencia/jugador.png", "assets/png/jugador.png", "assets/jugador.svg"],
@@ -49,14 +52,23 @@
     "Te comio el potrero"
   ];
 
-  const CONTROL_ZONE_RATIO = .32;
-  const TOUCH_SENSITIVITY = 1.18;
-  const HORIZONTAL_ACCELERATION = 44;
-  const MAX_HORIZONTAL_SPEED = 8.4;
-  const HORIZONTAL_FRICTION = .028;
-  const INPUT_SMOOTHING = 15;
-  const CAMERA_TARGET_RATIO = .36;
-  const TRAINING_PLATFORM_COUNT = 10;
+  const CONTROL_ZONE_RATIO = .34;
+  const TOUCH_SENSITIVITY = 1.34;
+  const HORIZONTAL_ACCELERATION = 62;
+  const MAX_HORIZONTAL_SPEED = 9.2;
+  const HORIZONTAL_FRICTION = .018;
+  const INPUT_SMOOTHING = 22;
+  const INPUT_DEAD_ZONE = .08;
+  const CAMERA_TARGET_RATIO = .33;
+  const TRAINING_PLATFORM_COUNT = 14;
+
+  const MISSIONS = [
+    { text: "Junta 10 escuditos", check: () => state.coins >= 10 },
+    { text: "Llega a 250 de altura", check: () => state.score >= 250 },
+    { text: "Pisa 15 plataformas", check: () => state.platformsLanded >= 15 },
+    { text: "Esquiva 3 rivales", check: () => state.rivalsDodged >= 3 },
+    { text: "Juga 3 partidas", check: () => state.gamesPlayed >= 3 }
+  ];
 
   const images = {};
   const state = {
@@ -68,6 +80,7 @@
     score: 0,
     best: Number(localStorage.getItem("babyAlboJumpBest") || 0),
     totalCoins: Number(localStorage.getItem("babyAlboJumpTotalCoins") || 0),
+    gamesPlayed: Number(localStorage.getItem("babyAlboJumpGamesPlayed") || 0),
     coins: 0,
     combo: 1,
     comboTimer: 0,
@@ -78,6 +91,10 @@
     touchHoldUntil: 0,
     inputX: 0,
     platformCount: 0,
+    platformsLanded: 0,
+    rivalsDodged: 0,
+    currentMissionIndex: 0,
+    missionComplete: false,
     lastPlatformX: 0,
     controlHintTimer: 0,
     trailTimer: 0,
@@ -98,6 +115,16 @@
   };
 
   bestEl.textContent = state.best;
+  updateMissionText();
+
+  function currentMission() {
+    return MISSIONS[state.currentMissionIndex % MISSIONS.length];
+  }
+
+  function updateMissionText() {
+    const mission = MISSIONS[state.currentMissionIndex % MISSIONS.length];
+    if (startMissionEl) startMissionEl.textContent = `Mision: ${mission.text}`;
+  }
 
   function loadImageWithFallback(sources, resolve) {
     const [src, ...fallbacks] = Array.isArray(sources) ? sources : [sources];
@@ -170,8 +197,12 @@
     state.touchHoldUntil = 0;
     state.inputX = 0;
     state.platformCount = 0;
+    state.platformsLanded = 0;
+    state.rivalsDodged = 0;
+    state.currentMissionIndex = state.gamesPlayed % MISSIONS.length;
+    state.missionComplete = false;
     state.lastPlatformX = w * .5 - 62;
-    state.controlHintTimer = 4.2;
+    state.controlHintTimer = 5.2;
     state.trailTimer = 0;
     state.screenShake = 0;
     state.hitFlash = 0;
@@ -202,6 +233,7 @@
     pauseBadge.classList.add("hidden");
     controlZoneHint.classList.remove("hidden", "is-fading");
     shareFallback.classList.add("hidden");
+    updateMissionText();
     updateHud();
   }
 
@@ -214,7 +246,8 @@
       type,
       variant,
       phase: rand(0, 100),
-      squash: 0
+      squash: 0,
+      touched: false
     };
   }
 
@@ -223,14 +256,14 @@
     const ramp = Math.min(1, altitude / 3600);
     state.platformCount += 1;
     const training = state.platformCount <= TRAINING_PLATFORM_COUNT;
-    const gap = training ? rand(66, 92) : rand(78 + ramp * 18, 112 + ramp * 58 + state.difficulty * 10);
+    const gap = training ? rand(58, 84) : rand(76 + ramp * 18, 106 + ramp * 54 + state.difficulty * 9);
     state.spawnY -= gap;
-    const platformWidth = training ? rand(122, 142) : Math.max(72, 124 - ramp * 34 - state.difficulty * 3);
-    const maxStep = training ? state.width * .34 : state.width;
+    const platformWidth = training ? rand(134, 158) : Math.max(78, 130 - ramp * 32 - state.difficulty * 2.6);
+    const maxStep = training ? state.width * .26 : state.width;
     const x = training
       ? clamp(state.lastPlatformX + rand(-maxStep, maxStep), 14, state.width - platformWidth - 14)
       : rand(14, state.width - platformWidth - 14);
-    const movingChance = training ? 0 : Math.min(.48, .1 + ramp * .3 + state.difficulty * .03);
+    const movingChance = training ? 0 : Math.min(.42, .08 + ramp * .28 + state.difficulty * .025);
     const type = Math.random() < movingChance ? "moving" : "normal";
     const variant = training ? 1 + Math.floor(Math.random() * 2) : Math.random() < Math.min(.16, .04 + ramp * .12) ? 4 : 1 + Math.floor(Math.random() * 3);
     const platform = makePlatform(x, state.spawnY, platformWidth, type, variant);
@@ -252,7 +285,8 @@
         y: platform.y - rand(84, 165),
         w: rival ? 54 : 42,
         h: rival ? 62 : 46,
-        phase: rand(0, 100)
+        phase: rand(0, 100),
+        passed: false
       });
     }
   }
@@ -318,10 +352,12 @@
     const touchHeld = state.touchActive || performance.now() < state.touchHoldUntil;
     if (touchHeld && state.touchX !== null) {
       target = clamp(((state.touchX - state.width * .5) / (state.width * .34)) * TOUCH_SENSITIVITY, -1, 1);
+      if (Math.abs(target) < INPUT_DEAD_ZONE) target = 0;
     }
     if (state.keys.left) target -= 1;
     if (state.keys.right) target += 1;
     state.inputX += (clamp(target, -1, 1) - state.inputX) * Math.min(1, dt * INPUT_SMOOTHING);
+    if (!touchHeld && !state.keys.left && !state.keys.right && Math.abs(state.inputX) < .035) state.inputX = 0;
 
     const maxSpeed = MAX_HORIZONTAL_SPEED + Math.min(1.2, state.difficulty * .14);
     p.vx += state.inputX * HORIZONTAL_ACCELERATION * dt;
@@ -354,6 +390,11 @@
       const previousFeet = feet - p.vy * 60 * dt;
       if (falling && previousFeet <= platform.y + 8 && feet >= platform.y && p.x + p.w * .76 > platform.x && p.x + p.w * .24 < platform.x + platform.w) {
         p.y = platform.y - p.h;
+        if (!platform.touched) {
+          platform.touched = true;
+          state.platformsLanded += 1;
+          if (state.platformsLanded === 15) popup("MISION!", platform.x + platform.w / 2 - 34, platform.y - 18, "#f4c84a");
+        }
         jump(p.boost > 0 ? 16.5 : 14.3, platform);
       }
     }
@@ -387,6 +428,13 @@
 
     for (const obstacle of state.obstacles) {
       obstacle.x += obstacle.kind === "rival" ? Math.sin(performance.now() / 560 + obstacle.phase) * (.72 + state.difficulty * .03) : 0;
+      if (!obstacle.passed && obstacle.y > p.y + p.h + 92) {
+        obstacle.passed = true;
+        if (obstacle.kind === "rival") {
+          state.rivalsDodged += 1;
+          popup("ESQUIVE!", p.x + p.w / 2 - 28, p.y - 18, "#ffffff");
+        }
+      }
       if (rectsOverlap({ x: p.x + 9, y: p.y + 8, w: p.w - 18, h: p.h - 14 }, obstacle)) {
         endGame();
         return;
@@ -403,6 +451,14 @@
     state.platforms = state.platforms.filter((o) => o.y < cleanupY);
     state.collectibles = state.collectibles.filter((o) => !o.taken && o.y < cleanupY);
     state.obstacles = state.obstacles.filter((o) => o.y < cleanupY);
+
+    if (!state.missionComplete && currentMission().check()) {
+      state.missionComplete = true;
+      state.recordFlash = Math.max(state.recordFlash, .55);
+      popup("MISION COMPLETA", p.x - 42, p.y - 34, "#f4c84a");
+      burst(p.x + p.w / 2, p.y + p.h / 2, "#f4c84a", 24, 1.45);
+      vibrate(28);
+    }
 
     updateEffects(dt);
     if (p.y - state.cameraY > state.height + 120) endGame();
@@ -438,13 +494,18 @@
     const newRecord = state.score > state.best;
     state.best = Math.max(state.best, state.score);
     state.totalCoins += state.coins;
+    state.gamesPlayed += 1;
+    if (currentMission().check()) state.missionComplete = true;
     if (newRecord) state.recordFlash = 1;
     localStorage.setItem("babyAlboJumpBest", String(state.best));
     localStorage.setItem("babyAlboJumpTotalCoins", String(state.totalCoins));
+    localStorage.setItem("babyAlboJumpGamesPlayed", String(state.gamesPlayed));
     losePhraseEl.textContent = LOSE_PHRASES[Math.floor(Math.random() * LOSE_PHRASES.length)];
     finalScoreEl.textContent = state.score;
     finalBestEl.textContent = state.best;
     finalCoinsEl.textContent = state.coins;
+    if (finalTotalCoinsEl) finalTotalCoinsEl.textContent = state.totalCoins;
+    if (finalMissionEl) finalMissionEl.textContent = state.missionComplete ? "OK" : "Pendiente";
     pauseButton.classList.add("hidden");
     controlZoneHint.classList.add("hidden");
     pauseBadge.classList.add("hidden");

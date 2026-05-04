@@ -21,7 +21,8 @@
       <h1>Baby Albo Jump</h1>
       <p>Salta hasta lo mas alto y hacete leyenda.</p>
       <p class="start-mini">Junta escuditos, arma combo y esquiva rivales.</p>
-      <p class="gesture-hint">Desliza abajo para moverte</p>
+      <p class="gesture-hint">Pulgar abajo: toca o desliza izquierda/derecha</p>
+      <p class="mission-pill" id="start-mission">Mision: junta 10 escuditos</p>
       <button class="primary-button" id="play-button" type="button">JUGAR</button>
       <a class="back-link" href="../index.html">Volver al sitio</a>
     </section>
@@ -42,6 +43,14 @@
           <span>Escuditos juntados</span>
           <strong id="final-coins">0</strong>
         </div>
+        <div class="score-card">
+          <span>Total</span>
+          <strong id="final-total-coins">0</strong>
+        </div>
+        <div class="score-card mission-status-card">
+          <span>Mision</span>
+          <strong id="final-mission">-</strong>
+        </div>
       </div>
       <button class="primary-button" id="retry-button" type="button">JUGAR DE NUEVO</button>
       <button class="secondary-button" id="share-button" type="button">COMPARTIR RECORD</button>
@@ -59,9 +68,9 @@
     </div>
     <button class="pause-button hidden" id="pause-button" type="button" aria-label="Pausar juego">II</button>
     <div class="control-zone-hint hidden" id="control-zone-hint" aria-hidden="true">
-      <span>‹</span>
-      <strong>zona de control</strong>
-      <span>›</span>
+      <span>&lt;</span>
+      <strong>pulgar aca</strong>
+      <span>&gt;</span>
     </div>
     <div class="pause-badge hidden" id="pause-badge">PAUSA</div>
   </main>

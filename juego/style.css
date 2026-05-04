@@ -349,6 +349,22 @@ h2 {
   letter-spacing: .7px;
 }
 
+.mission-pill {
+  display: inline-flex;
+  justify-content: center;
+  width: auto !important;
+  max-width: min(88vw, 330px) !important;
+  padding: 8px 13px;
+  border: 1px solid rgba(244, 200, 74, .34);
+  border-radius: 999px;
+  background: rgba(244, 200, 74, .12);
+  color: #fff4bd !important;
+  font-size: 13px !important;
+  font-weight: 1000 !important;
+  text-transform: uppercase;
+  letter-spacing: .6px;
+}
+
 .screen-over {
   gap: 12px;
 }
@@ -444,8 +460,12 @@ h2 {
   display: block;
   margin-top: 3px;
   color: var(--gold);
-  font-size: 38px;
+  font-size: clamp(26px, 9vw, 38px);
   line-height: 1;
+}
+
+.mission-status-card strong {
+  font-size: clamp(25px, 7vw, 32px);
 }
 
 .share-fallback {
