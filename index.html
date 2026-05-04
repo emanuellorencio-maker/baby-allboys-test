@@ -3,9 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#070707" />
+  <meta name="theme-color" content="#111111" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="Baby All Boys" />
   <title>Baby All Boys</title>
-  <link rel="icon" href="data:," />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <link rel="icon" href="/icons/icon-192.png" />
+  <link rel="apple-touch-icon" href="/icons/icon-192.png" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
     :root{
@@ -361,6 +366,17 @@ body.modo-insta.zona-elegida .insta-full-link{display:inline-flex;justify-conten
   .club-crest{width:30px;height:30px}
   body.modo-insta .app{min-height:calc(100vh - 28px)}
 }
+.pwa-install-banner{position:fixed;left:50%;bottom:64px;transform:translateX(-50%);z-index:10010;display:none;align-items:center;gap:10px;width:min(520px,calc(100vw - 24px));padding:10px 11px;border:1px solid rgba(255,255,255,.2);border-radius:16px;background:rgba(5,5,5,.94);color:#fff;box-shadow:0 16px 38px rgba(0,0,0,.42);backdrop-filter:blur(10px)}
+.pwa-install-banner.visible{display:flex}
+.pwa-install-text{min-width:0;flex:1;font-size:12px;font-weight:900;line-height:1.3;color:#e8e8e8}
+.pwa-install-text strong{display:block;color:#fff;font-size:13px}
+.pwa-install-actions{display:flex;gap:7px;align-items:center;flex:0 0 auto}
+.pwa-install-btn,.pwa-install-close{min-height:36px;border-radius:12px;font-weight:1000}
+.pwa-install-btn{padding:0 12px;background:#fff;color:#070707}
+.pwa-install-close{padding:0 10px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);color:#fff}
+body.modo-insta .pwa-install-banner,body.chat-abierto .pwa-install-banner{display:none!important}
+@media(min-width:761px){.pwa-install-banner{display:none!important}}
+@media(max-width:380px){.pwa-install-banner{align-items:flex-start}.pwa-install-actions{display:grid;gap:6px}.pwa-install-btn,.pwa-install-close{min-height:34px;padding:0 9px;font-size:12px}.pwa-install-text{font-size:11px}}
 /* Preguntale al Baby */
 .baby-chat-fab{position:fixed;right:18px;bottom:18px;z-index:10020;display:flex;align-items:flex-end;gap:10px;padding:0;background:transparent;color:#fff;border:0;filter:drop-shadow(0 18px 26px rgba(0,0,0,.45));animation:babyGlow 5.8s ease-in-out infinite}
 .baby-chat-fab:hover .baby-chat-fab-pet{transform:translateY(-5px) scale(1.04) rotate(-2deg)}
@@ -462,6 +478,16 @@ body.chat-abierto .baby-chat-fab{display:none}
   </section>
   <div class="footer-mini">Baby All Boys · Sitio no oficial</div>
 </div>
+<div class="pwa-install-banner" id="pwa-install-banner" role="status" aria-live="polite">
+  <div class="pwa-install-text">
+    <strong>Podés instalar Baby All Boys como app</strong>
+    Acceso directo desde la pantalla de inicio.
+  </div>
+  <div class="pwa-install-actions">
+    <button class="pwa-install-btn" id="pwa-install-btn" type="button">Instalar</button>
+    <button class="pwa-install-close" id="pwa-install-close" type="button">Ahora no</button>
+  </div>
+</div>
 <button class="baby-chat-fab" type="button" onclick="abrirChat()" aria-label="Abrir Preguntale al Baby">
   <span class="baby-chat-fab-pet" aria-hidden="true"></span>
   <span class="baby-chat-fab-text">Preguntale<br>al Baby</span>
@@ -508,6 +534,7 @@ body.chat-abierto .baby-chat-fab{display:none}
 const ZONA_CONFIG={c:{nombre:'All Boys A - Zona C',equipo:'ALL BOYS "A"',etiqueta:'All Boys A',dirLocal:'CHIVILCOY 1998 CABA'},i:{nombre:'All Boys B - Zona I',equipo:'ALL BOYS "B"',etiqueta:'All Boys B',dirLocal:'CHIVILCOY 1998 CABA'},mat1:{nombre:'Los Albos - MAT1',equipo:'LOS ALBOS',etiqueta:'Los Albos',dirLocal:'CHIVILCOY 1998 CABA'},mat4:{nombre:'All Boys - MAT4',equipo:'ALL BOYS',etiqueta:'All Boys MAT4',dirLocal:'CHIVILCOY 1998 CABA'}};
 const DIRECCIONES={c:{'PUEYRREDON':'BAZURCO 2922 VILLA PUEYRREDON','C. S. D. PARQUE':'MARCOS SASTRE 3268 CABA','BICHOS COLORADOS':'PUNTA ARENA 1271 CABA','CLUB OESTE':'AV JOSÉ MARIA MORENO 446 CAPITAL FEDERAL','DON BOSCO':'NICOLAS DE ARRIOLA 1833 RAMOS MEJÍA','CENTRO ESPAÑOL':'ESTANISLAO DEL CAMPO 989 VILLA SARMIENTO HAEDO','U.D.S. ALLENDE':'MELINCUE 4656 VILLA DEVOTO','RACING CLUB 1':'NOGOYA 3045 CABA','ESTRELLA DE MALDONADO B':'HUMBOLDT 1731 CABA','LOS CAMBOYANOS':'JOSE MARMOL 1715 CABA BOEDO','INDEPENDIENTE DE HURLINGHAM':'MIRANDA 849 HURLINGHAM','MARIANO MORENO':'CARDOSO 3080 CASTELAR NORTE','SANTIAGO DE LINIERS':'CAAGUAZU 6151 LINIERS CABA','INDEPENDIENTE':'BOYACA 470 CABA','D. F. SARMIENTO':'AVENIDA RABANAL 2375 CABA'},i:{'SOLDATI 32 F. C.':'CONDOR 2975 CABA','CLUB CIENCIA Y LABOR':'CUENCA 1750 CAPITAL FEDERAL','VILLA REAL ROJO':'TINOGASTA 5739 CABA','MARCHIGIANA':'NICASIO OROÑO 457 CABA','LUJAN DE LOS PATRIOTAS':'ERCILLA 7195 CABA','LA MARCA':'VENEZUELA 4170 SAN JUSTO','LUGANO TENNIS CLUB':'MURGUIONDO 3915 VILLA LUGANO CABA','EL TREBOL F. C.':'GANDARA 2840 CABA','LOS ANDES':'SANTA FE 151 LOMAS DE ZAMORA','AÑASCO':'MANUEL A RODRIGUEZ 2650 CAPITAL','LIGA FOMENTO VILLA MITRE':'GAVILAN 1540 CABA','K. A. C.':'JOAQUIN V GONZALEZ 3238 CABA','HURACAN':'URQUIZA 2247 CABA','LOMAS BLANCO':'MANUEL ARTIGAS 667 LOMAS DEL MIRADOR','FATIMA':'AVENIDA GENERAL SAN MARTÍN 3180 LOMAS DEL MIRADOR'},mat1:{'LOS CUERVOS':'VARELA 2640 CABA BOEDO','NUEVA CHICAGO':'AV. LISANDRO DE LA TORRE 2288 MATADEROS','SANELI F.C.':'EVITA 279 VILLA MADERO','CLUB PACIFICO':'SANTO TOME 3845 CABA','CLUB AT. LUGANO':'JOSÉ IGNACIO RUCCI 4170 CABA','VILLA LURO NORTE':'ELPIDIO GONZALEZ 5445 VILLA LURO','FLORES CLUB':'QUIRNO 947 CABA','VILLA HERMINIA':'CROACIA 2843 CIUDADELA','PLATENSE BLANCO':'ZUFRIATEGUI 2021 VTE LOPEZ','A. A. A. J.':'PUNTA ARENA 1271 CABA','C. A. VIRGEN DEL CARMEN':'SANTANDER 5955 VILLA LUGANO CABA','EST. PORTEÑO ROJO':'CRAMER 807 RAMOS MEJIA','C. S. y D. PAMPERO':'COSQUÍN 4048 BUENOS AIRES','ESTRELLA DE BOEDO':'CONSTITUCION 4151 CABA','CLUB LA PATERNAL':'FRAGATA SARMIENTO 1951 CABA'},mat4:{'LOS CARASUCIAS':'VARELA 2640 CABA BOEDO','ALMAFUERTE FUTBOL CLUB':'EL ESPINILLO Y EL TACUAPI CIUDAD EVITA','EROS':'HONDURAS 5153 PALERMO','ALVEAR':'JOSÉ E. RODO 4190 CABA','C. A. ATLANTA':'HUMBOLDT 370/540 CAPITAL FEDERAL','C. A. VERSAILLES BLANCO':'ARREGUI 6750 CABA','V. L. N.':'ELPIDIO GONZALEZ 5445 VILLA LURO','CE. F. F. LA INDEPENDENCIA':'MACHAIN 3480 CABA','COMPLEJO COSTAS CELESTE':'BOEDO 49 CABA','PARQUE PATRICIOS':'ALBERTI 2135 CAPITAL FEDERAL','EL TIFON DE BOYACA':'PUNTA ARENA 1271 CABA','CICLON FORTIN':'PERGAMINO 1551 VILLA LYNCH SAN MARTÍN','SP. PEREYRA':'ALVARADO 2785 CABA','HURACAN TIKI TIKI':'URQUIZA 2247 CABA','C. A. ESTUDIANTES':'LISANDRO DE LA TORRE Y URQUIZA CASEROS'}};
 let zonaActual='c',vistaActual='fixture',textoResaltarActual='ALL BOYS';let fixtureData=[],tablasData=null,resultadosData=null,clubesData=[];let rankingModo='general',rankingCat='13';let fechaResultadoActual=null;let tablaSeleccionadaActual='general';let cargaActual=0;let modoInsta=false;
+const ESCUDOS_DISPONIBLES=new Set(['assets/escudos/all-boys-a.png','assets/escudos/all-boys-b.png','assets/escudos/all-boys.png','assets/escudos/almafuerte-futbol-club.png','assets/escudos/alvear.jpg','assets/escudos/atlanta.png','assets/escudos/ciclon-fortin.png','assets/escudos/el-tifon-de-boyaca.png','assets/escudos/huracan-tiki-tiki.png','assets/escudos/la-independencia.jfif','assets/escudos/los-albos.png','assets/escudos/nueva-chicago.svg','assets/escudos/parque-patricios.png','assets/escudos/sp-pereyra.png','assets/escudos/v-l-n.jfif']);
 const DATA_CACHE={fixture:{},tablas:{},resultados:{},manual:null,clubes:null};
 function esc(v){return String(v??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#039;')}
 function escapeHtml(v){return esc(v)}
@@ -548,11 +575,11 @@ async function enviarSugerencia(ev){ev.preventDefault();const form=ev.currentTar
 function proximoPartido(partidos,desdeId=null){const ord=[...partidos].sort((a,b)=>parseFecha(a.fecha).t-parseFecha(b.fecha).t||fechaNum(a.fecha)-fechaNum(b.fecha));if(desdeId){const idx=ord.findIndex(p=>(p.fecha_id||fechaId(p.fecha))===desdeId);return ord[idx+1]||null}const hoy=new Date();const h=new Date(hoy.getFullYear(),hoy.getMonth(),hoy.getDate()).getTime();return ord.find(p=>parseFecha(p.fecha).t>=h)||ord[ord.length-1]||null}
 function slugEscudo(nombre){return norm(nombre).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'')}
 function clubPorNombre(nombre){const n=norm(nombre);return (clubesData||[]).find(c=>norm(c.nombre)===n||(Array.isArray(c.alias)&&c.alias.some(a=>norm(a)===n)))||null}
-function basesEscudo(nombre){const club=clubPorNombre(nombre);const slug=club?.slug||slugEscudo(nombre);const bases=[(club?.escudo||`assets/escudos/${slug}.png`).replace(/\.(png|jpg|jpeg|svg)$/i,''),`assets/escudos/${slug}`];const corto=slug.replace(/^c-a-/,'').replace(/^club-at-/,'').replace(/-futbol-club$/,'');if(corto&&corto!==slug)bases.push(`assets/escudos/${corto}`);return [...new Set(bases.filter(Boolean))]}
-function rutasEscudo(nombre){return basesEscudo(nombre).flatMap(base=>[`${base}.png`,`${base}.jpg`,`${base}.svg`])}
+function basesEscudo(nombre){const club=clubPorNombre(nombre);const slug=club?.slug||slugEscudo(nombre);const bases=[(club?.escudo||`assets/escudos/${slug}.png`).replace(/\.(png|jpg|jpeg|jfif|svg)$/i,''),`assets/escudos/${slug}`];const corto=slug.replace(/^c-a-/,'').replace(/^club-at-/,'').replace(/-futbol-club$/,'');if(corto&&corto!==slug)bases.push(`assets/escudos/${corto}`);return [...new Set(bases.filter(Boolean))]}
+function rutasEscudo(nombre){return basesEscudo(nombre).flatMap(base=>[`${base}.png`,`${base}.jpg`,`${base}.jpeg`,`${base}.jfif`,`${base}.svg`]).filter(r=>ESCUDOS_DISPONIBLES.has(r))}
 function inicialesClub(nombre){return String(nombre||'?').replace(/["']/g,'').split(/\s+/).filter(Boolean).slice(0,2).map(p=>p[0]).join('').toUpperCase()||'?'}
 function escudoFallback(img){const pendientes=(img.dataset.fallbacks||'').split('|').filter(Boolean);if(pendientes.length){img.dataset.fallbacks=pendientes.slice(1).join('|');img.src=pendientes[0];return}const wrap=img.closest('.club-crest');if(wrap){wrap.classList.add('sin-escudo');wrap.textContent=wrap.dataset.inicial||'?'}img.remove()}
-function escudoClub(nombre){const rutas=rutasEscudo(nombre);return `<span class="club-crest" data-inicial="${esc(inicialesClub(nombre))}"><img src="${esc(rutas[0])}" alt="" loading="lazy" data-fallbacks="${esc(rutas.slice(1).join('|'))}" onerror="escudoFallback(this)"></span>`}
+function escudoClub(nombre){const rutas=rutasEscudo(nombre);const inicial=esc(inicialesClub(nombre));if(!rutas.length)return `<span class="club-crest sin-escudo" data-inicial="${inicial}">${inicial}</span>`;return `<span class="club-crest" data-inicial="${inicial}"><img src="${esc(rutas[0])}" alt="" loading="lazy" data-fallbacks="${esc(rutas.slice(1).join('|'))}" onerror="escudoFallback(this)"></span>`}
 function renderProximo(p){const c=document.getElementById('contenedor-proximo-partido');if(!p){c.innerHTML='';return}const rival=esPropio(p.local)?p.visitante:p.local;const visitante=p.condicion==='Visitante';const dir=visitante?direccionEquipo(rival):'';const mapQuery=visitante?(dir||rival):'';const posLocal=posicionEquipo(p.local),posVisitante=posicionEquipo(p.visitante);const textoPos=pos=>pos?`${pos}° en tabla`:'Sin posición';c.innerHTML=`<div class="next-card"><div class="next-label">Próximo partido</div><div class="next-positions"><div class="next-pos-team ${esPropio(p.local)?'equipo-allboys':''}"><div class="next-pos-content">${escudoClub(p.local)}<div class="next-pos-text"><b>${esc(p.local)}</b><span>${esc(textoPos(posLocal))}</span></div></div></div><div class="next-pos-vs">VS</div><div class="next-pos-team ${esPropio(p.visitante)?'equipo-allboys':''}"><div class="next-pos-content">${escudoClub(p.visitante)}<div class="next-pos-text"><b>${esc(p.visitante)}</b><span>${esc(textoPos(posVisitante))}</span></div></div></div></div><span class="chip">${esc(p.fecha)}</span> <span class="chip">${esc(p.condicion)}</span>${visitante?`<div class="map-box"><strong>${dir?'Dirección visitante':'Buscar club visitante'}</strong>${dir?esc(dir):esc(rival)}<br><a class="map-link" target="_blank" rel="noopener noreferrer" href="${mapsUrl(mapQuery)}">Ver en Maps</a></div>`:''}</div>`}
 async function cargarFixture(z,id=++cargaActual){const cont=document.getElementById('contenedor-fixture');document.getElementById('contenedor-proximo-partido').innerHTML='';cont.className='bloque estado-carga';cont.textContent='Cargando fixture...';try{const [data,base,tabla,clubes]=await Promise.all([getFixtureData(z),getResultadosBase(z).catch(()=>({})),getTablasData(z).catch(()=>null),getClubesData()]);if(!esCargaVigente(z,id))return;fixtureData=data;tablasData=tabla;clubesData=clubes;resultadosData=await aplicarResultadosManual(z,base);if(!esCargaVigente(z,id))return;renderFixture(fixtureData)}catch(e){if(!esCargaVigente(z,id))return;cont.className='bloque estado-error';cont.textContent='No se pudo cargar el fixture. Revisá que exista data/'+z+'/fixture.json.'}}
 function posicionEquipo(e){const filas=Array.isArray(tablasData?.general)?tablasData.general:[];const idx=filas.findIndex(f=>norm(f.equipo)===norm(e));return idx>=0?idx+1:null}
@@ -736,6 +763,47 @@ async function responderPregunta(pregunta){
   if(intencion==='tabla')return respuestaTabla(datos,zona,categoria);
   if(intencion==='resultados')return respuestaResultadosZona(datos,zona,fecha,categoria);
   return respuestaResumenZona(datos,zona);
+}
+
+let deferredInstallPrompt=null;
+const PWA_DISMISSED_KEY='babyAllBoysPwaDismissed';
+const isAndroidMobile=/android/i.test(navigator.userAgent)&&/mobile/i.test(navigator.userAgent);
+const isStandalone=window.matchMedia('(display-mode: standalone)').matches||window.navigator.standalone===true;
+
+function mostrarBannerInstalacion(){
+  if(!isAndroidMobile||isStandalone||localStorage.getItem(PWA_DISMISSED_KEY)==='1')return;
+  document.getElementById('pwa-install-banner')?.classList.add('visible');
+}
+
+function cerrarBannerInstalacion(recordar=true){
+  document.getElementById('pwa-install-banner')?.classList.remove('visible');
+  if(recordar)localStorage.setItem(PWA_DISMISSED_KEY,'1');
+}
+
+window.addEventListener('beforeinstallprompt',event=>{
+  if(!isAndroidMobile)return;
+  event.preventDefault();
+  deferredInstallPrompt=event;
+  mostrarBannerInstalacion();
+});
+
+window.addEventListener('appinstalled',()=>cerrarBannerInstalacion(true));
+
+document.getElementById('pwa-install-btn')?.addEventListener('click',async()=>{
+  if(!deferredInstallPrompt)return;
+  const promptEvent=deferredInstallPrompt;
+  deferredInstallPrompt=null;
+  promptEvent.prompt();
+  await promptEvent.userChoice.catch(()=>null);
+  cerrarBannerInstalacion(true);
+});
+
+document.getElementById('pwa-install-close')?.addEventListener('click',()=>cerrarBannerInstalacion(true));
+
+if('serviceWorker' in navigator){
+  window.addEventListener('load',()=>{
+    navigator.serviceWorker.register('/sw.js').catch(error=>console.warn('No se pudo registrar el service worker',error));
+  });
 }
 
 function renderMensajeChat(tipo,texto){const cont=document.getElementById('baby-chat-messages');if(!cont)return;const row=document.createElement('div');row.className=`baby-chat-row ${tipo}`;const bubble=document.createElement('div');bubble.className='baby-chat-bubble';bubble.textContent=texto;if(tipo==='bot'){const av=document.createElement('span');av.className='baby-chat-avatar';row.append(av,bubble)}else row.appendChild(bubble);cont.appendChild(row);cont.scrollTop=cont.scrollHeight}
